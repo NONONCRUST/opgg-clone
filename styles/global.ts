@@ -1,16 +1,11 @@
 import { css } from "@emotion/react";
+import emotionReset from "emotion-reset";
 
 export const global = css`
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: "Noto Sans KR", sans-serif;
-  }
+  ${emotionReset}
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  html {
+    font-family: "Noto Sans KR";
   }
 
   * {

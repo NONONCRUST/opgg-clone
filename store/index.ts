@@ -10,8 +10,11 @@ import {
   useDispatch as typedUseDispatch,
   useSelector as typedUseSelector,
 } from "react-redux";
+import userSlice from "./userSlice";
 
-const combinedReducer = combineReducers({});
+const combinedReducer = combineReducers({
+  user: userSlice,
+});
 
 const reducer = (state: any, action: AnyAction) => {
   if (action.type === HYDRATE) {

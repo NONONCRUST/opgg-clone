@@ -1,8 +1,24 @@
 import axiosInstance from "axios";
 
 const axios = axiosInstance.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "/api",
   withCredentials: true,
+});
+
+export const axiosRiotKr = axiosInstance.create({
+  baseURL: "https://kr.api.riotgames.com",
+  withCredentials: true,
+  params: {
+    api_key: "RGAPI-4311aa96-fc65-4e9f-a859-04c31d60cac9",
+  },
+});
+
+export const axiosRiotAsia = axiosInstance.create({
+  baseURL: "https://asia.api.riotgames.com",
+  withCredentials: true,
+  params: {
+    api_key: "RGAPI-4311aa96-fc65-4e9f-a859-04c31d60cac9",
+  },
 });
 
 export default axios;
