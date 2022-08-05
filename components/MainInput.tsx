@@ -24,6 +24,7 @@ const Container = styled.div`
 
   .label {
     font-size: 0.75rem;
+    font-weight: 500;
   }
 
   .icon {
@@ -40,7 +41,7 @@ const MainInput: React.FC = () => {
 
   return (
     <Container>
-      <div className="label">search</div>
+      <div className="label">Search</div>
       <input className="input" placeholder="소환사명" ref={inputRef} />
       <div className="icon">검색</div>
     </Container>

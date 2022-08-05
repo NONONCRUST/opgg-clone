@@ -85,12 +85,7 @@ const Container = styled.button<ContainerProps>`
   align-items: center;
   gap: 0.5rem;
 
-  color: white;
-  background-color: ${theme.primary};
   min-width: 4rem;
-  height: 2.5rem;
-  padding: 0.625rem 1.5rem;
-  font-size: 0.875rem;
   font-weight: 500;
   border-radius: 0.5rem;
   border: none;
@@ -101,9 +96,6 @@ const Container = styled.button<ContainerProps>`
   &:hover {
     background-color: ${theme.primaryVariant};
   }
-
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
 
   ${({ startIcon }) =>
     startIcon &&
@@ -119,9 +111,12 @@ const Container = styled.button<ContainerProps>`
 
   ${({ variant }) => getButtonVariant(variant)};
 
+  ${({ size }) => getButtonSize(size)};
+
   ${({ disabled }) => getButtonDisabled(disabled)};
 
-  ${({ size }) => getButtonSize(size)};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -137,9 +132,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<Props> = ({
   children,
-  variant,
+  variant = "contained",
+  size = "medium",
   disabled,
-  size,
   startIcon,
   endIcon,
   width,
