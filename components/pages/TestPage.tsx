@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getCurrentGameBySummonerName,
   getFeaturedGame,
@@ -8,9 +8,13 @@ import {
   getRotation,
   getSummonerByName,
 } from "../../lib/api/riot";
+import Divider from "../common/Divider";
+import DropdownButton from "../common/Dropdown/DropdownButton";
+import DropdownMenu from "../common/Dropdown/DropdownMenu";
+import DropdownMenuItem from "../common/Dropdown/DropdownMenuItem";
 import Flexbox from "../layouts/Flexbox";
 
-const Test: React.FC = () => {
+const TestPage: React.FC = () => {
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
 
   // const { data: summonerData } = useQuery(["summoner"], () =>
@@ -54,11 +58,27 @@ const Test: React.FC = () => {
   // console.log("------------ 골없칸왕의 최근 20게임 전적 ---------");
   // console.log(matchesData);
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const onClickDropdown = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
   return (
-    <Flexbox flex="col">
-      <button onClick={fetchMatchesData}>골없칸왕의 매치 정보 불러오기</button>
+    <Flexbox justify="start" padding="1rem" gap="1rem">
+      <DropdownButton open={dropdownOpen} onClick={onClickDropdown}>
+        <DropdownMenu>
+          <DropdownMenuItem label="메뉴" />
+          <Divider />
+          <DropdownMenuItem label="메뉴" />
+          <Divider />
+          <DropdownMenuItem label="메뉴" />
+          <Divider />
+          <DropdownMenuItem label="메뉴" />
+        </DropdownMenu>
+      </DropdownButton>
     </Flexbox>
   );
 };
 
-export default Test;
+export default TestPage;
