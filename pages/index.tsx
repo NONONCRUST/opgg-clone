@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
-import Home from "../components/pages/Home";
+import HomePage from "../components/pages/HomePage";
 
 const index: NextPage = () => {
-  return <Home />;
+  return <HomePage />;
 };
 
 export default index;

@@ -1,7 +1,8 @@
+import { Global } from "@emotion/react";
 import { css } from "@emotion/react";
 import emotionReset from "emotion-reset";
 
-export const global = css`
+const global = css`
   ${emotionReset}
 
   html {
@@ -12,3 +13,7 @@ export const global = css`
     box-sizing: border-box;
   }
 `;
+
+const GlobalStyle = () => <Global styles={global} />;
+
+export default GlobalStyle;

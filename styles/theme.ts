@@ -6,6 +6,8 @@ export const theme = {
   primaryDimmed: palette.blue[400],
   primarySemiLight: palette.blue[100],
   primaryLight: palette.blue[50],
+  secondary: palette.purple[500],
+  secondaryVariant: palette.purple[600],
   error: palette.red[500],
   errorVariant: palette.red[600],
   errorLight: palette.red[50],

@@ -20,7 +20,7 @@ const Base = styled.main`
   }
 `;
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <Base>
       <div className="main-image">OP.GG</div>
@@ -29,4 +29,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

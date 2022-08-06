@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
+import { theme } from "../../../styles/theme";
 
 const getButtonVariant = (variant?: "text" | "contained" | "outlined") => {
   switch (variant) {
@@ -87,10 +87,9 @@ const Container = styled.button<ContainerProps>`
 
   min-width: 4rem;
   font-weight: 500;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   border: none;
 
-  transition: 0.2s ease;
   cursor: pointer;
 
   &:hover {
@@ -120,7 +119,7 @@ const Container = styled.button<ContainerProps>`
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  label: string;
   variant?: "text" | "contained" | "outlined";
   size?: "small" | "medium" | "large";
   width?: string;
@@ -131,7 +130,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<Props> = ({
-  children,
+  label = "버튼",
   variant = "contained",
   size = "medium",
   disabled,
@@ -153,7 +152,7 @@ const Button: React.FC<Props> = ({
       {...props}
     >
       {startIcon && startIcon}
-      {children}
+      {label}
       {endIcon && endIcon}
     </Container>
   );
