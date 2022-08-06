@@ -23,7 +23,7 @@ const GNB: React.FC = () => {
   return (
     <Base>
       <div className="logo">OPGG</div>
-      <Button size="small">로그인</Button>
+      <Button label="로그인" size="small" />
     </Base>
   );
 };

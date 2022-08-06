@@ -3,7 +3,10 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { theme } from "../../../styles/theme";
 
-const getButtonVariant = (variant?: "text" | "contained" | "outlined") => {
+type ButtonVariantType = "text" | "contained" | "outlined";
+type ButtonSizeType = "small" | "medium" | "large";
+
+const getButtonVariant = (variant?: ButtonVariantType) => {
   switch (variant) {
     case "text":
       return css`
@@ -46,7 +49,7 @@ const getButtonDisabled = (disabled?: boolean) => {
   }
 };
 
-const getButtonSize = (size?: "small" | "medium" | "large") => {
+const getButtonSize = (size?: ButtonSizeType) => {
   switch (size) {
     case "small":
       return css`
@@ -70,8 +73,8 @@ const getButtonSize = (size?: "small" | "medium" | "large") => {
 };
 
 interface ContainerProps {
-  variant?: "text" | "contained" | "outlined";
-  size?: "small" | "medium" | "large";
+  variant?: ButtonVariantType;
+  size?: ButtonSizeType;
   disabled?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
@@ -120,8 +123,8 @@ const Container = styled.button<ContainerProps>`
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  variant?: "text" | "contained" | "outlined";
-  size?: "small" | "medium" | "large";
+  variant?: ButtonVariantType;
+  size?: ButtonSizeType;
   width?: string;
   height?: string;
   disabled?: boolean;

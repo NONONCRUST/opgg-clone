@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ children }) => {
-  return <Container>Card</Container>;
+  return <Container>{children}</Container>;
 };
 
 export default Card;
