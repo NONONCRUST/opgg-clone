@@ -8,6 +8,7 @@ import {
   getRotation,
   getSummonerByName,
 } from "../../lib/api/riot";
+import Avatar from "../common/Avatar";
 import Divider from "../common/Divider";
 import DropdownButton from "../common/Dropdown/DropdownButton";
 import DropdownMenu from "../common/Dropdown/DropdownMenu";
@@ -77,6 +78,7 @@ const TestPage: React.FC = () => {
           <DropdownMenuItem label="메뉴" />
         </DropdownMenu>
       </DropdownButton>
+      <Avatar />
     </Flexbox>
   );
 };
