@@ -8,11 +8,13 @@ import {
   getRotation,
   getSummonerByName,
 } from "../../lib/api/riot";
+import palette from "../../styles/palette";
 import Avatar from "../common/Avatar";
 import Divider from "../common/Divider";
 import DropdownButton from "../common/Dropdown/DropdownButton";
 import DropdownMenu from "../common/Dropdown/DropdownMenu";
 import DropdownMenuItem from "../common/Dropdown/DropdownMenuItem";
+import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 
 const TestPage: React.FC = () => {
@@ -66,19 +68,30 @@ const TestPage: React.FC = () => {
   };
 
   return (
-    <Flexbox justify="start" padding="1rem" gap="1rem">
-      <DropdownButton open={dropdownOpen} onClick={onClickDropdown}>
-        <DropdownMenu>
-          <DropdownMenuItem label="메뉴" />
-          <Divider />
-          <DropdownMenuItem label="메뉴" />
-          <Divider />
-          <DropdownMenuItem label="메뉴" />
-          <Divider />
-          <DropdownMenuItem label="메뉴" />
-        </DropdownMenu>
-      </DropdownButton>
-      <Avatar />
+    <Flexbox justify="start" items="start" flex="col">
+      <Flexbox justify="start" padding="1rem" gap="1rem">
+        <DropdownButton open={dropdownOpen} onClick={onClickDropdown}>
+          <DropdownMenu>
+            <DropdownMenuItem label="메뉴" />
+            <Divider />
+            <DropdownMenuItem label="메뉴" />
+            <Divider />
+            <DropdownMenuItem label="메뉴" />
+            <Divider />
+            <DropdownMenuItem label="메뉴" />
+          </DropdownMenu>
+        </DropdownButton>
+        <Avatar />
+      </Flexbox>
+      <Flexbox justify="start" padding="1rem" gap="1rem">
+        <Typography size="2rem">타이포그래피입니다.</Typography>
+      </Flexbox>
+      <Flexbox justify="start" padding="1rem" gap="1rem">
+        <Typography color={palette.gray[500]}>타이포그래피입니다.</Typography>
+      </Flexbox>
+      <Flexbox justify="start" padding="1rem" gap="1rem">
+        <Typography weight={700}>타이포그래피입니다.</Typography>
+      </Flexbox>
     </Flexbox>
   );
 };
