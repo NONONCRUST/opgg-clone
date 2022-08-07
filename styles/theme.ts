@@ -45,3 +45,11 @@ export const theme = {
     desktop: "64rem", // 1024px
   },
 };
+
+export const lightTheme = {
+  mode: "light",
+};
+
+export const darkTheme = {
+  mode: "dark",
+};

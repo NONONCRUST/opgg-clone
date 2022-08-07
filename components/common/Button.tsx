@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { theme } from "../../../styles/theme";
+import { theme } from "../../styles/theme";
 
 type ButtonVariantType = "text" | "contained" | "outlined";
 type ButtonSizeType = "small" | "medium" | "large";

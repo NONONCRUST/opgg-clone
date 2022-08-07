@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import DropdownButton from "./DropdownButton";
-import DropdownMenu from "./DropdownMenu";
-import DropdownMenuItem from "./DropdownMenuItem";
+import DropdownButton from "../components/common/Dropdown/DropdownButton";
+import DropdownMenu from "../components/common/Dropdown/DropdownMenu";
+import DropdownMenuItem from "../components/common/Dropdown/DropdownMenuItem";
 
 export default {
-  title: "Components/DropdownButton",
+  title: "Components/Dropdown",
   componnet: DropdownButton,
 } as ComponentMeta<typeof DropdownButton>;
 

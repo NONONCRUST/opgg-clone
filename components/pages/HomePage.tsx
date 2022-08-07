@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { theme } from "../../styles/theme";
-import MainInput from "../MainInput";
+import MainInput from "../MainInput/MainInput";
 
 const Base = styled.main`
   display: flex;
