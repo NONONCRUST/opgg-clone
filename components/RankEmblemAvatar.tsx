@@ -15,22 +15,13 @@ const Container = styled.img<ContainerProps>`
 `;
 
 interface Props {
-  rank?:
-    | "iron"
-    | "bronze"
-    | "silver"
-    | "gold"
-    | "platinum"
-    | "diamond"
-    | "master"
-    | "grandmaster"
-    | "challenger";
+  tier?: TierType;
   size?: string;
 }
 
-const RankEmblemAvatar: React.FC<Props> = ({ rank, size = "4.5rem" }) => {
+const RankEmblemAvatar: React.FC<Props> = ({ tier, size = "4.5rem" }) => {
   return (
-    <Container size={size} src={`/rank/${rank}.webp`} alt="summoner rank" />
+    <Container size={size} src={`/rank/${tier}.webp`} alt="summoner rank" />
   );
 };
 

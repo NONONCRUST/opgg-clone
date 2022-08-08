@@ -18,6 +18,7 @@ import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import RankEmblemAvatar from "../RankEmblemAvatar";
 import SummonerIconAvatar from "../SummonerIconAvatar";
+import TierHistoryChip from "../TierHistoryChip";
 
 const TestPage: React.FC = () => {
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
@@ -96,7 +97,8 @@ const TestPage: React.FC = () => {
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <SummonerIconAvatar iconNumber="4644" />
-        <RankEmblemAvatar rank="diamond" />
+        <RankEmblemAvatar tier="diamond" />
+        <TierHistoryChip season="2022" tier="master" />
       </Flexbox>
     </Flexbox>
   );

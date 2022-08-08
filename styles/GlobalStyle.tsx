@@ -6,7 +6,7 @@ const global = css`
   ${emotionReset}
 
   html {
-    font-family: "Noto Sans KR";
+    font-family: "Roboto", sans-serif;
   }
 
   * {
