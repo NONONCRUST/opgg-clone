@@ -1,27 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "../store";
+import { localActions } from "../store/localSlice";
 
 const useSearchHistory = () => {
-  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const searchHistory = useSelector((state) => state.local.searchHistory);
+  const dispatch = useDispatch();
+
+  const getSearchHistory = () => {
+    const localSearchHistory = localStorage.getItem("search");
+
+    if (localSearchHistory)
+      dispatch(localActions.setSearchHistory(JSON.parse(localSearchHistory)));
+  };
 
   const addSearchHistory = (username: string) => {
-    console.log("adding search history");
-    const newSearchHistory = [...searchHistory, username];
-    setSearchHistory(newSearchHistory);
+    const newSearchHistory = searchHistory.includes(username)
+      ? [username, ...searchHistory.filter((item) => item !== username)]
+      : [username, ...searchHistory];
 
     localStorage.setItem("search", JSON.stringify(newSearchHistory));
+    dispatch(localActions.setSearchHistory(newSearchHistory));
   };
 
   const removeSearchHistory = (username: string) => {
-    const newSearchHistory = searchHistory.filter((item) => item === username);
-    setSearchHistory(newSearchHistory);
+    const newSearchHistory = searchHistory.filter((item) => item !== username);
 
     localStorage.setItem("search", JSON.stringify(newSearchHistory));
+    dispatch(localActions.setSearchHistory(newSearchHistory));
   };
 
   useEffect(() => {
-    const localSearchHistory = localStorage.getItem("search");
-
-    if (localSearchHistory) setSearchHistory(JSON.parse(localSearchHistory));
+    getSearchHistory();
   }, []);
 
   return { searchHistory, addSearchHistory, removeSearchHistory };

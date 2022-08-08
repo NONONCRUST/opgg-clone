@@ -1,45 +1,43 @@
-import {
-  AnyAction,
-  combineReducers,
-  configureStore,
-  Store,
-} from "@reduxjs/toolkit";
+import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createWrapper, HYDRATE, MakeStore } from "next-redux-wrapper";
 import {
   TypedUseSelectorHook,
-  useDispatch as typedUseDispatch,
-  useSelector as typedUseSelector,
+  useDispatch as useTypedDispatch,
+  useSelector as useTypedSelector,
 } from "react-redux";
+import localSlice from "./localSlice";
 import userSlice from "./userSlice";
 
 const combinedReducer = combineReducers({
   user: userSlice,
+  local: localSlice,
 });
 
-const reducer = (state: any, action: AnyAction) => {
-  if (action.type === HYDRATE) {
-    console.log("@@@ HYDRATE @@@");
-    const nextState = {
-      ...state,
-      ...action.payload,
-    };
+// const reducer = (state: any, action: AnyAction) => {
+//   if (action.type === HYDRATE) {
+//     console.log("@@@ HYDRATE @@@");
+//     const nextState = {
+//       ...state,
+//       ...action.payload,
+//     };
 
-    return nextState;
-  }
+//     return nextState;
+//   }
 
-  return combinedReducer(state, action);
-};
+//   return combinedReducer(state, action);
+// };
 
-export type RootState = ReturnType<Store["getState"]>;
-export type AppDispatch = any; // Store["dispatch"]
+const store = configureStore({
+  reducer: combinedReducer,
+  devTools: true,
+});
 
-export const useDispatch = () => typedUseDispatch<AppDispatch>();
-export const useSelector: TypedUseSelectorHook<RootState> = typedUseSelector;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-const makeStore: MakeStore<any> = () =>
-  configureStore({
-    reducer,
-    devTools: true,
-  });
+export const useDispatch: () => AppDispatch = useTypedDispatch;
+export const useSelector: TypedUseSelectorHook<RootState> = useTypedSelector;
+
+const makeStore: MakeStore<any> = () => store;
 
 export const wrapper = createWrapper(makeStore);

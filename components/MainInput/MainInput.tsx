@@ -12,7 +12,7 @@ const Container = styled.div`
 
   position: relative;
 
-  width: 40rem;
+  width: 38rem;
   height: 4rem;
   border-radius: 2rem;
   background-color: white;
@@ -61,10 +61,14 @@ const MainInput: React.FC = () => {
     if (event.target.value === "") setDropdownOpen(true);
   };
 
-  const onClickSearchButton = () => {
+  const search = () => {
     if (inputValue === "") return;
     addSearchHistory(inputValue);
     setInputValue("");
+  };
+
+  const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") search();
   };
 
   return (
@@ -77,8 +81,9 @@ const MainInput: React.FC = () => {
         ref={inputRef}
         onFocus={() => setDropdownOpen(true)}
         onChange={onChangeInput}
+        onKeyDown={onEnter}
       />
-      <div className="icon" onClick={onClickSearchButton}>
+      <div className="icon" onClick={search}>
         검색
       </div>
       {dropdownOpen && <MainInputDropdownMenu />}

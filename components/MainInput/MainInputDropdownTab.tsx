@@ -16,7 +16,8 @@ const Tab = styled.div<TabProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12rem;
+  width: 16rem;
+  height: 2rem;
   padding: 0.5rem;
 
   cursor: pointer;

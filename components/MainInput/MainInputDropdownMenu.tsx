@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
 import { theme } from "../../styles/theme";
+import EmptyNotification from "./EmptyNotification";
 import MainInputDropdownMenuItem from "./MainInputDropdownMenuItem";
 import MainInputDropdownTab from "./MainInputDropdownTab";
 
@@ -11,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  width: 24rem;
+  width: 32rem;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   background-color: white;
@@ -26,6 +28,7 @@ const MainInputDropdownMenu: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<"recent" | "favorite">("recent");
 
   const { searchHistory } = useSearchHistory();
+  const { favoriteSummoner } = useFavoriteSummoner();
 
   return (
     <Container>
@@ -35,14 +38,30 @@ const MainInputDropdownMenu: React.FC = () => {
       />
 
       <ul style={{ width: "100%" }}>
-        {searchHistory.map((name, index) => (
-          <MainInputDropdownMenuItem
-            key={index}
-            name={name}
-            isFavorite={false}
-            currentTab={currentTab}
-          />
-        ))}
+        {currentTab === "recent" &&
+          searchHistory.map((name, index) => (
+            <MainInputDropdownMenuItem
+              key={index}
+              name={name}
+              isFavorite={favoriteSummoner.includes(name)}
+              currentTab={currentTab}
+            />
+          ))}
+        {currentTab === "favorite" &&
+          favoriteSummoner.map((name, index) => (
+            <MainInputDropdownMenuItem
+              key={index}
+              name={name}
+              isFavorite
+              currentTab={currentTab}
+            />
+          ))}
+        {currentTab === "recent" && searchHistory.length === 0 && (
+          <EmptyNotification type="recent" />
+        )}
+        {currentTab === "favorite" && favoriteSummoner.length === 0 && (
+          <EmptyNotification type="favorite" />
+        )}
       </ul>
     </Container>
   );
