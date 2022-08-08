@@ -16,6 +16,7 @@ import DropdownMenu from "../common/Dropdown/DropdownMenu";
 import DropdownMenuItem from "../common/Dropdown/DropdownMenuItem";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
+import SummonerIconAvatar from "../SummonerIconAvatar";
 
 const TestPage: React.FC = () => {
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
@@ -91,6 +92,9 @@ const TestPage: React.FC = () => {
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <Typography weight={700}>타이포그래피입니다.</Typography>
+      </Flexbox>
+      <Flexbox justify="start" padding="1rem" gap="1rem">
+        <SummonerIconAvatar iconNumber="4644" />
       </Flexbox>
     </Flexbox>
   );
