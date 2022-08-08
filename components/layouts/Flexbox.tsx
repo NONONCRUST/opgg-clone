@@ -53,7 +53,7 @@ const Container = styled.div<ContainerProps>`
   padding: ${({ padding }) => padding};
 `;
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   flex?: FlexDirectionType;
   justify?: JustifyContentType;
@@ -69,6 +69,7 @@ const Flexbox: React.FC<Props> = ({
   items = "center",
   gap,
   padding,
+  ...props
 }) => {
   return (
     <Container
@@ -77,6 +78,7 @@ const Flexbox: React.FC<Props> = ({
       items={items}
       gap={gap}
       padding={padding}
+      {...props}
     >
       {children}
     </Container>

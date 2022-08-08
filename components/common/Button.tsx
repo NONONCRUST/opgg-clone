@@ -54,19 +54,19 @@ const getButtonSize = (size?: ButtonSizeType) => {
     case "small":
       return css`
         height: 2rem;
-        padding: 0.5rem 1.2rem;
+        padding: 0.5rem 0.8rem;
         font-size: 0.75rem;
       `;
     case "medium":
       return css`
         height: 2.5rem;
-        padding: 0.625rem 1.5rem;
+        padding: 0.625rem 1rem;
         font-size: 0.875rem;
       `;
     case "large":
       return css`
         height: 3rem;
-        padding: 0.75rem 1.8rem;
+        padding: 0.75rem 1.2rem;
         font-size: 1rem;
       `;
   }
@@ -122,7 +122,7 @@ const Container = styled.button<ContainerProps>`
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
+  children: React.ReactNode;
   variant?: ButtonVariantType;
   size?: ButtonSizeType;
   width?: string;
@@ -133,7 +133,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<Props> = ({
-  label = "버튼",
+  children = "버튼",
   variant = "contained",
   size = "medium",
   disabled,
@@ -155,7 +155,7 @@ const Button: React.FC<Props> = ({
       {...props}
     >
       {startIcon && startIcon}
-      {label}
+      {children}
       {endIcon && endIcon}
     </Container>
   );

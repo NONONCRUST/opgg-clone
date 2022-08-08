@@ -36,11 +36,11 @@ const Container = styled.div`
 `;
 
 interface Props {
-  iconNumber?: string;
-  level?: number;
+  iconNumber: number;
+  level: number;
 }
 
-const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level = 123 }) => {
+const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level }) => {
   return (
     <Container>
       <img

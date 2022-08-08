@@ -96,7 +96,7 @@ const TestPage: React.FC = () => {
         <Typography weight={700}>타이포그래피입니다.</Typography>
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
-        <SummonerIconAvatar iconNumber="4644" />
+        <SummonerIconAvatar level={123} iconNumber={4644} />
         <RankEmblemAvatar tier="diamond" />
         <TierHistoryChip season="2022" tier="master" />
       </Flexbox>
