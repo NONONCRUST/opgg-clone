@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import useSearchHistory from "../../hooks/useSearchHistory";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenuItem from "./MainInputDropdownMenuItem";
 import MainInputDropdownTab from "./MainInputDropdownTab";
@@ -22,15 +23,9 @@ const Container = styled.div`
 `;
 
 const MainInputDropdownMenu: React.FC = () => {
-  const [searchHistoryList, setSearchHistoryList] = useState<string[]>([]);
   const [currentTab, setCurrentTab] = useState<"recent" | "favorite">("recent");
 
-  useEffect(() => {
-    const localSearchHistoryList = localStorage.getItem("search");
-    if (localSearchHistoryList) {
-      setSearchHistoryList(localSearchHistoryList.split(";"));
-    }
-  }, []);
+  const { searchHistory } = useSearchHistory();
 
   return (
     <Container>
@@ -40,18 +35,14 @@ const MainInputDropdownMenu: React.FC = () => {
       />
 
       <ul style={{ width: "100%" }}>
-        {searchHistoryList.map(() => (
+        {searchHistory.map((name, index) => (
           <MainInputDropdownMenuItem
-            name="asd"
+            key={index}
+            name={name}
             isFavorite={false}
             currentTab={currentTab}
           />
         ))}
-        <MainInputDropdownMenuItem
-          name="asd"
-          isFavorite={false}
-          currentTab={currentTab}
-        />
       </ul>
     </Container>
   );
