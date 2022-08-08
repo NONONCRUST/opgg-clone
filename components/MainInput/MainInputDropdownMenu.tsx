@@ -23,6 +23,7 @@ const Container = styled.div`
 
 const MainInputDropdownMenu: React.FC = () => {
   const [searchHistoryList, setSearchHistoryList] = useState<string[]>([]);
+  const [currentTab, setCurrentTab] = useState<"recent" | "favorite">("recent");
 
   useEffect(() => {
     const localSearchHistoryList = localStorage.getItem("search");
@@ -33,13 +34,24 @@ const MainInputDropdownMenu: React.FC = () => {
 
   return (
     <Container>
-      <MainInputDropdownTab currentTab={"recent"} />
+      <MainInputDropdownTab
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+      />
 
       <ul style={{ width: "100%" }}>
         {searchHistoryList.map(() => (
-          <MainInputDropdownMenuItem name="asd" />
+          <MainInputDropdownMenuItem
+            name="asd"
+            isFavorite={false}
+            currentTab={currentTab}
+          />
         ))}
-        <MainInputDropdownMenuItem name="asd" />
+        <MainInputDropdownMenuItem
+          name="asd"
+          isFavorite={false}
+          currentTab={currentTab}
+        />
       </ul>
     </Container>
   );

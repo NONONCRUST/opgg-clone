@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
+import useOutsideClick from "../../hooks/useOutsideClick";
+import useSearchHistory from "../../hooks/useSearchHistory";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
 
@@ -20,7 +22,7 @@ const Container = styled.div`
   .input {
     border: none;
     outline: none;
-    width: 100%;
+    width: calc(100% - 2.5rem);
     height: 2rem;
   }
 
@@ -40,19 +42,45 @@ const Container = styled.div`
 
 const MainInput: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
+  const mainInputRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const onOutsideClick = () => {
+    setDropdownOpen(false);
+    setInputValue("");
+  };
+
+  useOutsideClick(mainInputRef, onOutsideClick);
+  const { addSearchHistory } = useSearchHistory();
+
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    if (event.target.value !== "") setDropdownOpen(false);
+    if (event.target.value === "") setDropdownOpen(true);
+  };
+
+  const onClickSearchButton = () => {
+    if (inputValue === "") return;
+    addSearchHistory(inputValue);
+    setInputValue("");
+  };
+
   return (
-    <Container>
+    <Container ref={mainInputRef}>
       <div className="label">Search</div>
       <input
+        value={inputValue}
         className="input"
         placeholder="소환사명"
         ref={inputRef}
         onFocus={() => setDropdownOpen(true)}
+        onChange={onChangeInput}
       />
-      <div className="icon">검색</div>
+      <div className="icon" onClick={onClickSearchButton}>
+        검색
+      </div>
       {dropdownOpen && <MainInputDropdownMenu />}
     </Container>
   );

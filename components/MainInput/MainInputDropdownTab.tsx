@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import palette from "../../styles/palette";
 
 const Container = styled.div`
@@ -28,13 +28,27 @@ const Tab = styled.div<TabProps>`
 
 interface Props {
   currentTab: "recent" | "favorite";
+  setCurrentTab: React.Dispatch<React.SetStateAction<"recent" | "favorite">>;
 }
 
-const MainInputDropdownTab: React.FC<Props> = ({ currentTab }) => {
+const MainInputDropdownTab: React.FC<Props> = ({
+  currentTab,
+  setCurrentTab,
+}) => {
   return (
     <Container>
-      <Tab active={currentTab === "recent"}>최근검색</Tab>
-      <Tab active={currentTab === "favorite"}>즐겨찾기</Tab>
+      <Tab
+        active={currentTab === "recent"}
+        onClick={() => setCurrentTab("recent")}
+      >
+        최근검색
+      </Tab>
+      <Tab
+        active={currentTab === "favorite"}
+        onClick={() => setCurrentTab("favorite")}
+      >
+        즐겨찾기
+      </Tab>
     </Container>
   );
 };
