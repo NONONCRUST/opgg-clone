@@ -3,6 +3,8 @@ import React from "react";
 import { theme } from "../../styles/theme";
 
 const Base = styled.section`
+  width: 100%;
+
   @media screen and (min-width: ${theme.media.desktop}) {
     width: ${theme.media.desktop};
     margin: 0 auto;
