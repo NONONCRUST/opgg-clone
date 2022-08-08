@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import { theme } from "../../styles/theme";
 import MainInput from "../MainInput/MainInput";
 
@@ -21,10 +21,12 @@ const Base = styled.main`
 `;
 
 const HomePage: React.FC = () => {
+  const [mainInputDropdownOpen, setMainInputDropdownOpen] = useState(false);
+
   return (
     <Base>
       <div className="main-image">OP.GG</div>
-      <MainInput />
+      <MainInput open={false} />
     </Base>
   );
 };

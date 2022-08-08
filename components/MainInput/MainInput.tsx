@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { theme } from "../../styles/theme";
+import MainInputDropdownMenu from "./MainInputDropdownMenu";
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Container = styled.div`
   border-radius: 2rem;
   background-color: white;
   padding: 0.5rem 2rem;
+  box-shadow: ${theme.elevation4};
 
   .input {
     border: none;
@@ -37,13 +39,21 @@ const Container = styled.div`
 `;
 
 const MainInput: React.FC = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <Container>
       <div className="label">Search</div>
-      <input className="input" placeholder="소환사명" ref={inputRef} />
+      <input
+        className="input"
+        placeholder="소환사명"
+        ref={inputRef}
+        onFocus={() => setDropdownOpen(true)}
+      />
       <div className="icon">검색</div>
+      {dropdownOpen && <MainInputDropdownMenu />}
     </Container>
   );
 };

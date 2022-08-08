@@ -17,7 +17,6 @@ const Header: React.FC = () => {
     <Base>
       <GNB />
       <LNB />
-      <NotificationLNB contents="아무 내용" backgroundColor={theme.secondary} />
       <NotificationLNB
         contents="게이밍 체어, 굿즈, 문상까지! 역대급 상품 라인업 어쩌구"
         backgroundColor={palette.gray[300]}
