@@ -16,6 +16,7 @@ import DropdownMenu from "../common/Dropdown/DropdownMenu";
 import DropdownMenuItem from "../common/Dropdown/DropdownMenuItem";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
+import RankEmblemAvatar from "../RankEmblemAvatar";
 import SummonerIconAvatar from "../SummonerIconAvatar";
 
 const TestPage: React.FC = () => {
@@ -95,6 +96,7 @@ const TestPage: React.FC = () => {
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <SummonerIconAvatar iconNumber="4644" />
+        <RankEmblemAvatar rank="diamond" />
       </Flexbox>
     </Flexbox>
   );
