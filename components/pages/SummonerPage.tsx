@@ -16,6 +16,7 @@ import Layout from "../layouts/Layout";
 import MatchResult from "../MatchResult/MatchResult";
 import SoloRankInfoCard from "../SoloRankInfoCard";
 import SummonerIconAvatar from "../SummonerIconAvatar";
+import SummonerNotFound from "../SummonerNotFound";
 import TierHistoryChip from "../TierHistoryChip";
 
 const Base = styled.main`
@@ -117,7 +118,7 @@ const SummonerPage: React.FC = () => {
     fetchSummoner();
   }, [fetchSummoner]);
 
-  if (summonerNotFound) return <div>없는 소환사입니다.</div>;
+  if (summonerNotFound) return <SummonerNotFound />;
   if (isLoading) return <div>로딩중...</div>;
 
   return (
