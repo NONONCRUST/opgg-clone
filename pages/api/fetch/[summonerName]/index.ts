@@ -64,7 +64,7 @@ const handler: NextApiHandler = async (
             summoner1Id: participant.summoner1Id,
             summoner2Id: participant.summoner2Id,
             perks: participant.perks,
-            neutralMinionsKilled: participant.neutralMinionsKilled,
+            totalMinionsKilled: participant.totalMinionsKilled,
             win: participant.win,
           };
         });

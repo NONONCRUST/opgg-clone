@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import { getCsPerMinute, getKda } from "../../lib/utils";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
@@ -85,7 +86,7 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
         <div className="champion-area">
           <MatchResultChampionAvatar
             champion={me?.championName || ""}
-            level={12}
+            level={me?.champLevel || 0}
           />
           <Flexbox flex="col" gap="0.2rem">
             <Avatar
@@ -123,7 +124,7 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
             <span className="text-divider">/</span> {me?.assists}
           </Typography>
           <Typography size="12px" color={palette.gray[500]}>
-            6.00:1 평점
+            {getKda(me?.kills, me?.deaths, me?.assists)} 평점
           </Typography>
         </div>
         <div className="stats-area">
@@ -131,10 +132,15 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
             킬관여 60%
           </Typography>
           <Typography size="11px" color={palette.gray[500]}>
-            제어와드 3
+            제어와드 {me?.detectorWarsPlaced}
           </Typography>
           <Typography size="11px" color={palette.gray[500]}>
-            CS 28 (1.6)
+            CS {me?.totalMinionsKilled} (
+            {getCsPerMinute(
+              new Date(matchData.gameDuration),
+              me?.totalMinionsKilled
+            )}
+            )
           </Typography>
           <Typography size="11px" color={palette.gray[500]} weight={600}>
             Master

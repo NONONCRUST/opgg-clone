@@ -134,10 +134,30 @@ export const capitalize = (string?: string) => {
   return `${string.charAt(0).toUpperCase()}${string.slice(1).toLowerCase()}`;
 };
 
+// 로마 숫자 표기법의 랭크를 아라비아 숫자 표기법으로 변환합니다 - nonon
 export const mapRank = (rank?: string) => {
   if (rank === "I") return "1";
   if (rank === "II") return "2";
   if (rank === "III") return "3";
   if (rank === "IV") return "4";
   // ...
+};
+
+// 분당 CS를 구합니다
+export const getCsPerMinute = (gameDuration?: Date, cs?: number) => {
+  if (!gameDuration || !cs) return;
+
+  const seconds = gameDuration.getTime();
+  const csPerMinute = (cs / (seconds / 60)).toFixed(1);
+
+  return csPerMinute;
+};
+
+// KDA를 구합니다
+export const getKda = (kills: number, deaths: number, assists: number) => {
+  if (deaths === 0) return "Perfect";
+
+  const kda = ((kills + assists) / deaths).toFixed(2);
+
+  return kda;
 };
