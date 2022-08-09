@@ -1,6 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import {
-  getCurrentGameBySummonerNameApi,
+  getCurrentGameBySummonerIdApi,
   getSummonerByNameApi,
 } from "../../../../../lib/api/riotApi";
 
@@ -16,7 +16,7 @@ const handler: NextApiHandler = async (
       const {
         data: { id },
       } = await getSummonerByNameApi(summonerName);
-      const response = await getCurrentGameBySummonerNameApi(id);
+      const response = await getCurrentGameBySummonerIdApi(id);
       return res.status(200).send(response.data);
     } catch (error: any) {
       if (error.response.status === 404) {

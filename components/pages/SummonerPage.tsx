@@ -1,7 +1,10 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { useEffect } from "react";
+import { getSummonerByName } from "../../lib/api/riot";
+import { parseDateRelative } from "../../lib/utils";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Button from "../common/Button";
@@ -86,14 +89,45 @@ const Base = styled.main`
 `;
 
 const SummonerPage: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [summoner, setSummoner] = useState<GetSummonerByNameResponseType>();
+  const [summonerNotFound, setSummonerNotFound] = useState(false);
+
   const summonerName = useRouter().query.name;
+
+  const fetchSummoner = useCallback(async () => {
+    if (typeof summonerName !== "string") return;
+    try {
+      setIsLoading(true);
+      const response = await getSummonerByName(summonerName);
+      console.log(response);
+      setSummoner(response.data);
+    } catch (error: any) {
+      console.log(error);
+      if (error.response.status === 400) {
+        setSummonerNotFound(true);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [summonerName]);
+
+  useEffect(() => {
+    fetchSummoner();
+  }, [fetchSummoner]);
+
+  if (summonerNotFound) return <div>없는 소환사입니다.</div>;
+  if (isLoading) return <div>로딩중...</div>;
 
   return (
     <Base>
       <div className="content-header-area">
         <Layout>
           <div className="summoner-container">
-            <SummonerIconAvatar level={123} iconNumber={4644} />
+            <SummonerIconAvatar
+              level={summoner?.summonerLevel || 0}
+              iconNumber={4644}
+            />
             <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
               <Flexbox gap="0.25rem">
                 <TierHistoryChip season="2022" tier="master" />
@@ -112,9 +146,11 @@ const SummonerPage: React.FC = () => {
                 0.0316%)
               </Typography>
               <Button>전적 갱신</Button>
-              <Typography size="0.75rem" color={palette.gray[400]}>
-                최근 업데이트: 23분 전
-              </Typography>
+              {summoner && (
+                <Typography size="0.75rem" color={palette.gray[400]}>
+                  최근 업데이트: 22분 전
+                </Typography>
+              )}
             </Flexbox>
           </div>
         </Layout>
