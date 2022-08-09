@@ -4,7 +4,6 @@ import Flexbox from "../layouts/Flexbox";
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import palette from "../../styles/palette";
-import { FAKE_PARTICIPANTS_TEAM } from "../../lib/FakeData";
 import { shortenText } from "../../lib/utils";
 import { theme } from "../../styles/theme";
 
@@ -21,6 +20,10 @@ const Container = styled.div`
     }
   }
 
+  .participants-col {
+    width: 5.5rem;
+  }
+
   @media screen and (min-width: ${theme.media.desktop}) {
     display: flex;
   }
@@ -33,32 +36,42 @@ interface Props {
 const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
   return (
     <Container>
-      <Flexbox flex="col" gap="0.15rem" items="start">
-        {FAKE_PARTICIPANTS_TEAM.map((participant, index) => (
+      <Flexbox
+        className="participants-col "
+        flex="col"
+        gap="0.15rem"
+        items="start"
+      >
+        {matchData.participants.slice(0, 5).map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar
               size="1rem"
               shape="boxier"
-              src={`/champion/${participant.champion}.png`}
+              src={`/champion/${participant.championName}.png`}
               alt="partipant-champion"
             />
             <Typography className="participant-name">
-              {shortenText(participant.name, 5)}
+              {shortenText(participant.summonerName, 5)}
             </Typography>
           </Flexbox>
         ))}
       </Flexbox>
-      <Flexbox flex="col" gap="0.15rem" items="start">
-        {FAKE_PARTICIPANTS_TEAM.map((participant, index) => (
+      <Flexbox
+        className="participants-col"
+        flex="col"
+        gap="0.15rem"
+        items="start"
+      >
+        {matchData.participants.slice(5, 10).map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar
               size="1rem"
               shape="boxier"
-              src={`/champion/${participant.champion}.png`}
+              src={`/champion/${participant.championName}.png`}
               alt="partipant-champion"
             />
             <Typography className="participant-name">
-              {shortenText(participant.name, 5)}
+              {shortenText(participant.summonerName, 5)}
             </Typography>
           </Flexbox>
         ))}
