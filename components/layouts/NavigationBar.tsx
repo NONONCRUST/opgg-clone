@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import NavigationBarItem from "./NavigationBarItem";
 
@@ -10,16 +12,13 @@ const Base = styled.nav`
 `;
 
 const NavigationBar: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("홈");
+  const router = useRouter();
 
   return (
     <Base>
-      <NavigationBarItem name="홈" active={activeTab === "홈"} />
-      <NavigationBarItem
-        name="챔피언 분석"
-        active={activeTab === "챔피언 분석"}
-      />
-      <NavigationBarItem name="커뮤니티" active={activeTab === "커뮤니티"} />
+      <NavigationBarItem name="홈" active={router.pathname === "/"} />
+      <NavigationBarItem name="챔피언 분석" active={false} />
+      <NavigationBarItem name="커뮤니티" active={false} />
     </Base>
   );
 };

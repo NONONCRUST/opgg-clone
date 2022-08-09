@@ -13,14 +13,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  width: 100%;
   position: relative;
 
-  width: 38rem;
   height: 4rem;
-  border-radius: 2rem;
+
   background-color: white;
-  padding: 0.5rem 2rem;
   box-shadow: ${theme.elevation4};
 
   .input {
@@ -28,11 +26,14 @@ const Container = styled.div`
     outline: none;
     width: calc(100% - 2.5rem);
     height: 2rem;
+    margin: 0.5rem 2rem;
+    border-radius: 2rem;
   }
 
   .label {
     font-size: 0.75rem;
     font-weight: 500;
+    margin: 0.5rem 2rem;
   }
 
   .icon {
@@ -44,6 +45,11 @@ const Container = styled.div`
     height: 1.5rem;
     cursor: pointer;
     color: ${theme.primary};
+  }
+
+  @media screen and (min-width: ${theme.media.desktop}) {
+    width: 38rem;
+    border-radius: 2rem;
   }
 
   ${({ theme }) =>
@@ -103,7 +109,7 @@ const MainInput: React.FC = () => {
         ref={inputRef}
         onFocus={() => setDropdownOpen(true)}
         onChange={onChangeInput}
-        onKeyDown={onEnter}
+        onKeyPress={onEnter}
       />
       <MdSearch className="icon" onClick={search} />
       {dropdownOpen && <MainInputDropdownMenu />}

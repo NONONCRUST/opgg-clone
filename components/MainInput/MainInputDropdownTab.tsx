@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 interface TabProps {
@@ -17,9 +18,9 @@ const Tab = styled.div<TabProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16rem;
   height: 2rem;
   padding: 0.5rem;
+  flex: 1;
 
   cursor: pointer;
   color: ${palette.gray[500]};

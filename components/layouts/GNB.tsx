@@ -35,10 +35,8 @@ const GNB: React.FC = () => {
       <Link href="/">
         <a className="logo">OP.GG</a>
       </Link>
-
       <Flexbox gap="1rem">
         <DarkModeButton />
-        <Button size="small">로그인</Button>
       </Flexbox>
     </Base>
   );

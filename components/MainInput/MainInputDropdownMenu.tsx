@@ -15,15 +15,19 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  width: 32rem;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  background-color: white;
-  box-shadow: ${theme.elevation4};
-
   position: absolute;
   top: 100%;
-  right: 4rem;
+
+  width: 100%;
+  background-color: white;
+
+  @media screen and (min-width: ${theme.media.desktop}) {
+    width: 32rem;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    box-shadow: ${theme.elevation4};
+    right: 4rem;
+  }
 
   ${({ theme }) =>
     theme.mode === "dark" &&
@@ -44,7 +48,6 @@ const MainInputDropdownMenu: React.FC = () => {
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
       />
-
       <ul style={{ width: "100%" }}>
         {currentTab === "recent" &&
           searchHistory.map((name, index) => (

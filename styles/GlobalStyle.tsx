@@ -14,6 +14,9 @@ const global = css`
   }
 
   a {
+    :visited {
+      color: inherit;
+    }
     text-decoration: none;
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Image from "next/image";
 import React from "react";
 
 const Container = styled.div`
@@ -13,8 +14,6 @@ const Container = styled.div`
   border-radius: 1.25rem;
 
   .image {
-    width: 100%;
-    height: 100%;
     border-radius: 20px;
   }
 
@@ -43,7 +42,9 @@ interface Props {
 const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level }) => {
   return (
     <Container>
-      <img
+      <Image
+        width="100px"
+        height="100px"
         className="image"
         src={`/profile-icon/${iconNumber}.png`}
         alt="summoner icon"

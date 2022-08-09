@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useEffect } from "react";
+import useSearchHistory from "../../hooks/useSearchHistory";
 import { getSummonerByName } from "../../lib/api/riot";
 import { parseDateRelative } from "../../lib/utils";
 import palette from "../../styles/palette";
@@ -14,6 +15,7 @@ import FavoriteIconButton from "../FavoriteIconButton";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
 import MatchResult from "../MatchResult/MatchResult";
+import MatchResultNotFound from "../MatchResultNotFound";
 import SoloRankInfoCard from "../SoloRankInfoCard";
 import SummonerIconAvatar from "../SummonerIconAvatar";
 import SummonerNotFound from "../SummonerNotFound";
@@ -174,6 +176,7 @@ const SummonerPage: React.FC = () => {
             </div>
             <div className="content-area-match-right">
               {/* <Card height="14rem">요약</Card> */}
+              <MatchResultNotFound />
               <Flexbox flex="col" gap="0.5rem">
                 <MatchResult result="win" />
                 <MatchResult result="lose" />
