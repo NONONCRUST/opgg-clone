@@ -1,11 +1,14 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
-import useSearchHistory from "../../hooks/useSearchHistory";
-import { getSummonerByName } from "../../lib/api/riot";
-import { parseDateRelative } from "../../lib/utils";
+import {
+  getMatchesBySummonerName,
+  getSummonerByName,
+  requestFetchBySummonerName,
+} from "../../lib/api/riot";
+import { getMinuteDiff, parseDateRelative, throttle } from "../../lib/utils";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Button from "../common/Button";
@@ -93,18 +96,24 @@ const Base = styled.main`
 `;
 
 const SummonerPage: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSummonerLoading, setIsSummonerLoading] = useState(false);
+  const [isMatchesLoading, setIsMatchesLoading] = useState(false);
   const [isFetching, setisFetching] = useState(false);
   const [summonerData, setSummonerData] =
     useState<GetSummonerByNameResponseType>();
+  const [matchListData, setMatchListData] =
+    useState<GetMatchesBySummonerNameResponeType>([]);
+
   const [summonerNotFound, setSummonerNotFound] = useState(false);
 
   const summonerName = useRouter().query.name as string;
 
+  const minuteDiff = getMinuteDiff(new Date(summonerData?.updatedAt || ""));
+
   const fetchSummoner = useCallback(async () => {
     if (typeof summonerName !== "string") return;
     try {
-      setIsLoading(true);
+      setIsSummonerLoading(true);
       const response = await getSummonerByName(summonerName);
       console.log(response);
       setSummonerData(response.data);
@@ -114,23 +123,45 @@ const SummonerPage: React.FC = () => {
         setSummonerNotFound(true);
       }
     } finally {
-      setIsLoading(false);
+      setIsSummonerLoading(false);
     }
   }, [summonerName]);
 
-  const onClickFetchButton = () => {
+  const fetchMatches = useCallback(async () => {
+    if (typeof summonerName !== "string") return;
+    try {
+      setIsMatchesLoading(true);
+      const response = await getMatchesBySummonerName(summonerName);
+      console.log(response.data);
+      setMatchListData(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsMatchesLoading(false);
+    }
+  }, [summonerName]);
+
+  const onClickFetchButton = async () => {
     setisFetching(true);
-    setTimeout(() => {
+    try {
+      const response = await requestFetchBySummonerName(summonerName);
+      console.log(response);
+      fetchMatches();
+      fetchSummoner();
+    } catch (error) {
+      console.log(error);
+    } finally {
       setisFetching(false);
-    }, 1000);
+    }
   };
 
   useEffect(() => {
     fetchSummoner();
-  }, [fetchSummoner]);
+    fetchMatches();
+  }, [fetchSummoner, fetchMatches]);
 
   if (summonerNotFound) return <SummonerNotFound />;
-  if (isLoading) return <div>로딩중...</div>;
+  if (isSummonerLoading) return <div>로딩중...</div>;
 
   return (
     <Base>
@@ -162,7 +193,12 @@ const SummonerPage: React.FC = () => {
                 0.0316%)
               </Typography>
               {!isFetching && (
-                <Button onClick={onClickFetchButton}>전적 갱신</Button>
+                <Button
+                  onClick={throttle(onClickFetchButton)}
+                  disabled={minuteDiff < 5}
+                >
+                  전적 갱신
+                </Button>
               )}
               {isFetching && <LoadingButton width="84.34px" />}
               {summonerData && (
@@ -180,7 +216,7 @@ const SummonerPage: React.FC = () => {
           <div className="content-area-match">
             <div className="content-area-match-left">
               <SoloRankInfoCard
-                isLoading={isLoading}
+                isLoading={isSummonerLoading}
                 summonerData={summonerData}
               />
               {/* <Card height="6rem">자유랭크</Card> */}
@@ -188,10 +224,11 @@ const SummonerPage: React.FC = () => {
             </div>
             <div className="content-area-match-right">
               {/* <Card height="14rem">요약</Card> */}
-              <MatchResultNotFound />
+              {matchListData.length === 0 && <MatchResultNotFound />}
               <Flexbox flex="col" gap="0.5rem">
-                <MatchResult result="win" />
-                <MatchResult result="lose" />
+                {matchListData.map((matchData, index) => (
+                  <MatchResult key={index} matchData={matchData} />
+                ))}
               </Flexbox>
             </div>
           </div>

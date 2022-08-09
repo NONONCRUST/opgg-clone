@@ -8,8 +8,10 @@ import {
   getRotation,
   getSummonerByName,
 } from "../../lib/api/riot";
+import { debounce, throttle } from "../../lib/utils";
 import palette from "../../styles/palette";
 import Avatar from "../common/Avatar";
+import Button from "../common/Button";
 import Divider from "../common/Divider";
 import DropdownButton from "../common/Dropdown/DropdownButton";
 import DropdownMenu from "../common/Dropdown/DropdownMenu";
@@ -70,6 +72,10 @@ const TestPage: React.FC = () => {
     setDropdownOpen((prev) => !prev);
   };
 
+  const onClickButton = () => {
+    console.log("clicked!");
+  };
+
   return (
     <Flexbox justify="start" items="start" flex="col">
       <Flexbox justify="start" padding="1rem" gap="1rem">
@@ -99,6 +105,7 @@ const TestPage: React.FC = () => {
         <SummonerIconAvatar level={123} iconNumber={4644} />
         <RankEmblemAvatar tier="diamond" />
         <TierHistoryChip season="2022" tier="master" />
+        <Button onClick={throttle(onClickButton, 1000)}>버튼</Button>
       </Flexbox>
     </Flexbox>
   );

@@ -37,8 +37,8 @@ const Container = styled.div<ContainerProps>`
     flex-direction: column;
     gap: 0.2rem;
 
+    min-width: 8rem;
     padding: 0 1rem;
-    margin-right: 1rem;
   }
 
   .death-text {
@@ -70,10 +70,15 @@ const Container = styled.div<ContainerProps>`
 `;
 
 interface Props {
+  matchData: MatchType;
   result: "win" | "lose";
 }
 
-const MatchResultInfo: React.FC<Props> = ({ result }) => {
+const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
+  const me = matchData.participants.find(
+    (participant) => participant.summonerName === matchData.summonerName
+  );
+
   return (
     <Container result={result}>
       <Flexbox>
@@ -110,9 +115,9 @@ const MatchResultInfo: React.FC<Props> = ({ result }) => {
         </div>
         <div className="kda-area">
           <Typography weight={600}>
-            0 <span className="text-divider">/</span>{" "}
-            <span className="death-text">0</span>{" "}
-            <span className="text-divider">/</span> 18
+            {me?.kills} <span className="text-divider">/</span>{" "}
+            <span className="death-text">{me?.deaths}</span>{" "}
+            <span className="text-divider">/</span> {me?.assists}
           </Typography>
           <Typography size="12px" color={palette.gray[500]}>
             6.00:1 평점

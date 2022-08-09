@@ -26,18 +26,24 @@ const Container = styled.div<ContainerProps>`
 `;
 
 interface Props {
-  result: "win" | "lose";
+  matchData: MatchType;
 }
 
-const MatchResult: React.FC<Props> = ({ result }) => {
+const MatchResult: React.FC<Props> = ({ matchData }) => {
+  const me = matchData.participants.find(
+    (participant) => participant.summonerName === matchData.summonerName
+  );
+  console.log(me);
+  const result = me?.win ? "win" : "lose";
+
   return (
     <Container result={result}>
       <MatchResultCard result={result}>
         <Flexbox>
           <div className="indicator" />
-          <MatchResultGame result={result} />
-          <MatchResultInfo result={result} />
-          <MatchResultParticipants />
+          <MatchResultGame matchData={matchData} result={result} />
+          <MatchResultInfo matchData={matchData} result={result} />
+          <MatchResultParticipants matchData={matchData} />
         </Flexbox>
         <MatchResultAction result={result} />
       </MatchResultCard>

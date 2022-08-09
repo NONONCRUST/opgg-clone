@@ -35,17 +35,15 @@ const Container = styled.div<ContainerProps>`
   ${({ active }) => getNavigationBarItemActive(active)}
 `;
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   active?: boolean;
 }
 
-const NavigationBarItem: React.FC<Props> = ({ name, active }) => {
+const NavigationBarItem: React.FC<Props> = ({ name, active, ...props }) => {
   return (
-    <Container active={active}>
-      <Link href="/">
-        <a>{name}</a>
-      </Link>
+    <Container active={active} {...props}>
+      {name}
     </Container>
   );
 };

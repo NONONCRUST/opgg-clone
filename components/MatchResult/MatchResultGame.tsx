@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import palette from "../../styles/palette";
 import Typography from "../common/Typography";
 import Divider from "../common/Divider";
+import { parseDateRelative } from "../../lib/utils";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -16,7 +17,6 @@ const Container = styled.div<ContainerProps>`
   width: 6rem;
   height: 6rem;
   padding: 0.8rem 1rem;
-  margin-right: 2rem;
 
   .solo-rank-text {
     font-size: 0.75rem;
@@ -40,22 +40,23 @@ const Container = styled.div<ContainerProps>`
 `;
 
 interface Props {
+  matchData: MatchType;
   result: "win" | "lose";
 }
 
-const MatchResultGame: React.FC<Props> = ({ result }) => {
+const MatchResultGame: React.FC<Props> = ({ matchData, result }) => {
   return (
     <Container result={result}>
       <Typography className="solo-rank-text">솔랭</Typography>
       <Typography size="12px" color={palette.gray[400]}>
-        6시간 전
+        {parseDateRelative(new Date(matchData.gameStartTimestamp))}
       </Typography>
       <Divider className="divider" />
       <Typography className="result-text">
         {result === "win" ? "승리" : "패배"}
       </Typography>
       <Typography size="12px" color={palette.gray[400]}>
-        35분 44초
+        {matchData.gameDuration}
       </Typography>
     </Container>
   );

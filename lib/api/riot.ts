@@ -20,6 +20,9 @@ export const getPlatformData = () =>
   axios.get<GetPlatformDataApiResponseType>("/platform");
 
 export const getMatchesBySummonerName = (summonerName: string) =>
-  axios.get<GetMatchByMatchIdApiResponseType>(
+  axios.get<GetMatchesBySummonerNameResponeType>(
     `/matches/${encodeURIComponent(summonerName)}`
   );
+
+export const requestFetchBySummonerName = (summonerName: string) =>
+  axios.get(`/fetch/${encodeURIComponent(summonerName)}`);

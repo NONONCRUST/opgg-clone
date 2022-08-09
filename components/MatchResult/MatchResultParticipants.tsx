@@ -26,7 +26,11 @@ const Container = styled.div`
   }
 `;
 
-const MatchResultParticipants: React.FC = () => {
+interface Props {
+  matchData: MatchType;
+}
+
+const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
   return (
     <Container>
       <Flexbox flex="col" gap="0.15rem" items="start">

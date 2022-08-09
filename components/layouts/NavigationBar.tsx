@@ -1,7 +1,6 @@
+import React from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
 import NavigationBarItem from "./NavigationBarItem";
 
 const Base = styled.nav`
@@ -16,7 +15,11 @@ const NavigationBar: React.FC = () => {
 
   return (
     <Base>
-      <NavigationBarItem name="홈" active={router.pathname === "/"} />
+      <NavigationBarItem
+        name="홈"
+        active={router.pathname === "/"}
+        onClick={() => router.push("/")}
+      />
       <NavigationBarItem name="챔피언 분석" active={false} />
       <NavigationBarItem name="커뮤니티" active={false} />
     </Base>

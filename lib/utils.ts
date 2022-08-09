@@ -38,6 +38,15 @@ export const parseDateRelative = (dateString: Date) => {
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 };
 
+// 현재 시간과 특정 시간 사이의 분 간격을 구합니다 - nonon
+export const getMinuteDiff = (date: Date) => {
+  const current = new Date().getTime();
+  const time = date.getTime();
+  const diff = current - time;
+
+  return new Date(diff).getMinutes();
+};
+
 // document.cookie를 객체 형태로 바꿔줍니다 - nonon
 export const parseCookie = (cookieString: string) => {
   const cookieArray = cookieString.split(";");
