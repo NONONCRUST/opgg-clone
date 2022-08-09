@@ -90,7 +90,8 @@ const Base = styled.main`
 
 const SummonerPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [summoner, setSummoner] = useState<GetSummonerByNameResponseType>();
+  const [summonerData, setSummonerData] =
+    useState<GetSummonerByNameResponseType>();
   const [summonerNotFound, setSummonerNotFound] = useState(false);
 
   const summonerName = useRouter().query.name;
@@ -101,7 +102,7 @@ const SummonerPage: React.FC = () => {
       setIsLoading(true);
       const response = await getSummonerByName(summonerName);
       console.log(response);
-      setSummoner(response.data);
+      setSummonerData(response.data);
     } catch (error: any) {
       console.log(error);
       if (error.response.status === 400) {
@@ -125,7 +126,7 @@ const SummonerPage: React.FC = () => {
         <Layout>
           <div className="summoner-container">
             <SummonerIconAvatar
-              level={summoner?.summonerLevel || 0}
+              level={summonerData?.summonerLevel || 0}
               iconNumber={4644}
             />
             <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
@@ -146,9 +147,9 @@ const SummonerPage: React.FC = () => {
                 0.0316%)
               </Typography>
               <Button>전적 갱신</Button>
-              {summoner && (
+              {summonerData && (
                 <Typography size="0.75rem" color={palette.gray[400]}>
-                  최근 업데이트: 22분 전
+                  최근 업데이트: {parseDateRelative(summonerData.updatedAt)}
                 </Typography>
               )}
             </Flexbox>
@@ -157,17 +158,18 @@ const SummonerPage: React.FC = () => {
       </div>
       <div className="content-area">
         <Layout>
-          <Card className="ad" height="8rem">
-            광고
-          </Card>
+          <Card className="ad" height="6rem" />
           <div className="content-area-match">
             <div className="content-area-match-left">
-              <SoloRankInfoCard />
-              <Card height="6rem">자유랭크</Card>
-              <Card height="20rem">챔피언별</Card>
+              <SoloRankInfoCard
+                isLoading={isLoading}
+                summonerData={summonerData}
+              />
+              {/* <Card height="6rem">자유랭크</Card> */}
+              {/* <Card height="20rem">챔피언별</Card> */}
             </div>
             <div className="content-area-match-right">
-              <Card height="14rem">요약</Card>
+              {/* <Card height="14rem">요약</Card> */}
               <Flexbox flex="col" gap="0.5rem">
                 <MatchResult result="win" />
                 <MatchResult result="lose" />

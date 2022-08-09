@@ -110,3 +110,25 @@ export const shortenText = (text: string, length: number) => {
   }
   return text;
 };
+
+// 승률을 구합니다 - nonon
+export const getWinRate = (wins?: number, losses?: number) => {
+  if (!wins || !losses) return;
+
+  return Math.round((wins / (wins + losses)) * 100);
+};
+
+// 첫 글자를 대문자로 만듭니다 - nonon
+export const capitalize = (string?: string) => {
+  if (!string) return;
+
+  return `${string.charAt(0).toUpperCase()}${string.slice(1).toLowerCase()}`;
+};
+
+export const mapRank = (rank?: string) => {
+  if (rank === "I") return "1";
+  if (rank === "II") return "2";
+  if (rank === "III") return "3";
+  if (rank === "IV") return "4";
+  // ...
+};

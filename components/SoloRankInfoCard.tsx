@@ -7,6 +7,7 @@ import Typography from "./common/Typography";
 import Flexbox from "./layouts/Flexbox";
 import RankEmblemAvatar from "./RankEmblemAvatar";
 import { theme } from "../styles/theme";
+import { capitalize, getWinRate, mapRank } from "../lib/utils";
 
 const Container = styled.section`
   width: 100%;
@@ -22,35 +23,52 @@ const Container = styled.section`
   }
 `;
 
-const SoloRankInfoCard: React.FC = () => {
+interface Props {
+  isLoading: boolean;
+  summonerData?: GetSummonerByNameResponseType;
+}
+
+const SoloRankInfoCard: React.FC<Props> = ({ summonerData, isLoading }) => {
   return (
     <Container>
       <Card className="solo-rank-info-card">
-        <Flexbox padding="1rem" justify="start">
-          <Typography size="0.875rem">솔로랭크</Typography>
-        </Flexbox>
-        <Divider />
         <Flexbox padding="1rem" justify="between">
-          <Flexbox gap="1rem">
-            <RankEmblemAvatar tier="master" />
-            <Flexbox flex="col" items="start" gap="0.5rem">
-              <Typography size="1.25rem" weight={700}>
-                Master
-              </Typography>
-              <Typography size="0.75rem" color={palette.gray[500]}>
-                364 LP
-              </Typography>
-            </Flexbox>
-          </Flexbox>
-          <Flexbox flex="col" gap="0.5rem" items="end">
-            <Typography size="0.75rem" color={palette.gray[400]}>
-              365승 324패
+          <Typography size="0.875rem">솔로랭크</Typography>
+          {!summonerData?.tier && (
+            <Typography color={palette.gray[300]} weight={600}>
+              Unranked
             </Typography>
-            <Typography size="0.75rem" color={palette.gray[400]}>
-              승률 54%
-            </Typography>
-          </Flexbox>
+          )}
         </Flexbox>
+        {summonerData?.tier && (
+          <>
+            <Divider />
+            <Flexbox padding="1rem" justify="between">
+              <Flexbox gap="1rem">
+                <RankEmblemAvatar tier={summonerData?.tier.toLowerCase()} />
+                <Flexbox flex="col" items="start" gap="0.5rem">
+                  <Typography size="1.25rem" weight={700}>
+                    {capitalize(summonerData?.tier)}{" "}
+                    {summonerData?.tier !==
+                      ("GRANDMASTER" || "CHALLENGER" || "MASTER") &&
+                      mapRank(summonerData?.rank)}
+                  </Typography>
+                  <Typography size="0.75rem" color={palette.gray[500]}>
+                    {summonerData?.leaguePoints} LP
+                  </Typography>
+                </Flexbox>
+              </Flexbox>
+              <Flexbox flex="col" gap="0.5rem" items="end">
+                <Typography size="0.75rem" color={palette.gray[400]}>
+                  {summonerData?.wins}승 {summonerData?.losses}패
+                </Typography>
+                <Typography size="0.75rem" color={palette.gray[400]}>
+                  승률 {getWinRate(summonerData?.wins, summonerData?.losses)}%
+                </Typography>
+              </Flexbox>
+            </Flexbox>
+          </>
+        )}
       </Card>
     </Container>
   );

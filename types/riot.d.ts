@@ -8,4 +8,5 @@ type GetSummonerByNameResponseType = {
   leaguePoints: number;
   wins: number;
   losses: number;
+  updatedAt: Date;
 };

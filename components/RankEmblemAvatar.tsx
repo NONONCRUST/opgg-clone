@@ -22,7 +22,7 @@ const Container = styled.img<ContainerProps>`
 `;
 
 interface Props {
-  tier: TierType;
+  tier?: string;
   size?: string;
 }
 

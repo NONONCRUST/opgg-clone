@@ -1,13 +1,1 @@
-[
-  {
-    "name": "노논맨",
-    "profileIconId": 4903,
-    "summonerLevel": 70,
-    "queueType": "RANKED_SOLO_5x5",
-    "tier": "DIAMOND",
-    "rank": "II",
-    "leaguePoints": 75,
-    "wins": 67,
-    "losses": 41
-  }
-]
+[{"name":"노논맨","profileIconId":4903,"summonerLevel":70,"queueType":"RANKED_SOLO_5x5","tier":"DIAMOND","rank":"II","leaguePoints":75,"wins":67,"losses":41,"updatedAt":"2022-08-09T12:03:18.977Z"},{"name":"Dan Xiao Guo","profileIconId":5090,"summonerLevel":834,"queueType":"RANKED_SOLO_5x5","tier":"GRANDMASTER","rank":"I","leaguePoints":606,"wins":1203,"losses":1170,"updatedAt":"2022-08-09T12:21:38.171Z"},{"name":"아이언이 실버로","profileIconId":6,"summonerLevel":37,"updatedAt":"2022-08-09T12:37:12.961Z"},{"name":"NONON","profileIconId":4906,"summonerLevel":260,"queueType":"RANKED_SOLO_5x5","tier":"DIAMOND","rank":"I","leaguePoints":37,"wins":190,"losses":175,"updatedAt":"2022-08-09T12:40:55.043Z"},{"name":"아아슈","profileIconId":5413,"summonerLevel":306,"queueType":"RANKED_SOLO_5x5","tier":"GOLD","rank":"IV","leaguePoints":96,"wins":322,"losses":311,"updatedAt":"2022-08-09T12:44:58.580Z"}]

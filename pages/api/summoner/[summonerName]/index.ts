@@ -35,19 +35,19 @@ const handler: NextApiHandler = async (
 
       const leagueResponse = await getLeagueBySummonerIdApi(id);
 
-      const { queueType, tier, rank, leaguePoints, wins, losses } =
-        leagueResponse.data[0];
+      leagueResponse.data[0];
 
       const body = {
         name: name,
         profileIconId: profileIconId,
         summonerLevel: summonerLevel,
-        queueType: queueType,
-        tier: tier,
-        rank: rank,
-        leaguePoints: leaguePoints,
-        wins: wins,
-        losses: losses,
+        queueType: leagueResponse.data[0]?.queueType,
+        tier: leagueResponse.data[0]?.tier,
+        rank: leagueResponse.data[0]?.rank,
+        leaguePoints: leagueResponse.data[0]?.leaguePoints,
+        wins: leagueResponse.data[0]?.wins,
+        losses: leagueResponse.data[0]?.losses,
+        updatedAt: new Date(),
       };
 
       fs.writeFileSync(
@@ -57,7 +57,8 @@ const handler: NextApiHandler = async (
 
       return res.status(200).send(body);
     } catch (error) {
-      return res.status(400).end();
+      console.log(error);
+      return res.status(500).end();
     }
   }
 
