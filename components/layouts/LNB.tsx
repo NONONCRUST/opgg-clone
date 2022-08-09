@@ -13,6 +13,7 @@ const Base = styled.div`
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    margin: 0 1rem;
   }
 
   @media screen and (min-width: ${theme.media.desktop}) {

@@ -10,17 +10,22 @@ const Base = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 3rem;
-  background-color: ${theme.primaryVariant};
+  height: 2.5rem;
+  background-color: #29344e;
   padding-right: 1rem;
 
   color: white;
 
   .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
     padding: 0 1rem;
     font-weight: 600;
     color: white;
     cursor: pointer;
+    background-color: ${theme.primary};
   }
 `;
 
@@ -30,6 +35,7 @@ const GNB: React.FC = () => {
       <Link href="/">
         <a className="logo">OP.GG</a>
       </Link>
+
       <Flexbox gap="1rem">
         <DarkModeButton />
         <Button size="small">로그인</Button>

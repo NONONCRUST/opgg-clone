@@ -2,8 +2,8 @@ import { Theme } from "@emotion/react";
 import palette from "./palette";
 
 export const theme = {
-  primary: palette.blue[500],
-  primaryVariant: palette.blue[600],
+  primary: "#5383E8",
+  primaryVariant: "#4271D6",
   primaryDimmed: palette.blue[400],
   primarySemiLight: palette.blue[100],
   primaryLight: palette.blue[50],

@@ -5,6 +5,7 @@ import { MdClose, MdStar, MdStarOutline } from "react-icons/md";
 import Flexbox from "../layouts/Flexbox";
 import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
+import { useRouter } from "next/router";
 
 const Container = styled.li`
   display: flex;
@@ -38,27 +39,37 @@ const MainInputDropdownMenuItem: React.FC<Props> = ({
   const { addFavoriteSummoner, removeFavoriteSummoner } = useFavoriteSummoner();
   const { removeSearchHistory } = useSearchHistory();
 
-  const onClickRemoveIcon = () => {
+  const router = useRouter();
+
+  const onClickRemoveIcon = (event: React.MouseEvent<HTMLOrSVGElement>) => {
+    event.stopPropagation();
     if (currentTab === "recent") removeSearchHistory(name);
     if (currentTab === "favorite") removeFavoriteSummoner(name);
   };
 
+  const onClickStarIcon = (event: React.MouseEvent<HTMLOrSVGElement>) => {
+    event.stopPropagation();
+    if (isFavorite) removeFavoriteSummoner(name);
+    if (!isFavorite) addFavoriteSummoner(name);
+  };
+
+  const onClickMenuItem = () => {
+    router.push(`/summoners/${name}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={onClickMenuItem}>
       <div>{name}</div>
       <Flexbox gap="1rem">
         {currentTab !== "favorite" && isFavorite && (
           <MdStar
             size="20px"
             color={palette.yellow[400]}
-            onClick={() => removeFavoriteSummoner(name)}
+            onClick={onClickStarIcon}
           />
         )}
         {currentTab !== "favorite" && !isFavorite && (
-          <MdStarOutline
-            size="20px"
-            onClick={() => addFavoriteSummoner(name)}
-          />
+          <MdStarOutline size="20px" onClick={onClickStarIcon} />
         )}
         <MdClose size="20px" cursor="pointer" onClick={onClickRemoveIcon} />
       </Flexbox>
