@@ -10,6 +10,7 @@ import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Button from "../common/Button";
 import Card from "../common/Card";
+import LoadingButton from "../common/LoadingButton";
 import Typography from "../common/Typography";
 import FavoriteIconButton from "../FavoriteIconButton";
 import Flexbox from "../layouts/Flexbox";
@@ -93,6 +94,7 @@ const Base = styled.main`
 
 const SummonerPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setisFetching] = useState(false);
   const [summonerData, setSummonerData] =
     useState<GetSummonerByNameResponseType>();
   const [summonerNotFound, setSummonerNotFound] = useState(false);
@@ -115,6 +117,13 @@ const SummonerPage: React.FC = () => {
       setIsLoading(false);
     }
   }, [summonerName]);
+
+  const onClickFetchButton = () => {
+    setisFetching(true);
+    setTimeout(() => {
+      setisFetching(false);
+    }, 1000);
+  };
 
   useEffect(() => {
     fetchSummoner();
@@ -152,7 +161,10 @@ const SummonerPage: React.FC = () => {
                 <span style={{ color: palette.blue[500] }}>1,238 위</span> (상위
                 0.0316%)
               </Typography>
-              <Button>전적 갱신</Button>
+              {!isFetching && (
+                <Button onClick={onClickFetchButton}>전적 갱신</Button>
+              )}
+              {isFetching && <LoadingButton width="84.34px" />}
               {summonerData && (
                 <Typography size="0.75rem" color={palette.gray[400]}>
                   최근 업데이트: {parseDateRelative(summonerData.updatedAt)}
