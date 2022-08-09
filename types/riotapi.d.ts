@@ -130,7 +130,7 @@ type PerkStyleSelectionDto = {
   var1: number;
   var2: number;
   var3: number;
-};
+}[];
 
 type PerkStyleDto = {
   description: string;

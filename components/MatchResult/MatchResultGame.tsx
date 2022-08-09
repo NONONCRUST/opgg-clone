@@ -56,7 +56,8 @@ const MatchResultGame: React.FC<Props> = ({ matchData, result }) => {
         {result === "win" ? "승리" : "패배"}
       </Typography>
       <Typography size="12px" color={palette.gray[400]}>
-        {matchData.gameDuration}
+        {Math.floor(matchData.gameDuration / 60)}분{" "}
+        {matchData.gameDuration % 60}초
       </Typography>
     </Container>
   );

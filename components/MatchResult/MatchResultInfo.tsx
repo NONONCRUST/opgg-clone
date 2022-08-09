@@ -87,13 +87,13 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
           <Flexbox flex="col" gap="0.2rem">
             <Avatar
               size="22px"
-              src="/summoner-spell/ignite.jpeg"
+              src={`/summoner-spell/${me?.summoner1Id}.jpeg`}
               shape="boxier"
               alt="summoner spell"
             />
             <Avatar
               size="22px"
-              src="/summoner-spell/flash.jpeg"
+              src={`/summoner-spell/${me?.summoner2Id}.jpeg`}
               shape="boxier"
               alt="summoner spell"
             />
@@ -102,12 +102,12 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
             <Avatar
               className="rune-avatar"
               size="22px"
-              src="/rune/8214.webp"
+              src={`/rune/${me?.perks.styles[0].selections[0].perk}.webp`}
               alt="summoner rune"
             />
             <Avatar
               size="22px"
-              src="/rune/8300.webp"
+              src={`/rune/${me?.perks.styles[1].style}.webp`}
               shape="boxier"
               alt="summoner rune"
             />

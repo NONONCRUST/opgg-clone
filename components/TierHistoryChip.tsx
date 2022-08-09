@@ -29,16 +29,21 @@ const Container = styled.div`
 
 interface Props {
   season: string;
-  tier: TierType;
+  tier: string;
+  rank: string;
 }
 
-const TierHistoryChip: React.FC<Props> = ({ season, tier }) => {
-  const capitalizedTier = `${tier.charAt(0).toUpperCase()}${tier.slice(1)}`;
+const TierHistoryChip: React.FC<Props> = ({ season, tier, rank }) => {
+  const capitalizedTier = `${tier.charAt(0).toUpperCase()}${tier
+    .slice(1)
+    .toLowerCase()}`;
 
   return (
     <Container>
       <b className="season">S{season}</b>
-      <span>{capitalizedTier}</span>
+      <span>
+        {capitalizedTier} {rank}
+      </span>
     </Container>
   );
 };

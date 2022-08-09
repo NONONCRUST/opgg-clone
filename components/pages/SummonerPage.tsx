@@ -8,7 +8,12 @@ import {
   getSummonerByName,
   requestFetchBySummonerName,
 } from "../../lib/api/riot";
-import { getMinuteDiff, parseDateRelative, throttle } from "../../lib/utils";
+import {
+  getMinuteDiff,
+  mapRank,
+  parseDateRelative,
+  throttle,
+} from "../../lib/utils";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Button from "../common/Button";
@@ -174,9 +179,11 @@ const SummonerPage: React.FC = () => {
             />
             <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
               <Flexbox gap="0.25rem">
-                <TierHistoryChip season="2022" tier="master" />
-                <TierHistoryChip season="2021" tier="master" />
-                <TierHistoryChip season="2020" tier="master" />
+                <TierHistoryChip
+                  season="2022"
+                  tier={summonerData?.tier || ""}
+                  rank={mapRank(summonerData?.rank) || "1"}
+                />
               </Flexbox>
               <Flexbox gap="0.5rem">
                 <Typography size="1.5rem" weight={600}>
