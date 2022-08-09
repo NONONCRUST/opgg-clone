@@ -94,7 +94,7 @@ const SummonerPage: React.FC = () => {
     useState<GetSummonerByNameResponseType>();
   const [summonerNotFound, setSummonerNotFound] = useState(false);
 
-  const summonerName = useRouter().query.name;
+  const summonerName = useRouter().query.name as string;
 
   const fetchSummoner = useCallback(async () => {
     if (typeof summonerName !== "string") return;
@@ -139,7 +139,10 @@ const SummonerPage: React.FC = () => {
                 <Typography size="1.5rem" weight={600}>
                   {summonerName}
                 </Typography>
-                <FavoriteIconButton isFavorite={false} />
+                <FavoriteIconButton
+                  isFavorite={false}
+                  summonerName={summonerName}
+                />
               </Flexbox>
               <Typography size="0.75rem" color={palette.gray[500]}>
                 래더 랭킹:{" "}
