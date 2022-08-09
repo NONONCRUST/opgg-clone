@@ -1,3 +1,4 @@
+import { Theme } from "@emotion/react";
 import palette from "./palette";
 
 export const theme = {
@@ -46,10 +47,10 @@ export const theme = {
   },
 };
 
-export const lightTheme = {
+export const lightTheme: Theme = {
   mode: "light",
 };
 
-export const darkTheme = {
+export const darkTheme: Theme = {
   mode: "dark",
 };

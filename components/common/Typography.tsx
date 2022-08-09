@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 interface ContainerProps {
   size?: string;
@@ -10,9 +11,15 @@ interface ContainerProps {
 
 const Container = styled.p<ContainerProps>`
   font-size: ${({ size }) => size};
-  color: ${({ color }) => color};
   font-weight: ${({ weight }) => weight};
   text-decoration: ${({ underline }) => underline && "underline"};
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      color: white;
+    `}
+  color: ${({ color }) => color};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLParagraphElement> {

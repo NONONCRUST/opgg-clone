@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "../store";
+import { themeActions } from "../store/themeSlice";
 
 const useDarkMode = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
+  const dispatch = useDispatch();
 
   const setLightMode = () => {
     window.localStorage.setItem("theme", "light");
-    setIsDarkMode(false);
+    dispatch(themeActions.setDarkMode(false));
   };
 
   const setDarkMode = () => {
     window.localStorage.setItem("theme", "light");
-    setIsDarkMode(true);
+    dispatch(themeActions.setDarkMode(true));
   };
 
   const toggleDarkMode = () => {

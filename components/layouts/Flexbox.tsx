@@ -41,6 +41,7 @@ interface ContainerProps {
   items?: AlignItemsType;
   gap?: string;
   padding?: string;
+  width?: string;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -51,6 +52,7 @@ const Container = styled.div<ContainerProps>`
   align-items: ${({ items }) => getAlignItems(items)};
   gap: ${({ gap }) => gap};
   padding: ${({ padding }) => padding};
+  width: ${({ width }) => width};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -60,6 +62,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   items?: AlignItemsType;
   gap?: string;
   padding?: string;
+  width?: string;
 }
 
 const Flexbox: React.FC<Props> = ({
@@ -69,6 +72,7 @@ const Flexbox: React.FC<Props> = ({
   items = "center",
   gap,
   padding,
+  width,
   ...props
 }) => {
   return (
@@ -78,6 +82,7 @@ const Flexbox: React.FC<Props> = ({
       items={items}
       gap={gap}
       padding={padding}
+      width={width}
       {...props}
     >
       {children}

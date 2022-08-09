@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { theme } from "../../styles/theme";
 import Button from "../common/Button";
+import DarkModeButton from "../DarkModeButton";
 import Flexbox from "./Flexbox";
 
 const Base = styled.div`
@@ -23,7 +24,10 @@ const GNB: React.FC = () => {
   return (
     <Base>
       <div className="logo">OPGG</div>
-      <Button label="로그인" size="small" />
+      <Flexbox gap="1rem">
+        <DarkModeButton />
+        <Button size="small">로그인</Button>
+      </Flexbox>
     </Base>
   );
 };

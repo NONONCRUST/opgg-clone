@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import palette from "../../styles/palette";
 
 interface ContainerProps {
   width?: string;
@@ -15,17 +17,28 @@ const Container = styled.div<ContainerProps>`
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[700]};
+    `}
 `;
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   width?: string;
   height?: string;
 }
 
-const Card: React.FC<Props> = ({ children, width = "100%", height }) => {
+const Card: React.FC<Props> = ({
+  children,
+  width = "100%",
+  height,
+  ...props
+}) => {
   return (
-    <Container width={width} height={height}>
+    <Container width={width} height={height} {...props}>
       {children}
     </Container>
   );

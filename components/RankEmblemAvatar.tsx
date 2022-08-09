@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import palette from "../styles/palette";
@@ -12,6 +13,12 @@ const Container = styled.img<ContainerProps>`
 
   width: ${({ size }) => size};
   height: ${({ size }) => size};
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[800]};
+    `}
 `;
 
 interface Props {

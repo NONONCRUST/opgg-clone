@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { MdStar, MdStarOutline } from "react-icons/md";
@@ -17,6 +18,13 @@ const Container = styled.button<ContainerProps>`
     isFavorite ? palette.yellow[400] : "white"};
   border: 1px solid ${palette.gray[300]};
   border-radius: 0.25rem;
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[700]};
+      border: 1px solid ${palette.gray[600]};
+    `}
 `;
 
 interface Props {

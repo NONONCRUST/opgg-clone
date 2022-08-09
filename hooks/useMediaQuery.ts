@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 // const matches = useMediaQuery('(min-width: 600px)')
 const useMediaQuery = (query: string) => {
+  if (typeof window === "undefined") return;
+
   const matchQueryList = window.matchMedia(query);
 
   const [matches, setMatches] = useState(matchQueryList.matches);
