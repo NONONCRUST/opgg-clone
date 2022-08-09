@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { getCsPerMinute, getKda } from "../../lib/utils";
+import { getCsPerMinute, getKda, getKillParticipation } from "../../lib/utils";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
@@ -80,6 +80,13 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
     (participant) => participant.summonerName === matchData.summonerName
   );
 
+  const getWin = (win: boolean) => {
+    if (win) return "win";
+    if (!win) return "lose";
+  };
+
+  const myTeam = matchData.teams.find((team) => getWin(team.win) === result);
+
   return (
     <Container result={result}>
       <Flexbox>
@@ -124,15 +131,21 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
             <span className="text-divider">/</span> {me?.assists}
           </Typography>
           <Typography size="12px" color={palette.gray[500]}>
-            {getKda(me?.kills, me?.deaths, me?.assists)} 평점
+            {getKda(me?.kills || 1, me?.deaths || 1, me?.assists || 1)} 평점
           </Typography>
         </div>
         <div className="stats-area">
           <Typography size="11px" color={palette.red[500]}>
-            킬관여 60%
+            킬관여{" "}
+            {getKillParticipation(
+              myTeam?.objectives.champion.kills || 1,
+              me?.kills || 1,
+              me?.assists || 1
+            )}
+            %
           </Typography>
           <Typography size="11px" color={palette.gray[500]}>
-            제어와드 {me?.detectorWarsPlaced}
+            제어와드 {me?.detectorWardsPlaced}
           </Typography>
           <Typography size="11px" color={palette.gray[500]}>
             CS {me?.totalMinionsKilled} (
@@ -185,10 +198,9 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
           alt="summoner rune"
         />
         <Avatar
-          className="rune-avatar"
           size="22px"
-          src="/rune/8214.webp"
-          alt="summoner rune"
+          src={`/trinket/${me?.item6}.jpeg`}
+          alt="summoner trinket"
         />
       </Flexbox>
     </Container>

@@ -16,7 +16,9 @@ type MatchType = {
   gameId: number;
   gameDuration: number;
   gameStartTimestamp: number;
+  gameEndTimestamp: number;
   gameMode: string;
+  teams: TeamDto[];
   participants: {
     summonerName: string;
     kills: number;
@@ -24,7 +26,7 @@ type MatchType = {
     deaths: number;
     champLevel: number;
     championName: string;
-    detectorWarsPlaced: number;
+    detectorWardsPlaced: number;
     wardsPlaced: number;
     wardsKilled: number;
     doubleKills: number;

@@ -49,7 +49,7 @@ const MatchResultGame: React.FC<Props> = ({ matchData, result }) => {
     <Container result={result}>
       <Typography className="solo-rank-text">솔랭</Typography>
       <Typography size="12px" color={palette.gray[400]}>
-        {parseDateRelative(new Date(matchData.gameStartTimestamp))}
+        {parseDateRelative(new Date(matchData.gameEndTimestamp))}
       </Typography>
       <Divider className="divider" />
       <Typography className="result-text">

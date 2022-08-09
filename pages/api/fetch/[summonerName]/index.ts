@@ -44,7 +44,7 @@ const handler: NextApiHandler = async (
             deaths: participant.deaths,
             champLevel: participant.champLevel,
             championName: participant.championName,
-            detectorWarsPlaced: participant.detectorWardsPlaced,
+            detectorWardsPlaced: participant.detectorWardsPlaced,
             wardsPlaced: participant.wardsPlaced,
             wardsKilled: participant.wardsKilled,
             doubleKills: participant.doubleKills,
@@ -72,9 +72,11 @@ const handler: NextApiHandler = async (
         return {
           summonerName: summonerName,
           gameStartTimestamp: match.info.gameStartTimestamp,
+          gameEndTimestamp: match.info.gameEndTimestamp,
           gameId: match.info.gameId,
           gameDuration: match.info.gameDuration,
           gameMode: match.info.gameMode,
+          teams: match.info.teams,
           participants: participants,
         };
       });

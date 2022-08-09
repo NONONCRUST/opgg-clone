@@ -161,3 +161,14 @@ export const getKda = (kills: number, deaths: number, assists: number) => {
 
   return kda;
 };
+
+// 킬관여율을 구합니다
+export const getKillParticipation = (
+  totalKills: number,
+  kills: number,
+  assists: number
+) => {
+  const killParticipation = Math.round(((kills + assists) / totalKills) * 100);
+
+  return killParticipation;
+};
