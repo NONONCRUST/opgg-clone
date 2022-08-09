@@ -83,7 +83,10 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
     <Container result={result}>
       <Flexbox>
         <div className="champion-area">
-          <MatchResultChampionAvatar champion="Lulu" level={12} />
+          <MatchResultChampionAvatar
+            champion={me?.championName || ""}
+            level={12}
+          />
           <Flexbox flex="col" gap="0.2rem">
             <Avatar
               size="22px"

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import palette from "../../styles/palette";
+import Image from "next/image";
 
 const Container = styled.div`
   position: relative;
@@ -10,8 +11,6 @@ const Container = styled.div`
   border-radius: 50%;
 
   .image {
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
   }
 
@@ -41,7 +40,13 @@ interface Props {
 const MatchResultChampionAvatar: React.FC<Props> = ({ champion, level }) => {
   return (
     <Container>
-      <img className="image" src={`/champion/${champion}.png`} alt={champion} />
+      <Image
+        className="image"
+        src={`/champion/${champion}.png`}
+        alt={champion}
+        width="48px"
+        height="48px"
+      />
       <div className="level">{level}</div>
     </Container>
   );
