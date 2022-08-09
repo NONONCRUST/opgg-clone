@@ -1,5 +1,7 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import MainInput from "../MainInput/MainInput";
 
@@ -13,20 +15,24 @@ const Base = styled.main`
   min-height: 100vh;
 
   .main-image {
-    font-size: 6rem;
+    font-size: 4rem;
     color: white;
     font-weight: 700;
     margin-top: 8rem;
   }
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[800]};
+    `}
 `;
 
 const HomePage: React.FC = () => {
-  const [mainInputDropdownOpen, setMainInputDropdownOpen] = useState(false);
-
   return (
     <Base>
       <div className="main-image">OP.GG</div>
-      <MainInput open={false} />
+      <MainInput />
     </Base>
   );
 };

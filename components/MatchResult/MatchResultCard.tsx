@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import palette from "../../styles/palette";
@@ -13,6 +14,20 @@ const Container = styled.div<ContainerProps>`
   border-radius: 0.25rem;
   background-color: ${({ result }) =>
     result === "win" ? palette.blue[50] : palette.red[50]};
+
+  ${({ theme, result }) =>
+    theme.mode === "dark" &&
+    result === "win" &&
+    css`
+      background-color: ${palette.blue[900]};
+    `}
+
+  ${({ theme, result }) =>
+    theme.mode === "dark" &&
+    result === "lose" &&
+    css`
+      background-color: ${palette.red[900]};
+    `}
 `;
 
 interface Props {

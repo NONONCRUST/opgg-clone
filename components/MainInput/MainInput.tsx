@@ -1,7 +1,11 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
+import { MdSearch } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import useSearchHistory from "../../hooks/useSearchHistory";
+import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
 
@@ -33,11 +37,26 @@ const Container = styled.div`
 
   .icon {
     position: absolute;
-    right: 2rem;
-    top: 1.4rem;
+    right: 1.5rem;
+    top: 1.3rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
     color: ${theme.primary};
   }
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[700]};
+      color: white;
+
+      .input {
+        background-color: ${palette.gray[700]};
+        color: white;
+      }
+    `}
 `;
 
 const MainInput: React.FC = () => {
@@ -52,6 +71,8 @@ const MainInput: React.FC = () => {
     setInputValue("");
   };
 
+  const router = useRouter();
+
   useOutsideClick(mainInputRef, onOutsideClick);
   const { addSearchHistory } = useSearchHistory();
 
@@ -65,6 +86,7 @@ const MainInput: React.FC = () => {
     if (inputValue === "") return;
     addSearchHistory(inputValue);
     setInputValue("");
+    router.push(`/summoners/${inputValue}`);
   };
 
   const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -83,9 +105,7 @@ const MainInput: React.FC = () => {
         onChange={onChangeInput}
         onKeyDown={onEnter}
       />
-      <div className="icon" onClick={search}>
-        검색
-      </div>
+      <MdSearch className="icon" onClick={search} />
       {dropdownOpen && <MainInputDropdownMenu />}
     </Container>
   );

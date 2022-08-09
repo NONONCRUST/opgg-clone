@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -23,6 +24,25 @@ const Container = styled.div<ContainerProps>`
     background-color: ${({ result }) =>
       result === "win" ? palette.blue[300] : palette.red[300]};
   }
+
+  .match-result-arrow-down-icon {
+    color: ${({ result }) =>
+      result === "win" ? palette.blue[500] : palette.red[500]};
+  }
+
+  ${({ theme, result }) =>
+    theme.mode === "dark" &&
+    result === "win" &&
+    css`
+      background-color: ${palette.blue[700]};
+    `}
+
+  ${({ theme, result }) =>
+    theme.mode === "dark" &&
+    result === "lose" &&
+    css`
+      background-color: ${palette.red[700]};
+    `}
 `;
 
 interface Props {
@@ -32,7 +52,10 @@ interface Props {
 const MatchResultAction: React.FC<Props> = ({ result }) => {
   return (
     <Container result={result}>
-      <MdKeyboardArrowDown />
+      <MdKeyboardArrowDown
+        className="match-result-arrow-down-icon"
+        size="1.25rem"
+      />
     </Container>
   );
 };

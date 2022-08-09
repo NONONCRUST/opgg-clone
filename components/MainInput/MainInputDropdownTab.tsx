@@ -1,5 +1,6 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import palette from "../../styles/palette";
 
 const Container = styled.div`
@@ -25,6 +26,20 @@ const Tab = styled.div<TabProps>`
   font-size: 0.875rem;
 
   background-color: ${({ active }) => (active ? "white" : palette.gray[200])};
+
+  ${({ theme, active }) =>
+    theme.mode === "dark" &&
+    active &&
+    css`
+      background-color: ${palette.gray[700]};
+    `}
+
+  ${({ theme, active }) =>
+    theme.mode === "dark" &&
+    !active &&
+    css`
+      background-color: ${palette.gray[800]};
+    `}
 `;
 
 interface Props {

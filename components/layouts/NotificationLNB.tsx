@@ -12,6 +12,7 @@ const Base = styled.div<BaseProps>`
 
   height: 3rem;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  font-size: 0.875rem;
 
   .contents {
     display: flex;

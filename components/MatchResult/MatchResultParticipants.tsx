@@ -29,7 +29,7 @@ const Container = styled.div`
 const MatchResultParticipants: React.FC = () => {
   return (
     <Container>
-      <Flexbox flex="col" gap="0.2rem" items="start">
+      <Flexbox flex="col" gap="0.15rem" items="start">
         {FAKE_PARTICIPANTS_TEAM.map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar
@@ -44,7 +44,7 @@ const MatchResultParticipants: React.FC = () => {
           </Flexbox>
         ))}
       </Flexbox>
-      <Flexbox flex="col" gap="0.2rem" items="start">
+      <Flexbox flex="col" gap="0.15rem" items="start">
         {FAKE_PARTICIPANTS_TEAM.map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar

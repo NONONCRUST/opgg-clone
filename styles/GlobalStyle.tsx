@@ -12,6 +12,10 @@ const global = css`
   * {
     box-sizing: border-box;
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const GlobalStyle = () => <Global styles={global} />;

@@ -1,7 +1,9 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
+import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import EmptyNotification from "./EmptyNotification";
 import MainInputDropdownMenuItem from "./MainInputDropdownMenuItem";
@@ -22,6 +24,12 @@ const Container = styled.div`
   position: absolute;
   top: 100%;
   right: 4rem;
+
+  ${({ theme }) =>
+    theme.mode === "dark" &&
+    css`
+      background-color: ${palette.gray[700]};
+    `}
 `;
 
 const MainInputDropdownMenu: React.FC = () => {
