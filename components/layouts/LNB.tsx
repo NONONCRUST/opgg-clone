@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React from "react";
 import { theme } from "../../styles/theme";
+import HeaderMainInput from "../MainInput/HeaderMainInput";
 import NavigationBar from "./NavigationBar";
 
 const Base = styled.div`
@@ -11,7 +13,8 @@ const Base = styled.div`
 
   .contents {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     margin: 0 1rem;
   }
@@ -25,10 +28,13 @@ const Base = styled.div`
 `;
 
 const LNB: React.FC = () => {
+  const router = useRouter();
+
   return (
     <Base>
       <div className="contents">
         <NavigationBar />
+        {router.pathname === "/summoners/[name]" && <HeaderMainInput />}
       </div>
     </Base>
   );

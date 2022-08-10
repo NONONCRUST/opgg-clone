@@ -166,7 +166,6 @@ const SummonerPage: React.FC = () => {
   }, [fetchSummoner, fetchMatches]);
 
   if (summonerNotFound) return <SummonerNotFound />;
-  if (isSummonerLoading) return <div>로딩중...</div>;
 
   return (
     <Base>

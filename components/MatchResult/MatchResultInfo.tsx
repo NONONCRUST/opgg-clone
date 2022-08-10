@@ -76,7 +76,7 @@ interface Props {
 }
 
 const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
-  const me = matchData.participants.find(
+  const me = matchData.participants?.find(
     (participant) => participant.summonerName === matchData.summonerName
   );
 
@@ -85,7 +85,7 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
     if (!win) return "lose";
   };
 
-  const myTeam = matchData.teams.find((team) => getWin(team.win) === result);
+  const myTeam = matchData.teams?.find((team) => getWin(team.win) === result);
 
   return (
     <Container result={result}>

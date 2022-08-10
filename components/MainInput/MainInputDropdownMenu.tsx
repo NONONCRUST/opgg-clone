@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
 import palette from "../../styles/palette";
@@ -9,7 +9,11 @@ import EmptyNotification from "./EmptyNotification";
 import MainInputDropdownMenuItem from "./MainInputDropdownMenuItem";
 import MainInputDropdownTab from "./MainInputDropdownTab";
 
-const Container = styled.div`
+interface ContainerProps {
+  type: "home" | "header";
+}
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +31,14 @@ const Container = styled.div`
     border-bottom-right-radius: 0.25rem;
     box-shadow: ${theme.elevation4};
     right: 4rem;
+
+    ${({ type }) =>
+      type === "header" &&
+      css`
+        width: 18rem;
+        right: 0;
+        transform: translateY(0.2rem);
+      `}
   }
 
   ${({ theme }) =>
@@ -36,14 +48,18 @@ const Container = styled.div`
     `}
 `;
 
-const MainInputDropdownMenu: React.FC = () => {
+interface Props {
+  type?: "home" | "header";
+}
+
+const MainInputDropdownMenu: React.FC<Props> = ({ type = "home" }) => {
   const [currentTab, setCurrentTab] = useState<"recent" | "favorite">("recent");
 
   const { searchHistory } = useSearchHistory();
   const { favoriteSummoner } = useFavoriteSummoner();
 
   return (
-    <Container>
+    <Container type={type}>
       <MainInputDropdownTab
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
