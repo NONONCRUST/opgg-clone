@@ -219,7 +219,7 @@ const SummonerPage: React.FC = () => {
                   <MatchResultNotFound />
                 )}
                 <Flexbox flex="col" gap="0.5rem">
-                  {isMatchesLoading && <div>게임 결과를 불러오는중..</div>}
+                  {/* {isMatchesLoading && <div>게임 결과를 불러오는중..</div>} */}
                   {matchListData &&
                     matchListData.map((matchData, index) => (
                       <MatchResult

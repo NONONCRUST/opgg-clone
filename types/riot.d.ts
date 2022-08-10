@@ -12,7 +12,6 @@ type GetSummonerByNameResponseType = {
 };
 
 type MatchType = {
-  summonerName: string;
   gameId: number;
   gameDuration: number;
   gameStartTimestamp: number;

@@ -38,19 +38,21 @@ const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
 
   return (
     <Container result={result}>
-      <MatchResultCard result={result}>
-        <Flexbox>
-          <div className="indicator" />
-          <MatchResultGame matchData={matchData} result={result} />
-          <MatchResultInfo
-            matchData={matchData}
-            result={result}
-            summonerName={summonerName}
-          />
-          <MatchResultParticipants matchData={matchData} />
-        </Flexbox>
-        <MatchResultAction result={result} />
-      </MatchResultCard>
+      {me && (
+        <MatchResultCard result={result}>
+          <Flexbox>
+            <div className="indicator" />
+            <MatchResultGame matchData={matchData} result={result} />
+            <MatchResultInfo
+              matchData={matchData}
+              result={result}
+              summonerName={summonerName}
+            />
+            <MatchResultParticipants matchData={matchData} />
+          </Flexbox>
+          <MatchResultAction result={result} />
+        </MatchResultCard>
+      )}
     </Container>
   );
 };

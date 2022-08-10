@@ -164,47 +164,50 @@ const MatchResultInfo: React.FC<Props> = ({
                 )}
                 )
               </Typography>
-              <Typography size="11px" color={palette.gray[500]} weight={600}>
-                Master
-              </Typography>
             </div>
           </Flexbox>
           <Flexbox gap="0.15rem" justify="start">
             <Avatar
               className="item-avatar"
+              src={me.item0 !== 0 ? `/item/${me.item0}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               className="item-avatar"
+              src={me.item1 !== 0 ? `/item/${me.item1}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               className="item-avatar"
+              src={me.item2 !== 0 ? `/item/${me.item2}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               className="item-avatar"
+              src={me.item3 !== 0 ? `/item/${me.item3}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               className="item-avatar"
+              src={me.item4 !== 0 ? `/item/${me.item4}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               className="item-avatar"
+              src={me.item5 !== 0 ? `/item/${me.item5}.png` : undefined}
               size="22px"
               shape="boxier"
-              alt="summoner rune"
+              alt="item"
             />
             <Avatar
               size="22px"
