@@ -3,7 +3,8 @@ import {
   getLeagueBySummonerIdApi,
   getSummonerByNameApi,
 } from "../../../../lib/api/riotApi";
-import fs from "fs";
+import connectMongo from "../../../../lib/mongodb";
+import SummonerModel from "../../../../models/summonerModel";
 
 const handler: NextApiHandler = async (
   req: NextApiRequest,
@@ -11,23 +12,32 @@ const handler: NextApiHandler = async (
 ) => {
   if (req.method === "GET") {
     const summonerName = req.query.summonerName;
-    console.log(summonerName);
     if (typeof summonerName !== "string") return res.status(400).end();
 
-    const summonerListJSON = fs.readFileSync("data/summoners.json").toString();
-    const summonerList = JSON.parse(summonerListJSON);
+    /* --------------------------------------------- */
+    await connectMongo();
 
-    const summonerInfo = summonerList.find(
-      (summoner: GetSummonerByNameResponseType) =>
-        summoner.name.toLowerCase() === summonerName.toLowerCase()
-    );
+    const summonerArray = await SummonerModel.find()
+      .where("name")
+      .equals(summonerName);
+    if (summonerArray.length !== 0) {
+      const summoner = summonerArray[0];
+      const body = {
+        name: summoner.name,
+        profileIconId: summoner.profileIconId,
+        summonerLevel: summoner.summonerLevel,
+        queueType: summoner.queueType,
+        tier: summoner.tier,
+        rank: summoner.rank,
+        leaguePoints: summoner.leaguePoints,
+        wins: summoner.wins,
+        losses: summoner.losses,
+        updatedAt: summoner.updatedAt,
+      };
 
-    if (summonerInfo) {
-      console.log("summoner found@@@");
-      console.log(summonerInfo);
+      return res.status(200).send(body);
     }
-
-    if (summonerInfo) return res.status(200).send(summonerInfo);
+    /* --------------------------------------------- */
 
     try {
       const response = await getSummonerByNameApi(summonerName);
@@ -50,10 +60,18 @@ const handler: NextApiHandler = async (
         updatedAt: new Date(),
       };
 
-      fs.writeFileSync(
-        "data/summoners.json",
-        JSON.stringify([...summonerList, body])
-      );
+      await SummonerModel.create({
+        name: name,
+        profileIconId: profileIconId,
+        summonerLevel: summonerLevel,
+        queueType: leagueResponse.data[0]?.queueType,
+        tier: leagueResponse.data[0]?.tier,
+        rank: leagueResponse.data[0]?.rank,
+        leaguePoints: leagueResponse.data[0]?.leaguePoints,
+        wins: leagueResponse.data[0]?.wins,
+        losses: leagueResponse.data[0]?.losses,
+        updatedAt: new Date(),
+      });
 
       return res.status(200).send(body);
     } catch (error: any) {

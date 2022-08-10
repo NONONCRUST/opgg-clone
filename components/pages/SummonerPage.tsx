@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
@@ -23,11 +24,13 @@ import LoadingButton from "../common/LoadingButton";
 import TabButton from "../common/TabButton";
 import Typography from "../common/Typography";
 import FavoriteIconButton from "../FavoriteIconButton";
+import IngameNotFound from "../IngameNotFound";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
 import MatchResult from "../MatchResult/MatchResult";
 import MatchResultNotFound from "../MatchResultNotFound";
 import SoloRankInfoCard from "../SoloRankInfoCard";
+import SummonerContentHeader from "../SummonerContentHeader";
 import SummonerIconAvatar from "../SummonerIconAvatar";
 import SummonerNotFound from "../SummonerNotFound";
 import TierHistoryChip from "../TierHistoryChip";
@@ -41,12 +44,6 @@ const Base = styled.main`
 
     padding: 1rem;
     background-color: ${palette.gray[100]};
-  }
-
-  .summoner-container {
-    display: flex;
-    padding: 1rem;
-    gap: 1.5rem;
   }
 
   .ad {
@@ -110,12 +107,11 @@ const SummonerPage: React.FC = () => {
     useState<GetSummonerByNameResponseType>();
   const [matchListData, setMatchListData] =
     useState<GetMatchesBySummonerNameResponeType>([]);
+  const [activeTab, setActiveTab] = useState("general");
 
   const [summonerNotFound, setSummonerNotFound] = useState(false);
 
   const summonerName = useRouter().query.name as string;
-
-  const minuteDiff = getMinuteDiff(new Date(summonerData?.updatedAt || ""));
 
   const fetchSummoner = useCallback(async () => {
     if (typeof summonerName !== "string") return;
@@ -171,59 +167,32 @@ const SummonerPage: React.FC = () => {
 
   return (
     <Base>
+      <Head>
+        <title>{summonerName} - 게임 전적</title>
+      </Head>
       <div className="content-header-area">
-        <Layout>
-          <div className="summoner-container">
-            <SummonerIconAvatar
-              level={summonerData?.summonerLevel || 0}
-              iconNumber={4644}
-            />
-            <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
-              <Flexbox gap="0.25rem">
-                <TierHistoryChip
-                  season="2022"
-                  tier={summonerData?.tier || ""}
-                  rank={mapRank(summonerData?.rank) || "1"}
-                />
-              </Flexbox>
-              <Flexbox gap="0.5rem">
-                <Typography size="1.5rem" weight={600}>
-                  {summonerName}
-                </Typography>
-                <FavoriteIconButton
-                  isFavorite={false}
-                  summonerName={summonerName}
-                />
-              </Flexbox>
-              <Typography size="0.75rem" color={palette.gray[500]}>
-                래더 랭킹:{" "}
-                <span style={{ color: palette.blue[500] }}>1,238 위</span> (상위
-                0.0316%)
-              </Typography>
-              {!isFetching && (
-                <Button
-                  onClick={throttle(onClickFetchButton)}
-                  disabled={minuteDiff < 5}
-                >
-                  전적 갱신
-                </Button>
-              )}
-              {isFetching && <LoadingButton width="84.34px" />}
-              {summonerData && (
-                <Typography size="0.75rem" color={palette.gray[400]}>
-                  최근 업데이트: {parseDateRelative(summonerData.updatedAt)}
-                </Typography>
-              )}
-            </Flexbox>
-          </div>
-        </Layout>
+        {summonerData && (
+          <SummonerContentHeader
+            summonerData={summonerData}
+            isFetching={isFetching}
+            onClickFetchButton={onClickFetchButton}
+          />
+        )}
         <Divider />
         <Layout>
           <Flexbox padding="0.2rem 0" justify="start" gap="0.2rem">
-            <TabButton type="general" active={false}>
+            <TabButton
+              type="general"
+              active={activeTab === "general"}
+              onClick={() => setActiveTab("general")}
+            >
               종합
             </TabButton>
-            <TabButton type="ingame" active={true}>
+            <TabButton
+              type="ingame"
+              active={activeTab === "ingame"}
+              onClick={() => setActiveTab("ingame")}
+            >
               인게임 정보
             </TabButton>
           </Flexbox>
@@ -232,28 +201,40 @@ const SummonerPage: React.FC = () => {
       <div className="content-area">
         <Layout>
           <Card className="ad" height="6rem" />
-          <div className="content-area-match">
-            <div className="content-area-match-left">
-              <SoloRankInfoCard
-                isLoading={isSummonerLoading}
-                summonerData={summonerData}
-              />
-              {/* <Card height="6rem">자유랭크</Card> */}
-              {/* <Card height="20rem">챔피언별</Card> */}
+          {activeTab === "general" && (
+            <div className="content-area-match">
+              <div className="content-area-match-left">
+                {summonerData && (
+                  <SoloRankInfoCard
+                    isLoading={isSummonerLoading}
+                    summonerData={summonerData}
+                  />
+                )}
+                {/* <Card height="6rem">자유랭크</Card> */}
+                {/* <Card height="20rem">챔피언별</Card> */}
+              </div>
+              <div className="content-area-match-right">
+                {/* <Card height="14rem">요약</Card> */}
+                {!isMatchesLoading && matchListData.length === 0 && (
+                  <MatchResultNotFound />
+                )}
+                <Flexbox flex="col" gap="0.5rem">
+                  {isMatchesLoading && <div>게임 결과를 불러오는중..</div>}
+                  {matchListData &&
+                    matchListData.map((matchData, index) => (
+                      <MatchResult
+                        key={index}
+                        matchData={matchData}
+                        summonerName={summonerName}
+                      />
+                    ))}
+                </Flexbox>
+              </div>
             </div>
-            <div className="content-area-match-right">
-              {/* <Card height="14rem">요약</Card> */}
-              {!isMatchesLoading && matchListData.length === 0 && (
-                <MatchResultNotFound />
-              )}
-              <Flexbox flex="col" gap="0.5rem">
-                {isMatchesLoading && <div>게임 결과를 불러오는중..</div>}
-                {matchListData.map((matchData, index) => (
-                  <MatchResult key={index} matchData={matchData} />
-                ))}
-              </Flexbox>
-            </div>
-          </div>
+          )}
+          {activeTab === "ingame" && (
+            <IngameNotFound summonerName={summonerName} />
+          )}
         </Layout>
       </div>
     </Base>

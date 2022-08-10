@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import axios from "../../lib/api";
 import {
   getCurrentGameBySummonerName,
   getFeaturedGame,
@@ -72,8 +73,24 @@ const TestPage: React.FC = () => {
     setDropdownOpen((prev) => !prev);
   };
 
-  const onClickButton = () => {
-    console.log("clicked!");
+  const onClickButton = async () => {
+    console.log("button clicked!");
+    try {
+      const response = await axios.get("/test");
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClickPostButton = async () => {
+    console.log("button clicked!");
+    try {
+      const response = await axios.post("/test");
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -104,8 +121,8 @@ const TestPage: React.FC = () => {
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <SummonerIconAvatar level={123} iconNumber={4644} />
         <RankEmblemAvatar tier="diamond" />
-        <TierHistoryChip season="2022" tier="master" />
-        <Button onClick={throttle(onClickButton, 1000)}>버튼</Button>
+        <Button onClick={onClickButton}>버튼</Button>
+        <Button onClick={onClickPostButton}>추가</Button>
       </Flexbox>
     </Flexbox>
   );

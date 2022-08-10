@@ -7,6 +7,8 @@ import {
   getMatchIdsByPuuidApi,
   getSummonerByNameApi,
 } from "../../../../lib/api/riotApi";
+import MatchModel from "../../../../models/matchModel";
+import SummonerModel from "../../../../models/summonerModel";
 
 const handler: NextApiHandler = async (
   req: NextApiRequest,
@@ -20,11 +22,8 @@ const handler: NextApiHandler = async (
       const {
         data: { puuid },
       } = await getSummonerByNameApi(summonerName);
-      console.log("puuid", puuid);
 
       const { data } = await getMatchIdsByPuuidApi(puuid);
-
-      console.log("matchIds", data);
 
       const matchesPromise = data.slice(0, 10).map(async (matchId, index) => {
         const response = await getMatchByMatchIdApi(matchId);
@@ -70,7 +69,6 @@ const handler: NextApiHandler = async (
         });
 
         return {
-          summonerName: summonerName,
           gameStartTimestamp: match.info.gameStartTimestamp,
           gameEndTimestamp: match.info.gameEndTimestamp,
           gameId: match.info.gameId,
@@ -81,18 +79,13 @@ const handler: NextApiHandler = async (
         };
       });
 
-      fs.writeFileSync(
-        `data/matches/${summonerName}.json`,
-        JSON.stringify(filteredMatchList)
-      );
-
-      const summonerListJSON = fs
-        .readFileSync("data/summoners.json")
-        .toString();
-      const summonerList = JSON.parse(summonerListJSON);
-      const deletedSummonerList = summonerList.filter(
-        (summoner: GetSummonerByNameResponseType) =>
-          summoner.name.toLowerCase() !== summonerName.toLowerCase()
+      await MatchModel.findOneAndUpdate(
+        { summonerName: summonerName },
+        {
+          summonerName: summonerName,
+          matches: filteredMatchList,
+        },
+        { upsert: true }
       );
 
       const response = await getSummonerByNameApi(summonerName);
@@ -115,10 +108,9 @@ const handler: NextApiHandler = async (
         updatedAt: new Date(),
       };
 
-      fs.writeFileSync(
-        "data/summoners.json",
-        JSON.stringify([...deletedSummonerList, body])
-      );
+      await SummonerModel.findOneAndUpdate({ name: summonerName }, body, {
+        upsert: true,
+      });
 
       res.status(200).end();
     } catch (error) {

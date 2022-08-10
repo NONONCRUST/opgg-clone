@@ -1,5 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import MatchModel from "../../../../models/matchModel";
 
 const handler: NextApiHandler = async (
   req: NextApiRequest,
@@ -10,17 +11,14 @@ const handler: NextApiHandler = async (
       const summonerName = req.query.summonerName;
       if (typeof summonerName !== "string") return res.status(400).end();
 
-      const matchListBuffer = fs.readFileSync(
-        `data/matches/${summonerName}.json`
-      );
+      const matchesArray = await MatchModel.find()
+        .where("summonerName")
+        .equals(summonerName);
+      console.log(matchesArray);
 
-      const matchListJSON = matchListBuffer.toString();
+      if (matchesArray.length === 0) res.status(200).send([]);
 
-      const matchList = JSON.parse(matchListJSON).filter(
-        (match: any) => match.summonerName === summonerName
-      );
-
-      return res.status(200).send(matchList);
+      return res.status(200).send(matchesArray[0].matches);
     } catch (error) {
       console.log(error);
       return res.status(200).send([]);

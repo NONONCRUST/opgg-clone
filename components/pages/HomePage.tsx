@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import Head from "next/head";
 import React, { useState } from "react";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
@@ -31,6 +32,9 @@ const Base = styled.main`
 const HomePage: React.FC = () => {
   return (
     <Base>
+      <Head>
+        <title>롤 전적 검색 OP.GG - 전적 검색</title>
+      </Head>
       <div className="main-image">OP.GG</div>
       <MainInput />
     </Base>

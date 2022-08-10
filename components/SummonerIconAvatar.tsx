@@ -36,7 +36,7 @@ const Container = styled.div`
 
 interface Props {
   iconNumber: number;
-  level: number;
+  level?: number;
 }
 
 const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level }) => {
@@ -48,6 +48,7 @@ const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level }) => {
         className="image"
         src={`/profile-icon/${iconNumber}.png`}
         alt="summoner icon"
+        priority
       />
       <div className="level">{level}</div>
     </Container>

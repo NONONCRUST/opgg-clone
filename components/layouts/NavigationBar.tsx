@@ -8,6 +8,7 @@ const Base = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  height: 100%;
 `;
 
 const NavigationBar: React.FC = () => {

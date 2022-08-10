@@ -6,7 +6,7 @@ import useFavoriteSummoner from "../hooks/useFavoriteSummoner";
 import palette from "../styles/palette";
 
 interface ContainerProps {
-  isFavorite: boolean;
+  isFavorite?: boolean;
 }
 
 const Container = styled.button<ContainerProps>`
@@ -32,16 +32,20 @@ const Container = styled.button<ContainerProps>`
 
 interface Props {
   isFavorite: boolean;
-  summonerName: string;
+  summonerName?: string;
 }
 
 const FavoriteIconButton: React.FC<Props> = ({ summonerName }) => {
   const { favoriteSummoner, addFavoriteSummoner, removeFavoriteSummoner } =
     useFavoriteSummoner();
 
-  const isFavorite = favoriteSummoner.includes(summonerName);
+  const isFavorite = summonerName
+    ? favoriteSummoner.includes(summonerName)
+    : false;
 
   const onClickFavoriteIconButton = () => {
+    if (!summonerName) return;
+
     if (isFavorite) removeFavoriteSummoner(summonerName);
     if (!isFavorite) addFavoriteSummoner(summonerName);
   };

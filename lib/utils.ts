@@ -20,10 +20,9 @@ export const parseDateAbsolute = (dateString?: Date) => {
 // Date를 0 분전, 0 시간 전, 0 일 전, 0 년 전과 같은 형태로 파싱합니다 - nonon
 export const parseDateRelative = (dateString: Date) => {
   const currentDate = new Date();
-  const date = new Date(dateString);
 
   const betweenTime = Math.floor(
-    (currentDate.getTime() - date.getTime()) / 1000 / 60
+    (currentDate.getTime() - dateString.getTime()) / 1000 / 60
   );
 
   if (betweenTime < 1) return "방금 전";

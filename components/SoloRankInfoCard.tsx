@@ -25,7 +25,7 @@ const Container = styled.section`
 
 interface Props {
   isLoading: boolean;
-  summonerData?: GetSummonerByNameResponseType;
+  summonerData: GetSummonerByNameResponseType;
 }
 
 const SoloRankInfoCard: React.FC<Props> = ({ summonerData, isLoading }) => {
@@ -34,36 +34,36 @@ const SoloRankInfoCard: React.FC<Props> = ({ summonerData, isLoading }) => {
       <Card className="solo-rank-info-card">
         <Flexbox padding="1rem" justify="between">
           <Typography size="0.875rem">솔로랭크</Typography>
-          {!summonerData?.tier && (
+          {!summonerData.tier && (
             <Typography color={palette.gray[300]} weight={600}>
               Unranked
             </Typography>
           )}
         </Flexbox>
-        {summonerData?.tier && (
+        {summonerData.tier && (
           <>
             <Divider />
             <Flexbox padding="1rem" justify="between">
               <Flexbox gap="1rem">
-                <RankEmblemAvatar tier={summonerData?.tier.toLowerCase()} />
+                <RankEmblemAvatar tier={summonerData.tier.toLowerCase()} />
                 <Flexbox flex="col" items="start" gap="0.5rem">
                   <Typography size="1.25rem" weight={700}>
-                    {capitalize(summonerData?.tier)}{" "}
-                    {summonerData?.tier !==
+                    {capitalize(summonerData.tier)}{" "}
+                    {summonerData.tier !==
                       ("GRANDMASTER" || "CHALLENGER" || "MASTER") &&
-                      mapRank(summonerData?.rank)}
+                      mapRank(summonerData.rank)}
                   </Typography>
                   <Typography size="0.75rem" color={palette.gray[500]}>
-                    {summonerData?.leaguePoints} LP
+                    {summonerData.leaguePoints} LP
                   </Typography>
                 </Flexbox>
               </Flexbox>
               <Flexbox flex="col" gap="0.5rem" items="end">
                 <Typography size="0.75rem" color={palette.gray[400]}>
-                  {summonerData?.wins}승 {summonerData?.losses}패
+                  {summonerData.wins}승 {summonerData.losses}패
                 </Typography>
                 <Typography size="0.75rem" color={palette.gray[400]}>
-                  승률 {getWinRate(summonerData?.wins, summonerData?.losses)}%
+                  승률 {getWinRate(summonerData.wins, summonerData.losses)}%
                 </Typography>
               </Flexbox>
             </Flexbox>

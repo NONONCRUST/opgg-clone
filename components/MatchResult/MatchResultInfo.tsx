@@ -73,11 +73,16 @@ const Container = styled.div<ContainerProps>`
 interface Props {
   matchData: MatchType;
   result: "win" | "lose";
+  summonerName: string;
 }
 
-const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
+const MatchResultInfo: React.FC<Props> = ({
+  matchData,
+  result,
+  summonerName,
+}) => {
   const me = matchData.participants?.find(
-    (participant) => participant.summonerName === matchData.summonerName
+    (participant) => participant.summonerName === summonerName
   );
 
   const getWin = (win: boolean) => {
@@ -89,120 +94,126 @@ const MatchResultInfo: React.FC<Props> = ({ matchData, result }) => {
 
   return (
     <Container result={result}>
-      <Flexbox>
-        <div className="champion-area">
-          <MatchResultChampionAvatar
-            champion={me?.championName || ""}
-            level={me?.champLevel || 0}
-          />
-          <Flexbox flex="col" gap="0.2rem">
-            <Avatar
-              size="22px"
-              src={`/summoner-spell/${me?.summoner1Id}.jpeg`}
-              shape="boxier"
-              alt="summoner spell"
-            />
-            <Avatar
-              size="22px"
-              src={`/summoner-spell/${me?.summoner2Id}.jpeg`}
-              shape="boxier"
-              alt="summoner spell"
-            />
+      {me && myTeam && (
+        <>
+          <Flexbox>
+            <div className="champion-area">
+              {me && (
+                <MatchResultChampionAvatar
+                  champion={me.championName}
+                  level={me.champLevel}
+                />
+              )}
+              <Flexbox flex="col" gap="0.2rem">
+                <Avatar
+                  size="22px"
+                  src={`/summoner-spell/${me.summoner1Id}.jpeg`}
+                  shape="boxier"
+                  alt="summoner spell"
+                />
+                <Avatar
+                  size="22px"
+                  src={`/summoner-spell/${me.summoner2Id}.jpeg`}
+                  shape="boxier"
+                  alt="summoner spell"
+                />
+              </Flexbox>
+              <Flexbox flex="col" gap="0.2rem">
+                <Avatar
+                  className="rune-avatar"
+                  size="22px"
+                  src={`/rune/${me.perks.styles[0].selections[0].perk}.webp`}
+                  alt="summoner rune"
+                />
+                <Avatar
+                  size="22px"
+                  src={`/rune/${me.perks.styles[1].style}.webp`}
+                  shape="boxier"
+                  alt="summoner rune"
+                />
+              </Flexbox>
+            </div>
+            <div className="kda-area">
+              <Typography weight={600}>
+                {me.kills} <span className="text-divider">/</span>{" "}
+                <span className="death-text">{me.deaths}</span>{" "}
+                <span className="text-divider">/</span> {me.assists}
+              </Typography>
+              <Typography size="12px" color={palette.gray[500]}>
+                {getKda(me.kills, me.deaths, me.assists)} 평점
+              </Typography>
+            </div>
+            <div className="stats-area">
+              <Typography size="11px" color={palette.red[500]}>
+                킬관여{" "}
+                {getKillParticipation(
+                  myTeam.objectives.champion.kills,
+                  me.kills,
+                  me.assists
+                )}
+                %
+              </Typography>
+              <Typography size="11px" color={palette.gray[500]}>
+                제어와드 {me.detectorWardsPlaced}
+              </Typography>
+              <Typography size="11px" color={palette.gray[500]}>
+                CS {me.totalMinionsKilled} (
+                {getCsPerMinute(
+                  new Date(matchData.gameDuration),
+                  me.totalMinionsKilled
+                )}
+                )
+              </Typography>
+              <Typography size="11px" color={palette.gray[500]} weight={600}>
+                Master
+              </Typography>
+            </div>
           </Flexbox>
-          <Flexbox flex="col" gap="0.2rem">
+          <Flexbox gap="0.15rem" justify="start">
             <Avatar
-              className="rune-avatar"
+              className="item-avatar"
               size="22px"
-              src={`/rune/${me?.perks.styles[0].selections[0].perk}.webp`}
+              shape="boxier"
+              alt="summoner rune"
+            />
+            <Avatar
+              className="item-avatar"
+              size="22px"
+              shape="boxier"
+              alt="summoner rune"
+            />
+            <Avatar
+              className="item-avatar"
+              size="22px"
+              shape="boxier"
+              alt="summoner rune"
+            />
+            <Avatar
+              className="item-avatar"
+              size="22px"
+              shape="boxier"
+              alt="summoner rune"
+            />
+            <Avatar
+              className="item-avatar"
+              size="22px"
+              shape="boxier"
+              alt="summoner rune"
+            />
+            <Avatar
+              className="item-avatar"
+              size="22px"
+              shape="boxier"
               alt="summoner rune"
             />
             <Avatar
               size="22px"
-              src={`/rune/${me?.perks.styles[1].style}.webp`}
-              shape="boxier"
-              alt="summoner rune"
+              src={`/trinket/${me.item6}.jpeg`}
+              alt="summoner trinket"
             />
           </Flexbox>
-        </div>
-        <div className="kda-area">
-          <Typography weight={600}>
-            {me?.kills} <span className="text-divider">/</span>{" "}
-            <span className="death-text">{me?.deaths}</span>{" "}
-            <span className="text-divider">/</span> {me?.assists}
-          </Typography>
-          <Typography size="12px" color={palette.gray[500]}>
-            {getKda(me?.kills || 1, me?.deaths || 1, me?.assists || 1)} 평점
-          </Typography>
-        </div>
-        <div className="stats-area">
-          <Typography size="11px" color={palette.red[500]}>
-            킬관여{" "}
-            {getKillParticipation(
-              myTeam?.objectives.champion.kills || 1,
-              me?.kills || 1,
-              me?.assists || 1
-            )}
-            %
-          </Typography>
-          <Typography size="11px" color={palette.gray[500]}>
-            제어와드 {me?.detectorWardsPlaced}
-          </Typography>
-          <Typography size="11px" color={palette.gray[500]}>
-            CS {me?.totalMinionsKilled} (
-            {getCsPerMinute(
-              new Date(matchData.gameDuration),
-              me?.totalMinionsKilled
-            )}
-            )
-          </Typography>
-          <Typography size="11px" color={palette.gray[500]} weight={600}>
-            Master
-          </Typography>
-        </div>
-      </Flexbox>
-      <Flexbox gap="0.15rem" justify="start">
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          className="item-avatar"
-          size="22px"
-          shape="boxier"
-          alt="summoner rune"
-        />
-        <Avatar
-          size="22px"
-          src={`/trinket/${me?.item6}.jpeg`}
-          alt="summoner trinket"
-        />
-      </Flexbox>
+        </>
+      )}
     </Container>
   );
 };
