@@ -109,7 +109,7 @@ const HeaderMainInput: React.FC = () => {
       <input
         value={inputValue}
         className="input"
-        placeholder="소환사명"
+        placeholder="소환사명..."
         ref={inputRef}
         onFocus={onFocusInput}
         onChange={onChangeInput}
