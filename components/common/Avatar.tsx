@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import Image from "next/image";
 import React from "react";
 import palette from "../../styles/palette";
 
@@ -62,7 +63,15 @@ const Avatar: React.FC<Props> = ({
 }) => {
   return (
     <Container size={size} shape={shape} {...props}>
-      {src && <img className="image" src={src} alt={alt} />}
+      {src && (
+        <Image
+          className="image"
+          src={src}
+          alt={alt}
+          width={size}
+          height={size}
+        />
+      )}
     </Container>
   );
 };

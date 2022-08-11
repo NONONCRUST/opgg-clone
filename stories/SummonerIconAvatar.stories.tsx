@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof SummonerIconAvatar> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  iconNumber: "4644",
+  iconNumber: 4644,
 };
