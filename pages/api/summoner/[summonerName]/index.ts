@@ -11,6 +11,8 @@ const handler: NextApiHandler = async (
   res: NextApiResponse
 ) => {
   if (req.method === "GET") {
+    return res.status(200).end();
+
     const summonerName = req.query.summonerName;
     if (typeof summonerName !== "string") return res.status(400).end();
 
@@ -48,7 +50,7 @@ const handler: NextApiHandler = async (
     /* --------------------------------------------- */
 
     try {
-      const response = await getSummonerByNameApi(summonerName);
+      const response = await getSummonerByNameApi(summonerName as string);
       const { name, id, profileIconId, summonerLevel } = response.data;
 
       const leagueResponse = await getLeagueBySummonerIdApi(id);
