@@ -18,6 +18,8 @@ const handler: NextApiHandler = async (
     try {
       await connectMongo();
 
+      console.log("querying summoner");
+
       const summonerArray = await SummonerModel.find()
         .where("name")
         .equals(summonerName);
