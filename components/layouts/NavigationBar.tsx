@@ -22,7 +22,6 @@ const NavigationBar: React.FC = () => {
         onClick={() => router.push("/")}
       />
       <NavigationBarItem name="챔피언 분석" active={false} />
-      <NavigationBarItem name="커뮤니티" active={false} />
     </Base>
   );
 };

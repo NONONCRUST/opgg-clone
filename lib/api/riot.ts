@@ -12,7 +12,7 @@ export const getFeaturedGame = () =>
   axios.get<GetFeaturedGameApiResponseType>("/spectator/featured-game");
 
 export const getCurrentGameBySummonerName = (summonerName: string) =>
-  axios.get<GetCurrentGameBySummonerNameApiResponseType>(
+  axios.get<GetCurrentGameBySummonerNameResponseType>(
     `/spectator/summoner/${encodeURIComponent(summonerName)}`
   );
 

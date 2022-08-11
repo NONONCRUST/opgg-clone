@@ -17,6 +17,7 @@ const handler: NextApiHandler = async (
         data: { id },
       } = await getSummonerByNameApi(summonerName);
       const response = await getCurrentGameBySummonerIdApi(id);
+
       return res.status(200).send(response.data);
     } catch (error: any) {
       return res.status(200).end();

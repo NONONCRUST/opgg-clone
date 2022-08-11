@@ -19,6 +19,8 @@ const Container = styled.div`
   box-shadow: ${theme.elevation4};
 
   border-radius: 0.25rem;
+
+  z-index: 3;
 `;
 
 interface Props {

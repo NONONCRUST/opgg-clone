@@ -34,12 +34,14 @@ const Container = styled.div`
     flex: 1;
     justify-content: start;
     flex-direction: column;
+    width: 100%;
   }
 
   .red-team {
     flex: 1;
     justify-content: start;
     flex-direction: column;
+    width: 100%;
   }
 
   .blue-team-text {
@@ -64,7 +66,7 @@ const Container = styled.div`
 `;
 
 interface Props {
-  currentGameData: GetCurrentGameBySummonerNameApiResponseType;
+  currentGameData: GetCurrentGameBySummonerNameResponseType;
 }
 
 const CurrentGameCard: React.FC<Props> = ({ currentGameData }) => {

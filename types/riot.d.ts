@@ -56,6 +56,44 @@ type GetMatchesBySummonerNameResponeType = {
   updatedAt: Date;
 };
 
+type GetCurrentGameBySummonerNameResponseType = {
+  gameId: number;
+  gameType: string;
+  gameStartTime: number;
+  mapId: number;
+  gameLength: number;
+  platformId: string;
+  gameMode: string;
+  bannedChampions: {
+    pickTurn: number;
+    championId: number;
+    teamId: number;
+  }[];
+  gameQueueConfigId: number;
+  observers: {
+    encryptionKey: string;
+  };
+  participants: {
+    championId: number;
+    perks: {
+      perkIds: number[];
+      perkStyle: number;
+      perkSubStyle: number;
+    };
+    profileIconId: number;
+    bot: boolean;
+    teamId: number;
+    summonerName: string;
+    summonerId: string;
+    spell1Id: number;
+    spell2Id: number;
+    gameCustomizationObjects: {
+      category: string;
+      content: string;
+    }[];
+  }[];
+};
+
 type CurrentGameParticipantType = {
   championId: number;
   perks: {
