@@ -19,11 +19,8 @@ export const useMatchesQuery = (summonerName: string) =>
     }
   );
 
-export const useCurrentGameQuery = (
-  summonerName: string,
-  tab: "general" | "ingame"
-) =>
+export const useCurrentGameQuery = (summonerName: string) =>
   useQuery(["current"], () => getCurrentGameBySummonerName(summonerName), {
-    enabled: typeof summonerName === "string" && tab === "ingame",
+    enabled: typeof summonerName === "string",
     staleTime: 3000,
   });

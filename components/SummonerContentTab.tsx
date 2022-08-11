@@ -4,6 +4,8 @@ import { theme } from "../styles/theme";
 import TabButton from "./common/TabButton";
 import Flexbox from "./layouts/Flexbox";
 import Layout from "./layouts/Layout";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import Typography from "./common/Typography";
 
 const Container = styled.div`
   padding: 0 1rem;
@@ -16,9 +18,14 @@ const Container = styled.div`
 interface Props {
   activeTab: "general" | "ingame";
   setActiveTab: React.Dispatch<React.SetStateAction<"general" | "ingame">>;
+  isIngame: boolean;
 }
 
-const SummonerContentTab: React.FC<Props> = ({ activeTab, setActiveTab }) => {
+const SummonerContentTab: React.FC<Props> = ({
+  activeTab,
+  setActiveTab,
+  isIngame,
+}) => {
   return (
     <Layout>
       <Container>
@@ -37,6 +44,14 @@ const SummonerContentTab: React.FC<Props> = ({ activeTab, setActiveTab }) => {
           >
             인게임 정보
           </TabButton>
+          {isIngame && (
+            <>
+              <MdKeyboardArrowLeft size="20px" />
+              <Typography size="0.875rem" weight={600} color={theme.primary}>
+                현재 게임중!
+              </Typography>
+            </>
+          )}
         </Flexbox>
       </Container>
     </Layout>

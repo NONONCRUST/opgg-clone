@@ -22,11 +22,11 @@ const Container = styled.div`
   }
 
   .kda-meta {
-    margin-left: 10rem;
+    margin-left: 9.5rem;
   }
 
   .damage-dealt-meta {
-    margin-left: 3rem;
+    margin-left: 3.5rem;
   }
 
   .ward-meta {
@@ -65,11 +65,17 @@ interface Props {
 }
 
 const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
+  const winnerTeam = matchData.participants[0].win ? "blue" : "red";
+
+  const isVictory = team === winnerTeam;
+
   return (
     <Container>
       <Card>
         <Flexbox className="match-result-meta">
-          <Typography color={theme.primary}>승리</Typography>
+          <Typography color={isVictory ? theme.primary : palette.red[500]}>
+            {isVictory ? "승리" : "패배"}
+          </Typography>
           <span className="team-meta">(블루팀)</span>
           <Typography className="kda-meta">KDA</Typography>
           <Typography className="damage-dealt-meta">피해량</Typography>
@@ -78,11 +84,26 @@ const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
           <Typography className="item-meta">아이템</Typography>
         </Flexbox>
         <Divider />
-        <MatchResultDetailItem />
-        <MatchResultDetailItem />
-        <MatchResultDetailItem />
-        <MatchResultDetailItem />
-        <MatchResultDetailItem />
+        {team === "blue" &&
+          matchData.participants
+            .slice(0, 5)
+            .map((participant, index) => (
+              <MatchResultDetailItem
+                matchData={matchData}
+                participant={participant}
+                key={index}
+              />
+            ))}
+        {team === "red" &&
+          matchData.participants
+            .slice(5, 10)
+            .map((participant, index) => (
+              <MatchResultDetailItem
+                matchData={matchData}
+                participant={participant}
+                key={index}
+              />
+            ))}
       </Card>
     </Container>
   );

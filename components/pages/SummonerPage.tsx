@@ -111,18 +111,14 @@ const SummonerPage: React.FC = () => {
     refetch: refetchMatches,
   } = useMatchesQuery(summonerName);
 
-  const {
-    data: currentGameQuery,
-    isLoading: isCurrentGameLoading,
-    refetch: refetchCurrentGame,
-  } = useCurrentGameQuery(summonerName, activeTab);
+  const { data: currentGameQuery } = useCurrentGameQuery(summonerName);
 
   const summonerData = summonerQuery?.data;
   const matchesData = matchesQuery?.data;
   const matchListData = matchesData?.matches;
   const currentGameData = currentGameQuery?.data;
 
-  console.log(currentGameData);
+  const isIngame = currentGameData ? true : false;
 
   const filteredMatchListData = matchListData?.filter((match) => {
     if (championSearchFilter === "") return match;
@@ -168,7 +164,11 @@ const SummonerPage: React.FC = () => {
           />
         )}
         <Divider />
-        <SummonerContentTab activeTab={activeTab} setActiveTab={setActiveTab} />
+        <SummonerContentTab
+          isIngame={isIngame}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
       </div>
       <div className="content-area">
         <Layout>

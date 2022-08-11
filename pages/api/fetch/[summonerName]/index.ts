@@ -1,6 +1,4 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-
-import fs from "fs";
 import {
   getLeagueBySummonerIdApi,
   getMatchByMatchIdApi,
@@ -60,6 +58,8 @@ const handler: NextApiHandler = async (
             item5: participant.item5,
             item6: participant.item6,
             totalDamageDealt: participant.totalDamageDealt,
+            totalDamageDealtToChampions:
+              participant.totalDamageDealtToChampions,
             summoner1Id: participant.summoner1Id,
             summoner2Id: participant.summoner2Id,
             perks: participant.perks,

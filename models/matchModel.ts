@@ -48,6 +48,7 @@ const participantsSchema = new Schema({
   item5: Number,
   item6: Number,
   totalDamageDealt: Number,
+  totalDamageDealtToChampions: Number,
   summoner1Id: Number,
   summoner2Id: Number,
   perks: perkSchema,
