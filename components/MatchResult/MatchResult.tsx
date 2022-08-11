@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import MatchResultCard from "./MatchResultCard";
 import MatchResultGame from "./MatchResultGame";
@@ -7,6 +7,8 @@ import MatchResultParticipants from "./MatchResultParticipants";
 import MatchResultAction from "./MatchResultAction";
 import Flexbox from "../layouts/Flexbox";
 import palette from "../../styles/palette";
+import Card from "../common/Card";
+import MatchResultDetail from "./MatchResultDetail";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -31,6 +33,8 @@ interface Props {
 }
 
 const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
+  const [matchDetailOpen, setMatchDetailOpen] = useState(false);
+
   const me = matchData.participants.find(
     (participant) => participant.summonerName === summonerName
   );
@@ -50,8 +54,18 @@ const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
             />
             <MatchResultParticipants matchData={matchData} />
           </Flexbox>
-          <MatchResultAction result={result} />
+          <MatchResultAction
+            result={result}
+            matchDetailOpen={matchDetailOpen}
+            setMatchDetailOpen={setMatchDetailOpen}
+          />
         </MatchResultCard>
+      )}
+      {matchDetailOpen && (
+        <>
+          <MatchResultDetail team="blue" matchData={matchData} />
+          <MatchResultDetail team="red" matchData={matchData} />
+        </>
       )}
     </Container>
   );

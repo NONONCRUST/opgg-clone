@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import palette from "../../styles/palette";
 
 interface ContainerProps {
@@ -47,15 +47,32 @@ const Container = styled.div<ContainerProps>`
 
 interface Props {
   result: "win" | "lose";
+  matchDetailOpen: boolean;
+  setMatchDetailOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MatchResultAction: React.FC<Props> = ({ result }) => {
+const MatchResultAction: React.FC<Props> = ({
+  result,
+  matchDetailOpen,
+  setMatchDetailOpen,
+}) => {
   return (
-    <Container result={result}>
-      <MdKeyboardArrowDown
-        className="match-result-arrow-down-icon"
-        size="1.25rem"
-      />
+    <Container
+      result={result}
+      onClick={() => setMatchDetailOpen((prev) => !prev)}
+    >
+      {!matchDetailOpen && (
+        <MdKeyboardArrowDown
+          className="match-result-arrow-down-icon"
+          size="1.25rem"
+        />
+      )}
+      {matchDetailOpen && (
+        <MdKeyboardArrowUp
+          className="match-result-arrow-down-icon"
+          size="1.25rem"
+        />
+      )}
     </Container>
   );
 };
