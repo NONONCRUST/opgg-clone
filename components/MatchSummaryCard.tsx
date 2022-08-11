@@ -21,10 +21,24 @@ const Container = styled.div`
   }
 `;
 
-const MatchSummaryCard: React.FC = () => {
+interface Props {
+  matchListData: MatchType[];
+  summonerName: string;
+}
+
+const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
   const championSearchFilter = useSelector(
     (state) => state.search.championSearchFilter
   );
+
+  const gameWon = matchListData.filter((matchList) => {
+    const me = matchList.participants.find(
+      (participant) => participant.summonerName === summonerName
+    );
+    return me?.win === true;
+  });
+
+  const winrate = (gameWon.length / 10) * 100;
 
   return (
     <Container>
@@ -49,9 +63,9 @@ const MatchSummaryCard: React.FC = () => {
         <Flexbox justify="start" padding="1rem">
           <Flexbox flex="col" gap="0.5rem">
             <Typography color={palette.gray[500]} size="0.75rem">
-              10전 5승 5패
+              10전 {gameWon.length}승 {10 - gameWon.length}패
             </Typography>
-            <DonutChart percentage={50} />
+            <DonutChart percentage={winrate} />
           </Flexbox>
         </Flexbox>
       </Card>

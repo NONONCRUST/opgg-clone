@@ -186,7 +186,12 @@ const SummonerPage: React.FC = () => {
                 {/* <Card height="20rem">챔피언별</Card> */}
               </div>
               <div className="content-area-match-right">
-                <MatchSummaryCard />
+                {matchListData && (
+                  <MatchSummaryCard
+                    matchListData={matchListData}
+                    summonerName={summonerName}
+                  />
+                )}
                 {!isMatchesLoading &&
                   filteredMatchListData &&
                   filteredMatchListData.length === 0 && <MatchResultNotFound />}
