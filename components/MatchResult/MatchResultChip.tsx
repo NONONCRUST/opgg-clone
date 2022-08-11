@@ -30,10 +30,10 @@ const getMatchResultChipText = (variant?: MatchResultChipVariantType) => {
 const getMatchResultChipBackgroundColor = (
   variant: MatchResultChipVariantType
 ) => {
-  if (variant === "double" || "triple" || "quadra" || "penta")
-    return palette.red[500];
   if (variant === "mvp") return palette.yellow[500];
   if (variant === "ace") return palette.purple[600];
+  if (variant === "double" || "triple" || "quadra" || "penta")
+    return palette.red[500];
 };
 
 interface ContainerProps {
@@ -44,7 +44,7 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 0.5rem;
+  margin-left: 0.3rem;
 
   padding: 0.5rem;
 

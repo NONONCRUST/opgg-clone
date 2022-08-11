@@ -104,6 +104,36 @@ const MatchResultInfo: React.FC<Props> = ({
 
   const myTeam = matchData.teams?.find((team) => getWin(team.win) === result);
 
+  const winnerTeam = matchData.participants.filter((participant) => {
+    return participant.win === true;
+  });
+
+  const loserTeam = matchData.participants.filter((participant) => {
+    return participant.win === false;
+  });
+
+  const mvp = winnerTeam.reduce((prev, cur) => {
+    if (
+      getKda(cur.kills, cur.deaths, cur.assists) >
+      getKda(prev.kills, prev.deaths, prev.assists)
+    ) {
+      return cur;
+    } else {
+      return prev;
+    }
+  });
+
+  const ace = loserTeam.reduce((prev, cur) => {
+    if (
+      getKda(cur.kills, cur.deaths, cur.assists) >
+      getKda(prev.kills, prev.deaths, prev.assists)
+    ) {
+      return cur;
+    } else {
+      return prev;
+    }
+  });
+
   return (
     <Container result={result}>
       {me && myTeam && (
@@ -228,6 +258,12 @@ const MatchResultInfo: React.FC<Props> = ({
             />
             {getKillingSpree() && (
               <MatchResultChip variant={getKillingSpree()} />
+            )}
+            {mvp.summonerName === me.summonerName && (
+              <MatchResultChip variant="mvp" />
+            )}
+            {ace.summonerName === me.summonerName && (
+              <MatchResultChip variant="ace" />
             )}
           </Flexbox>
         </>
