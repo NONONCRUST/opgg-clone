@@ -26,18 +26,18 @@ const Base = styled.main`
     align-items: center;
     gap: 1rem;
 
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: ${palette.gray[100]};
   }
 
   .ad {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .content-area-match {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
   }
 
@@ -68,10 +68,6 @@ const Base = styled.main`
     `}
 
   @media screen and (min-width: ${theme.media.desktop}) {
-    .summoner-container {
-      padding: 3rem 0;
-    }
-
     .content-area-match {
       flex-direction: row;
       width: auto;

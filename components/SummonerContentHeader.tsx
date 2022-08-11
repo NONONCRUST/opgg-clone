@@ -15,12 +15,19 @@ import Flexbox from "./layouts/Flexbox";
 import Layout from "./layouts/Layout";
 import SummonerIconAvatar from "./SummonerIconAvatar";
 import TierHistoryChip from "./TierHistoryChip";
+import { theme } from "../styles/theme";
 
 const Base = styled.div`
   .summoner-container {
     display: flex;
     padding: 1rem;
     gap: 1.5rem;
+  }
+
+  @media screen and (min-width: ${theme.media.desktop}) {
+    .summoner-container {
+      padding: 3rem 0;
+    }
   }
 `;
 
