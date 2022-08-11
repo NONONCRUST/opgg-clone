@@ -75,7 +75,7 @@ const handler: NextApiHandler = async (
 
       return res.status(200).send(body);
     } catch (error: any) {
-      if (error.response.status === 404) return res.status(400).end();
+      if (error.response.status === 404) return res.status(204).end();
       return res.status(500).end();
     }
   }

@@ -1,8 +1,7 @@
+import React from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
 import { theme } from "../../styles/theme";
-import Button from "../common/Button";
 import DarkModeButton from "../DarkModeButton";
 import Flexbox from "./Flexbox";
 

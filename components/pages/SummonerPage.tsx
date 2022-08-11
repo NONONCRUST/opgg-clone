@@ -1,29 +1,14 @@
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useCallback, useState } from "react";
-import { useEffect } from "react";
-import {
-  getMatchesBySummonerName,
-  getSummonerByName,
-  requestFetchBySummonerName,
-} from "../../lib/api/riot";
-import {
-  getMinuteDiff,
-  mapRank,
-  parseDateRelative,
-  throttle,
-} from "../../lib/utils";
+import { requestFetchBySummonerName } from "../../lib/api/riot";
+import { useMatchesQuery, useSummonerQuery } from "../../lib/queries";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
-import Button from "../common/Button";
 import Card from "../common/Card";
 import Divider from "../common/Divider";
-import LoadingButton from "../common/LoadingButton";
-import TabButton from "../common/TabButton";
-import Typography from "../common/Typography";
-import FavoriteIconButton from "../FavoriteIconButton";
 import IngameNotFound from "../IngameNotFound";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
@@ -31,9 +16,8 @@ import MatchResult from "../MatchResult/MatchResult";
 import MatchResultNotFound from "../MatchResultNotFound";
 import SoloRankInfoCard from "../SoloRankInfoCard";
 import SummonerContentHeader from "../SummonerContentHeader";
-import SummonerIconAvatar from "../SummonerIconAvatar";
+import SummonerContentTab from "../SummonerContentTab";
 import SummonerNotFound from "../SummonerNotFound";
-import TierHistoryChip from "../TierHistoryChip";
 
 const Base = styled.main`
   .content-area {
@@ -100,57 +84,33 @@ const Base = styled.main`
 `;
 
 const SummonerPage: React.FC = () => {
-  const [isSummonerLoading, setIsSummonerLoading] = useState(false);
-  const [isMatchesLoading, setIsMatchesLoading] = useState(false);
   const [isFetching, setisFetching] = useState(false);
-  const [summonerData, setSummonerData] =
-    useState<GetSummonerByNameResponseType>();
-  const [matchListData, setMatchListData] =
-    useState<GetMatchesBySummonerNameResponeType>([]);
-  const [activeTab, setActiveTab] = useState("general");
-
-  const [summonerNotFound, setSummonerNotFound] = useState(false);
+  const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
   const summonerName = useRouter().query.name as string;
 
-  const fetchSummoner = useCallback(async () => {
-    if (typeof summonerName !== "string") return;
-    try {
-      setIsSummonerLoading(true);
-      const response = await getSummonerByName(summonerName);
-      console.log(response);
-      setSummonerData(response.data);
-    } catch (error: any) {
-      console.log(error);
-      if (error.response.status === 400) {
-        setSummonerNotFound(true);
-      }
-    } finally {
-      setIsSummonerLoading(false);
-    }
-  }, [summonerName]);
+  const {
+    data: summonerQuery,
+    isLoading: isSummonerLoading,
+    refetch: refetchSummoner,
+  } = useSummonerQuery(summonerName);
 
-  const fetchMatches = useCallback(async () => {
-    if (typeof summonerName !== "string") return;
-    try {
-      setIsMatchesLoading(true);
-      const response = await getMatchesBySummonerName(summonerName);
-      console.log(response.data);
-      setMatchListData(response.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsMatchesLoading(false);
-    }
-  }, [summonerName]);
+  const {
+    data: matchesQuery,
+    isLoading: isMatchesLoading,
+    refetch: refetchMatches,
+  } = useMatchesQuery(summonerName);
+
+  const summonerData = summonerQuery?.data;
+  const matchListData = matchesQuery?.data;
 
   const onClickFetchButton = async () => {
     setisFetching(true);
     try {
       const response = await requestFetchBySummonerName(summonerName);
       console.log(response);
-      fetchMatches();
-      fetchSummoner();
+      refetchMatches();
+      refetchSummoner();
     } catch (error) {
       console.log(error);
     } finally {
@@ -158,12 +118,7 @@ const SummonerPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    fetchSummoner();
-    fetchMatches();
-  }, [fetchSummoner, fetchMatches]);
-
-  if (summonerNotFound) return <SummonerNotFound />;
+  if (summonerQuery?.status === 204) return <SummonerNotFound />;
 
   return (
     <Base>
@@ -179,24 +134,7 @@ const SummonerPage: React.FC = () => {
           />
         )}
         <Divider />
-        <Layout>
-          <Flexbox padding="0.2rem 0" justify="start" gap="0.2rem">
-            <TabButton
-              type="general"
-              active={activeTab === "general"}
-              onClick={() => setActiveTab("general")}
-            >
-              종합
-            </TabButton>
-            <TabButton
-              type="ingame"
-              active={activeTab === "ingame"}
-              onClick={() => setActiveTab("ingame")}
-            >
-              인게임 정보
-            </TabButton>
-          </Flexbox>
-        </Layout>
+        <SummonerContentTab activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
       <div className="content-area">
         <Layout>
@@ -215,9 +153,9 @@ const SummonerPage: React.FC = () => {
               </div>
               <div className="content-area-match-right">
                 {/* <Card height="14rem">요약</Card> */}
-                {!isMatchesLoading && matchListData.length === 0 && (
-                  <MatchResultNotFound />
-                )}
+                {!isMatchesLoading &&
+                  matchListData &&
+                  matchListData.length === 0 && <MatchResultNotFound />}
                 <Flexbox flex="col" gap="0.5rem">
                   {/* {isMatchesLoading && <div>게임 결과를 불러오는중..</div>} */}
                   {matchListData &&

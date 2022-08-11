@@ -63,11 +63,6 @@ const SummonerContentHeader: React.FC<Props> = ({
                 summonerName={summonerData?.name}
               />
             </Flexbox>
-            <Typography size="0.75rem" color={palette.gray[500]}>
-              래더 랭킹:{" "}
-              <span style={{ color: palette.blue[500] }}>1,238 위</span> (상위
-              0.0316%)
-            </Typography>
             {!isFetching && (
               <Button
                 onClick={throttle(onClickFetchButton)}
