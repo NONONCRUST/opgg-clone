@@ -118,7 +118,7 @@ export const championList = [
   { kor: "제라스", eng: "Xerath" },
   { kor: "제리", eng: "Zeri" },
   { kor: "제이스", eng: "Jayce" },
-  { kor: "조이", eng: "Zoi" },
+  { kor: "조이", eng: "Zoe" },
   { kor: "직스", eng: "Ziggs" },
   { kor: "진", eng: "Jhin" },
   { kor: "질리언", eng: "Zilean" },

@@ -18,6 +18,8 @@ import SoloRankInfoCard from "../SoloRankInfoCard";
 import SummonerContentHeader from "../SummonerContentHeader";
 import SummonerContentTab from "../SummonerContentTab";
 import SummonerNotFound from "../SummonerNotFound";
+import MatchSummaryCard from "../MatchSummaryCard";
+import { useSelector } from "../../store";
 
 const Base = styled.main`
   .content-area {
@@ -83,6 +85,10 @@ const SummonerPage: React.FC = () => {
   const [isFetching, setisFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
+  const championSearchFilter = useSelector(
+    (state) => state.search.championSearchFilter
+  );
+
   const summonerName = useRouter().query.name as string;
 
   const {
@@ -100,6 +106,14 @@ const SummonerPage: React.FC = () => {
   const summonerData = summonerQuery?.data;
   const matchesData = matchesQuery?.data;
   const matchListData = matchesData?.matches;
+
+  const filteredMatchListData = matchListData?.filter((match) => {
+    if (championSearchFilter === "") return match;
+    const me = match.participants.find(
+      (participant) => participant.summonerName === summonerName
+    );
+    return me?.championName === championSearchFilter;
+  });
 
   const onClickFetchButton = async () => {
     setisFetching(true);
@@ -150,14 +164,14 @@ const SummonerPage: React.FC = () => {
                 {/* <Card height="20rem">챔피언별</Card> */}
               </div>
               <div className="content-area-match-right">
-                {/* <Card height="14rem">요약</Card> */}
+                <MatchSummaryCard />
                 {!isMatchesLoading &&
                   matchListData &&
                   matchListData.length === 0 && <MatchResultNotFound />}
                 <Flexbox flex="col" gap="0.5rem">
                   {/* {isMatchesLoading && <div>게임 결과를 불러오는중..</div>} */}
-                  {matchListData &&
-                    matchListData.map((matchData, index) => (
+                  {filteredMatchListData &&
+                    filteredMatchListData.map((matchData, index) => (
                       <MatchResult
                         key={index}
                         matchData={matchData}

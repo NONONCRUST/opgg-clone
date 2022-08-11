@@ -22,7 +22,7 @@ const SummonerContentTab: React.FC<Props> = ({ activeTab, setActiveTab }) => {
   return (
     <Layout>
       <Container>
-        <Flexbox padding="0.2rem 0" justify="start" gap="0.2rem">
+        <Flexbox padding="0.5rem 0" justify="start" gap="0.2rem">
           <TabButton
             type="general"
             active={activeTab === "general"}

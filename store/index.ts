@@ -6,6 +6,7 @@ import {
   useSelector as useTypedSelector,
 } from "react-redux";
 import localSlice from "./localSlice";
+import searchSlice from "./searchSlice";
 import themeSlice from "./themeSlice";
 import userSlice from "./userSlice";
 
@@ -13,6 +14,7 @@ const combinedReducer = combineReducers({
   user: userSlice,
   local: localSlice,
   theme: themeSlice,
+  search: searchSlice,
 });
 
 // const reducer = (state: any, action: AnyAction) => {

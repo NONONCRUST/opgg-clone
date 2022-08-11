@@ -23,6 +23,8 @@ const getTabButtonType = (type: TabButtonType, active: boolean) => {
 interface ContainerProps {
   active: boolean;
   type: TabButtonType;
+  width: string;
+  height: string;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -31,10 +33,12 @@ const Container = styled.div<ContainerProps>`
   align-items: center;
   border: none;
 
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+
   cursor: pointer;
   background-color: white;
-  width: 6rem;
-  height: 2.5rem;
+
   border-radius: 0.25rem;
   font-size: 0.875rem;
 
@@ -58,17 +62,28 @@ const Container = styled.div<ContainerProps>`
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   active: boolean;
-  type: TabButtonType;
+  type?: TabButtonType;
+  width?: string;
+  height?: string;
 }
 
 const TabButton: React.FC<Props> = ({
   children,
   active,
   type = "general",
+  width = "6rem",
+  height = "2.5rem",
   ...props
 }) => {
   return (
-    <Container active={active} type={type} {...props} role="tab">
+    <Container
+      active={active}
+      type={type}
+      {...props}
+      width={width}
+      height={height}
+      role="tab"
+    >
       {children}
     </Container>
   );
