@@ -13,6 +13,7 @@ const handler: NextApiHandler = async (
   if (req.method === "GET") {
     const summonerName = req.query.summonerName;
     if (typeof summonerName !== "string") return res.status(400).end();
+    console.log("summoner name:", summonerName);
 
     /* --------------------------------------------- */
     try {
