@@ -12,7 +12,8 @@ import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 
-const getKdaColor = (kda: number) => {
+const getKdaColor = (kda: string | number) => {
+  if (kda === "Perfect") return palette.yellow[500];
   if (kda < 3) return palette.gray[500];
   if (kda > 3 && kda < 4) return palette.teal[500];
   if (kda > 4 && kda < 5) return theme.primary;
@@ -21,6 +22,7 @@ const getKdaColor = (kda: number) => {
 
 interface ContainerProps {
   win: boolean;
+  damageProportion: number;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -67,6 +69,18 @@ const Container = styled.div<ContainerProps>`
       win ? palette.blue[200] : palette.red[200]};
   }
 
+  .dealt-damage-bar {
+    width: 3.2rem;
+    height: 0.4rem;
+    background-color: white;
+  }
+
+  .dealt-damage-progression {
+    width: ${({ damageProportion }) => damageProportion}%;
+    height: 0.4rem;
+    background-color: ${palette.red[500]};
+  }
+
   @media screen and (min-width: ${theme.media.desktop}) {
     .match-detail-ward {
       display: flex;
@@ -94,10 +108,22 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
     participant.assists
   );
 
-  console.log(participant);
   const participantTeam = matchData.teams.find((team) => {
     return participant.win === team.win;
   });
+
+  const teammates = matchData.participants.filter((item) => {
+    return item.win === participant.win;
+  });
+
+  const damageDealtArray = teammates.map(
+    (teammate) => teammate.totalDamageDealtToChampions
+  );
+  const highestDamageDealt = Math.max.apply(null, damageDealtArray);
+
+  const damageProportion = Math.round(
+    (participant.totalDamageDealtToChampions / highestDamageDealt) * 100
+  );
 
   const killParticipation = getKillParticipation(
     participantTeam!.objectives.champion.kills,
@@ -106,7 +132,7 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
   );
 
   return (
-    <Container win={participant.win}>
+    <Container win={participant.win} damageProportion={damageProportion}>
       <Avatar src={`/champion/${participant.championName}.png`} />
       <Flexbox flex="col" gap="0.1rem">
         <Avatar
@@ -139,21 +165,18 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
           {participant.kills}/{participant.deaths}/{participant.assists} (
           {killParticipation}%)
         </Typography>
-        <Typography
-          size="0.75rem"
-          weight={600}
-          color={getKdaColor(Number(kda))}
-        >
-          {kda}:1
+        <Typography size="0.75rem" weight={600} color={getKdaColor(kda)}>
+          {kda}
+          {kda !== "Perfect" && ":1"}
         </Typography>
       </Flexbox>
-      <Flexbox className="match-detail-damage-dealt" flex="col" gap="0.2rem">
+      <Flexbox className="match-detail-damage-dealt" flex="col" gap="0.4rem">
         <Typography size="0.75rem">
-          {participant.totalDamageDealtToChampions}
+          {participant.totalDamageDealtToChampions.toLocaleString()}
         </Typography>
-        <Typography size="0.75rem">
-          {participant.totalDamageDealtToChampions}
-        </Typography>
+        <div className="dealt-damage-bar">
+          <div className="dealt-damage-progression" />
+        </div>
       </Flexbox>
       <Flexbox className="match-detail-ward" flex="col" gap="0.2rem">
         <Typography size="0.75rem">
