@@ -58,7 +58,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
       <Container>
         {type === "champion" && (
           <div className="dropdown-item-area" onClick={onClickChampion}>
-            <Avatar size="1.5rem" src={`/champion/${champion.eng}.png`} />
+            <Avatar size="24px" src={`/champion/${champion.eng}.png`} />
             <Typography className="champion-dropdown-item" size="0.75rem">
               {champion.kor}
             </Typography>
@@ -66,7 +66,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
         )}
         {type === "all" && (
           <div className="dropdown-item-area" onClick={onClickAll}>
-            <Avatar size="1.5rem" />
+            <Avatar size="24px" />
             <Typography className="champion-dropdown-item" size="0.75rem">
               모든 챔피언
             </Typography>

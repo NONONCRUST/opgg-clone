@@ -46,7 +46,7 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
         {matchData.participants.slice(0, 5).map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar
-              size="1rem"
+              size="16px"
               shape="boxier"
               src={`/champion/${participant.championName}.png`}
               alt="partipant-champion"
@@ -68,7 +68,7 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
         {matchData.participants.slice(5, 10).map((participant, index) => (
           <Flexbox key={index} gap="0.2rem">
             <Avatar
-              size="1rem"
+              size="16px"
               shape="boxier"
               src={`/champion/${participant.championName}.png`}
               alt="partipant-champion"

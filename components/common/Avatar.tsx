@@ -57,7 +57,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 const Avatar: React.FC<Props> = ({
   src,
   alt = "image",
-  size = "2rem",
+  size = "36px",
   shape = "rounded",
   ...props
 }) => {

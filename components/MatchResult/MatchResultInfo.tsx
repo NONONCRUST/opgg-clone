@@ -52,6 +52,8 @@ const Container = styled.div<ContainerProps>`
   }
 
   .stats-area {
+    min-width: 5rem;
+
     display: none;
     flex-direction: column;
     gap: 0.2rem;
