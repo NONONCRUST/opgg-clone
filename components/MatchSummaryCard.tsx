@@ -6,6 +6,7 @@ import Avatar from "./common/Avatar";
 import Card from "./common/Card";
 import Divider from "./common/Divider";
 import TabButton from "./common/TabButton";
+import DonutChart from "./DonutChart";
 import Flexbox from "./layouts/Flexbox";
 
 const Container = styled.div`
@@ -41,15 +42,17 @@ const MatchSummaryCard: React.FC = () => {
           <Flexbox gap="0.5rem">
             {championSearchFilter && (
               <Avatar
-                size="1.5rem"
+                size="24px"
                 src={`/champion/${championSearchFilter}.png`}
               />
             )}
             <ChampionSearchInput />
           </Flexbox>
         </div>
-
         <Divider />
+        <Flexbox justify="start" padding="1rem">
+          <DonutChart percentage={10} />
+        </Flexbox>
       </Card>
     </Container>
   );
