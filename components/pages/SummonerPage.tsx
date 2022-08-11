@@ -86,9 +86,6 @@ const SummonerPage: React.FC = () => {
   const [isFetching, setisFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
-  console.log("((((((((((((((((((((");
-  console.log(process.env.MONGODB_URI);
-
   const championSearchFilter = useSelector(
     (state) => state.search.championSearchFilter
   );
