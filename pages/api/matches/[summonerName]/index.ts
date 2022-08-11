@@ -18,7 +18,13 @@ const handler: NextApiHandler = async (
 
       if (matchesArray.length === 0) res.status(200).send([]);
 
-      return res.status(200).send(matchesArray[0].matches);
+      const body = {
+        summonerName: matchesArray[0].summonerName,
+        matches: matchesArray[0].matches,
+        updatedAt: matchesArray[0].updatedAt,
+      };
+
+      return res.status(200).send(body);
     } catch (error) {
       console.log(error);
       return res.status(200).send([]);

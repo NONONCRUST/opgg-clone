@@ -1,15 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
-import axios from "../../lib/api";
-import {
-  getCurrentGameBySummonerName,
-  getFeaturedGame,
-  getMatchesBySummonerName,
-  getPlatformData,
-  getRotation,
-  getSummonerByName,
-} from "../../lib/api/riot";
-import { debounce, throttle } from "../../lib/utils";
+import React, { useState } from "react";
 import palette from "../../styles/palette";
 import Avatar from "../common/Avatar";
 import Button from "../common/Button";
@@ -21,7 +10,6 @@ import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import RankEmblemAvatar from "../RankEmblemAvatar";
 import SummonerIconAvatar from "../SummonerIconAvatar";
-import TierHistoryChip from "../TierHistoryChip";
 
 const TestPage: React.FC = () => {
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
@@ -45,15 +33,6 @@ const TestPage: React.FC = () => {
   // getMatchesBySummonerName("골없칸왕")
   // );
 
-  const fetchMatchesData = async () => {
-    try {
-      const response = await getMatchesBySummonerName("골없칸왕");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // console.log("------------------rotation--------------------");
   // console.log(rotationData);
   // console.log("------------------골없칸왕의 정보--------------------");
@@ -71,26 +50,6 @@ const TestPage: React.FC = () => {
 
   const onClickDropdown = () => {
     setDropdownOpen((prev) => !prev);
-  };
-
-  const onClickButton = async () => {
-    console.log("button clicked!");
-    try {
-      const response = await axios.get("/test");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const onClickPostButton = async () => {
-    console.log("button clicked!");
-    try {
-      const response = await axios.post("/test");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -121,8 +80,7 @@ const TestPage: React.FC = () => {
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <SummonerIconAvatar level={123} iconNumber={4644} />
         <RankEmblemAvatar tier="diamond" />
-        <Button onClick={onClickButton}>버튼</Button>
-        <Button onClick={onClickPostButton}>추가</Button>
+        <Button>버튼</Button>
       </Flexbox>
     </Flexbox>
   );

@@ -94,6 +94,7 @@ const matchSchema = new Schema({
 const matchesSchema = new Schema({
   summonerName: String,
   matches: [matchSchema],
+  updatedAt: Date,
 });
 
 const MatchModel = models.matches || model("matches", matchesSchema);

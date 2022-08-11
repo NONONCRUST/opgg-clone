@@ -102,7 +102,8 @@ const SummonerPage: React.FC = () => {
   } = useMatchesQuery(summonerName);
 
   const summonerData = summonerQuery?.data;
-  const matchListData = matchesQuery?.data;
+  const matchesData = matchesQuery?.data;
+  const matchListData = matchesData?.matches;
 
   const onClickFetchButton = async () => {
     setisFetching(true);
@@ -129,6 +130,7 @@ const SummonerPage: React.FC = () => {
         {summonerData && (
           <SummonerContentHeader
             summonerData={summonerData}
+            updatedAt={matchesData?.updatedAt}
             isFetching={isFetching}
             onClickFetchButton={onClickFetchButton}
           />

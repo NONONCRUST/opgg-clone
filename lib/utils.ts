@@ -20,9 +20,10 @@ export const parseDateAbsolute = (dateString?: Date) => {
 // Date를 0 분전, 0 시간 전, 0 일 전, 0 년 전과 같은 형태로 파싱합니다 - nonon
 export const parseDateRelative = (dateString: Date) => {
   const currentDate = new Date();
+  const date = new Date(dateString);
 
   const betweenTime = Math.floor(
-    (currentDate.getTime() - dateString.getTime()) / 1000 / 60
+    (currentDate.getTime() - date.getTime()) / 1000 / 60
   );
 
   if (betweenTime < 1) return "방금 전";
@@ -38,7 +39,8 @@ export const parseDateRelative = (dateString: Date) => {
 };
 
 // 현재 시간과 특정 시간 사이의 분 간격을 구합니다 - nonon
-export const getMinuteDiff = (date: Date) => {
+export const getMinuteDiff = (dateString: Date) => {
+  const date = new Date(dateString);
   const current = new Date().getTime();
   const time = date.getTime();
   const diff = current - time;

@@ -14,6 +14,7 @@ const global = css`
   }
 
   a {
+    color: inherit;
     :visited {
       color: inherit;
     }

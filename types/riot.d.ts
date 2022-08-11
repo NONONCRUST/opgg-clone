@@ -50,4 +50,8 @@ type MatchType = {
   }[];
 };
 
-type GetMatchesBySummonerNameResponeType = MatchType[];
+type GetMatchesBySummonerNameResponeType = {
+  summonerName: string;
+  matches: MatchType[];
+  updatedAt: Date;
+};

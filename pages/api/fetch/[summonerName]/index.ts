@@ -79,11 +79,12 @@ const handler: NextApiHandler = async (
         };
       });
 
-      await MatchModel.findOneAndUpdate(
+      const result = await MatchModel.findOneAndUpdate(
         { summonerName: summonerName },
         {
           summonerName: summonerName,
           matches: filteredMatchList,
+          updatedAt: new Date(),
         },
         { upsert: true }
       );

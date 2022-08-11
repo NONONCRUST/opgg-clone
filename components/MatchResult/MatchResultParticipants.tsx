@@ -6,6 +6,7 @@ import Typography from "../common/Typography";
 import palette from "../../styles/palette";
 import { shortenText } from "../../lib/utils";
 import { theme } from "../../styles/theme";
+import Link from "next/link";
 
 const Container = styled.div`
   display: none;
@@ -51,7 +52,9 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
               alt="partipant-champion"
             />
             <Typography className="participant-name">
-              {shortenText(participant.summonerName, 5)}
+              <Link href={`/summoners/${participant.summonerName}`}>
+                <a>{shortenText(participant.summonerName, 5)}</a>
+              </Link>
             </Typography>
           </Flexbox>
         ))}
@@ -71,7 +74,9 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
               alt="partipant-champion"
             />
             <Typography className="participant-name">
-              {shortenText(participant.summonerName, 5)}
+              <Link href={`/summoners/${participant.summonerName}`}>
+                <a>{shortenText(participant.summonerName, 5)}</a>
+              </Link>
             </Typography>
           </Flexbox>
         ))}

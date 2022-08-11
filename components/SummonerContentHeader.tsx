@@ -1,9 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import {
   getMinuteDiff,
   mapRank,
-  parseDateAbsolute,
   parseDateRelative,
   throttle,
 } from "../lib/utils";
@@ -28,15 +27,17 @@ const Base = styled.div`
 interface Props {
   summonerData: GetSummonerByNameResponseType;
   isFetching: boolean;
+  updatedAt?: Date;
   onClickFetchButton: () => void;
 }
 
 const SummonerContentHeader: React.FC<Props> = ({
   summonerData,
   isFetching,
+  updatedAt,
   onClickFetchButton,
 }) => {
-  const minuteDiff = getMinuteDiff(new Date(summonerData.updatedAt));
+  const minuteDiff = getMinuteDiff(summonerData.updatedAt);
 
   return (
     <Layout>
@@ -66,7 +67,7 @@ const SummonerContentHeader: React.FC<Props> = ({
             {!isFetching && (
               <Button
                 onClick={throttle(onClickFetchButton)}
-                disabled={minuteDiff < 5}
+                disabled={minuteDiff < 5 && updatedAt !== undefined}
               >
                 전적 갱신
               </Button>
@@ -74,8 +75,9 @@ const SummonerContentHeader: React.FC<Props> = ({
             {isFetching && <LoadingButton width="84.34px" />}
             {summonerData && (
               <Typography size="0.75rem" color={palette.gray[400]}>
-                최근 업데이트:{" "}
-                {parseDateRelative(new Date(summonerData.updatedAt))}
+                {updatedAt
+                  ? `최근 업데이트: ${parseDateRelative(updatedAt)}`
+                  : "전적 갱신 버튼을 눌러 전적을 갱신해주세요."}
               </Typography>
             )}
           </Flexbox>
