@@ -16,9 +16,11 @@ const handler: NextApiHandler = async (
 
     /* --------------------------------------------- */
     try {
+      console.log("connecting to mongodb...");
       await connectMongo();
 
-      console.log("querying summoner");
+      console.log("querying summoner...");
+      console.log("querying summoner:", summonerName);
 
       const summonerArray = await SummonerModel.find()
         .where("name")
