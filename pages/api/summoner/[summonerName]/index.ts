@@ -11,7 +11,8 @@ const handler: NextApiHandler = async (
   res: NextApiResponse
 ) => {
   if (req.method === "GET") {
-    return res.status(200).end();
+    console.log("@@@@@@@@@@@@@@");
+    return res.status(200).send("asdasd");
 
     const summonerName = req.query.summonerName;
     if (typeof summonerName !== "string") return res.status(400).end();

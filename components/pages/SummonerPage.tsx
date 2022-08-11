@@ -100,6 +100,8 @@ const SummonerPage: React.FC = () => {
     refetch: refetchSummoner,
   } = useSummonerQuery(summonerName);
 
+  console.log(summonerQuery);
+
   const {
     data: matchesQuery,
     isLoading: isMatchesLoading,
