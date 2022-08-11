@@ -19,10 +19,7 @@ const handler: NextApiHandler = async (
       const response = await getCurrentGameBySummonerIdApi(id);
       return res.status(200).send(response.data);
     } catch (error: any) {
-      if (error.response.status === 404) {
-        return res.status(200).send("idle");
-      }
-      return res.status(500).end();
+      return res.status(200).end();
     }
   }
 

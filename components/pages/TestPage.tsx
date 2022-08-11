@@ -1,4 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { getCurrentGameBySummonerName } from "../../lib/api/riot";
 import palette from "../../styles/palette";
 import Avatar from "../common/Avatar";
 import Button from "../common/Button";
@@ -23,9 +25,9 @@ const TestPage: React.FC = () => {
   //   getFeaturedGame
   // );
 
-  // const { data: currentGameData } = useQuery(["current-game"], () =>
-  //   getCurrentGameBySummonerName("골없칸왕")
-  // );
+  const { data: currentGameData } = useQuery(["current-game"], () =>
+    getCurrentGameBySummonerName("루야 Ruya")
+  );
 
   // const { data: platformData } = useQuery(["platform"], getPlatformData);
 
@@ -39,8 +41,8 @@ const TestPage: React.FC = () => {
   // console.log(summonerData);
   // console.log("------------------featured game--------------------");
   // console.log(featuredGameData);
-  // console.log("-------------골없칸왕의 현재 게임---------------");
-  // console.log(currentGameData);
+  console.log("-------------루야의 현재 게임---------------");
+  console.log(currentGameData);
   // console.log("-------------플랫폼 정보---------------");
   // console.log(platformData);
   // console.log("------------ 골없칸왕의 최근 20게임 전적 ---------");

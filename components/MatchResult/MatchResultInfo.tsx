@@ -112,27 +112,49 @@ const MatchResultInfo: React.FC<Props> = ({
     return participant.win === false;
   });
 
-  const mvp = winnerTeam.reduce((prev, cur) => {
+  const getIsMvp = () => {
     if (
-      getKda(cur.kills, cur.deaths, cur.assists) >
-      getKda(prev.kills, prev.deaths, prev.assists)
-    ) {
-      return cur;
-    } else {
-      return prev;
-    }
-  });
+      me &&
+      myTeam?.win &&
+      getKda(me.kills, me.deaths, me.assists) === "Perfect"
+    )
+      return true;
 
-  const ace = loserTeam.reduce((prev, cur) => {
+    const mvp = winnerTeam.reduce((prev, cur) => {
+      if (
+        getKda(cur.kills, cur.deaths, cur.assists) >
+        getKda(prev.kills, prev.deaths, prev.assists)
+      ) {
+        return cur;
+      } else {
+        return prev;
+      }
+    });
+
+    return mvp.summonerName === me?.summonerName ? true : false;
+  };
+
+  const getIsAce = () => {
     if (
-      getKda(cur.kills, cur.deaths, cur.assists) >
-      getKda(prev.kills, prev.deaths, prev.assists)
-    ) {
-      return cur;
-    } else {
-      return prev;
-    }
-  });
+      me &&
+      !myTeam?.win &&
+      getKda(me.kills, me.deaths, me.assists) === "Perfect"
+    )
+      return true;
+
+    const ace = loserTeam.reduce((prev, cur) => {
+      if (
+        getKda(cur.kills, cur.deaths, cur.assists) >
+        getKda(prev.kills, prev.deaths, prev.assists)
+      ) {
+        return cur;
+      } else {
+        return prev;
+      }
+    });
+
+    return ace.summonerName === me?.summonerName ? true : false;
+  };
 
   return (
     <Container result={result}>
@@ -259,12 +281,8 @@ const MatchResultInfo: React.FC<Props> = ({
             {getKillingSpree() && (
               <MatchResultChip variant={getKillingSpree()} />
             )}
-            {mvp.summonerName === me.summonerName && (
-              <MatchResultChip variant="mvp" />
-            )}
-            {ace.summonerName === me.summonerName && (
-              <MatchResultChip variant="ace" />
-            )}
+            {getIsMvp() && <MatchResultChip variant="mvp" />}
+            {getIsAce() && <MatchResultChip variant="ace" />}
           </Flexbox>
         </>
       )}

@@ -38,6 +38,23 @@ export const parseDateRelative = (dateString: Date) => {
   return `${Math.floor(betweenTimeDay / 365)}년 전`;
 };
 
+export const parseDateRelativeMinuteSecond = (dateString: Date) => {
+  const currentDate = new Date();
+  const date = new Date(dateString);
+
+  const betweenMinute = Math.floor(
+    (currentDate.getTime() - date.getTime()) / 1000 / 60
+  );
+
+  const betweenSecond = Math.floor(
+    ((currentDate.getTime() - date.getTime()) / 1000) % 60
+  );
+
+  return `${betweenMinute}:${
+    betweenSecond < 10 ? `0${betweenSecond}` : betweenSecond
+  }`;
+};
+
 // 현재 시간과 특정 시간 사이의 분 간격을 구합니다 - nonon
 export const getMinuteDiff = (dateString: Date) => {
   const date = new Date(dateString);

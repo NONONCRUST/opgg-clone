@@ -4,7 +4,11 @@ import styled from "@emotion/styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { requestFetchBySummonerName } from "../../lib/api/riot";
-import { useMatchesQuery, useSummonerQuery } from "../../lib/queries";
+import {
+  useCurrentGameQuery,
+  useMatchesQuery,
+  useSummonerQuery,
+} from "../../lib/queries";
 import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Card from "../common/Card";
@@ -21,6 +25,7 @@ import SummonerNotFound from "../SummonerNotFound";
 import MatchSummaryCard from "../MatchSummaryCard";
 import { useDispatch, useSelector } from "../../store";
 import { searchActions } from "../../store/searchSlice";
+import CurrentGameCard from "../CurrentGame/CurrentGameCard";
 
 const Base = styled.main`
   .content-area {
@@ -106,9 +111,18 @@ const SummonerPage: React.FC = () => {
     refetch: refetchMatches,
   } = useMatchesQuery(summonerName);
 
+  const {
+    data: currentGameQuery,
+    isLoading: isCurrentGameLoading,
+    refetch: refetchCurrentGame,
+  } = useCurrentGameQuery(summonerName, activeTab);
+
   const summonerData = summonerQuery?.data;
   const matchesData = matchesQuery?.data;
   const matchListData = matchesData?.matches;
+  const currentGameData = currentGameQuery?.data;
+
+  console.log(currentGameData);
 
   const filteredMatchListData = matchListData?.filter((match) => {
     if (championSearchFilter === "") return match;
@@ -134,6 +148,7 @@ const SummonerPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(searchActions.setChampionSearchFilter(""));
+    setActiveTab("general");
   }, [dispatch, summonerName]);
 
   if (summonerQuery?.status === 204) return <SummonerNotFound />;
@@ -190,7 +205,14 @@ const SummonerPage: React.FC = () => {
             </div>
           )}
           {activeTab === "ingame" && (
-            <IngameNotFound summonerName={summonerName} />
+            <>
+              {currentGameData && (
+                <CurrentGameCard currentGameData={currentGameData} />
+              )}
+              {!currentGameData && (
+                <IngameNotFound summonerName={summonerName} />
+              )}
+            </>
           )}
         </Layout>
       </div>
