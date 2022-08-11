@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useSelector } from "../store";
 import ChampionSearchInput from "./ChampionSearch/ChampionSearchInput";
+import Avatar from "./common/Avatar";
 import Card from "./common/Card";
 import Divider from "./common/Divider";
 import TabButton from "./common/TabButton";
@@ -17,6 +19,10 @@ const Container = styled.div`
 `;
 
 const MatchSummaryCard: React.FC = () => {
+  const championSearchFilter = useSelector(
+    (state) => state.search.championSearchFilter
+  );
+
   return (
     <Container>
       <Card height="14rem">
@@ -32,7 +38,15 @@ const MatchSummaryCard: React.FC = () => {
               자유랭크
             </TabButton>
           </Flexbox>
-          <ChampionSearchInput />
+          <Flexbox gap="0.5rem">
+            {championSearchFilter && (
+              <Avatar
+                size="1.5rem"
+                src={`/champion/${championSearchFilter}.png`}
+              />
+            )}
+            <ChampionSearchInput />
+          </Flexbox>
         </div>
 
         <Divider />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Head from "next/head";
@@ -19,7 +19,8 @@ import SummonerContentHeader from "../SummonerContentHeader";
 import SummonerContentTab from "../SummonerContentTab";
 import SummonerNotFound from "../SummonerNotFound";
 import MatchSummaryCard from "../MatchSummaryCard";
-import { useSelector } from "../../store";
+import { useDispatch, useSelector } from "../../store";
+import { searchActions } from "../../store/searchSlice";
 
 const Base = styled.main`
   .content-area {
@@ -89,6 +90,8 @@ const SummonerPage: React.FC = () => {
     (state) => state.search.championSearchFilter
   );
 
+  const dispatch = useDispatch();
+
   const summonerName = useRouter().query.name as string;
 
   const {
@@ -129,6 +132,10 @@ const SummonerPage: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(searchActions.setChampionSearchFilter(""));
+  }, [dispatch, summonerName]);
+
   if (summonerQuery?.status === 204) return <SummonerNotFound />;
 
   return (
@@ -166,8 +173,8 @@ const SummonerPage: React.FC = () => {
               <div className="content-area-match-right">
                 <MatchSummaryCard />
                 {!isMatchesLoading &&
-                  matchListData &&
-                  matchListData.length === 0 && <MatchResultNotFound />}
+                  filteredMatchListData &&
+                  filteredMatchListData.length === 0 && <MatchResultNotFound />}
                 <Flexbox flex="col" gap="0.5rem">
                   {/* {isMatchesLoading && <div>게임 결과를 불러오는중..</div>} */}
                   {filteredMatchListData &&

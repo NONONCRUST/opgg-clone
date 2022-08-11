@@ -5,8 +5,6 @@ import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import { theme } from "../../styles/theme";
 import palette from "../../styles/palette";
-import Avatar from "../common/Avatar";
-import useOutsideClick from "../../hooks/useOutsideClick";
 import ChampionSearchDropdownItem from "./ChampionSearchDropdownItem";
 
 const Container = styled.div`
