@@ -5,12 +5,9 @@ const connectMongo = async () => {
     return console.log("mongodb connected already");
   }
 
-  return mongoose.connect(
-    "mongodb+srv://nononcrust:nononmongodb123@cluster0.wo4rqpi.mongodb.net/?retryWrites=true&w=majority",
-    () => {
-      console.log("mongodb connected");
-    }
-  );
+  return mongoose.connect(process.env.MONGODB_URI!, () => {
+    console.log("mongodb connected");
+  });
 };
 
 export default connectMongo;
