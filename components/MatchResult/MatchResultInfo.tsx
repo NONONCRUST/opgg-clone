@@ -8,6 +8,7 @@ import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import MatchResultChampionAvatar from "./MatchResultChampionAvatar";
+import MatchResultChip from "./MatchResultChip";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -90,6 +91,15 @@ const MatchResultInfo: React.FC<Props> = ({
   const getWin = (win: boolean) => {
     if (win) return "win";
     if (!win) return "lose";
+  };
+
+  const getKillingSpree = () => {
+    if (me?.pentaKills && me.pentaKills > 0) return "penta";
+    if (me?.quadraKills && me.quadraKills > 0) return "quadra";
+    if (me?.tripleKills && me.tripleKills > 0) return "triple";
+    if (me?.doubleKills && me.doubleKills > 0) return "double";
+
+    return undefined;
   };
 
   const myTeam = matchData.teams?.find((team) => getWin(team.win) === result);
@@ -216,6 +226,9 @@ const MatchResultInfo: React.FC<Props> = ({
               src={`/trinket/${me.item6}.jpeg`}
               alt="summoner trinket"
             />
+            {getKillingSpree() && (
+              <MatchResultChip variant={getKillingSpree()} />
+            )}
           </Flexbox>
         </>
       )}

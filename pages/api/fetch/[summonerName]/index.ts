@@ -48,7 +48,7 @@ const handler: NextApiHandler = async (
             wardsKilled: participant.wardsKilled,
             doubleKills: participant.doubleKills,
             tripleKills: participant.tripleKills,
-            quadreKills: participant.quadraKills,
+            quadraKills: participant.quadraKills,
             pentaKills: participant.pentaKills,
             goldEarned: participant.goldEarned,
             individualPosition: participant.individualPosition,
@@ -79,7 +79,7 @@ const handler: NextApiHandler = async (
         };
       });
 
-      const result = await MatchModel.findOneAndUpdate(
+      await MatchModel.findOneAndUpdate(
         { summonerName: summonerName },
         {
           summonerName: summonerName,

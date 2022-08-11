@@ -30,7 +30,7 @@ type MatchType = {
     wardsKilled: number;
     doubleKills: number;
     tripleKills: number;
-    quadreKills: number;
+    quadraKills: number;
     pentaKills: number;
     goldEarned: number;
     individualPosition: string;

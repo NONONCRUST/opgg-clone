@@ -4,6 +4,8 @@ import palette from "../styles/palette";
 import { theme } from "../styles/theme";
 import Typography from "./common/Typography";
 
+const diameter = 2 * Math.PI * 40;
+
 const Container = styled.div`
   position: relative;
 
@@ -15,7 +17,7 @@ const Container = styled.div`
 
     @keyframes circle-fill-animation {
       0% {
-        stroke-dasharray: 0 ${2 * Math.PI * 90};
+        stroke-dasharray: 0 ${diameter};
       }
     }
   }
@@ -34,8 +36,6 @@ interface Props {
 }
 
 const DonutChart: React.FC<Props> = ({ percentage }) => {
-  const diameter = 2 * Math.PI * 40;
-
   return (
     <Container>
       <svg viewBox="0 0 100 100">
