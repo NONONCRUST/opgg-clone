@@ -15,27 +15,32 @@ const handler: NextApiHandler = async (
     if (typeof summonerName !== "string") return res.status(400).end();
 
     /* --------------------------------------------- */
-    await connectMongo();
+    try {
+      await connectMongo();
 
-    const summonerArray = await SummonerModel.find()
-      .where("name")
-      .equals(summonerName);
-    if (summonerArray.length !== 0) {
-      const summoner = summonerArray[0];
-      const body = {
-        name: summoner.name,
-        profileIconId: summoner.profileIconId,
-        summonerLevel: summoner.summonerLevel,
-        queueType: summoner.queueType,
-        tier: summoner.tier,
-        rank: summoner.rank,
-        leaguePoints: summoner.leaguePoints,
-        wins: summoner.wins,
-        losses: summoner.losses,
-        updatedAt: summoner.updatedAt,
-      };
+      const summonerArray = await SummonerModel.find()
+        .where("name")
+        .equals(summonerName);
+      if (summonerArray.length !== 0) {
+        const summoner = summonerArray[0];
+        const body = {
+          name: summoner.name,
+          profileIconId: summoner.profileIconId,
+          summonerLevel: summoner.summonerLevel,
+          queueType: summoner.queueType,
+          tier: summoner.tier,
+          rank: summoner.rank,
+          leaguePoints: summoner.leaguePoints,
+          wins: summoner.wins,
+          losses: summoner.losses,
+          updatedAt: summoner.updatedAt,
+        };
 
-      return res.status(200).send(body);
+        return res.status(200).send(body);
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).end();
     }
     /* --------------------------------------------- */
 
