@@ -36,6 +36,7 @@ const handler: NextApiHandler = async (
           updatedAt: summoner.updatedAt,
         };
 
+        console.log(summonerArray);
         return res.status(200).send(body);
       }
     } catch (error) {
@@ -49,6 +50,7 @@ const handler: NextApiHandler = async (
       const { name, id, profileIconId, summonerLevel } = response.data;
 
       const leagueResponse = await getLeagueBySummonerIdApi(id);
+      console.log(leagueResponse);
 
       leagueResponse.data[0];
 
