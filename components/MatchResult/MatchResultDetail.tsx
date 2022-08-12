@@ -1,12 +1,12 @@
-import styled from "@emotion/styled";
 import React from "react";
-import palette from "../../styles/palette";
+import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 import Card from "../common/Card";
 import Divider from "../common/Divider";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import MatchResultDetailItem from "./MatchResultDetailItem";
+import { gray, red } from "../../styles/palette";
 
 const Container = styled.div`
   margin-top: 0.2rem;
@@ -14,7 +14,7 @@ const Container = styled.div`
   .match-result-meta {
     padding: 0.5rem 1rem;
     justify-content: flex-start;
-    color: ${palette.gray[400]};
+    color: ${gray[400]};
     font-size: 0.75rem;
   }
 
@@ -73,7 +73,7 @@ const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
     <Container>
       <Card>
         <Flexbox className="match-result-meta">
-          <Typography color={isVictory ? theme.primary : palette.red[500]}>
+          <Typography color={isVictory ? theme.primary : red[500]}>
             {isVictory ? "승리" : "패배"}
           </Typography>
           <span className="team-meta">(블루팀)</span>

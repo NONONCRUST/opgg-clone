@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import React from "react";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 
 const getAvatarShape = (shape?: "rounded" | "boxier") => {
   switch (shape) {
@@ -34,7 +34,7 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${palette.gray[100]};
+  background-color: ${gray[100]};
 
   width: ${({ size }) => size};
   height: ${({ size }) => size};

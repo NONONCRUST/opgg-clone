@@ -2,6 +2,7 @@ import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
+import { blue } from "../../styles/palette";
 
 type ButtonVariantType = "text" | "contained" | "outlined";
 type ButtonSizeType = "small" | "medium" | "large";
@@ -33,7 +34,7 @@ const getButtonVariant = (variant?: ButtonVariantType) => {
         color: ${theme.primary};
 
         &:hover {
-          background-color: ${theme.primaryLight};
+          background-color: ${blue[50]};
         }
       `;
   }

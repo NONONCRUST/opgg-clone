@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import palette from "../styles/palette";
+import { red } from "../styles/palette";
 import { theme } from "../styles/theme";
 import Typography from "./common/Typography";
 
@@ -44,7 +44,7 @@ const DonutChart: React.FC<Props> = ({ percentage }) => {
           cy="50"
           r="40"
           fill="none"
-          stroke={palette.red[500]}
+          stroke={red[500]}
           strokeWidth="15"
         />
         <circle

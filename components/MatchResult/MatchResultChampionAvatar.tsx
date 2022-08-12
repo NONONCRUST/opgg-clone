@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import palette from "../../styles/palette";
 import Image from "next/image";
+import { gray } from "../../styles/palette";
 
 const Container = styled.div`
   position: relative;
@@ -27,7 +27,7 @@ const Container = styled.div`
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 50%;
-    background-color: ${palette.gray[800]};
+    background-color: ${gray[800]};
     color: white;
   }
 `;

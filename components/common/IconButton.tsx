@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import { blue } from "../../styles/palette";
 import { theme } from "../../styles/theme";
 
 type IconButtonVariantType = "contained" | "outlined";
@@ -27,7 +28,7 @@ const getIconButtonVariant = (variant?: IconButtonVariantType) => {
         color: ${theme.primary};
 
         &:hover {
-          background-color: ${theme.primaryLight};
+          background-color: ${blue[50]};
         }
       `;
   }

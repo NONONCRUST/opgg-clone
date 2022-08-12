@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { MdInfoOutline, MdStar } from "react-icons/md";
-import palette from "../../styles/palette";
+import { gray, yellow } from "../../styles/palette";
 import Typography from "../common/Typography";
 
 const Container = styled.div`
@@ -23,16 +23,16 @@ const EmptyNotification: React.FC<Props> = ({ type }) => {
     <Container>
       {type === "recent" && (
         <>
-          <MdInfoOutline size="20px" color={palette.gray[400]} />
-          <Typography size="0.75rem" color={palette.gray[400]}>
+          <MdInfoOutline size="20px" color={gray[400]} />
+          <Typography size="0.75rem" color={gray[400]}>
             최근에 본 소환사가 없습니다.
           </Typography>
         </>
       )}
       {type === "favorite" && (
         <>
-          <MdStar size="20px" color={palette.yellow[400]} />
-          <Typography size="0.75rem" color={palette.gray[400]}>
+          <MdStar size="20px" color={yellow[400]} />
+          <Typography size="0.75rem" color={gray[400]}>
             관심있는 소환사에 즐겨찾기를 하여 편리하게 정보를 받아보세요.
           </Typography>
         </>

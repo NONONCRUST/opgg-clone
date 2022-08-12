@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import palette from "../../styles/palette";
+import { purple, red, yellow } from "../../styles/palette";
 
 type MatchResultChipVariantType =
   | "double"
@@ -30,10 +30,9 @@ const getMatchResultChipText = (variant?: MatchResultChipVariantType) => {
 const getMatchResultChipBackgroundColor = (
   variant: MatchResultChipVariantType
 ) => {
-  if (variant === "mvp") return palette.yellow[500];
-  if (variant === "ace") return palette.purple[600];
-  if (variant === "double" || "triple" || "quadra" || "penta")
-    return palette.red[500];
+  if (variant === "mvp") return yellow[500];
+  if (variant === "ace") return purple[600];
+  if (variant === "double" || "triple" || "quadra" || "penta") return red[500];
 };
 
 interface ContainerProps {

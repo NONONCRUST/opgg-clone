@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 
 interface ContainerProps {
   width?: string;
@@ -21,7 +21,7 @@ const Container = styled.div<ContainerProps>`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[700]};
+      background-color: ${gray[700]};
     `}
 `;
 

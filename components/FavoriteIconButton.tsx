@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { MdStar, MdStarOutline } from "react-icons/md";
 import useFavoriteSummoner from "../hooks/useFavoriteSummoner";
-import palette from "../styles/palette";
+import { gray, yellow } from "../styles/palette";
 
 interface ContainerProps {
   isFavorite?: boolean;
@@ -15,9 +15,8 @@ const Container = styled.button<ContainerProps>`
   align-items: center;
 
   padding: 0.25rem;
-  background-color: ${({ isFavorite }) =>
-    isFavorite ? palette.yellow[400] : "white"};
-  border: 1px solid ${palette.gray[300]};
+  background-color: ${({ isFavorite }) => (isFavorite ? yellow[400] : "white")};
+  border: 1px solid ${gray[300]};
   border-radius: 0.25rem;
 
   cursor: pointer;
@@ -25,8 +24,8 @@ const Container = styled.button<ContainerProps>`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[700]};
-      border: 1px solid ${palette.gray[600]};
+      background-color: ${gray[700]};
+      border: 1px solid ${gray[600]};
     `}
 `;
 
@@ -51,7 +50,7 @@ const FavoriteIconButton: React.FC<Props> = ({ summonerName }) => {
   };
   return (
     <Container isFavorite={isFavorite} onClick={onClickFavoriteIconButton}>
-      {!isFavorite && <MdStarOutline size="20px" color={palette.gray[400]} />}
+      {!isFavorite && <MdStarOutline size="20px" color={gray[400]} />}
       {isFavorite && <MdStar size="20px" color="white" />}
     </Container>
   );

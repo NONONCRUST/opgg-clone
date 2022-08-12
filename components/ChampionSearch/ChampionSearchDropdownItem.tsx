@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useDispatch } from "../../store";
 import { searchActions } from "../../store/searchSlice";
+import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
 import Divider from "../common/Divider";
 import Typography from "../common/Typography";
@@ -22,9 +23,6 @@ const Container = styled.div`
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  .champion-dropdown-item {
   }
 `;
 
@@ -59,7 +57,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
         {type === "champion" && (
           <div className="dropdown-item-area" onClick={onClickChampion}>
             <Avatar size="24px" src={`/champion/${champion.eng}.png`} />
-            <Typography className="champion-dropdown-item" size="0.75rem">
+            <Typography size={theme.fontSize.caption3}>
               {champion.kor}
             </Typography>
           </div>
@@ -67,9 +65,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
         {type === "all" && (
           <div className="dropdown-item-area" onClick={onClickAll}>
             <Avatar size="24px" />
-            <Typography className="champion-dropdown-item" size="0.75rem">
-              모든 챔피언
-            </Typography>
+            <Typography size={theme.fontSize.caption3}>모든 챔피언</Typography>
           </div>
         )}
       </Container>

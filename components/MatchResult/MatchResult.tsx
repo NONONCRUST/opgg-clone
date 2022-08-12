@@ -6,9 +6,8 @@ import MatchResultInfo from "./MatchResultInfo";
 import MatchResultParticipants from "./MatchResultParticipants";
 import MatchResultAction from "./MatchResultAction";
 import Flexbox from "../layouts/Flexbox";
-import palette from "../../styles/palette";
-import Card from "../common/Card";
 import MatchResultDetail from "./MatchResultDetail";
+import { blue, red } from "../../styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -23,7 +22,7 @@ const Container = styled.div<ContainerProps>`
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     background-color: ${({ result }) =>
-      result === "win" ? palette.blue[500] : palette.red[500]};
+      result === "win" ? blue[500] : red[500]};
   }
 `;
 

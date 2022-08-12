@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import palette from "../styles/palette";
 import Card from "./common/Card";
 import Divider from "./common/Divider";
 import Typography from "./common/Typography";
@@ -8,6 +7,7 @@ import Flexbox from "./layouts/Flexbox";
 import RankEmblemAvatar from "./RankEmblemAvatar";
 import { theme } from "../styles/theme";
 import { capitalize, getWinRate, mapRank } from "../lib/utils";
+import { gray } from "../styles/palette";
 
 const Container = styled.section`
   width: 100%;
@@ -35,7 +35,7 @@ const SoloRankInfoCard: React.FC<Props> = ({ summonerData, isLoading }) => {
         <Flexbox padding="1rem" justify="between">
           <Typography size="0.875rem">솔로랭크</Typography>
           {!summonerData.tier && (
-            <Typography color={palette.gray[300]} weight={600}>
+            <Typography color={gray[300]} weight={600}>
               Unranked
             </Typography>
           )}
@@ -53,16 +53,16 @@ const SoloRankInfoCard: React.FC<Props> = ({ summonerData, isLoading }) => {
                       ("GRANDMASTER" || "CHALLENGER" || "MASTER") &&
                       mapRank(summonerData.rank)}
                   </Typography>
-                  <Typography size="0.75rem" color={palette.gray[500]}>
+                  <Typography size="0.75rem" color={gray[500]}>
                     {summonerData.leaguePoints} LP
                   </Typography>
                 </Flexbox>
               </Flexbox>
               <Flexbox flex="col" gap="0.5rem" items="end">
-                <Typography size="0.75rem" color={palette.gray[400]}>
+                <Typography size="0.75rem" color={gray[400]}>
                   {summonerData.wins}승 {summonerData.losses}패
                 </Typography>
-                <Typography size="0.75rem" color={palette.gray[400]}>
+                <Typography size="0.75rem" color={gray[400]}>
                   승률 {getWinRate(summonerData.wins, summonerData.losses)}%
                 </Typography>
               </Flexbox>

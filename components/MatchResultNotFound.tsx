@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { MdInfoOutline } from "react-icons/md";
-import palette from "../styles/palette";
 import Card from "./common/Card";
 import Typography from "./common/Typography";
+import { gray } from "../styles/palette";
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const Container = styled.div`
   gap: 1rem;
 
   padding: 2rem;
-  color: ${palette.gray[300]};
+  color: ${gray[300]};
 `;
 
 const MatchResultNotFound: React.FC = () => {

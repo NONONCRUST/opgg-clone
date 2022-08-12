@@ -1,13 +1,13 @@
+import React, { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
 import { MdSearch } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import useSearchHistory from "../../hooks/useSearchHistory";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
+import { gray } from "../../styles/palette";
 
 const Container = styled.div`
   display: flex;
@@ -55,11 +55,11 @@ const Container = styled.div`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[700]};
+      background-color: ${gray[700]};
       color: white;
 
       .input {
-        background-color: ${palette.gray[700]};
+        background-color: ${gray[700]};
         color: white;
       }
     `}

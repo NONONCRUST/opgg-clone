@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import palette from "../styles/palette";
+import { gray } from "../styles/palette";
+
 import Typography from "./common/Typography";
 
 const Base = styled.main`
@@ -11,7 +12,7 @@ const Base = styled.main`
   align-items: center;
   min-height: 100vh;
 
-  background-color: ${palette.gray[100]};
+  background-color: ${gray[100]};
 
   .summoner-not-found-title {
     font-size: 1.5rem;
@@ -22,7 +23,7 @@ const Base = styled.main`
   .summoner-not-found-description {
     font-size: 1rem;
     font-weight: 500;
-    color: ${palette.gray[500]};
+    color: ${gray[500]};
   }
 `;
 

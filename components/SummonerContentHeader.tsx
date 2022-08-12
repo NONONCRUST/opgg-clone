@@ -6,7 +6,7 @@ import {
   parseDateRelative,
   throttle,
 } from "../lib/utils";
-import palette from "../styles/palette";
+
 import Button from "./common/Button";
 import LoadingButton from "./common/LoadingButton";
 import Typography from "./common/Typography";
@@ -16,6 +16,7 @@ import Layout from "./layouts/Layout";
 import SummonerIconAvatar from "./SummonerIconAvatar";
 import TierHistoryChip from "./TierHistoryChip";
 import { theme } from "../styles/theme";
+import { gray } from "../styles/palette";
 
 const Base = styled.div`
   .summoner-container {
@@ -81,7 +82,7 @@ const SummonerContentHeader: React.FC<Props> = ({
             )}
             {isFetching && <LoadingButton width="84.34px" />}
             {summonerData && (
-              <Typography size="0.75rem" color={palette.gray[400]}>
+              <Typography size="0.75rem" color={gray[400]}>
                 {updatedAt
                   ? `최근 업데이트: ${parseDateRelative(updatedAt)}`
                   : "전적 갱신 버튼을 눌러 전적을 갱신해주세요."}

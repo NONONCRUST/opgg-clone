@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
 import React from "react";
-import palette from "../../styles/palette";
+import styled from "@emotion/styled";
 import { MdClose, MdStar, MdStarOutline } from "react-icons/md";
 import Flexbox from "../layouts/Flexbox";
 import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
 import { useRouter } from "next/router";
+import { gray, yellow } from "../../styles/palette";
 
 const Container = styled.li`
   display: flex;
@@ -16,12 +16,12 @@ const Container = styled.li`
 
   padding: 0.5rem 1rem;
 
-  color: ${palette.gray[500]};
+  color: ${gray[500]};
 
   cursor: pointer;
 
   &:hover {
-    background-color: ${palette.gray[100]};
+    background-color: ${gray[100]};
   }
 `;
 
@@ -62,11 +62,7 @@ const MainInputDropdownMenuItem: React.FC<Props> = ({
       <div>{name}</div>
       <Flexbox gap="1rem">
         {currentTab !== "favorite" && isFavorite && (
-          <MdStar
-            size="20px"
-            color={palette.yellow[400]}
-            onClick={onClickStarIcon}
-          />
+          <MdStar size="20px" color={yellow[400]} onClick={onClickStarIcon} />
         )}
         {currentTab !== "favorite" && !isFavorite && (
           <MdStarOutline size="20px" onClick={onClickStarIcon} />

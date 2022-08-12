@@ -1,24 +1,24 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import {
   getCsPerMinute,
   getKda,
   getKillParticipation,
   shortenText,
 } from "../../lib/utils";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import MatchResultDetailAvatar from "./MatchResultDetailAvatar";
+import { blue, gray, red, teal, yellow } from "../../styles/palette";
 
 const getKdaColor = (kda: string | number) => {
-  if (kda === "Perfect") return palette.yellow[500];
-  if (kda < 3) return palette.gray[500];
-  if (kda > 3 && kda < 4) return palette.teal[500];
+  if (kda === "Perfect") return yellow[500];
+  if (kda < 3) return gray[500];
+  if (kda > 3 && kda < 4) return teal[500];
   if (kda > 4 && kda < 5) return theme.primary;
-  if (kda > 5) return palette.yellow[500];
+  if (kda > 5) return yellow[500];
 };
 
 interface ContainerProps {
@@ -31,14 +31,14 @@ const Container = styled.div<ContainerProps>`
   align-items: center;
   padding: 0.5rem 1rem;
   gap: 0.1rem;
-  color: ${palette.gray[500]};
+  color: ${gray[500]};
 
-  background-color: ${({ win }) => (win ? palette.blue[50] : palette.red[50])};
+  background-color: ${({ win }) => (win ? blue[50] : red[50])};
 
   .match-detail-summoner-name {
     margin-left: 0.5rem;
     width: 6rem;
-    color: ${palette.gray[900]};
+    color: ${gray[900]};
     font-size: 0.875rem;
   }
 
@@ -66,8 +66,7 @@ const Container = styled.div<ContainerProps>`
   }
 
   .match-detail-item {
-    background-color: ${({ win }) =>
-      win ? palette.blue[200] : palette.red[200]};
+    background-color: ${({ win }) => (win ? blue[200] : red[200])};
   }
 
   .dealt-damage-bar {
@@ -79,7 +78,7 @@ const Container = styled.div<ContainerProps>`
   .dealt-damage-progression {
     width: ${({ damageProportion }) => damageProportion}%;
     height: 0.4rem;
-    background-color: ${palette.red[500]};
+    background-color: ${red[500]};
   }
 
   @media screen and (min-width: ${theme.media.desktop}) {

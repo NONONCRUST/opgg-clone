@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import Divider from "../common/Divider";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import { theme } from "../../styles/theme";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 import ChampionSearchDropdownItem from "./ChampionSearchDropdownItem";
 
 const Container = styled.div`
@@ -13,7 +13,7 @@ const Container = styled.div`
   width: 100%;
   height: 16rem;
   overflow: scroll;
-  color: ${palette.gray[700]};
+  color: ${gray[700]};
 
   background-color: white;
   box-shadow: ${theme.elevation4};
@@ -31,7 +31,7 @@ const ChampionSearchDropdown: React.FC<Props> = ({ children }) => {
   return (
     <Container>
       <Flexbox justify="start" padding="0.75rem">
-        <Typography size="0.875rem">챔피언 목록</Typography>
+        <Typography size={theme.fontSize.caption1}>챔피언 목록</Typography>
       </Flexbox>
       <Divider />
       <ChampionSearchDropdownItem type="all" />

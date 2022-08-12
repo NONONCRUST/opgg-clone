@@ -1,7 +1,7 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
-import palette from "../styles/palette";
+import { gray } from "../styles/palette";
 
 const Container = styled.div`
   display: flex;
@@ -11,8 +11,8 @@ const Container = styled.div`
   gap: 0.25rem;
 
   height: 1.125rem;
-  background-color: ${palette.gray[100]};
-  color: ${palette.gray[400]};
+  background-color: ${gray[100]};
+  color: ${gray[400]};
   font-size: 11px;
   border-radius: 0.125rem;
 
@@ -23,7 +23,7 @@ const Container = styled.div`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[900]};
+      background-color: ${gray[900]};
     `}
 `;
 

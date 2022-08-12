@@ -9,7 +9,6 @@ import {
   useMatchesQuery,
   useSummonerQuery,
 } from "../../lib/queries";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Card from "../common/Card";
 import Divider from "../common/Divider";
@@ -26,6 +25,7 @@ import MatchSummaryCard from "../MatchSummaryCard";
 import { useDispatch, useSelector } from "../../store";
 import { searchActions } from "../../store/searchSlice";
 import CurrentGameCard from "../CurrentGame/CurrentGameCard";
+import { gray } from "../../styles/palette";
 
 const Base = styled.main`
   .content-area {
@@ -35,7 +35,7 @@ const Base = styled.main`
     gap: 1rem;
 
     padding: 0.5rem;
-    background-color: ${palette.gray[100]};
+    background-color: ${gray[100]};
   }
 
   .ad {
@@ -67,11 +67,11 @@ const Base = styled.main`
     theme.mode === "dark" &&
     css`
       .content-header-area {
-        background-color: ${palette.gray[700]};
+        background-color: ${gray[700]};
       }
 
       .content-area {
-        background-color: ${palette.gray[900]};
+        background-color: ${gray[900]};
       }
     `}
 
@@ -182,8 +182,6 @@ const SummonerPage: React.FC = () => {
                     summonerData={summonerData}
                   />
                 )}
-                {/* <Card height="6rem">자유랭크</Card> */}
-                {/* <Card height="20rem">챔피언별</Card> */}
               </div>
               <div className="content-area-match-right">
                 {matchListData && (
@@ -196,7 +194,6 @@ const SummonerPage: React.FC = () => {
                   filteredMatchListData &&
                   filteredMatchListData.length === 0 && <MatchResultNotFound />}
                 <Flexbox flex="col" gap="0.5rem">
-                  {/* {isMatchesLoading && <div>게임 결과를 불러오는중..</div>} */}
                   {filteredMatchListData &&
                     filteredMatchListData.map((matchData, index) => (
                       <MatchResult

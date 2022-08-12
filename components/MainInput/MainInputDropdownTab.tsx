@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 
 const Container = styled.div`
   display: flex;
@@ -23,23 +23,23 @@ const Tab = styled.div<TabProps>`
   flex: 1;
 
   cursor: pointer;
-  color: ${palette.gray[500]};
+  color: ${gray[500]};
   font-size: 0.875rem;
 
-  background-color: ${({ active }) => (active ? "white" : palette.gray[200])};
+  background-color: ${({ active }) => (active ? "white" : gray[200])};
 
   ${({ theme, active }) =>
     theme.mode === "dark" &&
     active &&
     css`
-      background-color: ${palette.gray[700]};
+      background-color: ${gray[700]};
     `}
 
   ${({ theme, active }) =>
     theme.mode === "dark" &&
     !active &&
     css`
-      background-color: ${palette.gray[800]};
+      background-color: ${gray[800]};
     `}
 `;
 

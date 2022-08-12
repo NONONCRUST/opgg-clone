@@ -1,13 +1,13 @@
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
 import useFavoriteSummoner from "../../hooks/useFavoriteSummoner";
 import useSearchHistory from "../../hooks/useSearchHistory";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import EmptyNotification from "./EmptyNotification";
 import MainInputDropdownMenuItem from "./MainInputDropdownMenuItem";
 import MainInputDropdownTab from "./MainInputDropdownTab";
+import { gray } from "../../styles/palette";
 
 interface ContainerProps {
   type: "home" | "header";
@@ -44,7 +44,7 @@ const Container = styled.div<ContainerProps>`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[700]};
+      background-color: ${gray[700]};
     `}
 `;
 

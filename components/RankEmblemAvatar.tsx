@@ -1,14 +1,14 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
-import palette from "../styles/palette";
+import { gray } from "../styles/palette";
 
 interface ContainerProps {
   size?: string;
 }
 
 const Container = styled.img<ContainerProps>`
-  background-color: ${palette.gray[100]};
+  background-color: ${gray[100]};
   border-radius: 50%;
 
   width: ${({ size }) => size};
@@ -17,7 +17,7 @@ const Container = styled.img<ContainerProps>`
   ${({ theme }) =>
     theme.mode === "dark" &&
     css`
-      background-color: ${palette.gray[800]};
+      background-color: ${gray[800]};
     `}
 `;
 

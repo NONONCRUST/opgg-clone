@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import palette from "../../styles/palette";
+import { blue, red } from "../../styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -16,32 +16,31 @@ const Container = styled.div<ContainerProps>`
   border-bottom-right-radius: 0.25rem;
 
   background-color: ${({ result }) =>
-    result === "win" ? palette.blue[200] : palette.red[200]};
+    result === "win" ? blue[200] : red[200]};
 
   cursor: pointer;
 
   &:hover {
     background-color: ${({ result }) =>
-      result === "win" ? palette.blue[300] : palette.red[300]};
+      result === "win" ? blue[300] : red[300]};
   }
 
   .match-result-arrow-down-icon {
-    color: ${({ result }) =>
-      result === "win" ? palette.blue[500] : palette.red[500]};
+    color: ${({ result }) => (result === "win" ? blue[500] : red[500])};
   }
 
   ${({ theme, result }) =>
     theme.mode === "dark" &&
     result === "win" &&
     css`
-      background-color: ${palette.blue[700]};
+      background-color: ${blue[700]};
     `}
 
   ${({ theme, result }) =>
     theme.mode === "dark" &&
     result === "lose" &&
     css`
-      background-color: ${palette.red[700]};
+      background-color: ${red[700]};
     `}
 `;
 

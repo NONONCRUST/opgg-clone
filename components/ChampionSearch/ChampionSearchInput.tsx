@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { MdSearch } from "react-icons/md";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 import ChampionSearchDropdown from "./ChampionSearchDropdown";
 import ChampionSearchDropdownItem from "./ChampionSearchDropdownItem";
 import { championList } from "../../lib/staticData";
@@ -16,16 +16,15 @@ const Container = styled.div`
   width: 14rem;
   height: 1.75rem;
   border-radius: 0.25rem;
-  background-color: ${palette.gray[100]};
+  background-color: ${gray[100]};
   padding: 0 0.5rem;
 
   .input {
     width: 100%;
-    color: ${palette.gray[500]};
-    border: 1px solid red;
+    color: ${gray[500]};
     border: none;
     outline: none;
-    background-color: ${palette.gray[100]};
+    background-color: ${gray[100]};
   }
 
   .icon {
@@ -62,7 +61,7 @@ const ChampionSearchInput: React.FC = () => {
         onChange={onChangeInput}
         onFocus={() => setDropdownOpen(true)}
       />
-      <MdSearch className="icon" color={palette.gray[500]} />
+      <MdSearch className="icon" color={gray[500]} />
       {dropdownOpen && (
         <ChampionSearchDropdown>
           {filteredChampionList.map((champion, index) => (

@@ -1,7 +1,6 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { useSelector } from "../store";
-import palette from "../styles/palette";
 import ChampionSearchInput from "./ChampionSearch/ChampionSearchInput";
 import Avatar from "./common/Avatar";
 import Card from "./common/Card";
@@ -10,6 +9,7 @@ import TabButton from "./common/TabButton";
 import Typography from "./common/Typography";
 import DonutChart from "./DonutChart";
 import Flexbox from "./layouts/Flexbox";
+import { gray } from "../styles/palette";
 
 const Container = styled.div`
   .match-summary-tab-area {
@@ -62,7 +62,7 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
         <Divider />
         <Flexbox justify="start" padding="1rem">
           <Flexbox flex="col" gap="0.5rem">
-            <Typography color={palette.gray[500]} size="0.75rem">
+            <Typography color={gray[500]} size="0.75rem">
               10전 {gameWon.length}승 {10 - gameWon.length}패
             </Typography>
             <DonutChart percentage={winrate} />

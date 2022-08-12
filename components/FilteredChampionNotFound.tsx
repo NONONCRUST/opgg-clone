@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { MdInfoOutline } from "react-icons/md";
-import palette from "../styles/palette";
 import Typography from "./common/Typography";
+import { gray } from "../styles/palette";
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const Container = styled.div`
 
   width: 100%;
   padding: 2rem;
-  color: ${palette.gray[300]};
+  color: ${gray[300]};
 `;
 
 const FilteredChampionNotFound: React.FC = () => {

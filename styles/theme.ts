@@ -1,23 +1,103 @@
 import { Theme } from "@emotion/react";
-import palette from "./palette";
+import { rem } from "polished";
+import { green, purple, red } from "./palette";
 
-export const theme = {
+type ThemeType = {
+  primary: string;
+  primaryVariant: string;
+  secondary: string;
+  secondaryVariant: string;
+  error: string;
+  errorVariant: string;
+  success: string;
+  successVariant: string;
+  fontSize: {
+    heading1: string;
+    heading2: string;
+    heading3: string;
+    heading4: string;
+    subtitle1: string;
+    subtitle2: string;
+    subtitle3: string;
+    subtitle4: string;
+    body1: string;
+    body2: string;
+    body3: string;
+    caption1: string;
+    caption2: string;
+    caption3: string;
+  };
+  lineHeight: {
+    heading1: string;
+    heading2: string;
+    heading3: string;
+    heading4: string;
+    subtitle1: string;
+    subtitle2: string;
+    subtitle3: string;
+    subtitle4: string;
+    body1: string;
+    body2: string;
+    body3: string;
+    caption1: string;
+    caption2: string;
+    caption3: string;
+  };
+  elevation1: string;
+  elevation2: string;
+  elevation3: string;
+  elevation4: string;
+  elevation6: string;
+  elevation8: string;
+  elevation12: string;
+  elevation16: string;
+  elevation24: string;
+  media: {
+    tablet: string;
+    desktop: string;
+  };
+};
+
+export const theme: ThemeType = Object.freeze({
   primary: "#5383E8",
   primaryVariant: "#4271D6",
-  primaryDimmed: palette.blue[400],
-  primarySemiLight: palette.blue[100],
-  primaryLight: palette.blue[50],
-  secondary: palette.purple[500],
-  secondaryVariant: palette.purple[600],
-  error: palette.red[500],
-  errorVariant: palette.red[600],
-  errorLight: palette.red[50],
-  success: palette.green[500],
-  successVariant: palette.green[600],
-  text: {
-    primary: palette.gray[900],
-    secondary: palette.gray[500],
-    tertiary: palette.gray[300],
+  secondary: purple[500],
+  secondaryVariant: purple[600],
+  error: red[500],
+  errorVariant: red[600],
+  success: green[500],
+  successVariant: green[600],
+  fontSize: {
+    heading1: rem(72),
+    heading2: rem(60),
+    heading3: rem(54),
+    heading4: rem(42),
+    subtitle1: rem(32),
+    subtitle2: rem(26),
+    subtitle3: rem(20),
+    subtitle4: rem(18),
+    body1: rem(18),
+    body2: rem(16),
+    body3: rem(15),
+    caption1: rem(14),
+    caption2: rem(13),
+    caption3: rem(12),
+  },
+  lineHeight: {
+    heading1: rem(90),
+    heading2: rem(80),
+    heading3: rem(73),
+    heading4: rem(57),
+    subtitle1: rem(48),
+    subtitle2: rem(39),
+    subtitle3: rem(31),
+    subtitle4: rem(28),
+    body1: rem(30),
+    body2: rem(28),
+    body3: rem(26),
+    caption1: rem(24),
+    caption2: rem(22),
+    caption3: "auto",
   },
 
   elevation1:
@@ -42,10 +122,10 @@ export const theme = {
     "rgb(0 0 0 / 20%) 0px 11px 15px -7px, rgb(0 0 0 / 14%) 0px 24px 38px 3px, rgb(0 0 0 / 12%) 0px 9px 46px 8px",
 
   media: {
-    tablet: "48rem", // 768px
-    desktop: "64rem", // 1024px
+    tablet: rem(768),
+    desktop: rem(1024),
   },
-};
+});
 
 export const lightTheme: Theme = {
   mode: "light",

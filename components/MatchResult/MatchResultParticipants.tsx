@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import Flexbox from "../layouts/Flexbox";
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
-import palette from "../../styles/palette";
 import { shortenText } from "../../lib/utils";
 import { theme } from "../../styles/theme";
 import Link from "next/link";
+import { gray } from "../../styles/palette";
 
 const Container = styled.div`
   display: none;
@@ -15,7 +15,7 @@ const Container = styled.div`
   .participant-name {
     cursor: pointer;
     font-size: 0.75rem;
-    color: ${palette.gray[500]};
+    color: ${gray[500]};
     &:hover {
       text-decoration: underline;
     }

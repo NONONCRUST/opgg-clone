@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useChampionsQuery } from "../../lib/queries";
 import { shortenText } from "../../lib/utils";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import ChampionFilterInput from "../ChampionFilterInput";
 import Avatar from "../common/Avatar";
@@ -15,10 +15,11 @@ import Typography from "../common/Typography";
 import FilteredChampionNotFound from "../FilteredChampionNotFound";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
+import { rem } from "polished";
 
 const Base = styled.main`
   .contents {
-    background-color: ${palette.gray[50]};
+    background-color: ${gray[50]};
     min-height: 80vh;
     padding: 0.5rem;
   }
@@ -34,7 +35,7 @@ const Base = styled.main`
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    color: ${palette.gray[500]};
+    color: ${gray[500]};
     font-size: 0.75rem;
 
     cursor: pointer;
@@ -56,6 +57,9 @@ const ChampionPage: React.FC = () => {
     return champion.name.includes(inputValue);
   });
 
+  const parseChampionName = (championName: string) =>
+    championName.length > 4 ? shortenText(championName, 3) : championName;
+
   return (
     <Base>
       <Layout>
@@ -68,7 +72,7 @@ const ChampionPage: React.FC = () => {
           <Typography size="2rem" weight={600}>
             챔피언 분석
           </Typography>
-          <Typography color={palette.gray[400]}>
+          <Typography color={gray[400]}>
             챔피언에 대한 정보를 확인할 수 있습니다.
           </Typography>
         </Flexbox>
@@ -87,7 +91,7 @@ const ChampionPage: React.FC = () => {
               </Flexbox>
             </Card>
             <Flexbox items="start" gap="0.5rem">
-              <Card width="332px">
+              <Card width={rem(332)}>
                 <Flexbox padding="0.5rem">
                   <ChampionFilterInput
                     inputValue={inputValue}
@@ -105,9 +109,7 @@ const ChampionPage: React.FC = () => {
                             src={`/champion/${champion.id}.png`}
                           />
                           <Typography>
-                            {champion.name.length > 4
-                              ? shortenText(champion.name, 3)
-                              : champion.name}
+                            {parseChampionName(champion.name)}
                           </Typography>
                         </a>
                       </Link>

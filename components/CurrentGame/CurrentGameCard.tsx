@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { parseDateRelativeMinuteSecond } from "../../lib/utils";
-import palette from "../../styles/palette";
+import { gray, red } from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Card from "../common/Card";
 import Divider from "../common/Divider";
@@ -13,13 +13,13 @@ const Container = styled.div`
   .current-game-type {
     font-weight: 600;
     padding-right: 0.5rem;
-    border-right: 1px solid ${palette.gray[300]};
+    border-right: 1px solid ${gray[300]};
   }
 
   .current-game-map {
     font-size: 0.75rem;
     padding-right: 0.5rem;
-    border-right: 1px solid ${palette.gray[300]};
+    border-right: 1px solid ${gray[300]};
   }
 
   .current-game-time {
@@ -55,7 +55,7 @@ const Container = styled.div`
     padding: 1rem;
     font-size: 0.875rem;
     font-weight: 600;
-    color: ${palette.red[500]};
+    color: ${red[500]};
   }
 
   @media screen and (min-width: ${theme.media.desktop}) {

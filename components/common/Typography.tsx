@@ -1,6 +1,23 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import { theme } from "../../styles/theme";
+
+type TypographyVariantType =
+  | "heading1"
+  | "heading2"
+  | "heading3"
+  | "heading4"
+  | "subtitle1"
+  | "subtitle2"
+  | "subtitle3"
+  | "subtitle4"
+  | "body1"
+  | "body2"
+  | "body3"
+  | "caption1"
+  | "caption2"
+  | "caption3";
 
 interface ContainerProps {
   size?: string;
@@ -10,8 +27,6 @@ interface ContainerProps {
 }
 
 const Container = styled.p<ContainerProps>`
-  font-size: ${({ size }) => size};
-  font-weight: ${({ weight }) => weight};
   text-decoration: ${({ underline }) => underline && "underline"};
 
   ${({ theme }) =>
@@ -20,6 +35,8 @@ const Container = styled.p<ContainerProps>`
       color: white;
     `}
   color: ${({ color }) => color};
+  font-size: ${({ size }) => size};
+  font-weight: ${({ weight }) => weight};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLParagraphElement> {

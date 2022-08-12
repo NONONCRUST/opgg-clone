@@ -1,14 +1,13 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { getCsPerMinute, getKda, getKillParticipation } from "../../lib/utils";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import MatchResultChampionAvatar from "./MatchResultChampionAvatar";
 import MatchResultChip from "./MatchResultChip";
+import { blue, gray, red } from "../../styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";
@@ -31,7 +30,7 @@ const Container = styled.div<ContainerProps>`
 
   .item-avatar {
     background-color: ${({ result }) =>
-      result === "win" ? palette.blue[200] : palette.red[200]};
+      result === "win" ? blue[200] : red[200]};
   }
 
   .kda-area {
@@ -44,12 +43,12 @@ const Container = styled.div<ContainerProps>`
   }
 
   .death-text {
-    color: ${palette.red[500]};
+    color: ${red[500]};
   }
 
   .text-divider {
     font-weight: 400;
-    color: ${palette.gray[400]};
+    color: ${gray[400]};
   }
 
   .stats-area {
@@ -62,8 +61,7 @@ const Container = styled.div<ContainerProps>`
     margin-right: 2rem;
     padding: 0 0.5rem;
     border-left: 1px solid
-      ${({ result }) =>
-        result === "win" ? palette.blue[100] : palette.red[100]};
+      ${({ result }) => (result === "win" ? blue[100] : red[100])};
   }
 
   @media screen and (min-width: ${theme.media.desktop}) {
@@ -203,12 +201,12 @@ const MatchResultInfo: React.FC<Props> = ({
                 <span className="death-text">{me.deaths}</span>{" "}
                 <span className="text-divider">/</span> {me.assists}
               </Typography>
-              <Typography size="12px" color={palette.gray[500]}>
+              <Typography size="12px" color={gray[500]}>
                 {getKda(me.kills, me.deaths, me.assists)} 평점
               </Typography>
             </div>
             <div className="stats-area">
-              <Typography size="11px" color={palette.red[500]}>
+              <Typography size="11px" color={red[500]}>
                 킬관여{" "}
                 {getKillParticipation(
                   myTeam.objectives.champion.kills,
@@ -217,10 +215,10 @@ const MatchResultInfo: React.FC<Props> = ({
                 )}
                 %
               </Typography>
-              <Typography size="11px" color={palette.gray[500]}>
+              <Typography size="11px" color={gray[500]}>
                 제어와드 {me.detectorWardsPlaced}
               </Typography>
-              <Typography size="11px" color={palette.gray[500]}>
+              <Typography size="11px" color={gray[500]}>
                 CS {me.totalMinionsKilled} (
                 {getCsPerMinute(
                   new Date(matchData.gameDuration),

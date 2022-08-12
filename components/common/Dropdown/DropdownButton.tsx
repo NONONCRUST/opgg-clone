@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import palette from "../../../styles/palette";
+import { gray } from "../../../styles/palette";
 import { MdArrowDropDown } from "react-icons/md";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
@@ -48,7 +48,7 @@ const Container = styled.button<ContainerProps>`
 
   font-weight: 500;
   border-radius: 0.25rem;
-  border: 1px solid ${palette.gray[300]};
+  border: 1px solid ${gray[300]};
   background-color: white;
 
   cursor: pointer;
@@ -94,7 +94,7 @@ const DropdownButton: React.FC<Props> = ({
       <MdArrowDropDown
         className="arrow-dropdown-icon"
         size="1.25rem"
-        color={palette.gray[500]}
+        color={gray[500]}
       />
       {open && children}
     </Container>

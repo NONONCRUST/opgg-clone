@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { getCurrentGameBySummonerName } from "../../lib/api/riot";
-import palette from "../../styles/palette";
+import { gray } from "../../styles/palette";
 import Avatar from "../common/Avatar";
 import Button from "../common/Button";
 import Divider from "../common/Divider";
@@ -48,16 +48,10 @@ const TestPage: React.FC = () => {
   // console.log("------------ 골없칸왕의 최근 20게임 전적 ---------");
   // console.log(matchesData);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const onClickDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
-
   return (
     <Flexbox justify="start" items="start" flex="col">
       <Flexbox justify="start" padding="1rem" gap="1rem">
-        <DropdownButton open={dropdownOpen} onClick={onClickDropdown}>
+        <DropdownButton>
           <DropdownMenu>
             <DropdownMenuItem label="메뉴" />
             <Divider />
@@ -74,7 +68,7 @@ const TestPage: React.FC = () => {
         <Typography size="2rem">타이포그래피입니다.</Typography>
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
-        <Typography color={palette.gray[500]}>타이포그래피입니다.</Typography>
+        <Typography color={gray[500]}>타이포그래피입니다.</Typography>
       </Flexbox>
       <Flexbox justify="start" padding="1rem" gap="1rem">
         <Typography weight={700}>타이포그래피입니다.</Typography>

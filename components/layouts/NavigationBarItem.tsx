@@ -1,9 +1,8 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Link from "next/link";
-import React from "react";
-import palette from "../../styles/palette";
 import { theme } from "../../styles/theme";
+import { gray } from "../../styles/palette";
 
 const getNavigationBarItemActive = (active?: boolean) => {
   if (active) {
@@ -21,7 +20,7 @@ interface ContainerProps {
 const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
-  color: ${palette.gray[300]};
+  color: ${gray[300]};
   height: 100%;
   border-bottom: 3px solid ${theme.primary};
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import palette from "../../styles/palette";
+import { blue, gray, teal } from "../../styles/palette";
 
 type TabButtonType = "general" | "ingame";
 
@@ -9,13 +9,13 @@ const getTabButtonType = (type: TabButtonType, active: boolean) => {
   switch (type) {
     case "general":
       return css`
-        color: ${active && palette.blue[500]};
-        background-color: ${active && palette.blue[50]};
+        color: ${active && blue[500]};
+        background-color: ${active && blue[50]};
       `;
     case "ingame":
       return css`
-        color: ${palette.teal[500]};
-        background: ${active && palette.teal[50]};
+        color: ${teal[500]};
+        background: ${active && teal[50]};
       `;
   }
 };
@@ -46,7 +46,7 @@ const Container = styled.div<ContainerProps>`
     !active &&
     css`
       &:hover {
-        background-color: ${palette.gray[50]};
+        background-color: ${gray[50]};
       }
     `}
 
