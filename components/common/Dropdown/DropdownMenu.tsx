@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import palette from "../../../styles/palette";
+import { theme } from "../../../styles/theme";
 
 interface ContainerProps {
   width?: string;
@@ -10,10 +10,15 @@ const Container = styled.ul<ContainerProps>`
   position: absolute;
   top: calc(100% + 0.25rem);
   left: -1px;
-  border: 1px solid ${palette.gray[300]};
+  box-shadow: ${theme.elevation4};
+
   border-radius: 0.25rem;
   width: ${({ width }) => width};
   width: calc(100% + 2px);
+
+  overflow: hidden;
+
+  z-index: 3;
 `;
 
 interface Props {

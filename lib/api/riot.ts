@@ -26,3 +26,6 @@ export const getMatchesBySummonerName = (summonerName: string) =>
 
 export const requestFetchBySummonerName = (summonerName: string) =>
   axios.get(`/fetch/${encodeURIComponent(summonerName)}`);
+
+export const getChampions = () =>
+  axios.get<GetChampionsResponseType>(`/champions`);

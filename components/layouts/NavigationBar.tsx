@@ -21,7 +21,11 @@ const NavigationBar: React.FC = () => {
         active={router.pathname === "/"}
         onClick={() => router.push("/")}
       />
-      <NavigationBarItem name="챔피언 분석" active={false} />
+      <NavigationBarItem
+        name="챔피언 분석"
+        active={router.pathname.includes("/champions")}
+        onClick={() => router.push("/champions")}
+      />
     </Base>
   );
 };

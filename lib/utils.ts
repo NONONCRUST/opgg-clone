@@ -39,16 +39,12 @@ export const parseDateRelative = (dateString: Date) => {
 };
 
 export const parseDateRelativeMinuteSecond = (dateString: Date) => {
-  const currentDate = new Date();
+  const currentDate = Date.now();
   const date = new Date(dateString);
 
-  const betweenMinute = Math.floor(
-    (currentDate.getTime() - date.getTime()) / 1000 / 60
-  );
+  const betweenMinute = new Date(currentDate - date.getTime()).getMinutes();
 
-  const betweenSecond = Math.floor(
-    ((currentDate.getTime() - date.getTime()) / 1000) % 60
-  );
+  const betweenSecond = new Date(currentDate - date.getTime()).getSeconds();
 
   return `${betweenMinute}:${
     betweenSecond < 10 ? `0${betweenSecond}` : betweenSecond
@@ -58,11 +54,12 @@ export const parseDateRelativeMinuteSecond = (dateString: Date) => {
 // 현재 시간과 특정 시간 사이의 분 간격을 구합니다 - nonon
 export const getMinuteDiff = (dateString: Date) => {
   const date = new Date(dateString);
-  const current = new Date().getTime();
+
+  const current = Date.now();
   const time = date.getTime();
   const diff = current - time;
 
-  return new Date(diff).getMinutes();
+  return new Date(diff).getTime() / 1000 / 60;
 };
 
 // document.cookie를 객체 형태로 바꿔줍니다 - nonon

@@ -35,6 +35,8 @@ interface Props {
 const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
   const [matchDetailOpen, setMatchDetailOpen] = useState(false);
 
+  console.log(matchData);
+
   const me = matchData.participants.find(
     (participant) => participant.summonerName === summonerName
   );

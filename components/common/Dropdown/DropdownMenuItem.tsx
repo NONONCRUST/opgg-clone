@@ -8,6 +8,7 @@ const Container = styled.li`
 
   padding: 0.75rem;
 
+  background-color: white;
   &:hover {
     background-color: ${palette.gray[100]};
   }

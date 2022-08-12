@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import {
+  getChampions,
   getCurrentGameBySummonerName,
   getMatchesBySummonerName,
   getSummonerByName,
@@ -22,5 +23,8 @@ export const useMatchesQuery = (summonerName: string) =>
 export const useCurrentGameQuery = (summonerName: string) =>
   useQuery(["current"], () => getCurrentGameBySummonerName(summonerName), {
     enabled: typeof summonerName === "string",
-    staleTime: 3000,
+    refetchOnWindowFocus: false,
   });
+
+export const useChampionsQuery = () =>
+  useQuery(["champions"], () => getChampions());

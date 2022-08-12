@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import palette from "../../../styles/palette";
 import { MdArrowDropDown } from "react-icons/md";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 type DropdownButtonSizeType = "small" | "medium" | "large";
 
@@ -66,19 +67,29 @@ const Container = styled.button<ContainerProps>`
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   label?: string;
-  open?: boolean;
   size?: DropdownButtonSizeType;
 }
 
 const DropdownButton: React.FC<Props> = ({
   children,
   label = "메뉴",
-  open,
   size = "medium",
   ...props
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const ref = useRef<HTMLButtonElement | null>(null);
+
+  useOutsideClick(ref, () => setOpen(false));
+
   return (
-    <Container size={size} open={open} {...props}>
+    <Container
+      size={size}
+      open={open}
+      ref={ref}
+      onClick={() => setOpen((prev) => !prev)}
+      {...props}
+    >
       {label}
       <MdArrowDropDown
         className="arrow-dropdown-icon"

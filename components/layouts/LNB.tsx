@@ -34,7 +34,7 @@ const LNB: React.FC = () => {
     <Base>
       <div className="contents">
         <NavigationBar />
-        {router.pathname === "/summoners/[name]" && <HeaderMainInput />}
+        {router.pathname !== "/" && <HeaderMainInput />}
       </div>
     </Base>
   );
