@@ -11,6 +11,7 @@ import { theme } from "../../styles/theme";
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
+import MatchResultDetailAvatar from "./MatchResultDetailAvatar";
 
 const getKdaColor = (kda: string | number) => {
   if (kda === "Perfect") return palette.yellow[500];
@@ -133,7 +134,10 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
 
   return (
     <Container win={participant.win} damageProportion={damageProportion}>
-      <Avatar src={`/champion/${participant.championName}.png`} />
+      <MatchResultDetailAvatar
+        championName={participant.championName}
+        championLevel={participant.champLevel}
+      />
       <Flexbox flex="col" gap="0.1rem">
         <Avatar
           shape="boxier"
