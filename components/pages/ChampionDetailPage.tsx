@@ -112,7 +112,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
     event.preventDefault();
 
     const response = await axios.get("https://geolocation-db.com/json/");
-    const clientIp = response.data.IPv4;
+    const clientIp = response.data.IPv4.split(".").slice(0, 2).join(".");
     const body = {
       name: clientIp,
       champion: championName,
@@ -166,7 +166,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
       <div className="champion-detail-content">
         <Layout>
           <Card className="ad" height="6rem" />
-          <Card>
+          <Card style={{ overflow: "hidden" }}>
             <Flexbox flex="col" padding="0.75rem" items="start" gap="1rem">
               <Typography size={theme.fontSize.caption1} weight={600}>
                 {championData.name}{" "}
