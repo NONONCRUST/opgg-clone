@@ -5,6 +5,7 @@ import { theme } from "../../styles/theme";
 import Typography from "../common/Typography";
 import Flexbox from "../layouts/Flexbox";
 import { parseDateRelative } from "../../lib/utils";
+import Divider from "../common/Divider";
 
 const Container = styled.div`
   display: flex;
@@ -21,22 +22,25 @@ interface Props {
 
 const CommentCard: React.FC<Props> = ({ commentData }) => {
   return (
-    <Container>
-      <Flexbox justify="start" gap="0.5rem">
-        <Typography size={theme.fontSize.caption3} weight={600}>
-          {commentData.name}
+    <>
+      <Divider />
+      <Container>
+        <Flexbox justify="start" gap="0.5rem">
+          <Typography size={theme.fontSize.caption3} weight={600}>
+            {commentData.name}
+          </Typography>
+          <Typography size={theme.fontSize.caption3} color={gray[500]}>
+            {parseDateRelative(commentData.createdAt)}
+          </Typography>
+          <Typography size={theme.fontSize.caption3} color={gray[500]}>
+            버전: {commentData.version}
+          </Typography>
+        </Flexbox>
+        <Typography size={theme.fontSize.caption3}>
+          {commentData.contents}
         </Typography>
-        <Typography size={theme.fontSize.caption3} color={gray[500]}>
-          {parseDateRelative(commentData.createdAt)}
-        </Typography>
-        <Typography size={theme.fontSize.caption3} color={gray[500]}>
-          버전: {commentData.version}
-        </Typography>
-      </Flexbox>
-      <Typography size={theme.fontSize.caption3}>
-        {commentData.contents}
-      </Typography>
-    </Container>
+      </Container>
+    </>
   );
 };
 

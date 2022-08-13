@@ -14,6 +14,7 @@ const Container = styled.div<ContainerProps>`
 
   background-color: white;
   border-radius: 0.25rem;
+  overflow: hidden;
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};

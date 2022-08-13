@@ -22,6 +22,7 @@ import CommentCard from "../comment/CommentCard";
 import { useMutation } from "@tanstack/react-query";
 import { postComment } from "../../lib/api/comment";
 import axios from "axios";
+import CommentNotFound from "../comment/CommentNotFound";
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -230,6 +231,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
               parsedCommentsData.map((comment, index) => (
                 <CommentCard key={index} commentData={comment} />
               ))}
+            {parsedCommentsData?.length === 0 && <CommentNotFound />}
           </Card>
         </Layout>
       </div>
