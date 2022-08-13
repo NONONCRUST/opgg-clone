@@ -11,6 +11,7 @@ export const getServerSideProps: any = async () => {
     const response = await commentModel.find().limit(1);
     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     console.log(response);
+    console.log(process.env.MONGODB_URI);
 
     return {
       props: {
