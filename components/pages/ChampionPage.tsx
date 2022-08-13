@@ -8,9 +8,9 @@ import { theme } from "../../styles/theme";
 import ChampionFilterInput from "../ChampionFilterInput";
 import Avatar from "../common/Avatar";
 import Card from "../common/Card";
-import DropdownButton from "../common/Dropdown/DropdownButton";
-import DropdownMenu from "../common/Dropdown/DropdownMenu";
-import DropdownMenuItem from "../common/Dropdown/DropdownMenuItem";
+import DropdownButton from "../common/dropdown/DropdownButton";
+import DropdownMenu from "../common/dropdown/DropdownMenu";
+import DropdownMenuItem from "../common/dropdown/DropdownMenuItem";
 import Typography from "../common/Typography";
 import FilteredChampionNotFound from "../FilteredChampionNotFound";
 import Flexbox from "../layouts/Flexbox";
@@ -48,10 +48,15 @@ const Base = styled.main`
   }
 `;
 
-const ChampionPage: React.FC = () => {
+interface Props {
+  championList: ChampionType[];
+}
+
+const ChampionPage: React.FC<Props> = ({ championList }) => {
   const [inputValue, setInputValue] = useState("");
-  const { data: championsQuery } = useChampionsQuery();
-  const championsData = championsQuery?.data;
+  const [version, setVersion] = useState<VersionType>("12.15");
+
+  const { data: championsData } = useChampionsQuery(version, championList);
 
   const filteredChampionsData = championsData?.filter((champion) => {
     return champion.name.includes(inputValue);
@@ -82,10 +87,16 @@ const ChampionPage: React.FC = () => {
           <Flexbox flex="col" gap="0.5rem" items="start">
             <Card>
               <Flexbox padding="0.5rem" justify="start">
-                <DropdownButton label="12.14">
+                <DropdownButton label={version}>
                   <DropdownMenu>
-                    <DropdownMenuItem label="12.14" />
-                    <DropdownMenuItem label="12.15" />
+                    <DropdownMenuItem
+                      label="12.15"
+                      onClick={() => setVersion("12.15")}
+                    />
+                    <DropdownMenuItem
+                      label="12.14"
+                      onClick={() => setVersion("12.14")}
+                    />
                   </DropdownMenu>
                 </DropdownButton>
               </Flexbox>

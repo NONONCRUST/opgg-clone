@@ -166,3 +166,5 @@ type ChampionType = {
 };
 
 type GetChampionsResponseType = ChampionType[];
+
+type GetChampionResponseType = ChampionType;

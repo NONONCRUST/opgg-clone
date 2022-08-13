@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { theme } from "../../styles/theme";
-import MainInput from "../MainInput/MainInput";
+import MainInput from "../main-input/MainInput";
 import { gray } from "../../styles/palette";
 
 const Base = styled.main`

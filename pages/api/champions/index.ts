@@ -8,7 +8,6 @@ const handler: NextApiHandler = async (
   if (req.method === "GET") {
     try {
       const version = req.query.version || "12.15";
-      console.log(version);
       const championDataJSON = fs
         .readFileSync(`data/${version}/champion.json`)
         .toString();
@@ -22,7 +21,6 @@ const handler: NextApiHandler = async (
         (key) => championObject[key]
       );
 
-      console.log(championList);
       return res.status(200).send(championList);
     } catch (error) {
       return res.status(500).end();

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React from "react";
 import { theme } from "../../styles/theme";
-import HeaderMainInput from "../MainInput/HeaderMainInput";
+import HeaderMainInput from "../main-input/HeaderMainInput";
 import NavigationBar from "./NavigationBar";
 
 const Base = styled.div`

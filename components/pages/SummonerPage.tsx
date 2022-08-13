@@ -15,7 +15,7 @@ import Divider from "../common/Divider";
 import IngameNotFound from "../IngameNotFound";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
-import MatchResult from "../MatchResult/MatchResult";
+import MatchResult from "../match-result/MatchResult";
 import MatchResultNotFound from "../MatchResultNotFound";
 import SoloRankInfoCard from "../SoloRankInfoCard";
 import SummonerContentHeader from "../SummonerContentHeader";
@@ -24,7 +24,7 @@ import SummonerNotFound from "../SummonerNotFound";
 import MatchSummaryCard from "../MatchSummaryCard";
 import { useDispatch, useSelector } from "../../store";
 import { searchActions } from "../../store/searchSlice";
-import CurrentGameCard from "../CurrentGame/CurrentGameCard";
+import CurrentGameCard from "../current-game/CurrentGameCard";
 import { gray } from "../../styles/palette";
 
 const Base = styled.main`
@@ -97,26 +97,26 @@ const SummonerPage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const summonerName = useRouter().query.name as string;
+  const router = useRouter();
+
+  const summonerName = router.query.name as string;
 
   const {
-    data: summonerQuery,
+    data: summonerData,
     isLoading: isSummonerLoading,
     refetch: refetchSummoner,
+    isError: isSummonerNotFound,
   } = useSummonerQuery(summonerName);
 
   const {
-    data: matchesQuery,
+    data: matchesData,
     isLoading: isMatchesLoading,
     refetch: refetchMatches,
   } = useMatchesQuery(summonerName);
 
-  const { data: currentGameQuery } = useCurrentGameQuery(summonerName);
+  const { data: currentGameData } = useCurrentGameQuery(summonerName);
 
-  const summonerData = summonerQuery?.data;
-  const matchesData = matchesQuery?.data;
   const matchListData = matchesData?.matches;
-  const currentGameData = currentGameQuery?.data;
 
   const isIngame = currentGameData ? true : false;
 
@@ -131,8 +131,7 @@ const SummonerPage: React.FC = () => {
   const onClickFetchButton = async () => {
     setisFetching(true);
     try {
-      const response = await requestFetchBySummonerName(summonerName);
-      console.log(response);
+      await requestFetchBySummonerName(summonerName);
       refetchMatches();
       refetchSummoner();
     } catch (error) {
@@ -147,7 +146,7 @@ const SummonerPage: React.FC = () => {
     setActiveTab("general");
   }, [dispatch, summonerName]);
 
-  if (summonerQuery?.status === 204) return <SummonerNotFound />;
+  if (isSummonerNotFound) return <SummonerNotFound />;
 
   return (
     <Base>

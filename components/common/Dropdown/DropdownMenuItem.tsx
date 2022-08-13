@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
 import React from "react";
-import palette from "../../../styles/palette";
+import styled from "@emotion/styled";
+import { gray } from "../../../styles/palette";
 
 const Container = styled.li`
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.li`
 
   background-color: white;
   &:hover {
-    background-color: ${palette.gray[100]};
+    background-color: ${gray[100]};
   }
 `;
 

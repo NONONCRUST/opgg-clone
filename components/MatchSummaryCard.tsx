@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "../store";
-import ChampionSearchInput from "./ChampionSearch/ChampionSearchInput";
+import ChampionSearchInput from "./champion-search/ChampionSearchInput";
 import Avatar from "./common/Avatar";
 import Card from "./common/Card";
 import Divider from "./common/Divider";

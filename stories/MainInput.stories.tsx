@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import MainInput from "../components/MainInput/MainInput";
+import MainInput from "../components/main-input/MainInput";
 import styled from "@emotion/styled";
 import { theme } from "../styles/theme";
 

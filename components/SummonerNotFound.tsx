@@ -1,7 +1,6 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { gray } from "../styles/palette";
-
 import Typography from "./common/Typography";
 
 const Base = styled.main`
