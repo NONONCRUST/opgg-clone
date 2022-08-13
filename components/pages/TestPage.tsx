@@ -13,7 +13,11 @@ import Flexbox from "../layouts/Flexbox";
 import RankEmblemAvatar from "../RankEmblemAvatar";
 import SummonerIconAvatar from "../SummonerIconAvatar";
 
-const TestPage: React.FC = () => {
+interface Props {
+  test: string;
+}
+
+const TestPage: React.FC<Props> = ({ test }) => {
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
 
   // const { data: summonerData } = useQuery(["summoner"], () =>
@@ -25,9 +29,9 @@ const TestPage: React.FC = () => {
   //   getFeaturedGame
   // );
 
-  const { data: currentGameData } = useQuery(["current-game"], () =>
-    getCurrentGameBySummonerName("루야 Ruya")
-  );
+  // const { data: currentGameData } = useQuery(["current-game"], () =>
+  //   getCurrentGameBySummonerName("루야 Ruya")
+  // );
 
   // const { data: platformData } = useQuery(["platform"], getPlatformData);
 
@@ -41,8 +45,8 @@ const TestPage: React.FC = () => {
   // console.log(summonerData);
   // console.log("------------------featured game--------------------");
   // console.log(featuredGameData);
-  console.log("-------------루야의 현재 게임---------------");
-  console.log(currentGameData);
+  // console.log("-------------루야의 현재 게임---------------");
+  // console.log(currentGameData);
   // console.log("-------------플랫폼 정보---------------");
   // console.log(platformData);
   // console.log("------------ 골없칸왕의 최근 20게임 전적 ---------");
@@ -77,6 +81,7 @@ const TestPage: React.FC = () => {
         <SummonerIconAvatar level={123} iconNumber={4644} />
         <RankEmblemAvatar tier="diamond" />
         <Button>버튼</Button>
+        <Typography>{test}</Typography>
       </Flexbox>
     </Flexbox>
   );

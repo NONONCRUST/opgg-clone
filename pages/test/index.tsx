@@ -1,9 +1,37 @@
 import React from "react";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import TestPage from "../../components/pages/TestPage";
+import commentModel from "../../models/commentModel";
+import connectMongo from "../../lib/mongodb";
 
-const index: NextPage = () => {
-  return <TestPage />;
+export const getServerSideProps: any = async () => {
+  try {
+    await connectMongo();
+
+    const response = await commentModel.find().limit(1);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(response);
+
+    return {
+      props: {
+        test: response[0].name,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+
+  return {
+    props: "oh",
+  };
+};
+
+interface Props {
+  test: string;
+}
+
+const index: NextPage<Props> = ({ test }) => {
+  return <TestPage test={test} />;
 };
 
 export default index;
