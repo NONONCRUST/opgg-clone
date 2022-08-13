@@ -18,6 +18,7 @@ interface Props {
 }
 
 const TestPage: React.FC<Props> = ({ test }) => {
+  console.log(test);
   // const { data: rotationData } = useQuery(["rotation"], getRotation);
 
   // const { data: summonerData } = useQuery(["summoner"], () =>
