@@ -187,3 +187,11 @@ export const getKillParticipation = (
 
   return killParticipation;
 };
+
+// 게임 유형을 구합니다
+export const getMatchTypeByQueueId = (queueId: number) => {
+  if (queueId === 420) return "솔랭";
+  if (queueId === 440) return "자유 5:5 랭크";
+
+  return "일반";
+};

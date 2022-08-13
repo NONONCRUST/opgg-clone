@@ -134,7 +134,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
                 onChange={onChangeTextarea}
               />
               <Flexbox justify="end" width="100%">
-                <Button>등록</Button>
+                <Button disabled={!comment}>등록</Button>
               </Flexbox>
               <Flexbox justify="between" width="100%">
                 <Flexbox gap="0.5rem">

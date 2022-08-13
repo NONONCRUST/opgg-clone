@@ -64,8 +64,16 @@ const Container = styled.div<ContainerProps>`
       ${({ result }) => (result === "win" ? blue[100] : red[100])};
   }
 
+  .match-result-chip {
+    display: none;
+  }
+
   @media screen and (min-width: ${theme.media.desktop}) {
     .stats-area {
+      display: flex;
+    }
+
+    .match-result-chip {
       display: flex;
     }
   }
@@ -254,10 +262,17 @@ const MatchResultInfo: React.FC<Props> = ({
               alt="summoner trinket"
             />
             {getKillingSpree() && (
-              <MatchResultChip variant={getKillingSpree()} />
+              <MatchResultChip
+                className="match-result-chip"
+                variant={getKillingSpree()}
+              />
             )}
-            {getIsMvp() && <MatchResultChip variant="mvp" />}
-            {getIsAce() && <MatchResultChip variant="ace" />}
+            {getIsMvp() && (
+              <MatchResultChip className="match-result-chip" variant="mvp" />
+            )}
+            {getIsAce() && (
+              <MatchResultChip className="match-result-chip" variant="ace" />
+            )}
           </Flexbox>
         </>
       )}

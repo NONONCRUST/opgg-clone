@@ -1,5 +1,4 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
 import MatchModel from "../../../../models/matchModel";
 
 const handler: NextApiHandler = async (

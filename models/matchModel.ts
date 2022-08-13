@@ -88,6 +88,7 @@ const matchSchema = new Schema({
   gameStartTimestamp: Number,
   gameEndTimestamp: Number,
   gameMode: String,
+  queueId: Number,
   teams: [teamSchema],
   participants: [participantsSchema],
 });

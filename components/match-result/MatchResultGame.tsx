@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Typography from "../common/Typography";
 import Divider from "../common/Divider";
-import { parseDateRelative } from "../../lib/utils";
+import { getMatchTypeByQueueId, parseDateRelative } from "../../lib/utils";
 import { blue, gray, red } from "../../styles/palette";
 
 interface ContainerProps {
@@ -14,7 +14,7 @@ const Container = styled.div<ContainerProps>`
   flex-direction: column;
   gap: 0.25rem;
 
-  width: 6rem;
+  width: 6.5rem;
   height: 6rem;
   padding: 0.8rem 1rem;
 
@@ -45,7 +45,9 @@ interface Props {
 const MatchResultGame: React.FC<Props> = ({ matchData, result }) => {
   return (
     <Container result={result}>
-      <Typography className="solo-rank-text">솔랭</Typography>
+      <Typography className="solo-rank-text">
+        {getMatchTypeByQueueId(matchData.queueId)}
+      </Typography>
       <Typography size="12px" color={gray[400]}>
         {parseDateRelative(new Date(matchData.gameEndTimestamp))}
       </Typography>

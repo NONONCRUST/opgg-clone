@@ -57,11 +57,13 @@ const SummonerContentHeader: React.FC<Props> = ({
           />
           <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
             <Flexbox gap="0.25rem">
-              <TierHistoryChip
-                season="2022"
-                tier={summonerData?.tier}
-                rank={mapRank(summonerData?.rank)}
-              />
+              {summonerData?.tier && (
+                <TierHistoryChip
+                  season="2022"
+                  tier={summonerData.tier}
+                  rank={mapRank(summonerData.rank)}
+                />
+              )}
             </Flexbox>
             <Flexbox gap="0.5rem">
               <Typography size="1.5rem" weight={600}>
@@ -75,7 +77,7 @@ const SummonerContentHeader: React.FC<Props> = ({
             {!isFetching && (
               <Button
                 onClick={throttle(onClickFetchButton)}
-                disabled={minuteDiff < 5 && updatedAt !== undefined}
+                // disabled={minuteDiff < 5 && updatedAt !== undefined}
               >
                 전적 갱신
               </Button>

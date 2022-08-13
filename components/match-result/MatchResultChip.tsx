@@ -56,13 +56,15 @@ const Container = styled.div<ContainerProps>`
     getMatchResultChipBackgroundColor(variant)};
 `;
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   variant?: MatchResultChipVariantType;
 }
 
-const MatchResultChip: React.FC<Props> = ({ variant = "double" }) => {
+const MatchResultChip: React.FC<Props> = ({ variant = "double", ...props }) => {
   return (
-    <Container variant={variant}>{getMatchResultChipText(variant)}</Container>
+    <Container variant={variant} {...props}>
+      {getMatchResultChipText(variant)}
+    </Container>
   );
 };
 

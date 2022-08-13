@@ -56,20 +56,21 @@ const handler: NextApiHandler = async (
       const { name, id, profileIconId, summonerLevel } = response.data;
 
       const leagueResponse = await getLeagueBySummonerIdApi(id);
-      console.log(leagueResponse);
 
-      leagueResponse.data[0];
+      const rankedSolo = leagueResponse.data.find((league) => {
+        league.queueType === "RANKED_SOLO_5x5";
+      });
 
       const body = {
         name: name,
         profileIconId: profileIconId,
         summonerLevel: summonerLevel,
-        queueType: leagueResponse.data[0]?.queueType,
-        tier: leagueResponse.data[0]?.tier,
-        rank: leagueResponse.data[0]?.rank,
-        leaguePoints: leagueResponse.data[0]?.leaguePoints,
-        wins: leagueResponse.data[0]?.wins,
-        losses: leagueResponse.data[0]?.losses,
+        queueType: rankedSolo?.queueType,
+        tier: rankedSolo?.tier,
+        rank: rankedSolo?.rank,
+        leaguePoints: rankedSolo?.leaguePoints,
+        wins: rankedSolo?.wins,
+        losses: rankedSolo?.losses,
         updatedAt: new Date(),
       };
 
@@ -77,12 +78,12 @@ const handler: NextApiHandler = async (
         name: name,
         profileIconId: profileIconId,
         summonerLevel: summonerLevel,
-        queueType: leagueResponse.data[0]?.queueType,
-        tier: leagueResponse.data[0]?.tier,
-        rank: leagueResponse.data[0]?.rank,
-        leaguePoints: leagueResponse.data[0]?.leaguePoints,
-        wins: leagueResponse.data[0]?.wins,
-        losses: leagueResponse.data[0]?.losses,
+        queueType: rankedSolo?.queueType,
+        tier: rankedSolo?.tier,
+        rank: rankedSolo?.rank,
+        leaguePoints: rankedSolo?.leaguePoints,
+        wins: rankedSolo?.wins,
+        losses: rankedSolo?.losses,
         updatedAt: new Date(),
       });
 

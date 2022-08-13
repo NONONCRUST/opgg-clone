@@ -74,6 +74,7 @@ const handler: NextApiHandler = async (
           gameId: match.info.gameId,
           gameDuration: match.info.gameDuration,
           gameMode: match.info.gameMode,
+          queueId: match.info.queueId,
           teams: match.info.teams,
           participants: participants,
         };
@@ -94,18 +95,20 @@ const handler: NextApiHandler = async (
 
       const leagueResponse = await getLeagueBySummonerIdApi(id);
 
-      leagueResponse.data[0];
+      const rankedSolo = leagueResponse.data.find((league) => {
+        return league.queueType === "RANKED_SOLO_5x5";
+      });
 
       const body = {
         name: name,
         profileIconId: profileIconId,
         summonerLevel: summonerLevel,
-        queueType: leagueResponse.data[0]?.queueType,
-        tier: leagueResponse.data[0]?.tier,
-        rank: leagueResponse.data[0]?.rank,
-        leaguePoints: leagueResponse.data[0]?.leaguePoints,
-        wins: leagueResponse.data[0]?.wins,
-        losses: leagueResponse.data[0]?.losses,
+        queueType: rankedSolo?.queueType,
+        tier: rankedSolo?.tier,
+        rank: rankedSolo?.rank,
+        leaguePoints: rankedSolo?.leaguePoints,
+        wins: rankedSolo?.wins,
+        losses: rankedSolo?.losses,
         updatedAt: new Date(),
       };
 

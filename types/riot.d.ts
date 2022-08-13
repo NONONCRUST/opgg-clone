@@ -17,6 +17,7 @@ type MatchType = {
   gameStartTimestamp: number;
   gameEndTimestamp: number;
   gameMode: string;
+  queueId: number;
   teams: TeamDto[];
   participants: ParticipantType[];
 };

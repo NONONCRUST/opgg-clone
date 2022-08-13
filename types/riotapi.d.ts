@@ -193,7 +193,7 @@ type InfoDto = {
   mapId: number;
   participants: ParticipantDto[];
   platformId: string;
-  queueid: number;
+  queueId: number;
   teams: TeamDto[];
   tournamentCode: string;
 };
