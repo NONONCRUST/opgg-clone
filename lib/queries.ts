@@ -6,6 +6,7 @@ import {
   getMatchesBySummonerName,
   getSummonerByName,
 } from "../lib/api/riot";
+import { getCommentsByChampionName } from "./api/comment";
 
 export const useSummonerQuery = (summonerName: string) =>
   useQuery(["summoner", summonerName], () => getSummonerByName(summonerName), {
@@ -42,3 +43,6 @@ export const useChampionQuery = (
   useQuery(["champion"], () => getChampion(version, championName), {
     initialData: champion,
   });
+
+export const useCommentsQuery = (championName: string) =>
+  useQuery(["comments"], () => getCommentsByChampionName(championName));

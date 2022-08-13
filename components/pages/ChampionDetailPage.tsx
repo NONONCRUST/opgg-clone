@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useChampionQuery } from "../../lib/queries";
+import { useChampionQuery, useCommentsQuery } from "../../lib/queries";
 import { gray } from "../../styles/palette";
 import { theme } from "../../styles/theme";
 import ChampionProfileAvatar from "../ChampionProfileAvatar";
@@ -19,6 +19,9 @@ import TabButton from "../common/TabButton";
 import ToggleButton from "../common/ToggleButton";
 import Button from "../common/Button";
 import CommentCard from "../comment/CommentCard";
+import { useMutation } from "@tanstack/react-query";
+import { postComment } from "../../lib/api/comment";
+import axios from "axios";
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -44,6 +47,14 @@ const Base = styled.main`
     margin-bottom: 0.5rem;
   }
 
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: 100%;
+  }
+
   @media screen and (min-width: ${theme.media.desktop}) {
     .champion-detail-content-tab {
       padding: 1rem 0;
@@ -67,6 +78,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
   const [version, setVersion] = useState<VersionType>("12.15");
   const [isVersionFiltered, setIsVersionFiltered] = useState(false);
   const [comment, setComment] = useState("");
+  const [currentTab, setCurrentTab] = useState<"newest" | "oldest">("newest");
 
   const router = useRouter();
 
@@ -78,16 +90,47 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
     champion
   );
 
-  console.log(championData);
+  const { data: commentsData, refetch: refetchComments } =
+    useCommentsQuery(championName);
+
+  const reversedCommentsData =
+    commentsData &&
+    (currentTab === "newest" ? [...commentsData].reverse() : commentsData);
+
+  const parsedCommentsData = isVersionFiltered
+    ? reversedCommentsData?.filter((comment) => comment.version === "12.15")
+    : reversedCommentsData;
+
+  const { mutate, isLoading: isMutating, isError } = useMutation(postComment);
 
   const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
   };
 
+  const submitComment = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const response = await axios.get("https://geolocation-db.com/json/");
+    const clientIp = response.data.IPv4;
+    const body = {
+      name: clientIp,
+      champion: championName,
+      version: version,
+      contents: comment,
+    };
+
+    mutate(body, {
+      onSuccess: () => {
+        setComment("");
+        refetchComments();
+      },
+    });
+  };
+
   return (
     <Base>
       <Head>
-        <title>{champion.name} - OP.GG</title>
+        <title>{championData.name} - OP.GG</title>
       </Head>
       <Layout>
         <div className="champion-detail-content-tab">
@@ -112,9 +155,9 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
             <ChampionProfileAvatar championName={championName} />
             <Flexbox flex="col" gap="0.5rem" items="start">
               <Typography size={theme.fontSize.subtitle2} weight={600}>
-                {champion.name}
+                {championData.name}
               </Typography>
-              <Typography color={gray[500]}>{champion.title}</Typography>
+              <Typography color={gray[500]}>{championData.title}</Typography>
             </Flexbox>
           </Flexbox>
         </div>
@@ -125,23 +168,50 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
           <Card>
             <Flexbox flex="col" padding="0.75rem" items="start" gap="1rem">
               <Typography size={theme.fontSize.caption1} weight={600}>
-                {champion.name} <span style={{ fontWeight: 400 }}>운영 팁</span>
+                {championData.name}{" "}
+                <span style={{ fontWeight: 400 }}>운영 팁</span>
               </Typography>
-              <Textarea
-                height="6rem"
-                placeholder={`나만의 ${champion.name} 플레이 팁을 알려주세요.`}
-                value={comment}
-                onChange={onChangeTextarea}
-              />
-              <Flexbox justify="end" width="100%">
-                <Button disabled={!comment}>등록</Button>
-              </Flexbox>
+              <form className="comment-form" onSubmit={submitComment}>
+                <Textarea
+                  height="6rem"
+                  placeholder={`나만의 ${championData.name} 플레이 팁을 알려주세요.`}
+                  value={comment}
+                  onChange={onChangeTextarea}
+                />
+                <Flexbox justify="between" width="100%">
+                  <Flexbox>
+                    {isError && (
+                      <Typography
+                        size={theme.fontSize.caption1}
+                        color={theme.error}
+                      >
+                        무언가 잘못되었습니다. 다시 시도해 주세요!
+                      </Typography>
+                    )}
+                  </Flexbox>
+                  <Button
+                    disabled={!comment || isMutating || comment.length > 300}
+                  >
+                    등록
+                  </Button>
+                </Flexbox>
+              </form>
               <Flexbox justify="between" width="100%">
                 <Flexbox gap="0.5rem">
-                  <TabButton height="2rem" width="4rem" active>
+                  <TabButton
+                    height="2rem"
+                    width="4rem"
+                    active={currentTab === "newest"}
+                    onClick={() => setCurrentTab("newest")}
+                  >
                     최신순
                   </TabButton>
-                  <TabButton height="2rem" width="4rem" active={false}>
+                  <TabButton
+                    height="2rem"
+                    width="4rem"
+                    active={currentTab === "oldest"}
+                    onClick={() => setCurrentTab("oldest")}
+                  >
                     등록순
                   </TabButton>
                 </Flexbox>
@@ -156,11 +226,10 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
                 </Flexbox>
               </Flexbox>
             </Flexbox>
-            <CommentCard />
-            <Divider />
-            <CommentCard />
-            <Divider />
-            <CommentCard />
+            {parsedCommentsData &&
+              parsedCommentsData.map((comment, index) => (
+                <CommentCard key={index} commentData={comment} />
+              ))}
           </Card>
         </Layout>
       </div>
