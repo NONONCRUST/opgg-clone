@@ -22,6 +22,7 @@ const ChampionProfileAvatar: React.FC<Props> = ({ championName }) => {
         layout="fill"
         src={`/champion-tile/${championName}.jpg`}
         alt="champion image"
+        priority
       />
     </Container>
   );

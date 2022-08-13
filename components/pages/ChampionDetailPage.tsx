@@ -17,6 +17,8 @@ import DropdownMenuItem from "../common/dropdown/DropdownMenuItem";
 import Textarea from "../common/Textarea";
 import TabButton from "../common/TabButton";
 import ToggleButton from "../common/ToggleButton";
+import Button from "../common/Button";
+import CommentCard from "../comment/CommentCard";
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -64,6 +66,7 @@ interface Props {
 const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
   const [version, setVersion] = useState<VersionType>("12.15");
   const [isVersionFiltered, setIsVersionFiltered] = useState(false);
+  const [comment, setComment] = useState("");
 
   const router = useRouter();
 
@@ -76,6 +79,10 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
   );
 
   console.log(championData);
+
+  const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(event.target.value);
+  };
 
   return (
     <Base>
@@ -123,7 +130,12 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
               <Textarea
                 height="6rem"
                 placeholder={`나만의 ${champion.name} 플레이 팁을 알려주세요.`}
+                value={comment}
+                onChange={onChangeTextarea}
               />
+              <Flexbox justify="end" width="100%">
+                <Button>등록</Button>
+              </Flexbox>
               <Flexbox justify="between" width="100%">
                 <Flexbox gap="0.5rem">
                   <TabButton height="2rem" width="4rem" active>
@@ -144,6 +156,11 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
                 </Flexbox>
               </Flexbox>
             </Flexbox>
+            <CommentCard />
+            <Divider />
+            <CommentCard />
+            <Divider />
+            <CommentCard />
           </Card>
         </Layout>
       </div>

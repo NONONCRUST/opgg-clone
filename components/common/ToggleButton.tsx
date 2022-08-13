@@ -53,13 +53,13 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const ToggleButton: React.FC<Props> = ({ active, ...props }) => {
-  console.log(active);
   return (
     <Container active={active}>
       <input
         className="toggle-button-input"
         type="checkbox"
         checked={active}
+        readOnly
         {...props}
       />
       <span className="switch" />
