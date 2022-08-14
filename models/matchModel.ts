@@ -36,7 +36,7 @@ const participantsSchema = new Schema({
   wardsKilled: Number,
   doubleKills: Number,
   tripleKills: Number,
-  quadreKills: Number,
+  quadraKills: Number,
   pentaKills: Number,
   goldEarned: Number,
   individualPosition: String,

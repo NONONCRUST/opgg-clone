@@ -8,17 +8,25 @@ import {
 } from "../lib/api/riot";
 import { getCommentsByChampionName } from "./api/comment";
 
-export const useSummonerQuery = (summonerName: string) =>
+export const useSummonerQuery = (
+  summonerName: string,
+  initialData: GetSummonerByNameResponseType
+) =>
   useQuery(["summoner", summonerName], () => getSummonerByName(summonerName), {
     enabled: typeof summonerName === "string",
+    initialData: initialData,
   });
 
-export const useMatchesQuery = (summonerName: string) =>
+export const useMatchesQuery = (
+  summonerName: string,
+  initialData: GetMatchesBySummonerNameResponeType
+) =>
   useQuery(
     ["matches", summonerName],
     () => getMatchesBySummonerName(summonerName),
     {
       enabled: typeof summonerName === "string",
+      initialData: initialData,
     }
   );
 

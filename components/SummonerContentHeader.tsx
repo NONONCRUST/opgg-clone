@@ -77,7 +77,7 @@ const SummonerContentHeader: React.FC<Props> = ({
             {!isFetching && (
               <Button
                 onClick={throttle(onClickFetchButton)}
-                // disabled={minuteDiff < 5 && updatedAt !== undefined}
+                disabled={minuteDiff < 5 && updatedAt !== undefined}
               >
                 전적 갱신
               </Button>

@@ -87,7 +87,15 @@ const Base = styled.main`
   }
 `;
 
-const SummonerPage: React.FC = () => {
+interface Props {
+  initialSummonerData: GetSummonerByNameResponseType;
+  initialMatchesData: GetMatchesBySummonerNameResponeType;
+}
+
+const SummonerPage: React.FC<Props> = ({
+  initialSummonerData,
+  initialMatchesData,
+}) => {
   const [isFetching, setisFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
@@ -106,13 +114,13 @@ const SummonerPage: React.FC = () => {
     isLoading: isSummonerLoading,
     refetch: refetchSummoner,
     isError: isSummonerNotFound,
-  } = useSummonerQuery(summonerName);
+  } = useSummonerQuery(summonerName, initialSummonerData);
 
   const {
     data: matchesData,
     isLoading: isMatchesLoading,
     refetch: refetchMatches,
-  } = useMatchesQuery(summonerName);
+  } = useMatchesQuery(summonerName, initialMatchesData);
 
   const { data: currentGameData } = useCurrentGameQuery(summonerName);
 
