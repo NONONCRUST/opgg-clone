@@ -1,4 +1,4 @@
-type GetSummonerByNameResponseType = {
+type SummonerType = {
   name: string;
   profileIconId: number;
   summonerLevel: number;
@@ -10,6 +10,10 @@ type GetSummonerByNameResponseType = {
   losses: number;
   updatedAt: Date;
 };
+
+type GetSummonerByNameResponseType = SummonerType;
+
+type GetSummonersResponseType = SummonerType[];
 
 type MatchType = {
   gameId: number;

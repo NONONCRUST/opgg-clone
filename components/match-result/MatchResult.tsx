@@ -38,8 +38,6 @@ const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
     (participant) => participant.summonerName === summonerName
   );
 
-  console.log(matchData);
-
   const result = me?.win ? "win" : "lose";
 
   return (

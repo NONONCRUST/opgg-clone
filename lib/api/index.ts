@@ -5,7 +5,7 @@ const axios = axiosInstance.create({
   baseURL:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000"
-      : "https://opgg-clone-api.herokuapp.com/",
+      : "https://opgg-clone-api.herokuapp.com",
   withCredentials: true,
 });
 

@@ -12,6 +12,13 @@ export const getSummonerByName = async (summonerName: string) => {
   return response.data;
 };
 
+export const getSummoners = async (query?: string) => {
+  const response = await axios.get<GetSummonersResponseType>(
+    `/summoner?search=${query}`
+  );
+  return response.data;
+};
+
 export const getFeaturedGame = async () => {
   const response = await axios.get<GetFeaturedGameApiResponseType>(
     "/spectator/featured-game"

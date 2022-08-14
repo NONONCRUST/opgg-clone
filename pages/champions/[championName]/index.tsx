@@ -1,12 +1,26 @@
 import React from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import ChampionDetailPage from "../../../components/pages/ChampionDetailPage";
 import fs from "fs";
+import { getChampions } from "../../../lib/api/riot";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const championName = context.query.championName as string;
+export const getStaticPaths = async () => {
+  const championList = await getChampions("12.15");
 
-  const version = context.query.version || "12.15";
+  const paths = championList.map((champion) => {
+    return {
+      params: { championName: champion.id },
+    };
+  });
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const championName = params!.championName as string;
+
+  const version = "12.15";
+
   const championDataJSON = fs
     .readFileSync(`data/${version}/champion.json`)
     .toString();

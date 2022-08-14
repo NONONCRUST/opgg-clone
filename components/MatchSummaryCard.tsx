@@ -38,7 +38,9 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
     return me?.win === true;
   });
 
-  const winrate = (gameWon.length / 10) * 100;
+  const gameCount = matchListData?.length ?? 1;
+
+  const winrate = (gameWon.length / gameCount) * 100;
 
   return (
     <Container>
@@ -63,7 +65,7 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
         <Flexbox justify="start" padding="1rem">
           <Flexbox flex="col" gap="0.5rem">
             <Typography color={gray[500]} size="0.75rem">
-              10전 {gameWon.length}승 {10 - gameWon.length}패
+              {gameCount}전 {gameWon.length}승 {gameCount - gameWon.length}패
             </Typography>
             <DonutChart percentage={winrate} />
           </Flexbox>
