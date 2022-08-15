@@ -101,14 +101,14 @@ export const scrollToTop = () => {
 };
 
 // 함수에 디바운스를 적용합니다 - nonon
-export const debounce = (callback: any, wait = 166) => {
+export const debounce = (callback: any, delay = 166) => {
   let timeout: NodeJS.Timeout | null;
   return (...args: any) => {
     const context = this;
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       callback.apply(context, args);
-    }, wait);
+    }, delay);
   };
 };
 

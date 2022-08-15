@@ -12,9 +12,14 @@ const HighlightedText: React.FC<Props> = ({ string, keyword }) => {
 
   return (
     <Typography>
-      {string.slice(0, index)}
-      <span style={{ color: red[500] }}>{keyword}</span>
-      {string.slice(index + keyword.length)}
+      {index !== -1 && (
+        <>
+          {string.slice(0, index)}
+          <span style={{ color: red[500] }}>{keyword}</span>
+          {string.slice(index + keyword.length)}
+        </>
+      )}
+      {index === -1 && <>{string}</>}
     </Typography>
   );
 };

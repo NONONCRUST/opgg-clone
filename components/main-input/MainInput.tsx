@@ -72,6 +72,7 @@ const MainInput: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [autoCompleteOpen, setAutoCompleteOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [focusIndex, setFocusIndex] = useState(0);
 
   const debouncedInputValue = useDebounce(inputValue);
 
@@ -81,10 +82,10 @@ const MainInput: React.FC = () => {
   const onOutsideClick = () => {
     setDropdownOpen(false);
     setInputValue("");
+    setAutoCompleteOpen(false);
   };
 
   const { data: summonersData } = useSummonersQuery(debouncedInputValue);
-  console.log(summonersData);
 
   const router = useRouter();
 
@@ -133,6 +134,7 @@ const MainInput: React.FC = () => {
         <MainInputAutoComplete
           summonersData={summonersData}
           searchKeyword={debouncedInputValue}
+          inputValue={inputValue}
         />
       )}
     </Container>

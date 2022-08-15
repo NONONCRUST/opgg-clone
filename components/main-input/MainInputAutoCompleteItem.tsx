@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import React from "react";
 import { capitalize, mapRank } from "../../lib/utils";
-import { gray, red } from "../../styles/palette";
-import { theme } from "../../styles/theme";
+import { gray } from "../../styles/palette";
+
 import Avatar from "../common/Avatar";
 import Typography from "../common/Typography";
 import HighlightedText from "../HighlightedText";
@@ -35,23 +36,30 @@ const MainInputAutoCompleteItem: React.FC<Props> = ({
   searchKeyword,
 }) => {
   return (
-    <Container>
-      <Avatar size="36px" src="/profile-icon/4644.png" />
-      <Flexbox flex="col" items="start" gap="0.3rem">
-        <HighlightedText string={summonerData.name} keyword={searchKeyword} />
-        {summonerData.tier && (
-          <Typography size="11px">
-            {capitalize(summonerData.tier)} {mapRank(summonerData.rank)} -{" "}
-            {summonerData.leaguePoints}LP
-          </Typography>
-        )}
-        {!summonerData.tier && (
-          <Typography size="11px">
-            Level {summonerData.summonerLevel}
-          </Typography>
-        )}
-      </Flexbox>
-    </Container>
+    <Link href={`/summoners/${summonerData.name}`}>
+      <a style={{ width: "100%" }}>
+        <Container>
+          <Avatar size="36px" src="/profile-icon/4644.png" />
+          <Flexbox flex="col" items="start" gap="0.3rem">
+            <HighlightedText
+              string={summonerData.name}
+              keyword={searchKeyword}
+            />
+            {summonerData.tier && (
+              <Typography size="11px">
+                {capitalize(summonerData.tier)} {mapRank(summonerData.rank)} -{" "}
+                {summonerData.leaguePoints}LP
+              </Typography>
+            )}
+            {!summonerData.tier && (
+              <Typography size="11px">
+                Level {summonerData.summonerLevel}
+              </Typography>
+            )}
+          </Flexbox>
+        </Container>
+      </a>
+    </Link>
   );
 };
 

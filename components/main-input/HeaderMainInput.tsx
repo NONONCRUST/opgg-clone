@@ -7,6 +7,9 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import useSearchHistory from "../../hooks/useSearchHistory";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
+import useDebounce from "../../hooks/useDebounce";
+import MainInputAutoComplete from "./MainInputAutoComplete";
+import { useSummonersQuery } from "../../lib/queries";
 
 interface ContainerProps {
   inputOpen: boolean;
@@ -65,8 +68,11 @@ const Container = styled.div<ContainerProps>`
 
 const HeaderMainInput: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [autoCompleteOpen, setAutoCompleteOpen] = useState(false);
   const [inputOpen, setInputOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  const debouncedInputValue = useDebounce(inputValue);
 
   const mainInputRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -75,7 +81,10 @@ const HeaderMainInput: React.FC = () => {
     setDropdownOpen(false);
     setInputOpen(false);
     setInputValue("");
+    setAutoCompleteOpen(false);
   };
+
+  const { data: summonersData } = useSummonersQuery(debouncedInputValue);
 
   const router = useRouter();
 
@@ -86,6 +95,9 @@ const HeaderMainInput: React.FC = () => {
     setInputValue(event.target.value);
     if (event.target.value !== "") setDropdownOpen(false);
     if (event.target.value === "") setDropdownOpen(true);
+
+    if (event.target.value !== "") setAutoCompleteOpen(true);
+    if (event.target.value === "") setAutoCompleteOpen(false);
   };
 
   const search = () => {
@@ -118,7 +130,17 @@ const HeaderMainInput: React.FC = () => {
         onKeyPress={onEnter}
       />
       <MdSearch className="icon" onClick={search} />
-      {dropdownOpen && <MainInputDropdownMenu type="header" />}
+      {dropdownOpen && !autoCompleteOpen && (
+        <MainInputDropdownMenu type="header" />
+      )}
+      {summonersData && summonersData.length !== 0 && autoCompleteOpen && (
+        <MainInputAutoComplete
+          type="header"
+          summonersData={summonersData}
+          searchKeyword={debouncedInputValue}
+          inputValue={inputValue}
+        />
+      )}
     </Container>
   );
 };

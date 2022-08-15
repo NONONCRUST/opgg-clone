@@ -9,7 +9,8 @@ import {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const summonerName = context.query.name as string;
   const summonerData = await getSummonerByName(summonerName);
-  const matchesData = await getMatchesBySummonerName(summonerName);
+  const matchedSummonerName = summonerData.name;
+  const matchesData = await getMatchesBySummonerName(matchedSummonerName);
 
   return {
     props: {

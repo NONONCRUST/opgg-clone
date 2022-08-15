@@ -116,22 +116,26 @@ const SummonerPage: React.FC<Props> = ({
     isError: isSummonerNotFound,
   } = useSummonerQuery(summonerName, initialSummonerData);
 
+  const matchedSummonerName = summonerData.name;
+
   const {
     data: matchesData,
     isLoading: isMatchesLoading,
     refetch: refetchMatches,
-  } = useMatchesQuery(summonerName, initialMatchesData);
+  } = useMatchesQuery(matchedSummonerName, initialMatchesData);
 
-  const { data: currentGameData } = useCurrentGameQuery(summonerName);
+  console.log(matchesData);
 
-  const matchListData = matchesData?.matches;
+  const { data: currentGameData } = useCurrentGameQuery(matchedSummonerName);
+
+  const matchListData = matchesData.matches;
 
   const isIngame = currentGameData ? true : false;
 
-  const filteredMatchListData = matchListData?.filter((match) => {
+  const filteredMatchListData = matchListData.filter((match) => {
     if (championSearchFilter === "") return match;
     const me = match.participants.find(
-      (participant) => participant.summonerName === summonerName
+      (participant) => participant.summonerName === matchedSummonerName
     );
     return me?.championName === championSearchFilter;
   });
@@ -159,7 +163,7 @@ const SummonerPage: React.FC<Props> = ({
   return (
     <Base>
       <Head>
-        <title>{summonerName} - 게임 전적</title>
+        <title>{matchedSummonerName} - 게임 전적</title>
       </Head>
       <div className="content-header-area">
         {summonerData && (
@@ -194,7 +198,7 @@ const SummonerPage: React.FC<Props> = ({
                 {matchListData && (
                   <MatchSummaryCard
                     matchListData={matchListData}
-                    summonerName={summonerName}
+                    summonerName={matchedSummonerName}
                   />
                 )}
                 {!isMatchesLoading &&
@@ -206,7 +210,7 @@ const SummonerPage: React.FC<Props> = ({
                       <MatchResult
                         key={index}
                         matchData={matchData}
-                        summonerName={summonerName}
+                        summonerName={matchedSummonerName}
                       />
                     ))}
                 </Flexbox>
@@ -219,7 +223,7 @@ const SummonerPage: React.FC<Props> = ({
                 <CurrentGameCard currentGameData={currentGameData} />
               )}
               {!currentGameData && (
-                <IngameNotFound summonerName={summonerName} />
+                <IngameNotFound summonerName={matchedSummonerName} />
               )}
             </>
           )}

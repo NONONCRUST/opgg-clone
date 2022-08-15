@@ -44,15 +44,17 @@ interface Props {
   type?: "home" | "header";
   summonersData: SummonerType[];
   searchKeyword: string;
+  inputValue: string;
 }
 
 const MainInputAutoComplete: React.FC<Props> = ({
   type = "home",
   summonersData,
   searchKeyword,
+  inputValue,
 }) => {
   return (
-    <Container type="home">
+    <Container type={type}>
       <Flexbox justify="start" padding="0.5rem" width="100%">
         <Typography size={theme.fontSize.caption3} weight={600}>
           Summoner Profile

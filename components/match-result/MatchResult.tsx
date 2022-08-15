@@ -18,7 +18,7 @@ const Container = styled.div<ContainerProps>`
 
   .indicator {
     height: 6rem;
-    width: 0.5rem;
+    width: 0.4rem;
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     background-color: ${({ result }) =>
