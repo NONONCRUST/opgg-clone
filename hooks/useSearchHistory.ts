@@ -13,16 +13,19 @@ const useSearchHistory = () => {
       dispatch(localActions.setSearchHistory(JSON.parse(localSearchHistory)));
   }, [dispatch]);
 
-  const addSearchHistory = (username: string) => {
-    const newSearchHistory = searchHistory.includes(username)
-      ? [username, ...searchHistory.filter((item) => item !== username)]
-      : [username, ...searchHistory];
+  const addSearchHistory = useCallback(
+    (username: string) => {
+      const newSearchHistory = searchHistory.includes(username)
+        ? [username, ...searchHistory.filter((item) => item !== username)]
+        : [username, ...searchHistory];
 
-    if (newSearchHistory.length > 8) newSearchHistory.pop();
+      if (newSearchHistory.length > 8) newSearchHistory.pop();
 
-    localStorage.setItem("search", JSON.stringify(newSearchHistory));
-    dispatch(localActions.setSearchHistory(newSearchHistory));
-  };
+      localStorage.setItem("search", JSON.stringify(newSearchHistory));
+      dispatch(localActions.setSearchHistory(newSearchHistory));
+    },
+    [dispatch, searchHistory]
+  );
 
   const removeSearchHistory = (username: string) => {
     const newSearchHistory = searchHistory.filter((item) => item !== username);

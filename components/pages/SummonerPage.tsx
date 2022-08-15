@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Head from "next/head";
@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "../../store";
 import { searchActions } from "../../store/searchSlice";
 import CurrentGameCard from "../current-game/CurrentGameCard";
 import { gray } from "../../styles/palette";
+import useSearchHistory from "../../hooks/useSearchHistory";
 
 const Base = styled.main`
   .content-area {
@@ -107,6 +108,8 @@ const SummonerPage: React.FC<Props> = ({
 
   const router = useRouter();
 
+  const { addSearchHistory } = useSearchHistory();
+
   const summonerName = router.query.name as string;
 
   const {
@@ -116,7 +119,10 @@ const SummonerPage: React.FC<Props> = ({
     isError: isSummonerNotFound,
   } = useSummonerQuery(summonerName, initialSummonerData);
 
-  const matchedSummonerName = summonerData.name;
+  const matchedSummonerName = useMemo(
+    () => summonerData.name,
+    [summonerData.name]
+  );
 
   const {
     data: matchesData,
@@ -124,23 +130,31 @@ const SummonerPage: React.FC<Props> = ({
     refetch: refetchMatches,
   } = useMatchesQuery(matchedSummonerName, initialMatchesData);
 
-  console.log(matchesData);
-
   const { data: currentGameData } = useCurrentGameQuery(matchedSummonerName);
 
-  const matchListData = matchesData.matches;
+  const matchListData = useMemo(
+    () => matchesData.matches,
+    [matchesData.matches]
+  );
 
-  const isIngame = currentGameData ? true : false;
+  const isIngame = useMemo(
+    () => (currentGameData ? true : false),
+    [currentGameData]
+  );
 
-  const filteredMatchListData = matchListData.filter((match) => {
-    if (championSearchFilter === "") return match;
-    const me = match.participants.find(
-      (participant) => participant.summonerName === matchedSummonerName
-    );
-    return me?.championName === championSearchFilter;
-  });
+  const filteredMatchListData = useMemo(
+    () =>
+      matchListData.filter((match) => {
+        if (championSearchFilter === "") return match;
+        const me = match.participants.find(
+          (participant) => participant.summonerName === matchedSummonerName
+        );
+        return me?.championName === championSearchFilter;
+      }),
+    [championSearchFilter, matchListData, matchedSummonerName]
+  );
 
-  const onClickFetchButton = async () => {
+  const onClickFetchButton = useCallback(async () => {
     setisFetching(true);
     try {
       await requestFetchBySummonerName(summonerName);
@@ -151,12 +165,18 @@ const SummonerPage: React.FC<Props> = ({
     } finally {
       setisFetching(false);
     }
-  };
+  }, [refetchMatches, refetchSummoner, summonerName]);
 
   useEffect(() => {
     dispatch(searchActions.setChampionSearchFilter(""));
     setActiveTab("general");
   }, [dispatch, summonerName]);
+
+  // addSearchHistory 추가할 경우 에러
+  // Maximum update depth exceeded.
+  // useEffect(() => {
+  //   addSearchHistory(matchedSummonerName);
+  // }, [matchedSummonerName]);
 
   if (isSummonerNotFound) return <SummonerNotFound />;
 
