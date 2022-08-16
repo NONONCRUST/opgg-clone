@@ -5,6 +5,7 @@ import Head from "next/head";
 import { theme } from "../../styles/theme";
 import MainInput from "../main-input/MainInput";
 import { gray } from "../../styles/palette";
+import HeadMeta from "../HeadMeta";
 
 const Base = styled.main`
   display: flex;
@@ -32,9 +33,7 @@ const Base = styled.main`
 const HomePage: React.FC = () => {
   return (
     <Base>
-      <Head>
-        <title>롤 전적 검색 OP.GG - 전적 검색</title>
-      </Head>
+      <HeadMeta />
       <div className="main-image">OP.GG</div>
       <MainInput />
     </Base>

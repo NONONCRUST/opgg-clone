@@ -30,4 +30,4 @@ const Textarea: React.FC<Props> = ({ height, ...props }) => {
   return <Container height={height} {...props} />;
 };
 
-export default Textarea;
+export default React.memo(Textarea);

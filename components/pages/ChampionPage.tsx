@@ -16,6 +16,7 @@ import FilteredChampionNotFound from "../FilteredChampionNotFound";
 import Flexbox from "../layouts/Flexbox";
 import Layout from "../layouts/Layout";
 import { rem } from "polished";
+import HeadMeta from "../HeadMeta";
 
 const Base = styled.main`
   .contents {
@@ -67,6 +68,7 @@ const ChampionPage: React.FC<Props> = ({ championList }) => {
 
   return (
     <Base>
+      <HeadMeta />
       <Layout>
         <Flexbox
           padding="2rem 1rem 6rem 1rem"

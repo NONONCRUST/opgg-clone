@@ -45,4 +45,4 @@ const Divider: React.FC<Props> = ({ orientation = "horizontal", ...props }) => {
   return <Container {...props} orientation={orientation} />;
 };
 
-export default Divider;
+export default React.memo(Divider);

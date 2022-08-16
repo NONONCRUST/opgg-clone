@@ -67,4 +67,4 @@ const ToggleButton: React.FC<Props> = ({ active, ...props }) => {
   );
 };
 
-export default ToggleButton;
+export default React.memo(ToggleButton);

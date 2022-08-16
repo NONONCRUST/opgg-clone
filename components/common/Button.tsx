@@ -162,4 +162,4 @@ const Button: React.FC<Props> = ({
   );
 };
 
-export default Button;
+export default React.memo(Button);

@@ -68,4 +68,4 @@ const Typography: React.FC<Props> = ({
   );
 };
 
-export default Typography;
+export default React.memo(Typography);

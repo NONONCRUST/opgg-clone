@@ -23,6 +23,7 @@ import { useMutation } from "@tanstack/react-query";
 import { postComment } from "../../lib/api/comment";
 import axios from "axios";
 import CommentNotFound from "../comment/CommentNotFound";
+import HeadMeta from "../HeadMeta";
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -130,9 +131,10 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
 
   return (
     <Base>
-      <Head>
-        <title>{championData.name} - OP.GG</title>
-      </Head>
+      <HeadMeta
+        title={`${championData.name} - OP.GG - League of Legends`}
+        description={`${championData.name}의 정보와 사용자 팁`}
+      />
       <Layout>
         <div className="champion-detail-content-tab">
           <DropdownButton label={version}>

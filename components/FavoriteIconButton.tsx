@@ -51,8 +51,8 @@ const FavoriteIconButton: React.FC<Props> = ({ summonerName }) => {
   return (
     <Container
       isFavorite={isFavorite}
-      role="button"
       onClick={onClickFavoriteIconButton}
+      aria-label="toggle-favorite"
     >
       {!isFavorite && <MdStarOutline size="20px" color={gray[400]} />}
       {isFavorite && <MdStar size="20px" color="white" />}

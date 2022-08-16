@@ -98,4 +98,4 @@ const LoadingButton: React.FC<Props> = ({
   );
 };
 
-export default LoadingButton;
+export default React.memo(LoadingButton);

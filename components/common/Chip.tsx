@@ -11,4 +11,4 @@ const Chip: React.FC<Props> = ({ children }) => {
   return <Container>{children}</Container>;
 };
 
-export default Chip;
+export default React.memo(Chip);

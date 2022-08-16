@@ -49,4 +49,4 @@ const IconButton: React.FC<Props> = ({ children, variant }) => {
   return <Container variant={variant}>{children}</Container>;
 };
 
-export default IconButton;
+export default React.memo(IconButton);

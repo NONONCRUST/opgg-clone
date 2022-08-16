@@ -7,4 +7,4 @@ const Tooltip: React.FC = () => {
   return <Container>Tooltip</Container>;
 };
 
-export default Tooltip;
+export default React.memo(Tooltip);

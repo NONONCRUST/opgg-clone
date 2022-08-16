@@ -89,4 +89,4 @@ const TabButton: React.FC<Props> = ({
   );
 };
 
-export default TabButton;
+export default React.memo(TabButton);

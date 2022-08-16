@@ -27,6 +27,7 @@ import { searchActions } from "../../store/searchSlice";
 import CurrentGameCard from "../current-game/CurrentGameCard";
 import { gray } from "../../styles/palette";
 import useSearchHistory from "../../hooks/useSearchHistory";
+import HeadMeta from "../HeadMeta";
 
 const Base = styled.main`
   .content-area {
@@ -174,6 +175,10 @@ const SummonerPage: React.FC<Props> = ({
 
   return (
     <Base>
+      <HeadMeta
+        title={`${summonerData.name} - 게임 전적`}
+        description={`${summonerData.name} / ${summonerData.tier} ${summonerData.rank} ${summonerData.leaguePoints}LP / ${summonerData.wins}승 ${summonerData.losses}패`}
+      />
       <Head>
         <title>{matchedSummonerName} - 게임 전적</title>
       </Head>

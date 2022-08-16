@@ -7,4 +7,4 @@ const Input: React.FC = () => {
   return <Container>Input</Container>;
 };
 
-export default Input;
+export default React.memo(Input);
