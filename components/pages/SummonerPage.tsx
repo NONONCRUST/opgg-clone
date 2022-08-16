@@ -88,18 +88,15 @@ const Base = styled.main`
   }
 `;
 
-// interface Props {
-//   initialSummonerData: GetSummonerByNameResponseType;
-//   initialMatchesData: GetMatchesBySummonerNameResponeType;
-// }
+interface Props {
+  initialSummonerData: GetSummonerByNameResponseType;
+  initialMatchesData: GetMatchesBySummonerNameResponeType;
+}
 
-// <Props>
-// {
-//   initialSummonerData,
-//   initialMatchesData,
-// }
-
-const SummonerPage: React.FC = () => {
+const SummonerPage: React.FC<Props> = ({
+  initialSummonerData,
+  initialMatchesData,
+}) => {
   const [isFetching, setisFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
@@ -120,17 +117,15 @@ const SummonerPage: React.FC = () => {
     isLoading: isSummonerLoading,
     refetch: refetchSummoner,
     isError: isSummonerNotFound,
-  } = useSummonerQuery(summonerName);
-  // , initialSummonerData
+  } = useSummonerQuery(summonerName, initialSummonerData);
 
-  const matchedSummonerName = summonerData?.name || "";
+  const matchedSummonerName = summonerData.name;
 
   const {
     data: matchesData,
     isLoading: isMatchesLoading,
     refetch: refetchMatches,
-  } = useMatchesQuery(matchedSummonerName);
-  // , initialMatchesData
+  } = useMatchesQuery(matchedSummonerName, initialMatchesData);
 
   const { data: currentGameData } = useCurrentGameQuery(matchedSummonerName);
 
