@@ -10,12 +10,12 @@ import {
 import { getCommentsByChampionName } from "./api/comment";
 
 export const useSummonerQuery = (
-  summonerName: string,
-  initialData: GetSummonerByNameResponseType
+  summonerName: string
+  // initialData: GetSummonerByNameResponseType
 ) =>
   useQuery(["summoner", summonerName], () => getSummonerByName(summonerName), {
     enabled: typeof summonerName === "string",
-    initialData: initialData,
+    // initialData: initialData,
   });
 
 export const useSummonersQuery = (query?: string) =>

@@ -9,7 +9,6 @@ import GlobalStyle from "../styles/GlobalStyle";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { isDarkMode } = useDarkMode();
-  console.log("asdasd");
 
   const queryClient = new QueryClient({
     defaultOptions: {

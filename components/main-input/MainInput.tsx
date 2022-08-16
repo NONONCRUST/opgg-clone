@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { MdSearch } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import useSearchHistory from "../../hooks/useSearchHistory";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
 import { gray } from "../../styles/palette";
@@ -89,7 +88,6 @@ const MainInput: React.FC = () => {
   const router = useRouter();
 
   useOutsideClick(mainInputRef, onOutsideClick);
-  const { addSearchHistory } = useSearchHistory();
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -106,7 +104,6 @@ const MainInput: React.FC = () => {
 
   const search = () => {
     if (inputValue === "") return;
-    addSearchHistory(inputValue);
     setInputValue("");
     router.push(`/summoners/${inputValue}`);
   };

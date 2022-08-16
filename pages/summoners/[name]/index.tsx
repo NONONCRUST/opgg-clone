@@ -6,33 +6,36 @@ import {
   getSummonerByName,
 } from "../../../lib/api/riot";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const summonerName = context.query.name as string;
-  const summonerData = await getSummonerByName(summonerName);
-  const matchedSummonerName = summonerData.name;
-  const matchesData = await getMatchesBySummonerName(matchedSummonerName);
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const summonerName = context.query.name as string;
+//   const summonerData = await getSummonerByName(summonerName);
+//   const matchedSummonerName = summonerData.name;
+//   const matchesData = await getMatchesBySummonerName(matchedSummonerName);
 
-  return {
-    props: {
-      initialSummonerData: summonerData,
-      initialMatchesData: matchesData,
-    },
-  };
-};
+//   return {
+//     props: {
+//       initialSummonerData: summonerData,
+//       initialMatchesData: matchesData,
+//     },
+//   };
+// };
 
-interface Props {
-  initialSummonerData: GetSummonerByNameResponseType;
-  initialMatchesData: GetMatchesBySummonerNameResponeType;
-}
+// interface Props {
+//   initialSummonerData: GetSummonerByNameResponseType;
+//   initialMatchesData: GetMatchesBySummonerNameResponeType;
+// }
 
-const index: NextPage<Props> = ({
-  initialSummonerData,
-  initialMatchesData,
-}) => {
+// <Props>
+// {
+//   initialSummonerData,
+//   initialMatchesData,
+// }
+
+const index: NextPage = () => {
   return (
     <SummonerPage
-      initialSummonerData={initialSummonerData}
-      initialMatchesData={initialMatchesData}
+    // initialSummonerData={initialSummonerData}
+    // initialMatchesData={initialMatchesData}
     />
   );
 };

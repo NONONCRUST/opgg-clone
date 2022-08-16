@@ -1,7 +1,6 @@
 import axiosInstance from "axios";
 
 const axios = axiosInstance.create({
-  // baseURL: "/api",
   baseURL:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000"

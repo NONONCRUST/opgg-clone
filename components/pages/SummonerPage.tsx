@@ -88,15 +88,18 @@ const Base = styled.main`
   }
 `;
 
-interface Props {
-  initialSummonerData: GetSummonerByNameResponseType;
-  initialMatchesData: GetMatchesBySummonerNameResponeType;
-}
+// interface Props {
+//   initialSummonerData: GetSummonerByNameResponseType;
+//   initialMatchesData: GetMatchesBySummonerNameResponeType;
+// }
 
-const SummonerPage: React.FC<Props> = ({
-  initialSummonerData,
-  initialMatchesData,
-}) => {
+// <Props>
+// {
+//   initialSummonerData,
+//   initialMatchesData,
+// }
+
+const SummonerPage: React.FC = () => {
   const [isFetching, setisFetching] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
 
@@ -117,7 +120,8 @@ const SummonerPage: React.FC<Props> = ({
     isLoading: isSummonerLoading,
     refetch: refetchSummoner,
     isError: isSummonerNotFound,
-  } = useSummonerQuery(summonerName, initialSummonerData);
+  } = useSummonerQuery(summonerName);
+  // , initialSummonerData
 
   const matchedSummonerName = useMemo(
     () => summonerData.name,
@@ -172,8 +176,6 @@ const SummonerPage: React.FC<Props> = ({
     setActiveTab("general");
   }, [dispatch, summonerName]);
 
-  // addSearchHistory 추가할 경우 에러
-  // Maximum update depth exceeded.
   useEffect(() => {
     addSearchHistory(matchedSummonerName);
   }, [matchedSummonerName, addSearchHistory]);
