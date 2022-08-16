@@ -24,15 +24,15 @@ export const useSummonersQuery = (query?: string) =>
   });
 
 export const useMatchesQuery = (
-  summonerName: string,
-  initialData: GetMatchesBySummonerNameResponeType
+  summonerName: string
+  // initialData: GetMatchesBySummonerNameResponeType
 ) =>
   useQuery(
     ["matches", summonerName],
     () => getMatchesBySummonerName(summonerName),
     {
       enabled: typeof summonerName === "string",
-      initialData: initialData,
+      // initialData: initialData,
     }
   );
 

@@ -123,23 +123,18 @@ const SummonerPage: React.FC = () => {
   } = useSummonerQuery(summonerName);
   // , initialSummonerData
 
-  const matchedSummonerName = useMemo(
-    () => summonerData.name,
-    [summonerData.name]
-  );
+  const matchedSummonerName = summonerData?.name || "";
 
   const {
     data: matchesData,
     isLoading: isMatchesLoading,
     refetch: refetchMatches,
-  } = useMatchesQuery(matchedSummonerName, initialMatchesData);
+  } = useMatchesQuery(matchedSummonerName);
+  // , initialMatchesData
 
   const { data: currentGameData } = useCurrentGameQuery(matchedSummonerName);
 
-  const matchListData = useMemo(
-    () => matchesData.matches,
-    [matchesData.matches]
-  );
+  const matchListData = matchesData?.matches;
 
   const isIngame = useMemo(
     () => (currentGameData ? true : false),
@@ -148,7 +143,7 @@ const SummonerPage: React.FC = () => {
 
   const filteredMatchListData = useMemo(
     () =>
-      matchListData.filter((match) => {
+      matchListData?.filter((match) => {
         if (championSearchFilter === "") return match;
         const me = match.participants.find(
           (participant) => participant.summonerName === matchedSummonerName
