@@ -72,7 +72,6 @@ const MainInput: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [autoCompleteOpen, setAutoCompleteOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [focusIndex, setFocusIndex] = useState(0);
 
   const debouncedInputValue = useDebounce(inputValue);
 

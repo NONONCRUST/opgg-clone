@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "../store";
 import { themeActions } from "../store/themeSlice";
 
@@ -6,15 +6,15 @@ const useDarkMode = () => {
   const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   const dispatch = useDispatch();
 
-  const setLightMode = () => {
+  const setLightMode = useCallback(() => {
     window.localStorage.setItem("theme", "light");
     dispatch(themeActions.setDarkMode(false));
-  };
+  }, [dispatch]);
 
-  const setDarkMode = () => {
+  const setDarkMode = useCallback(() => {
     window.localStorage.setItem("theme", "light");
     dispatch(themeActions.setDarkMode(true));
-  };
+  }, [dispatch]);
 
   const toggleDarkMode = () => {
     if (isDarkMode) {
@@ -33,7 +33,7 @@ const useDarkMode = () => {
     } else {
       setLightMode();
     }
-  }, []);
+  }, [setDarkMode, setLightMode]);
 
   return { isDarkMode, toggleDarkMode };
 };

@@ -15,6 +15,8 @@ const useSearchHistory = () => {
 
   const addSearchHistory = useCallback(
     (username: string) => {
+      if (searchHistory.length !== 0 && searchHistory[0] === username) return;
+
       const newSearchHistory = searchHistory.includes(username)
         ? [username, ...searchHistory.filter((item) => item !== username)]
         : [username, ...searchHistory];

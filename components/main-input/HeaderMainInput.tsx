@@ -102,11 +102,14 @@ const HeaderMainInput: React.FC = () => {
 
   const search = () => {
     if (inputValue === "") return;
+
     addSearchHistory(inputValue);
     setInputValue("");
-    router.push(`/summoners/${inputValue}`);
     setInputOpen(false);
     setDropdownOpen(false);
+    setAutoCompleteOpen(false);
+
+    router.push(`/summoners/${inputValue}`);
   };
 
   const onFocusInput = () => {

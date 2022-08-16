@@ -174,9 +174,9 @@ const SummonerPage: React.FC<Props> = ({
 
   // addSearchHistory 추가할 경우 에러
   // Maximum update depth exceeded.
-  // useEffect(() => {
-  //   addSearchHistory(matchedSummonerName);
-  // }, [matchedSummonerName]);
+  useEffect(() => {
+    addSearchHistory(matchedSummonerName);
+  }, [matchedSummonerName, addSearchHistory]);
 
   if (isSummonerNotFound) return <SummonerNotFound />;
 
