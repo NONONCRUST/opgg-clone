@@ -11,13 +11,11 @@ const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   width: 100%;
   font-size: 0.875rem;
-
   padding: 0.5rem 1rem;
-
   color: ${gray[500]};
-
   cursor: pointer;
 
   &:hover {

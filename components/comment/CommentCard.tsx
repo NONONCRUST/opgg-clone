@@ -38,7 +38,7 @@ const CommentCard: React.FC<Props> = ({ commentData }) => {
         </Flexbox>
         <Typography
           size={theme.fontSize.caption3}
-          style={{ whiteSpace: "pre" }}
+          style={{ whiteSpace: "pre", lineHeight: "16px" }}
         >
           {commentData.contents}
         </Typography>

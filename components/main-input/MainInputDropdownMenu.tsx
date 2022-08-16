@@ -24,6 +24,7 @@ const Container = styled.div<ContainerProps>`
 
   width: 100%;
   background-color: white;
+  overflow: hidden;
 
   @media screen and (min-width: ${theme.media.desktop}) {
     width: 32rem;
