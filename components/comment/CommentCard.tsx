@@ -36,7 +36,10 @@ const CommentCard: React.FC<Props> = ({ commentData }) => {
             버전: {commentData.version}
           </Typography>
         </Flexbox>
-        <Typography size={theme.fontSize.caption3}>
+        <Typography
+          size={theme.fontSize.caption3}
+          style={{ whiteSpace: "pre" }}
+        >
           {commentData.contents}
         </Typography>
       </Container>

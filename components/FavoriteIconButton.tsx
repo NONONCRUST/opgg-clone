@@ -49,7 +49,11 @@ const FavoriteIconButton: React.FC<Props> = ({ summonerName }) => {
     if (!isFavorite) addFavoriteSummoner(summonerName);
   };
   return (
-    <Container isFavorite={isFavorite} onClick={onClickFavoriteIconButton}>
+    <Container
+      isFavorite={isFavorite}
+      role="button"
+      onClick={onClickFavoriteIconButton}
+    >
       {!isFavorite && <MdStarOutline size="20px" color={gray[400]} />}
       {isFavorite && <MdStar size="20px" color="white" />}
     </Container>

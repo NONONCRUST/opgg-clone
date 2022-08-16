@@ -76,4 +76,4 @@ const Avatar: React.FC<Props> = ({
   );
 };
 
-export default Avatar;
+export default React.memo(Avatar);

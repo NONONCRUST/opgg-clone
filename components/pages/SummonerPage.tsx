@@ -119,7 +119,7 @@ const SummonerPage: React.FC<Props> = ({
     isError: isSummonerNotFound,
   } = useSummonerQuery(summonerName, initialSummonerData);
 
-  const matchedSummonerName = summonerData.name;
+  const matchedSummonerName = summonerData?.name;
 
   const {
     data: matchesData,
@@ -167,7 +167,7 @@ const SummonerPage: React.FC<Props> = ({
   }, [dispatch, summonerName]);
 
   useEffect(() => {
-    addSearchHistory(matchedSummonerName);
+    if (matchedSummonerName) addSearchHistory(matchedSummonerName);
   }, [matchedSummonerName, addSearchHistory]);
 
   if (isSummonerNotFound) return <SummonerNotFound />;

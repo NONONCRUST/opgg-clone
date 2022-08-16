@@ -79,10 +79,10 @@ const TabButton: React.FC<Props> = ({
     <Container
       active={active}
       type={type}
-      {...props}
       width={width}
       height={height}
       role="tab"
+      {...props}
     >
       {children}
     </Container>

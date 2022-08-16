@@ -7,16 +7,24 @@ import {
 } from "../../../lib/api/riot";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const summonerName = context.query.name as string;
-  const summonerData = await getSummonerByName(summonerName);
-  const matchedSummonerName = summonerData.name;
-  const matchesData = await getMatchesBySummonerName(matchedSummonerName);
+  try {
+    const summonerName = context.query.name as string;
+    const summonerData = await getSummonerByName(summonerName);
+    const matchedSummonerName = summonerData.name;
+    const matchesData = await getMatchesBySummonerName(matchedSummonerName);
+
+    return {
+      props: {
+        initialSummonerData: summonerData,
+        initialMatchesData: matchesData,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
-    props: {
-      initialSummonerData: summonerData,
-      initialMatchesData: matchesData,
-    },
+    props: {},
   };
 };
 

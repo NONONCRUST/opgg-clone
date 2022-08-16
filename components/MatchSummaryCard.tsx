@@ -46,7 +46,7 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
     <Container>
       <Card>
         <div className="match-summary-tab-area">
-          <Flexbox gap="0.2rem">
+          <Flexbox gap="0.2rem" role="tablist">
             <TabButton width="4.5rem" height="1.75rem" active={true}>
               솔로랭크
             </TabButton>
