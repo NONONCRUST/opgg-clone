@@ -9,9 +9,9 @@ const Container = styled.div`
 
   position: relative;
 
-  width: 6.25rem;
-  height: 6.25rem;
-  border-radius: 1.25rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
 
   .image {
     border-radius: 20px;
