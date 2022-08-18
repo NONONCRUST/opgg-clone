@@ -35,7 +35,7 @@ const Base = styled.div`
 interface Props {
   summonerData: GetSummonerByNameResponseType;
   isFetching: boolean;
-  updatedAt?: Date;
+  updatedAt: Date;
   onClickFetchButton: () => void;
 }
 
@@ -52,12 +52,12 @@ const SummonerContentHeader: React.FC<Props> = ({
       <Base>
         <div className="summoner-container">
           <SummonerIconAvatar
-            level={summonerData?.summonerLevel}
+            level={summonerData.summonerLevel}
             iconNumber={4644}
           />
           <Flexbox flex="col" justify="start" items="start" gap="0.5rem">
             <Flexbox gap="0.25rem">
-              {summonerData?.tier && (
+              {summonerData.tier && (
                 <TierHistoryChip
                   season="2022"
                   tier={summonerData.tier}
@@ -67,11 +67,11 @@ const SummonerContentHeader: React.FC<Props> = ({
             </Flexbox>
             <Flexbox gap="0.5rem">
               <Typography size="1.5rem" weight={600}>
-                {summonerData?.name}
+                {summonerData.name}
               </Typography>
               <FavoriteIconButton
                 isFavorite={false}
-                summonerName={summonerData?.name}
+                summonerName={summonerData.name}
               />
             </Flexbox>
             {!isFetching && (

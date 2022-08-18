@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 import { gray } from "../../styles/palette";
+import Link from "next/link";
 
 const getNavigationBarItemActive = (active?: boolean) => {
   if (active) {
@@ -17,7 +18,7 @@ interface ContainerProps {
   active?: boolean;
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.li<ContainerProps>`
   display: flex;
   align-items: center;
   color: ${gray[300]};
@@ -34,15 +35,23 @@ const Container = styled.div<ContainerProps>`
   ${({ active }) => getNavigationBarItemActive(active)}
 `;
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLLIElement> {
   name: string;
+  href: string;
   active?: boolean;
 }
 
-const NavigationBarItem: React.FC<Props> = ({ name, active, ...props }) => {
+const NavigationBarItem: React.FC<Props> = ({
+  name,
+  href,
+  active,
+  ...props
+}) => {
   return (
     <Container active={active} {...props}>
-      {name}
+      <Link href={href}>
+        <a>{name}</a>
+      </Link>
     </Container>
   );
 };

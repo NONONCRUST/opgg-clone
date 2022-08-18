@@ -2,13 +2,18 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import NavigationBarItem from "./NavigationBarItem";
+import Link from "next/link";
 
 const Base = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
   height: 100%;
+
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+  }
 `;
 
 const NavigationBar: React.FC = () => {
@@ -16,16 +21,18 @@ const NavigationBar: React.FC = () => {
 
   return (
     <Base>
-      <NavigationBarItem
-        name="홈"
-        active={router.pathname === "/"}
-        onClick={() => router.push("/")}
-      />
-      <NavigationBarItem
-        name="챔피언 분석"
-        active={router.pathname.includes("/champions")}
-        onClick={() => router.push("/champions")}
-      />
+      <ul className="nav-list">
+        <NavigationBarItem
+          name="홈"
+          href="/"
+          active={router.pathname === "/"}
+        />
+        <NavigationBarItem
+          name="챔피언 분석"
+          href="/champions"
+          active={router.pathname.includes("/champions")}
+        />
+      </ul>
     </Base>
   );
 };

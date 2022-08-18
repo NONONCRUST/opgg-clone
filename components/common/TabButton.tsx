@@ -27,7 +27,7 @@ interface ContainerProps {
   height: string;
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.li<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +59,7 @@ const Container = styled.div<ContainerProps>`
   ${({ type, active }) => getTabButtonType(type, active)};
 `;
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLLIElement> {
   children: React.ReactNode;
   active: boolean;
   type?: TabButtonType;

@@ -14,7 +14,7 @@ interface TabProps {
   active: boolean;
 }
 
-const Tab = styled.div<TabProps>`
+const Tab = styled.button<TabProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +22,8 @@ const Tab = styled.div<TabProps>`
   padding: 0.5rem;
   flex: 1;
 
+  outline: none;
+  border: none;
   cursor: pointer;
   color: ${gray[500]};
   font-size: 0.875rem;

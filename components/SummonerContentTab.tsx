@@ -2,13 +2,19 @@ import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "../styles/theme";
 import TabButton from "./common/TabButton";
-import Flexbox from "./layouts/Flexbox";
 import Layout from "./layouts/Layout";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Typography from "./common/Typography";
 
 const Container = styled.div`
   padding: 0 1rem;
+
+  .tab-list {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem 0;
+  }
 
   @media screen and (min-width: ${theme.media.desktop}) {
     padding: 0;
@@ -29,7 +35,7 @@ const SummonerContentTab: React.FC<Props> = ({
   return (
     <Layout>
       <Container>
-        <Flexbox padding="0.5rem 0" justify="start" gap="0.2rem" role="tablist">
+        <ul className="tab-list">
           <TabButton
             type="general"
             active={activeTab === "general"}
@@ -52,7 +58,7 @@ const SummonerContentTab: React.FC<Props> = ({
               </Typography>
             </>
           )}
-        </Flexbox>
+        </ul>
       </Container>
     </Layout>
   );
