@@ -53,6 +53,10 @@ const Container = styled.button<ContainerProps>`
 
   cursor: pointer;
 
+  &:hover {
+    background-color: ${gray[100]};
+  }
+
   ${({ size }) => getDropdownButtonSize(size)};
 
   ${({ open }) =>
