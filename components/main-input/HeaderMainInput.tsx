@@ -49,11 +49,16 @@ const Container = styled.div<ContainerProps>`
       }
     `}
 
-  .icon {
+  .gg-button {
     position: absolute;
-    right: 0.5rem;
+    right: 1.5rem;
     top: 0.3rem;
 
+    font-size: 1.2rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    background-color: white;
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
@@ -129,7 +134,9 @@ const HeaderMainInput: React.FC = () => {
         onChange={onChangeInput}
         onKeyPress={onEnter}
       />
-      <MdSearch className="icon" onClick={search} />
+      <button className="gg-button" onClick={search}>
+        .GG
+      </button>
       {dropdownOpen && !autoCompleteOpen && (
         <MainInputDropdownMenu type="header" />
       )}

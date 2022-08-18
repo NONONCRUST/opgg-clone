@@ -4,6 +4,7 @@ import Link from "next/link";
 import { theme } from "../../styles/theme";
 import DarkModeButton from "../DarkModeButton";
 import Flexbox from "./Flexbox";
+import Image from "next/image";
 
 const Base = styled.div`
   display: flex;
@@ -32,7 +33,14 @@ const GNB: React.FC = () => {
   return (
     <Base>
       <Link href="/">
-        <a className="logo">OP.GG</a>
+        <a className="logo">
+          <Image
+            width="65px"
+            height="16px"
+            src="/opgglogo.svg"
+            alt="opgg-logo"
+          />
+        </a>
       </Link>
       <Flexbox gap="1rem">
         <DarkModeButton />

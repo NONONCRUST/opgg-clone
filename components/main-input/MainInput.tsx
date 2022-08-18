@@ -14,7 +14,7 @@ import useDebounce from "../../hooks/useDebounce";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   position: relative;
 
@@ -28,7 +28,7 @@ const Container = styled.div`
     outline: none;
     width: calc(100% - 2.5rem);
     height: 2rem;
-    margin: 0.5rem 2rem;
+    margin: 0rem 2rem;
     border-radius: 2rem;
   }
 
@@ -38,11 +38,16 @@ const Container = styled.div`
     margin: 0.5rem 2rem;
   }
 
-  .icon {
+  .gg-button {
     position: absolute;
-    right: 1.5rem;
-    top: 1.3rem;
+    right: 3rem;
+    top: 1.1rem;
 
+    font-size: 1.5rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    background-color: white;
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
@@ -124,7 +129,9 @@ const MainInput: React.FC = () => {
         onChange={onChangeInput}
         onKeyPress={onEnter}
       />
-      <MdSearch className="icon" onClick={search} />
+      <button className="gg-button" onClick={search}>
+        .GG
+      </button>
       {dropdownOpen && <MainInputDropdownMenu />}
       {summonersData && summonersData.length !== 0 && autoCompleteOpen && (
         <MainInputAutoComplete

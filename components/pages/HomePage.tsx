@@ -1,11 +1,12 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import Head from "next/head";
 import { theme } from "../../styles/theme";
 import MainInput from "../main-input/MainInput";
 import { gray } from "../../styles/palette";
 import HeadMeta from "../HeadMeta";
+import Image from "next/image";
+import Flexbox from "../layouts/Flexbox";
 
 const Base = styled.main`
   display: flex;
@@ -16,10 +17,7 @@ const Base = styled.main`
   background-color: ${theme.primary};
   min-height: 100vh;
 
-  .main-image {
-    font-size: 4rem;
-    color: white;
-    font-weight: 700;
+  .main-logo {
     margin-top: 8rem;
   }
 
@@ -34,7 +32,15 @@ const HomePage: React.FC = () => {
   return (
     <Base>
       <HeadMeta />
-      <div className="main-image">OP.GG</div>
+      <Flexbox padding="8rem 0 0 0">
+        <Image
+          className="main-logo"
+          width="150px"
+          height="36px"
+          src="/opgglogo.svg"
+          alt="opgg-logo"
+        />
+      </Flexbox>
       <MainInput />
     </Base>
   );
