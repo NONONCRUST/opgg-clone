@@ -18,14 +18,14 @@ const Container = styled.div`
     padding: 0.5rem;
     font-size: 0.75rem;
     z-index: 1;
-    width: 18rem;
+    width: 16rem;
     line-height: 1rem;
   }
 
   .arrow {
     position: absolute;
     top: calc(100% + 0.5rem);
-    left: 50%;
+    left: 33%;
     transform: translateX(-50%);
     transform: rotate(45deg);
 
@@ -53,6 +53,7 @@ interface Props {
   cost?: string;
   range?: string;
   tooltip?: string;
+  reference?: boolean;
   description?: string;
 }
 
@@ -61,21 +62,26 @@ const Tooltip: React.FC<Props> = ({
   name,
   cooldown,
   range,
-  cost = "소모값 없음",
+  cost,
   tooltip,
+  reference,
   description,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const [tooltipTimeout, setTooltipTimeout] = useState<NodeJS.Timeout | null>();
 
-  let timeout: NodeJS.Timeout | null;
   const onMouseOver = () => {
-    timeout = setTimeout(() => {
-      setIsHovering(true);
-    }, 300);
+    if (isHovering) return;
+
+    setTooltipTimeout(
+      setTimeout(() => {
+        setIsHovering(true);
+      }, 300)
+    );
   };
 
   const onMouseOut = () => {
-    if (timeout) clearTimeout(timeout);
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
     setIsHovering(false);
   };
 
@@ -98,16 +104,16 @@ const Tooltip: React.FC<Props> = ({
                 <br />
               </>
             )}
-            <p className="skill-reference">
-              [?]로 표시된 값은 Riot API 에서 제공하지 않는 데이터입니다. 정확한
-              값은 LoL 클라이언트에서 확인 하실 수 있습니다.
-            </p>
-            {description && (
+            {reference && (
               <>
+                <p className="skill-reference">
+                  [?]로 표시된 값은 Riot API 에서 제공하지 않는 데이터입니다.
+                  정확한 값은 LoL 클라이언트에서 확인 하실 수 있습니다.
+                </p>
                 <br />
-                <p className="skill-description">{description}</p>
               </>
             )}
+            {description && <p className="skill-description">{description}</p>}
           </div>
           <div className="arrow" />
         </>

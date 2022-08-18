@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useChampionQuery, useCommentsQuery } from "../../lib/queries";
 import { gray } from "../../styles/palette";
@@ -24,6 +23,9 @@ import { postComment } from "../../lib/api/comment";
 import axios from "axios";
 import CommentNotFound from "../comment/CommentNotFound";
 import HeadMeta from "../HeadMeta";
+import SkillAvatar from "../SkillAvatar";
+import Tooltip from "../common/Tooltip";
+import { SPELL, VERSION } from "../../lib/constants";
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -73,11 +75,12 @@ const Base = styled.main`
 `;
 
 interface Props {
-  champion: ChampionType;
+  initialChampionData: ChampionDetailType;
 }
 
-const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
-  const [version, setVersion] = useState<VersionType>("12.15");
+const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
+  console.log(initialChampionData);
+  const [version, setVersion] = useState<VersionType>(VERSION);
   const [isVersionFiltered, setIsVersionFiltered] = useState(false);
   const [comment, setComment] = useState("");
   const [currentTab, setCurrentTab] = useState<"newest" | "oldest">("newest");
@@ -89,7 +92,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
   const { data: championData } = useChampionQuery(
     version,
     championName,
-    champion
+    initialChampionData
   );
 
   const { data: commentsData, refetch: refetchComments } =
@@ -100,7 +103,7 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
     (currentTab === "newest" ? [...commentsData].reverse() : commentsData);
 
   const parsedCommentsData = isVersionFiltered
-    ? reversedCommentsData?.filter((comment) => comment.version === "12.15")
+    ? reversedCommentsData?.filter((comment) => comment.version === VERSION)
     : reversedCommentsData;
 
   const { mutate, isLoading: isMutating, isError } = useMutation(postComment);
@@ -156,11 +159,37 @@ const ChampionDetailPage: React.FC<Props> = ({ champion }) => {
         <div className="champion-detail-content-header">
           <Flexbox justify="start" gap="1rem">
             <ChampionProfileAvatar championName={championName} />
-            <Flexbox flex="col" gap="0.5rem" items="start">
+            <Flexbox flex="col" gap="0.8rem" items="start">
               <Typography size={theme.fontSize.subtitle2} weight={600}>
                 {championData.name}
               </Typography>
-              <Typography color={gray[500]}>{championData.title}</Typography>
+              <Flexbox gap="0.2rem">
+                <Tooltip
+                  name={championData.passive.name}
+                  description={championData.passive.description}
+                >
+                  <SkillAvatar
+                    type="passive"
+                    src={`/passive/${championData.passive.image.full}`}
+                  />
+                </Tooltip>
+                {championData.spells.map((spell, index) => (
+                  <Tooltip
+                    key={index}
+                    name={spell.name}
+                    cooldown={spell.cooldownBurn}
+                    cost={spell.costBurn}
+                    range={spell.rangeBurn}
+                    description={spell.description}
+                    reference
+                  >
+                    <SkillAvatar
+                      type={SPELL[index]}
+                      src={`/spell/${spell.image.full}`}
+                    />
+                  </Tooltip>
+                ))}
+              </Flexbox>
             </Flexbox>
           </Flexbox>
         </div>

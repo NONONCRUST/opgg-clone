@@ -52,7 +52,7 @@ export const useChampionsQuery = (
 export const useChampionQuery = (
   version: VersionType,
   championName: string,
-  champion: ChampionType
+  champion: ChampionDetailType
 ) =>
   useQuery(["champion"], () => getChampion(version, championName), {
     initialData: champion,

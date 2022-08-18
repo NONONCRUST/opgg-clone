@@ -1,11 +1,11 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import ChampionDetailPage from "../../../components/pages/ChampionDetailPage";
-import fs from "fs";
-import { getChampions } from "../../../lib/api/riot";
+import { getChampion, getChampions } from "../../../lib/api/riot";
+import { VERSION } from "../../../lib/constants";
 
 export const getStaticPaths = async () => {
-  const championList = await getChampions("12.15");
+  const championList = await getChampions(VERSION);
 
   const paths = championList.map((champion) => {
     return {
@@ -19,31 +19,23 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const championName = params!.championName as string;
 
-  const version = "12.15";
+  const version = VERSION;
 
-  const championDataJSON = fs
-    .readFileSync(`data/${version}/champion.json`)
-    .toString();
-
-  const championData = JSON.parse(championDataJSON);
-
-  const championObject = championData.data;
-
-  const champion = championObject[championName];
+  const initialChampionData = await getChampion(version, championName);
 
   return {
     props: {
-      champion,
+      initialChampionData,
     },
   };
 };
 
 interface Props {
-  champion: ChampionType;
+  initialChampionData: ChampionDetailType;
 }
 
-const index: NextPage<Props> = ({ champion }) => {
-  return <ChampionDetailPage champion={champion} />;
+const index: NextPage<Props> = ({ initialChampionData }) => {
+  return <ChampionDetailPage initialChampionData={initialChampionData} />;
 };
 
 export default index;

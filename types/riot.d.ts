@@ -172,4 +172,43 @@ type ChampionType = {
 
 type GetChampionsResponseType = ChampionType[];
 
-type GetChampionResponseType = ChampionType;
+type ChampionDetailType = {
+  id: string;
+  key: string;
+  name: string;
+  partype: string;
+  spells: {
+    id: string;
+    name: string;
+    description: string;
+    tooltip: string;
+    leveltip: {
+      label: string[];
+      effect: string[];
+    };
+    maxrank: number;
+    cooldown: number[];
+    cooldownBurn: string;
+    cost: number[];
+    costBurn: string;
+    costType: string;
+    maxammo: string;
+    rangeBurn: string;
+    image: {
+      full: string;
+      group: string;
+      sprite: string;
+    };
+  }[];
+  passive: {
+    name: string;
+    description: string;
+    image: {
+      full: string;
+      sprite: string;
+      group: string;
+    };
+  };
+};
+
+type GetChampionResponseType = ChampionDetailType;
