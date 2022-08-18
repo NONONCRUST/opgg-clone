@@ -39,6 +39,7 @@ const Container = styled.div<ContainerProps>`
         width: 18rem;
         right: 0;
         transform: translateY(0.2rem);
+        border-radius: 0.25rem;
       `}
   }
 
