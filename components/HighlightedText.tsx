@@ -1,6 +1,6 @@
 import React from "react";
-import { red } from "../styles/palette";
-import Typography from "./common/Typography";
+import { red } from "@styles/palette";
+import Typography from "@components/common/Typography";
 
 interface Props {
   string: string;

@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { MdInfoOutline, MdStar } from "react-icons/md";
-import { gray, yellow } from "../../styles/palette";
-import Typography from "../common/Typography";
+import { gray, yellow } from "@styles/palette";
+import Typography from "@components/common/Typography";
 
 const Container = styled.div`
   display: flex;

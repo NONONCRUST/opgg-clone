@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { gray } from "../styles/palette";
-import Typography from "./common/Typography";
+import { gray } from "@styles/palette";
+import Typography from "@components/common/Typography";
 
 const Base = styled.main`
   display: flex;

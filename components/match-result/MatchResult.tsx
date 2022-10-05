@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import MatchResultCard from "./MatchResultCard";
-import MatchResultGame from "./MatchResultGame";
-import MatchResultInfo from "./MatchResultInfo";
-import MatchResultParticipants from "./MatchResultParticipants";
-import MatchResultAction from "./MatchResultAction";
-import Flexbox from "../layouts/Flexbox";
-import MatchResultDetail from "./MatchResultDetail";
-import { blue, red } from "../../styles/palette";
+import MatchResultCard from "@components/match-result/MatchResultCard";
+import MatchResultGame from "@components/match-result/MatchResultGame";
+import MatchResultInfo from "@components/match-result/MatchResultInfo";
+import MatchResultParticipants from "@components/match-result/MatchResultParticipants";
+import MatchResultAction from "@components/match-result/MatchResultAction";
+import Flexbox from "@components/layouts/Flexbox";
+import MatchResultDetail from "@components/match-result/MatchResultDetail";
+import { blue, red } from "@styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";

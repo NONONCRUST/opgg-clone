@@ -5,18 +5,17 @@ import {
   mapRank,
   parseDateRelative,
   throttle,
-} from "../lib/utils";
-
+} from "@lib/utils";
 import Button from "./common/Button";
-import LoadingButton from "./common/LoadingButton";
-import Typography from "./common/Typography";
-import FavoriteIconButton from "./FavoriteIconButton";
-import Flexbox from "./layouts/Flexbox";
-import Layout from "./layouts/Layout";
-import SummonerIconAvatar from "./SummonerIconAvatar";
-import TierHistoryChip from "./TierHistoryChip";
-import { theme } from "../styles/theme";
-import { gray } from "../styles/palette";
+import LoadingButton from "@components/common/LoadingButton";
+import Typography from "@components/common/Typography";
+import FavoriteIconButton from "@components/FavoriteIconButton";
+import Flexbox from "@components/layouts/Flexbox";
+import Layout from "@components/layouts/Layout";
+import SummonerIconAvatar from "@components/SummonerIconAvatar";
+import TierHistoryChip from "@components/TierHistoryChip";
+import { theme } from "@styles/theme";
+import { gray } from "@styles/palette";
 
 const Base = styled.div`
   .summoner-container {

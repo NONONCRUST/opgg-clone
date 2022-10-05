@@ -1,7 +1,5 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
-import SummonerIconAvatar from "../components/SummonerIconAvatar";
+import SummonerIconAvatar from "@components/SummonerIconAvatar";
 
 export default {
   title: "Components/SummonerIconAvatar",

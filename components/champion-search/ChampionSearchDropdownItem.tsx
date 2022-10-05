@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useDispatch } from "../../store";
-import { searchActions } from "../../store/searchSlice";
-import { theme } from "../../styles/theme";
-import Avatar from "../common/Avatar";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
+import { useDispatch } from "@store/index";
+import { searchActions } from "@store/searchSlice";
+import { theme } from "@styles/theme";
+import Avatar from "@components/common/Avatar";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
 
 const Container = styled.div`
   display: flex;

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { MdSearch } from "react-icons/md";
-import { gray } from "../../styles/palette";
-import ChampionSearchDropdown from "./ChampionSearchDropdown";
-import ChampionSearchDropdownItem from "./ChampionSearchDropdownItem";
-import { championList } from "../../lib/staticData";
-import useOutsideClick from "../../hooks/useOutsideClick";
+import { gray } from "@styles/palette";
+import ChampionSearchDropdown from "@components/champion-search/ChampionSearchDropdown";
+import ChampionSearchDropdownItem from "@components/champion-search/ChampionSearchDropdownItem";
+import { championList } from "@lib/staticData";
+import useOutsideClick from "@hooks/useOutsideClick";
 
 const Container = styled.div`
   display: flex;

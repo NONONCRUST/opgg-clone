@@ -1,11 +1,11 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import React from "react";
-import { theme } from "../../styles/theme";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import MainInputAutoCompleteItem from "./MainInputAutoCompleteItem";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { theme } from "@styles/theme";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import MainInputAutoCompleteItem from "@components/main-input/MainInputAutoCompleteItem";
 
 interface ContainerProps {
   type: "home" | "header";

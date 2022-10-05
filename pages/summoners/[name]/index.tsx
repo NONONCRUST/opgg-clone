@@ -1,10 +1,9 @@
-import React from "react";
 import { GetServerSideProps, NextPage } from "next";
-import SummonerPage from "../../../components/pages/SummonerPage";
+import SummonerPage from "@components/pages/SummonerPage";
 import {
   getMatchesBySummonerName,
   getSummonerByName,
-} from "../../../lib/api/riot";
+} from "@lib/api/riot";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {

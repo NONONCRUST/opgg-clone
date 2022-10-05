@@ -3,31 +3,31 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { requestFetchBySummonerName } from "../../lib/api/riot";
+import { theme } from "@styles/theme";
+import { gray } from "@styles/palette";
+import Card from "@components/common/Card";
+import Divider from "@components/common/Divider";
+import IngameNotFound from "@components/IngameNotFound";
+import Flexbox from "@components/layouts/Flexbox";
+import Layout from "@components/layouts/Layout";
+import MatchResult from "@components/match-result/MatchResult";
+import MatchResultNotFound from "@components/MatchResultNotFound";
+import SoloRankInfoCard from "@components/SoloRankInfoCard";
+import SummonerContentHeader from "@components/SummonerContentHeader";
+import SummonerContentTab from "@components/SummonerContentTab";
+import SummonerNotFound from "@components/SummonerNotFound";
+import MatchSummaryCard from "@components/MatchSummaryCard";
+import CurrentGameCard from "@components/current-game/CurrentGameCard";
+import HeadMeta from "@components/HeadMeta";
 import {
   useCurrentGameQuery,
   useMatchesQuery,
   useSummonerQuery,
-} from "../../lib/queries";
-import { theme } from "../../styles/theme";
-import Card from "../common/Card";
-import Divider from "../common/Divider";
-import IngameNotFound from "../IngameNotFound";
-import Flexbox from "../layouts/Flexbox";
-import Layout from "../layouts/Layout";
-import MatchResult from "../match-result/MatchResult";
-import MatchResultNotFound from "../MatchResultNotFound";
-import SoloRankInfoCard from "../SoloRankInfoCard";
-import SummonerContentHeader from "../SummonerContentHeader";
-import SummonerContentTab from "../SummonerContentTab";
-import SummonerNotFound from "../SummonerNotFound";
-import MatchSummaryCard from "../MatchSummaryCard";
-import { useDispatch, useSelector } from "../../store";
-import { searchActions } from "../../store/searchSlice";
-import CurrentGameCard from "../current-game/CurrentGameCard";
-import { gray } from "../../styles/palette";
-import useSearchHistory from "../../hooks/useSearchHistory";
-import HeadMeta from "../HeadMeta";
+} from "@lib/queries";
+import { requestFetchBySummonerName } from "@lib/api/riot";
+import { useDispatch, useSelector } from "@store/index";
+import { searchActions } from "@store/searchSlice";
+import useSearchHistory from "@hooks/useSearchHistory";
 
 const Base = styled.main`
   .content-area {

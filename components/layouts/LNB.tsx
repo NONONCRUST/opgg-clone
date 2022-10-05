@@ -1,9 +1,9 @@
+import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React from "react";
-import { theme } from "../../styles/theme";
-import HeaderMainInput from "../main-input/HeaderMainInput";
-import NavigationBar from "./NavigationBar";
+import { theme } from "@styles/theme";
+import HeaderMainInput from "@components/main-input/HeaderMainInput";
+import NavigationBar from "@components/layouts/NavigationBar";
 
 const Base = styled.div`
   display: flex;

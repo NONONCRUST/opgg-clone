@@ -1,12 +1,12 @@
-import styled from "@emotion/styled";
 import React from "react";
-import { championObject } from "../../lib/staticData";
-import { gray, red } from "../../styles/palette";
-import { theme } from "../../styles/theme";
-import Avatar from "../common/Avatar";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
+import styled from "@emotion/styled";
+import { championObject } from "@lib/staticData";
+import { gray, red } from "@styles/palette";
+import { theme } from "@styles/theme";
+import Avatar from "@components/common/Avatar";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
 
 interface ContainerProps {
   team: "blue" | "red";

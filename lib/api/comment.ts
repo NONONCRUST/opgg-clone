@@ -1,4 +1,4 @@
-import axios from ".";
+import axios from "@lib/api/index";
 
 export const getCommentsByChampionName = async (championName: string) => {
   const response = await axios.get<GetCommentsByChampionNameResponseType>(

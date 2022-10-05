@@ -1,8 +1,8 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import Image from "next/image";
 import React from "react";
-import { gray } from "../../styles/palette";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import Image from "next/image";
+import { gray } from "@styles/palette";
 
 const getAvatarShape = (shape?: "rounded" | "boxier") => {
   switch (shape) {

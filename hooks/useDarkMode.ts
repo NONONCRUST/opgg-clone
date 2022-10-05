@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "../store";
-import { themeActions } from "../store/themeSlice";
+import { useDispatch, useSelector } from "@store/index";
+import { themeActions } from "@store/themeSlice";
 
 const useDarkMode = () => {
   const isDarkMode = useSelector((state) => state.theme.isDarkMode);

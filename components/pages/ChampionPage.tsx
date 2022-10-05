@@ -1,22 +1,22 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useChampionsQuery } from "../../lib/queries";
-import { shortenText } from "../../lib/utils";
-import { gray } from "../../styles/palette";
-import { theme } from "../../styles/theme";
-import ChampionFilterInput from "../ChampionFilterInput";
-import Avatar from "../common/Avatar";
-import Card from "../common/Card";
-import DropdownButton from "../common/dropdown/DropdownButton";
-import DropdownMenu from "../common/dropdown/DropdownMenu";
-import DropdownMenuItem from "../common/dropdown/DropdownMenuItem";
-import Typography from "../common/Typography";
-import FilteredChampionNotFound from "../FilteredChampionNotFound";
-import Flexbox from "../layouts/Flexbox";
-import Layout from "../layouts/Layout";
+import { useChampionsQuery } from "@lib/queries";
+import { shortenText } from "@lib/utils";
+import { gray } from "@styles/palette";
+import { theme } from "@styles/theme";
+import ChampionFilterInput from "@components/ChampionFilterInput";
+import Avatar from "@components/common/Avatar";
+import Card from "@components/common/Card";
+import DropdownButton from "@components/common/dropdown/DropdownButton";
+import DropdownMenu from "@components/common/dropdown/DropdownMenu";
+import DropdownMenuItem from "@components/common/dropdown/DropdownMenuItem";
+import Typography from "@components/common/Typography";
+import FilteredChampionNotFound from "@components/FilteredChampionNotFound";
+import Flexbox from "@components/layouts/Flexbox";
+import Layout from "@components/layouts/Layout";
 import { rem } from "polished";
-import HeadMeta from "../HeadMeta";
+import HeadMeta from "@components/HeadMeta";
 
 const Base = styled.main`
   .contents {

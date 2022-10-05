@@ -1,8 +1,7 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import MainInput from "../components/main-input/MainInput";
+import MainInput from "@components/main-input/MainInput";
 import styled from "@emotion/styled";
-import { theme } from "../styles/theme";
+import { theme } from "@styles/theme";
 
 const Decorator = styled.div`
   display: flex;

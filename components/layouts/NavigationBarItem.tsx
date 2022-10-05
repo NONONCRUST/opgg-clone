@@ -1,8 +1,8 @@
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
-import { gray } from "../../styles/palette";
+import { css } from "@emotion/react";
+import { theme } from "@styles/theme";
+import { gray } from "@styles/palette";
 import Link from "next/link";
 
 const getNavigationBarItemActive = (active?: boolean) => {

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { getCsPerMinute, getKda, getKillParticipation } from "../../lib/utils";
-import { theme } from "../../styles/theme";
-import Avatar from "../common/Avatar";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import MatchResultChampionAvatar from "./MatchResultChampionAvatar";
-import MatchResultChip from "./MatchResultChip";
-import { blue, gray, red } from "../../styles/palette";
+import { getCsPerMinute, getKda, getKillParticipation } from "@lib/utils";
+import { theme } from "@styles/theme";
+import Avatar from "@components/common/Avatar";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import MatchResultChampionAvatar from "@components/match-result/MatchResultChampionAvatar";
+import MatchResultChip from "@components/match-result/MatchResultChip";
+import { blue, gray, red } from "@styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";

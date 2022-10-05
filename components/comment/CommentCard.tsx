@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { gray } from "../../styles/palette";
-import { theme } from "../../styles/theme";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import { parseDateRelative } from "../../lib/utils";
-import Divider from "../common/Divider";
+import { gray } from "@styles/palette";
+import { theme } from "@styles/theme";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import { parseDateRelative } from "@lib/utils";
+import Divider from "@components/common/Divider";
 
 const Container = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { gray } from "../styles/palette";
+import { css } from "@emotion/react";
+import { gray } from "@styles/palette";
 
 interface ContainerProps {
   size?: string;

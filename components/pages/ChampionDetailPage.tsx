@@ -79,7 +79,6 @@ interface Props {
 }
 
 const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
-  console.log(initialChampionData);
   const [version, setVersion] = useState<VersionType>(VERSION);
   const [isVersionFiltered, setIsVersionFiltered] = useState(false);
   const [comment, setComment] = useState("");

@@ -1,7 +1,7 @@
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { blue, gray, teal } from "../../styles/palette";
+import { css } from "@emotion/react";
+import { blue, gray, teal } from "@styles/palette";
 
 type TabButtonType = "general" | "ingame";
 

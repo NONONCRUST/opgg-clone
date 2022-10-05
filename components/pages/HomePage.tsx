@@ -1,12 +1,12 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
-import MainInput from "../main-input/MainInput";
-import { gray } from "../../styles/palette";
-import HeadMeta from "../HeadMeta";
+import { theme } from "@styles/theme";
+import MainInput from "@components/main-input/MainInput";
+import { gray } from "@styles/palette";
+import HeadMeta from "@components/HeadMeta";
 import Image from "next/image";
-import Flexbox from "../layouts/Flexbox";
+import Flexbox from "@components/layouts/Flexbox";
 
 const Base = styled.main`
   display: flex;

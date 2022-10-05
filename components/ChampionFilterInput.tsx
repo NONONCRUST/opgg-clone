@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 import { MdSearch } from "react-icons/md";
-import { gray } from "../styles/palette";
+import { gray } from "@styles/palette";
 
 const Container = styled.div`
   display: flex;

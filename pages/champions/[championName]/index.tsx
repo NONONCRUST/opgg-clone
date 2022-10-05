@@ -1,8 +1,7 @@
-import React from "react";
 import { GetStaticProps, NextPage } from "next";
-import ChampionDetailPage from "../../../components/pages/ChampionDetailPage";
-import { getChampion, getChampions } from "../../../lib/api/riot";
-import { VERSION } from "../../../lib/constants";
+import ChampionDetailPage from "@components/pages/ChampionDetailPage";
+import { getChampion, getChampions } from "@lib/api/riot";
+import { VERSION } from "@lib/constants";
 
 export const getStaticPaths = async () => {
   const championList = await getChampions(VERSION);

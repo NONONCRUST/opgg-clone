@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Avatar from "../common/Avatar";
+import Avatar from "@components/common/Avatar";
 
 const Container = styled.div`
   position: relative;

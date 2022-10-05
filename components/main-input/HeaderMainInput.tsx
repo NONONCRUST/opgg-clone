@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { MdSearch } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";

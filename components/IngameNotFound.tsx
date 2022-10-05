@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "./common/Card";
-import Typography from "./common/Typography";
-import Flexbox from "./layouts/Flexbox";
-import { gray } from "../styles/palette";
+import Card from "@components/common/Card";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import { gray } from "@styles/palette";
 
 interface Props {
   summonerName: string;

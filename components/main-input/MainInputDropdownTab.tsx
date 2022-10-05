@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import React from "react";
-import { gray } from "../../styles/palette";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { gray } from "@styles/palette";
 
 const Container = styled.div`
   display: flex;

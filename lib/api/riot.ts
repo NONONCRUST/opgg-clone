@@ -1,4 +1,4 @@
-import axios from ".";
+import axios from "@lib/api/index";
 
 export const getRotation = async () => {
   const response = await axios.get<GetRotationApiResponseType>("/rotation");

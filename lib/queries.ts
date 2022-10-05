@@ -6,8 +6,8 @@ import {
   getMatchesBySummonerName,
   getSummonerByName,
   getSummoners,
-} from "../lib/api/riot";
-import { getCommentsByChampionName } from "./api/comment";
+} from "@lib/api/riot";
+import { getCommentsByChampionName } from "@lib/api/comment";
 
 export const useSummonerQuery = (
   summonerName: string,

@@ -1,7 +1,7 @@
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { blue, red } from "../../styles/palette";
+import { css } from "@emotion/react";
+import { blue, red } from "@styles/palette";
 
 interface ContainerProps {
   result: "win" | "lose";

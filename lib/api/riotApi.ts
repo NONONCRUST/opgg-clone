@@ -1,5 +1,5 @@
 // API Routes에서 라이엇 api에 요청을 보낼 때 사용하는 api 목록
-import { axiosRiotAsia, axiosRiotKr } from ".";
+import { axiosRiotAsia, axiosRiotKr } from "@lib/api/index";
 
 export const getRotationApi = () =>
   axiosRiotKr.get<GetRotationApiResponseType>(

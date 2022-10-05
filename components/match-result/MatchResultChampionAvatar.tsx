@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Image from "next/image";
-import { gray } from "../../styles/palette";
+import { gray } from "@styles/palette";
 import Link from "next/link";
 
 const Container = styled.div`

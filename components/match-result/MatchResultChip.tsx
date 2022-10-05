@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { purple, red, yellow } from "../../styles/palette";
+import { purple, red, yellow } from "@styles/palette";
 
 type MatchResultChipVariantType =
   | "double"

@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { parseDateRelativeMinuteSecond } from "../../lib/utils";
-import { gray, red } from "../../styles/palette";
-import { theme } from "../../styles/theme";
-import Card from "../common/Card";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import CurrentGameItem from "./CurrentGameItem";
+import { parseDateRelativeMinuteSecond } from "@lib/utils";
+import { gray, red } from "@styles/palette";
+import { theme } from "@styles/theme";
+import Card from "@components/common/Card";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import CurrentGameItem from "@components/current-game/CurrentGameItem";
 
 const Container = styled.div`
   .current-game-type {

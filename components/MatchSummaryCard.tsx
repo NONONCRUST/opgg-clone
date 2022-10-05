@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useSelector } from "../store";
-import ChampionSearchInput from "./champion-search/ChampionSearchInput";
-import Avatar from "./common/Avatar";
-import Card from "./common/Card";
-import Divider from "./common/Divider";
-import TabButton from "./common/TabButton";
-import Typography from "./common/Typography";
-import DonutChart from "./DonutChart";
-import Flexbox from "./layouts/Flexbox";
-import { gray } from "../styles/palette";
+import { useSelector } from "@store/index";
+import ChampionSearchInput from "@components/champion-search/ChampionSearchInput";
+import Avatar from "@components/common/Avatar";
+import Card from "@components/common/Card";
+import Divider from "@components/common/Divider";
+import TabButton from "@components/common/TabButton";
+import Typography from "@components/common/Typography";
+import DonutChart from "@components/DonutChart";
+import Flexbox from "@components/layouts/Flexbox";
+import { gray } from "@styles/palette";
 
 const Container = styled.div`
   .match-summary-tab-area {

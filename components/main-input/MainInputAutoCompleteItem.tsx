@@ -1,13 +1,12 @@
+import React from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
-import { capitalize, mapRank } from "../../lib/utils";
-import { gray } from "../../styles/palette";
-
-import Avatar from "../common/Avatar";
-import Typography from "../common/Typography";
-import HighlightedText from "../HighlightedText";
-import Flexbox from "../layouts/Flexbox";
+import { capitalize, mapRank } from "@lib/utils";
+import { gray } from "@styles/palette";
+import Avatar from "@components/common/Avatar";
+import Typography from "@components/common/Typography";
+import HighlightedText from "@components/HighlightedText";
+import Flexbox from "@components/layouts/Flexbox";
 
 const Container = styled.div`
   display: flex;

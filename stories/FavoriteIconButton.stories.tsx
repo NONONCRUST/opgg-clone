@@ -1,7 +1,6 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import FavoriteIconButton from "../components/FavoriteIconButton";
+import FavoriteIconButton from "@components/FavoriteIconButton";
 
 export default {
   title: "Components/FavoriteIconButton",

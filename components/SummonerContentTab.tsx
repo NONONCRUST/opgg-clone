@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { theme } from "../styles/theme";
-import TabButton from "./common/TabButton";
-import Layout from "./layouts/Layout";
+import { theme } from "@styles/theme";
+import TabButton from "@components/common/TabButton";
+import Layout from "@components/layouts/Layout";
+import Typography from "@components/common/Typography";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import Typography from "./common/Typography";
 
 const Container = styled.div`
   padding: 0 1rem;

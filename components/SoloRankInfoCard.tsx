@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Card from "./common/Card";
-import Divider from "./common/Divider";
-import Typography from "./common/Typography";
-import Flexbox from "./layouts/Flexbox";
-import RankEmblemAvatar from "./RankEmblemAvatar";
-import { theme } from "../styles/theme";
-import { capitalize, getWinRate, mapRank } from "../lib/utils";
-import { gray } from "../styles/palette";
+import Card from "@components/common/Card";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import RankEmblemAvatar from "@components/RankEmblemAvatar";
+import { theme } from "@styles/theme";
+import { capitalize, getWinRate, mapRank } from "@lib/utils";
+import { gray } from "@styles/palette";
 
 const Container = styled.section`
   width: 100%;

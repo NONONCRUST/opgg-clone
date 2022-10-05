@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { MdSearch } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { theme } from "../../styles/theme";
 import MainInputDropdownMenu from "./MainInputDropdownMenu";
@@ -40,7 +39,7 @@ const Container = styled.div`
 
   .gg-button {
     position: absolute;
-    right: 3rem;
+    right: 1rem;
     top: 1.1rem;
 
     font-size: 1.5rem;
@@ -48,7 +47,7 @@ const Container = styled.div`
     outline: none;
     border: none;
     background-color: white;
-    width: 1.5rem;
+    width: 4rem;
     height: 1.5rem;
     cursor: pointer;
     color: ${theme.primary};

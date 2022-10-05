@@ -1,14 +1,14 @@
-import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
-import { createWrapper, HYDRATE, MakeStore } from "next-redux-wrapper";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { createWrapper, MakeStore } from "next-redux-wrapper";
 import {
   TypedUseSelectorHook,
   useDispatch as useTypedDispatch,
   useSelector as useTypedSelector,
 } from "react-redux";
-import localSlice from "./localSlice";
-import searchSlice from "./searchSlice";
-import themeSlice from "./themeSlice";
-import userSlice from "./userSlice";
+import localSlice from "@store/localSlice";
+import searchSlice from "@store/searchSlice";
+import themeSlice from "@store/themeSlice";
+import userSlice from "@store/userSlice";
 
 const combinedReducer = combineReducers({
   user: userSlice,

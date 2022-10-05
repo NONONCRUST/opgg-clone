@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
-import { red } from "../styles/palette";
-import { theme } from "../styles/theme";
-import Typography from "./common/Typography";
+import styled from "@emotion/styled";
+import { red } from "@styles/palette";
+import { theme } from "@styles/theme";
+import Typography from "@components/common/Typography";
 
 const diameter = 2 * Math.PI * 40;
 

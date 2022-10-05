@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { MdInfoOutline } from "react-icons/md";
-import { gray } from "../../styles/palette";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
+import { gray } from "@styles/palette";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
 
 const Container = styled.div`
   display: flex;

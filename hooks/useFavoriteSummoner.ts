@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "../store";
-import { localActions } from "../store/localSlice";
+import { useDispatch, useSelector } from "@store/index";
+import { localActions } from "@store/localSlice";
 
 const useFavoriteSummoner = () => {
   const favoriteSummoner = useSelector((state) => state.local.favoriteSummoner);

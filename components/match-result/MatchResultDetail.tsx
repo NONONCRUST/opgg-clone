@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
-import Card from "../common/Card";
-import Divider from "../common/Divider";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import MatchResultDetailItem from "./MatchResultDetailItem";
-import { gray, red } from "../../styles/palette";
+import { theme } from "@styles/theme";
+import Card from "@components/common/Card";
+import Divider from "@components/common/Divider";
+import Typography from "@components/common/Typography";
+import Flexbox from "@components/layouts/Flexbox";
+import MatchResultDetailItem from "@components/match-result/MatchResultDetailItem";
+import { gray, red } from "@styles/palette";
 
 const Container = styled.div`
   margin-top: 0.2rem;

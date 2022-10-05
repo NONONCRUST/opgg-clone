@@ -1,8 +1,8 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
-import { blue } from "../../styles/palette";
-import { theme } from "../../styles/theme";
+import { blue } from "@styles/palette";
+import { theme } from "@styles/theme";
 
 type IconButtonVariantType = "contained" | "outlined";
 

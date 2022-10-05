@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
-import Button from "../common/Button";
-import Tooltip from "../common/Tooltip";
-import Flexbox from "../layouts/Flexbox";
+import styled from "@emotion/styled";
+import Button from "@components/common/Button";
+import Tooltip from "@components/common/Tooltip";
+import Flexbox from "@components/layouts/Flexbox";
 
 const Base = styled.main``;
 

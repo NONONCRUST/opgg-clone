@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
 import React from "react";
-import GNB from "./GNB";
-import LNB from "./LNB";
+import styled from "@emotion/styled";
+import GNB from "@components/layouts/GNB";
+import LNB from "@components/layouts/LNB";
 
 const Base = styled.header`
   display: flex;

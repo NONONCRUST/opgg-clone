@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import NavigationBarItem from "./NavigationBarItem";
-import Link from "next/link";
+import NavigationBarItem from "@components/layouts/NavigationBarItem";
 
 const Base = styled.nav`
   height: 100%;
