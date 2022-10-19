@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import NavigationBarItem from "@components/layouts/NavigationBarItem";
+import React from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import NavigationBarItem from '@components/layouts/NavigationBarItem';
 
 const Base = styled.nav`
   height: 100%;
@@ -24,12 +24,12 @@ const NavigationBar: React.FC = () => {
         <NavigationBarItem
           name="홈"
           href="/"
-          active={router.pathname === "/"}
+          active={router.pathname === '/'}
         />
         <NavigationBarItem
           name="챔피언 분석"
           href="/champions"
-          active={router.pathname.includes("/champions")}
+          active={router.pathname.includes('/champions')}
         />
       </ul>
     </Base>

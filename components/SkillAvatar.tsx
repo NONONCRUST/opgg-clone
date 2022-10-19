@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { gray } from "@styles/palette";
-import Avatar from "@components/common/Avatar";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
+import Avatar from '@components/common/Avatar';
 
 const Container = styled.div`
   position: relative;
@@ -36,7 +36,7 @@ const SkillAvatar: React.FC<Props> = ({ type, src }) => {
   return (
     <Container>
       <Avatar shape="boxier" src={src} alt="champion skill" />
-      {type !== "passive" && <div className="skill-type">{type}</div>}
+      {type !== 'passive' && <div className="skill-type">{type}</div>}
     </Container>
   );
 };

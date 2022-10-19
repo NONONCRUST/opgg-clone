@@ -1,18 +1,18 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { blue, gray, teal } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { blue, gray, teal } from '@styles/palette';
 
-type TabButtonType = "general" | "ingame";
+type TabButtonType = 'general' | 'ingame';
 
 const getTabButtonType = (type: TabButtonType, active: boolean) => {
   switch (type) {
-    case "general":
+    case 'general':
       return css`
         color: ${active && blue[500]};
         background-color: ${active && blue[50]};
       `;
-    case "ingame":
+    case 'ingame':
       return css`
         color: ${teal[500]};
         background: ${active && teal[50]};
@@ -70,9 +70,9 @@ interface Props extends React.HTMLAttributes<HTMLLIElement> {
 const TabButton: React.FC<Props> = ({
   children,
   active,
-  type = "general",
-  width = "6rem",
-  height = "2.5rem",
+  type = 'general',
+  width = '6rem',
+  height = '2.5rem',
   ...props
 }) => {
   return (

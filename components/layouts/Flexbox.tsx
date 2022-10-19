@@ -1,44 +1,44 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-type FlexDirectionType = "row" | "col" | "row-reverse" | "col-reverse";
-type JustifyContentType =
-  | "start"
-  | "end"
-  | "center"
-  | "between"
-  | "around"
-  | "evenly";
-type AlignItemsType = "start" | "end" | "center" | "baseline" | "stretch";
+type FlexDirectionOption = 'row' | 'col' | 'row-reverse' | 'col-reverse';
+type AlignItemsOption = 'start' | 'end' | 'center' | 'baseline' | 'stretch';
+type JustifyContentOption =
+  | 'start'
+  | 'end'
+  | 'center'
+  | 'between'
+  | 'around'
+  | 'evenly';
 
-const getFlexDirection = (flex?: FlexDirectionType) => {
-  if (flex === "row") return "row";
-  if (flex === "col") return "column";
-  if (flex === "row-reverse") return "row-reverse";
-  if (flex === "col-reverse") return "column-reverse";
+const flexDirectionValue = {
+  row: 'row',
+  col: 'column',
+  'row-reverse': 'row-reverse',
+  'col-reverse': 'column-reverse',
 };
 
-const getJustifyContent = (justify?: JustifyContentType) => {
-  if (justify === "start") return "flex-start";
-  if (justify === "end") return "flex-end";
-  if (justify === "center") return "center";
-  if (justify === "between") return "space-between";
-  if (justify === "around") return "space-around";
-  if (justify === "evenly") return "space-evenly";
+const justifyContentValue = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+  evenly: 'space-evenly',
 };
 
-const getAlignItems = (items?: AlignItemsType) => {
-  if (items === "baseline") return "baseline";
-  if (items === "center") return "center";
-  if (items === "end") return "flex-end";
-  if (items === "start") return "flex-start";
-  if (items === "stretch") return "stretch";
+const alignItemsValue = {
+  baseline: 'baseline',
+  center: 'center',
+  end: 'flex-end',
+  start: 'flex-start',
+  stretch: 'stretch',
 };
 
 interface ContainerProps {
-  flex?: FlexDirectionType;
-  justify?: JustifyContentType;
-  items?: AlignItemsType;
+  flex: FlexDirectionOption;
+  justify: JustifyContentOption;
+  items: AlignItemsOption;
   gap?: string;
   padding?: string;
   width?: string;
@@ -46,20 +46,18 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   display: flex;
-
-  flex-direction: ${({ flex }) => getFlexDirection(flex)};
-  justify-content: ${({ justify }) => getJustifyContent(justify)};
-  align-items: ${({ items }) => getAlignItems(items)};
+  flex-direction: ${({ flex }) => flexDirectionValue[flex]};
+  justify-content: ${({ justify }) => justifyContentValue[justify]};
+  align-items: ${({ items }) => alignItemsValue[items]};
   gap: ${({ gap }) => gap};
   padding: ${({ padding }) => padding};
   width: ${({ width }) => width};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
-  flex?: FlexDirectionType;
-  justify?: JustifyContentType;
-  items?: AlignItemsType;
+  flex?: FlexDirectionOption;
+  justify?: JustifyContentOption;
+  items?: AlignItemsOption;
   gap?: string;
   padding?: string;
   width?: string;
@@ -67,9 +65,9 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const Flexbox: React.FC<Props> = ({
   children,
-  flex = "row",
-  justify = "center",
-  items = "center",
+  flex = 'row',
+  justify = 'center',
+  items = 'center',
   gap,
   padding,
   width,

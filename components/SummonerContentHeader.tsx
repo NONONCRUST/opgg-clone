@@ -1,21 +1,21 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 import {
   getMinuteDiff,
   mapRank,
   parseDateRelative,
   throttle,
-} from "@lib/utils";
-import Button from "./common/Button";
-import LoadingButton from "@components/common/LoadingButton";
-import Typography from "@components/common/Typography";
-import FavoriteIconButton from "@components/FavoriteIconButton";
-import Flexbox from "@components/layouts/Flexbox";
-import Layout from "@components/layouts/Layout";
-import SummonerIconAvatar from "@components/SummonerIconAvatar";
-import TierHistoryChip from "@components/TierHistoryChip";
-import { theme } from "@styles/theme";
-import { gray } from "@styles/palette";
+} from '@lib/utils';
+import LoadingButton from '@components/common/LoadingButton';
+import Typography from '@components/common/Typography';
+import FavoriteIconButton from '@components/FavoriteIconButton';
+import Flexbox from '@components/layouts/Flexbox';
+import Layout from '@components/layouts/Layout';
+import SummonerIconAvatar from '@components/SummonerIconAvatar';
+import TierHistoryChip from '@components/TierHistoryChip';
+import { theme } from '@styles/theme';
+import { gray } from '@styles/palette';
+import Button from './common/Button';
 
 const Base = styled.div`
   .summoner-container {
@@ -68,10 +68,7 @@ const SummonerContentHeader: React.FC<Props> = ({
               <Typography size="1.5rem" weight={600}>
                 {summonerData.name}
               </Typography>
-              <FavoriteIconButton
-                isFavorite={false}
-                summonerName={summonerData.name}
-              />
+              <FavoriteIconButton summonerName={summonerData.name} />
             </Flexbox>
             {!isFetching && (
               <Button
@@ -86,7 +83,7 @@ const SummonerContentHeader: React.FC<Props> = ({
               <Typography size="0.75rem" color={gray[400]}>
                 {updatedAt
                   ? `최근 업데이트: ${parseDateRelative(updatedAt)}`
-                  : "전적 갱신 버튼을 눌러 전적을 갱신해주세요."}
+                  : '전적 갱신 버튼을 눌러 전적을 갱신해주세요.'}
               </Typography>
             )}
           </Flexbox>

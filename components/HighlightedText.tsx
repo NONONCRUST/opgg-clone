@@ -1,6 +1,6 @@
-import React from "react";
-import { red } from "@styles/palette";
-import Typography from "@components/common/Typography";
+import React from 'react';
+import { red } from '@styles/palette';
+import Typography from '@components/common/Typography';
 
 interface Props {
   string: string;
@@ -19,7 +19,7 @@ const HighlightedText: React.FC<Props> = ({ string, keyword }) => {
           {string.slice(index + keyword.length)}
         </>
       )}
-      {index === -1 && <>{string}</>}
+      {index === -1 && <p>{string}</p>}
     </Typography>
   );
 };

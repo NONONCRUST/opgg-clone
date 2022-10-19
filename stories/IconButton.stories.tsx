@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import IconButton from "@components/common/IconButton";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import IconButton from '@components/common/IconButton';
 
 export default {
-  title: "Components/IconButton",
+  title: 'Components/IconButton',
   componnet: IconButton,
 } as ComponentMeta<typeof IconButton>;
 
@@ -12,10 +12,10 @@ const Template: ComponentStory<typeof IconButton> = (args) => (
 
 export const Contained = Template.bind({});
 Contained.args = {
-  variant: "contained",
+  variant: 'contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  variant: "outlined",
+  variant: 'outlined',
 };

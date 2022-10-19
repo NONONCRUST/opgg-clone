@@ -1,14 +1,12 @@
-import React, { useRef, useState } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import useOutsideClick from "../../hooks/useOutsideClick";
-import { theme } from "../../styles/theme";
-import MainInputDropdownMenu from "./MainInputDropdownMenu";
-import { gray } from "../../styles/palette";
-import MainInputAutoComplete from "./MainInputAutoComplete";
-import { useSummonersQuery } from "../../lib/queries";
-import useDebounce from "../../hooks/useDebounce";
+import React, { useRef, useState } from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import { theme } from '../../styles/theme';
+import MainInputDropdownMenu from './MainInputDropdownMenu';
+import MainInputAutoComplete from './MainInputAutoComplete';
+import { useSummonersQuery } from '../../lib/queries';
+import useDebounce from '../../hooks/useDebounce';
 
 const Container = styled.div`
   display: flex;
@@ -57,33 +55,21 @@ const Container = styled.div`
     width: 38rem;
     border-radius: 2rem;
   }
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[700]};
-      color: white;
-
-      .input {
-        background-color: ${gray[700]};
-        color: white;
-      }
-    `}
 `;
 
 const MainInput: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [autoCompleteOpen, setAutoCompleteOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   const debouncedInputValue = useDebounce(inputValue);
 
   const mainInputRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const onOutsideClick = () => {
+  const handleOutsideClick = () => {
     setDropdownOpen(false);
-    setInputValue("");
+    setInputValue('');
     setAutoCompleteOpen(false);
   };
 
@@ -91,29 +77,31 @@ const MainInput: React.FC = () => {
 
   const router = useRouter();
 
-  useOutsideClick(mainInputRef, onOutsideClick);
+  useOutsideClick(mainInputRef, handleOutsideClick);
 
-  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-    if (event.target.value !== "") setDropdownOpen(false);
-    if (event.target.value === "") setDropdownOpen(true);
+    if (event.target.value !== '') setDropdownOpen(false);
+    if (event.target.value === '') setDropdownOpen(true);
 
-    if (event.target.value !== "") setAutoCompleteOpen(true);
-    if (event.target.value === "") setAutoCompleteOpen(false);
+    if (event.target.value !== '') setAutoCompleteOpen(true);
+    if (event.target.value === '') setAutoCompleteOpen(false);
   };
 
-  const onFocusInput = () => {
+  const handleInputFocus = () => {
     if (!autoCompleteOpen) setDropdownOpen(true);
   };
 
   const search = () => {
-    if (inputValue === "") return;
-    setInputValue("");
+    if (inputValue === '') return;
+    setInputValue('');
     router.push(`/summoners/${inputValue}`);
   };
 
-  const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") search();
+  const handleInputEnterPress = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
+    if (event.key === 'Enter') search();
   };
 
   return (
@@ -124,11 +112,11 @@ const MainInput: React.FC = () => {
         className="input"
         placeholder="소환사명"
         ref={inputRef}
-        onFocus={onFocusInput}
-        onChange={onChangeInput}
-        onKeyPress={onEnter}
+        onFocus={handleInputFocus}
+        onChange={handleInputChange}
+        onKeyPress={handleInputEnterPress}
       />
-      <button className="gg-button" onClick={search}>
+      <button type="button" className="gg-button" onClick={search}>
         .GG
       </button>
       {dropdownOpen && <MainInputDropdownMenu />}

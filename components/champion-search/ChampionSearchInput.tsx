@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
-import styled from "@emotion/styled";
-import { MdSearch } from "react-icons/md";
-import { gray } from "@styles/palette";
-import ChampionSearchDropdown from "@components/champion-search/ChampionSearchDropdown";
-import ChampionSearchDropdownItem from "@components/champion-search/ChampionSearchDropdownItem";
-import { championList } from "@lib/staticData";
-import useOutsideClick from "@hooks/useOutsideClick";
+import React, { useRef, useState } from 'react';
+import styled from '@emotion/styled';
+import { MdSearch } from 'react-icons/md';
+import { gray } from '@styles/palette';
+import ChampionSearchDropdown from '@components/champion-search/ChampionSearchDropdown';
+import ChampionSearchDropdownItem from '@components/champion-search/ChampionSearchDropdownItem';
+import { championList } from '@lib/staticData';
+import useOutsideClick from '@hooks/useOutsideClick';
 
 const Container = styled.div`
   display: flex;
@@ -34,17 +34,17 @@ const Container = styled.div`
 `;
 
 const ChampionSearchInput: React.FC = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filteredChampionList, setFilteredChampionList] =
     useState(championList);
 
-  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     setFilteredChampionList(
       championList.filter((champion) =>
-        champion.kor.includes(event.target.value)
-      )
+        champion.kor.includes(event.target.value),
+      ),
     );
   };
 
@@ -58,7 +58,7 @@ const ChampionSearchInput: React.FC = () => {
         className="input"
         value={inputValue}
         placeholder="챔피언 검색"
-        onChange={onChangeInput}
+        onChange={handleInputChange}
         onFocus={() => setDropdownOpen(true)}
       />
       <MdSearch className="icon" color={gray[500]} />

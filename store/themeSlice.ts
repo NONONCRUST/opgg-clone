@@ -1,21 +1,23 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface themeState {
+export interface ThemeState {
   isDarkMode: boolean;
 }
 
-const initialState: themeState = {
+const initialState: ThemeState = {
   isDarkMode: false,
 };
 
 const themeSlice = createSlice({
-  name: "theme",
+  name: 'theme',
   initialState,
   reducers: {
-    toggleDarkMode(state) {
+    toggleDarkMode(_state) {
+      const state = _state;
       state.isDarkMode = !state.isDarkMode;
     },
-    setDarkMode(state, action: PayloadAction<boolean>) {
+    setDarkMode(_state, action: PayloadAction<boolean>) {
+      const state = _state;
       state.isDarkMode = action.payload;
     },
   },

@@ -1,33 +1,29 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import Image from "next/image";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import Image from 'next/image';
+import { gray } from '@styles/palette';
 
-const getAvatarShape = (shape?: "rounded" | "boxier") => {
-  switch (shape) {
-    case "rounded":
-      return css`
-        border-radius: 50%;
+const avatarShapeStyle = {
+  rounded: css`
+    border-radius: 50%;
 
-        .image {
-          border-radius: 50%;
-        }
-      `;
-    case "boxier":
-      return css`
-        border-radius: 0.25rem;
+    .image {
+      border-radius: 50%;
+    }
+  `,
+  boxier: css`
+    border-radius: 0.25rem;
 
-        .image {
-          border-radius: 0.25rem;
-        }
-      `;
-  }
+    .image {
+      border-radius: 0.25rem;
+    }
+  `,
 };
 
 interface ContainerProps {
   size?: string;
-  shape: "rounded" | "boxier";
+  shape: 'rounded' | 'boxier';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -44,21 +40,21 @@ const Container = styled.div<ContainerProps>`
     height: 100%;
   }
 
-  ${({ shape }) => getAvatarShape(shape)};
+  ${({ shape }) => avatarShapeStyle[shape]};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   size?: string;
-  shape?: "rounded" | "boxier";
+  shape?: 'rounded' | 'boxier';
 }
 
 const Avatar: React.FC<Props> = ({
   src,
-  alt = "image",
-  size = "36px",
-  shape = "rounded",
+  alt = 'image',
+  size = '36px',
+  shape = 'rounded',
   ...props
 }) => {
   return (

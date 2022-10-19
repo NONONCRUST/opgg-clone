@@ -1,23 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface localState {
+export interface LocalState {
   searchHistory: string[];
   favoriteSummoner: string[];
 }
 
-const initialState: localState = {
+const initialState: LocalState = {
   searchHistory: [],
   favoriteSummoner: [],
 };
 
 const localSlice = createSlice({
-  name: "local",
+  name: 'local',
   initialState,
   reducers: {
-    setSearchHistory(state, action: PayloadAction<string[]>) {
+    setSearchHistory(_state, action: PayloadAction<string[]>) {
+      const state = _state;
       state.searchHistory = action.payload;
     },
-    setFavoriteSummoner(state, action: PayloadAction<string[]>) {
+    setFavoriteSummoner(_state, action: PayloadAction<string[]>) {
+      const state = _state;
       state.favoriteSummoner = action.payload;
     },
   },

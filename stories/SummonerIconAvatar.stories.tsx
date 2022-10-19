@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import SummonerIconAvatar from "@components/SummonerIconAvatar";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import SummonerIconAvatar from '@components/SummonerIconAvatar';
 
 export default {
-  title: "Components/SummonerIconAvatar",
+  title: 'Components/SummonerIconAvatar',
   componnet: SummonerIconAvatar,
 } as ComponentMeta<typeof SummonerIconAvatar>;
 

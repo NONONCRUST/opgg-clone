@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { getCsPerMinute, getKda, getKillParticipation } from "@lib/utils";
-import { theme } from "@styles/theme";
-import Avatar from "@components/common/Avatar";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import MatchResultChampionAvatar from "@components/match-result/MatchResultChampionAvatar";
-import MatchResultChip from "@components/match-result/MatchResultChip";
-import { blue, gray, red } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { getCsPerMinute, getKda, getKillParticipation } from '@lib/utils';
+import { theme } from '@styles/theme';
+import Avatar from '@components/common/Avatar';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import MatchResultChampionAvatar from '@components/match-result/MatchResultChampionAvatar';
+import MatchResultChip from '@components/match-result/MatchResultChip';
+import { blue, gray, red } from '@styles/palette';
 
 interface ContainerProps {
-  result: "win" | "lose";
+  result: 'win' | 'lose';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -30,7 +30,7 @@ const Container = styled.div<ContainerProps>`
 
   .item-avatar {
     background-color: ${({ result }) =>
-      result === "win" ? blue[200] : red[200]};
+      result === 'win' ? blue[200] : red[200]};
   }
 
   .kda-area {
@@ -61,7 +61,7 @@ const Container = styled.div<ContainerProps>`
     margin-right: 2rem;
     padding: 0 0.5rem;
     border-left: 1px solid
-      ${({ result }) => (result === "win" ? blue[100] : red[100])};
+      ${({ result }) => (result === 'win' ? blue[100] : red[100])};
   }
 
   .match-result-chip {
@@ -81,7 +81,7 @@ const Container = styled.div<ContainerProps>`
 
 interface Props {
   matchData: MatchType;
-  result: "win" | "lose";
+  result: 'win' | 'lose';
   summonerName: string;
 }
 
@@ -91,7 +91,7 @@ const MatchResultInfo: React.FC<Props> = ({
   summonerName,
 }) => {
   const me = matchData.participants?.find(
-    (participant) => participant.summonerName === summonerName
+    (participant) => participant.summonerName === summonerName,
   );
 
   const myItemArray = [
@@ -104,15 +104,15 @@ const MatchResultInfo: React.FC<Props> = ({
   ];
 
   const getWin = (win: boolean) => {
-    if (win) return "win";
-    if (!win) return "lose";
+    if (win) return 'win';
+    return 'lose';
   };
 
   const getKillingSpree = () => {
-    if (me?.pentaKills && me.pentaKills > 0) return "penta";
-    if (me?.quadraKills && me.quadraKills > 0) return "quadra";
-    if (me?.tripleKills && me.tripleKills > 0) return "triple";
-    if (me?.doubleKills && me.doubleKills > 0) return "double";
+    if (me?.pentaKills && me.pentaKills > 0) return 'penta';
+    if (me?.quadraKills && me.quadraKills > 0) return 'quadra';
+    if (me?.tripleKills && me.tripleKills > 0) return 'triple';
+    if (me?.doubleKills && me.doubleKills > 0) return 'double';
 
     return undefined;
   };
@@ -131,7 +131,7 @@ const MatchResultInfo: React.FC<Props> = ({
     if (
       me &&
       myTeam?.win &&
-      getKda(me.kills, me.deaths, me.assists) === "Perfect"
+      getKda(me.kills, me.deaths, me.assists) === 'Perfect'
     )
       return true;
 
@@ -141,19 +141,18 @@ const MatchResultInfo: React.FC<Props> = ({
         getKda(prev.kills, prev.deaths, prev.assists)
       ) {
         return cur;
-      } else {
-        return prev;
       }
+      return prev;
     });
 
-    return mvp.summonerName === me?.summonerName ? true : false;
+    return mvp.summonerName === me?.summonerName;
   };
 
   const getIsAce = () => {
     if (
       me &&
       !myTeam?.win &&
-      getKda(me.kills, me.deaths, me.assists) === "Perfect"
+      getKda(me.kills, me.deaths, me.assists) === 'Perfect'
     )
       return true;
 
@@ -163,12 +162,11 @@ const MatchResultInfo: React.FC<Props> = ({
         getKda(prev.kills, prev.deaths, prev.assists)
       ) {
         return cur;
-      } else {
-        return prev;
       }
+      return prev;
     });
 
-    return ace.summonerName === me?.summonerName ? true : false;
+    return ace.summonerName === me?.summonerName;
   };
 
   return (
@@ -214,8 +212,8 @@ const MatchResultInfo: React.FC<Props> = ({
             </div>
             <div className="kda-area">
               <Typography weight={600}>
-                {me.kills} <span className="text-divider">/</span>{" "}
-                <span className="death-text">{me.deaths}</span>{" "}
+                {me.kills} <span className="text-divider">/</span>{' '}
+                <span className="death-text">{me.deaths}</span>{' '}
                 <span className="text-divider">/</span> {me.assists}
               </Typography>
               <Typography size="12px" color={gray[500]}>
@@ -224,11 +222,11 @@ const MatchResultInfo: React.FC<Props> = ({
             </div>
             <div className="stats-area">
               <Typography size="11px" color={red[500]}>
-                킬관여{" "}
+                킬관여{' '}
                 {getKillParticipation(
                   myTeam.objectives.champion.kills,
                   me.kills,
-                  me.assists
+                  me.assists,
                 )}
                 %
               </Typography>
@@ -239,7 +237,7 @@ const MatchResultInfo: React.FC<Props> = ({
                 CS {me.totalMinionsKilled} (
                 {getCsPerMinute(
                   new Date(matchData.gameDuration),
-                  me.totalMinionsKilled
+                  me.totalMinionsKilled,
                 )}
                 )
               </Typography>

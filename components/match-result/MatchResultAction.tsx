@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { blue, red } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { blue, red } from '@styles/palette';
 
 interface ContainerProps {
-  result: "win" | "lose";
+  result: 'win' | 'lose';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -16,36 +16,36 @@ const Container = styled.div<ContainerProps>`
   border-bottom-right-radius: 0.25rem;
 
   background-color: ${({ result }) =>
-    result === "win" ? blue[200] : red[200]};
+    result === 'win' ? blue[200] : red[200]};
 
   cursor: pointer;
 
   &:hover {
     background-color: ${({ result }) =>
-      result === "win" ? blue[300] : red[300]};
+      result === 'win' ? blue[300] : red[300]};
   }
 
   .match-result-arrow-down-icon {
-    color: ${({ result }) => (result === "win" ? blue[500] : red[500])};
+    color: ${({ result }) => (result === 'win' ? blue[500] : red[500])};
   }
 
   ${({ theme, result }) =>
-    theme.mode === "dark" &&
-    result === "win" &&
+    theme.mode === 'dark' &&
+    result === 'win' &&
     css`
       background-color: ${blue[700]};
     `}
 
   ${({ theme, result }) =>
-    theme.mode === "dark" &&
-    result === "lose" &&
+    theme.mode === 'dark' &&
+    result === 'lose' &&
     css`
       background-color: ${red[700]};
     `}
 `;
 
 interface Props {
-  result: "win" | "lose";
+  result: 'win' | 'lose';
   matchDetailOpen: boolean;
   setMatchDetailOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

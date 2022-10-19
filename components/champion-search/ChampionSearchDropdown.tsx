@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import { theme } from "@styles/theme";
-import { gray } from "@styles/palette";
-import ChampionSearchDropdownItem from "@components/champion-search/ChampionSearchDropdownItem";
+import React from 'react';
+import styled from '@emotion/styled';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import { theme } from '@styles/theme';
+import { gray } from '@styles/palette';
+import ChampionSearchDropdownItem from '@components/champion-search/ChampionSearchDropdownItem';
 
 const Container = styled.div`
   position: absolute;

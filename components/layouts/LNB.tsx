@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import { theme } from "@styles/theme";
-import HeaderMainInput from "@components/main-input/HeaderMainInput";
-import NavigationBar from "@components/layouts/NavigationBar";
+import React from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import { theme } from '@styles/theme';
+import HeaderMainInput from '@components/main-input/HeaderMainInput';
+import NavigationBar from '@components/layouts/NavigationBar';
 
 const Base = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const LNB: React.FC = () => {
     <Base>
       <div className="contents">
         <NavigationBar />
-        {router.pathname !== "/" && <HeaderMainInput />}
+        {router.pathname !== '/' && <HeaderMainInput />}
       </div>
     </Base>
   );

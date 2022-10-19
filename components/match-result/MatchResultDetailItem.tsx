@@ -1,24 +1,26 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 import {
   getCsPerMinute,
   getKda,
   getKillParticipation,
   shortenText,
-} from "@lib/utils";
-import { theme } from "@styles/theme";
-import Avatar from "@components/common/Avatar";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import MatchResultDetailAvatar from "@components/match-result/MatchResultDetailAvatar";
-import { blue, gray, red, teal, yellow } from "@styles/palette";
+} from '@lib/utils';
+import { theme } from '@styles/theme';
+import Avatar from '@components/common/Avatar';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import MatchResultDetailAvatar from '@components/match-result/MatchResultDetailAvatar';
+import { blue, gray, red, teal, yellow } from '@styles/palette';
 
 const getKdaColor = (kda: string | number) => {
-  if (kda === "Perfect") return yellow[500];
+  if (kda === 'Perfect') return yellow[500];
   if (kda < 3) return gray[500];
   if (kda > 3 && kda < 4) return teal[500];
   if (kda > 4 && kda < 5) return theme.primary;
   if (kda > 5) return yellow[500];
+
+  return null;
 };
 
 interface ContainerProps {
@@ -105,7 +107,7 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
   const kda = getKda(
     participant.kills,
     participant.deaths,
-    participant.assists
+    participant.assists,
   );
 
   const itemArray = [
@@ -127,18 +129,18 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
   });
 
   const damageDealtArray = teammates.map(
-    (teammate) => teammate.totalDamageDealtToChampions
+    (teammate) => teammate.totalDamageDealtToChampions,
   );
   const highestDamageDealt = Math.max.apply(null, damageDealtArray);
 
   const damageProportion = Math.round(
-    (participant.totalDamageDealtToChampions / highestDamageDealt) * 100
+    (participant.totalDamageDealtToChampions / highestDamageDealt) * 100,
   );
 
   const killParticipation = getKillParticipation(
     participantTeam!.objectives.champion.kills,
     participant.kills,
-    participant.assists
+    participant.assists,
   );
 
   return (
@@ -163,7 +165,7 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
         <Avatar
           size="16px"
           src={`/rune/${participant.perks.styles[0].selections[0].perk}.webp`}
-          style={{ background: "black" }}
+          style={{ background: 'black' }}
         />
         <Avatar
           size="16px"
@@ -176,11 +178,16 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
       <Flexbox className="match-detail-kda" flex="col" gap="0.2rem">
         <Typography size="0.75rem">
           {participant.kills}/{participant.deaths}/{participant.assists} (
-          {killParticipation}%)
+          {killParticipation}
+          %)
         </Typography>
-        <Typography size="0.75rem" weight={600} color={getKdaColor(kda)}>
+        <Typography
+          size="0.75rem"
+          weight={600}
+          color={getKdaColor(kda) || undefined}
+        >
           {kda}
-          {kda !== "Perfect" && ":1"}
+          {kda !== 'Perfect' && ':1'}
         </Typography>
       </Flexbox>
       <Flexbox className="match-detail-damage-dealt" flex="col" gap="0.4rem">
@@ -196,16 +203,16 @@ const MatchResultDetailItem: React.FC<Props> = ({ participant, matchData }) => {
           {participant.detectorWardsPlaced}
         </Typography>
         <Typography size="0.75rem">
-          {participant.wardsPlaced} / {participant.wardsKilled}
+          {participant.wardsPlaced} /{participant.wardsKilled}
         </Typography>
       </Flexbox>
       <Flexbox className="match-detail-cs" flex="col" gap="0.2rem">
         <Typography size="0.75rem">{participant.totalMinionsKilled}</Typography>
         <Typography size="0.75rem">
-          분당{" "}
+          분당{' '}
           {getCsPerMinute(
             new Date(matchData.gameDuration),
-            participant.totalMinionsKilled
+            participant.totalMinionsKilled,
           )}
         </Typography>
       </Flexbox>

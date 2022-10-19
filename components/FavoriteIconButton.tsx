@@ -1,12 +1,11 @@
-import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { MdStar, MdStarOutline } from "react-icons/md";
-import useFavoriteSummoner from "@hooks/useFavoriteSummoner";
-import { gray, yellow } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { MdStar, MdStarOutline } from 'react-icons/md';
+import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
+import { gray, yellow } from '@styles/palette';
 
 interface ContainerProps {
-  isFavorite?: boolean;
+  isFavorite: boolean;
 }
 
 const Container = styled.button<ContainerProps>`
@@ -15,22 +14,14 @@ const Container = styled.button<ContainerProps>`
   align-items: center;
 
   padding: 0.25rem;
-  background-color: ${({ isFavorite }) => (isFavorite ? yellow[400] : "white")};
+  background-color: ${({ isFavorite }) => (isFavorite ? yellow[400] : 'white')};
   border: 1px solid ${gray[300]};
   border-radius: 0.25rem;
 
   cursor: pointer;
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[700]};
-      border: 1px solid ${gray[600]};
-    `}
 `;
 
 interface Props {
-  isFavorite: boolean;
   summonerName?: string;
 }
 

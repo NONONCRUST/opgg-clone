@@ -1,4 +1,4 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema } from 'mongoose';
 
 const perkStatsSchema = new Schema({
   defense: Number,
@@ -99,6 +99,6 @@ const matchesSchema = new Schema({
   updatedAt: Date,
 });
 
-const MatchModel = models.matches || model("matches", matchesSchema);
+const MatchModel = models.matches || model('matches', matchesSchema);
 
 export default MatchModel;

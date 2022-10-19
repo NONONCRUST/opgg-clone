@@ -1,42 +1,34 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { purple, red, yellow } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { purple, red, yellow } from '@styles/palette';
 
-type MatchResultChipVariantType =
-  | "double"
-  | "triple"
-  | "quadra"
-  | "penta"
-  | "mvp"
-  | "ace";
+type MatchResultChipVariant =
+  | 'double'
+  | 'triple'
+  | 'quadra'
+  | 'penta'
+  | 'mvp'
+  | 'ace';
 
-const getMatchResultChipText = (variant?: MatchResultChipVariantType) => {
-  switch (variant) {
-    case "double":
-      return "더블킬";
-    case "triple":
-      return "트리플킬";
-    case "quadra":
-      return "쿼드라킬";
-    case "penta":
-      return "펜타킬";
-    case "mvp":
-      return "MVP";
-    case "ace":
-      return "ACE";
-  }
+const matchResultChipText = {
+  double: '더블킬',
+  triple: '트리플킬',
+  quadra: '쿼드라킬',
+  penta: '펜타킬',
+  mvp: 'MVP',
+  ace: 'ACE',
 };
 
-const getMatchResultChipBackgroundColor = (
-  variant: MatchResultChipVariantType
-) => {
-  if (variant === "mvp") return yellow[500];
-  if (variant === "ace") return purple[600];
-  if (variant === "double" || "triple" || "quadra" || "penta") return red[500];
+const matchResultChipBackgroundColorStyle = {
+  mvp: yellow[500],
+  ace: purple[600],
+  double: red[500],
+  triple: red[500],
+  quadra: red[500],
+  penta: red[500],
 };
-
 interface ContainerProps {
-  variant: MatchResultChipVariantType;
+  variant: MatchResultChipVariant;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -53,17 +45,17 @@ const Container = styled.div<ContainerProps>`
   border-radius: 2rem;
 
   background-color: ${({ variant }) =>
-    getMatchResultChipBackgroundColor(variant)};
+    matchResultChipBackgroundColorStyle[variant]};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: MatchResultChipVariantType;
+  variant?: MatchResultChipVariant;
 }
 
-const MatchResultChip: React.FC<Props> = ({ variant = "double", ...props }) => {
+const MatchResultChip: React.FC<Props> = ({ variant = 'double', ...props }) => {
   return (
     <Container variant={variant} {...props}>
-      {getMatchResultChipText(variant)}
+      {matchResultChipText[variant]}
     </Container>
   );
 };

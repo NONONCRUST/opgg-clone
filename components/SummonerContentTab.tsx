@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
-import TabButton from "@components/common/TabButton";
-import Layout from "@components/layouts/Layout";
-import Typography from "@components/common/Typography";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import React from 'react';
+import styled from '@emotion/styled';
+import { theme } from '@styles/theme';
+import TabButton from '@components/common/TabButton';
+import Layout from '@components/layouts/Layout';
+import Typography from '@components/common/Typography';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
 
 const Container = styled.div`
   padding: 0 1rem;
@@ -22,8 +22,8 @@ const Container = styled.div`
 `;
 
 interface Props {
-  activeTab: "general" | "ingame";
-  setActiveTab: React.Dispatch<React.SetStateAction<"general" | "ingame">>;
+  activeTab: 'general' | 'ingame';
+  setActiveTab: React.Dispatch<React.SetStateAction<'general' | 'ingame'>>;
   isIngame: boolean;
 }
 
@@ -38,15 +38,15 @@ const SummonerContentTab: React.FC<Props> = ({
         <ul className="tab-list">
           <TabButton
             type="general"
-            active={activeTab === "general"}
-            onClick={() => setActiveTab("general")}
+            active={activeTab === 'general'}
+            onClick={() => setActiveTab('general')}
           >
             종합
           </TabButton>
           <TabButton
             type="ingame"
-            active={activeTab === "ingame"}
-            onClick={() => setActiveTab("ingame")}
+            active={activeTab === 'ingame'}
+            onClick={() => setActiveTab('ingame')}
           >
             인게임 정보
           </TabButton>

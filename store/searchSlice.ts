@@ -1,18 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface searchState {
+export interface SearchState {
   championSearchFilter: string;
 }
 
-const initialState: searchState = {
-  championSearchFilter: "",
+const initialState: SearchState = {
+  championSearchFilter: '',
 };
 
 const searchSlice = createSlice({
-  name: "search",
+  name: 'search',
   initialState,
   reducers: {
-    setChampionSearchFilter(state, action: PayloadAction<string>) {
+    setChampionSearchFilter(_state, action: PayloadAction<string>) {
+      const state = _state;
       state.championSearchFilter = action.payload;
     },
   },

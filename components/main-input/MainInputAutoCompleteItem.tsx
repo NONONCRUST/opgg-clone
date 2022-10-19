@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "@emotion/styled";
-import Link from "next/link";
-import { capitalize, mapRank } from "@lib/utils";
-import { gray } from "@styles/palette";
-import Avatar from "@components/common/Avatar";
-import Typography from "@components/common/Typography";
-import HighlightedText from "@components/HighlightedText";
-import Flexbox from "@components/layouts/Flexbox";
+import React from 'react';
+import styled from '@emotion/styled';
+import Link from 'next/link';
+import { capitalize, mapRank } from '@lib/utils';
+import { gray } from '@styles/palette';
+import Avatar from '@components/common/Avatar';
+import Typography from '@components/common/Typography';
+import HighlightedText from '@components/HighlightedText';
+import Flexbox from '@components/layouts/Flexbox';
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ const MainInputAutoCompleteItem: React.FC<Props> = ({
 }) => {
   return (
     <Link href={`/summoners/${summonerData.name}`}>
-      <a style={{ width: "100%" }}>
+      <a style={{ width: '100%' }}>
         <Container>
           <Avatar size="36px" src="/profile-icon/4644.png" />
           <Flexbox flex="col" items="start" gap="0.3rem">
@@ -46,8 +46,9 @@ const MainInputAutoCompleteItem: React.FC<Props> = ({
             />
             {summonerData.tier && (
               <Typography size="11px">
-                {capitalize(summonerData.tier)} {mapRank(summonerData.rank)} -{" "}
-                {summonerData.leaguePoints}LP
+                {capitalize(summonerData.tier)} {mapRank(summonerData.rank)} -{' '}
+                {summonerData.leaguePoints}
+                LP
               </Typography>
             )}
             {!summonerData.tier && (

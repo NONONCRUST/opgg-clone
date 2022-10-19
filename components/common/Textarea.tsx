@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
 
 interface ContainerProps {
   height?: string;

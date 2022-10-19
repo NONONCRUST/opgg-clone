@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
 
 const Container = styled.li`
   display: flex;
@@ -18,7 +18,7 @@ interface Props extends React.LiHTMLAttributes<HTMLLIElement> {
   label: string;
 }
 
-const DropdownMenuItem: React.FC<Props> = ({ label = "메뉴", ...props }) => {
+const DropdownMenuItem: React.FC<Props> = ({ label, ...props }) => {
   return <Container {...props}>{label}</Container>;
 };
 

@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { theme } from "@styles/theme";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import MainInputAutoCompleteItem from "@components/main-input/MainInputAutoCompleteItem";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { theme } from '@styles/theme';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import MainInputAutoCompleteItem from '@components/main-input/MainInputAutoCompleteItem';
 
 interface ContainerProps {
-  type: "home" | "header";
+  type: 'home' | 'header';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -31,7 +31,7 @@ const Container = styled.div<ContainerProps>`
     right: 4rem;
 
     ${({ type }) =>
-      type === "header" &&
+      type === 'header' &&
       css`
         width: 18rem;
         right: 0;
@@ -41,17 +41,15 @@ const Container = styled.div<ContainerProps>`
 `;
 
 interface Props {
-  type?: "home" | "header";
+  type?: 'home' | 'header';
   summonersData: SummonerType[];
   searchKeyword: string;
-  inputValue: string;
 }
 
 const MainInputAutoComplete: React.FC<Props> = ({
-  type = "home",
+  type = 'home',
   summonersData,
   searchKeyword,
-  inputValue,
 }) => {
   return (
     <Container type={type}>

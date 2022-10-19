@@ -1,40 +1,35 @@
-import React, { useRef, useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { gray } from "@styles/palette";
-import { MdArrowDropDown } from "react-icons/md";
-import useOutsideClick from "@hooks/useOutsideClick";
+import React, { useRef, useState } from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { gray } from '@styles/palette';
+import { MdArrowDropDown } from 'react-icons/md';
+import useOutsideClick from '@hooks/useOutsideClick';
 
-type DropdownButtonSizeType = "small" | "medium" | "large";
+type DropdownButtonSize = 'small' | 'medium' | 'large';
 
-const getDropdownButtonSize = (size?: DropdownButtonSizeType) => {
-  switch (size) {
-    case "small":
-      return css`
-        height: 2rem;
-        padding: 0.75rem;
-        font-size: 0.75rem;
-        min-width: 4rem;
-      `;
-    case "medium":
-      return css`
-        height: 2.5rem;
-        padding: 0.75rem;
-        font-size: 0.875rem;
-        min-width: 5rem;
-      `;
-    case "large":
-      return css`
-        height: 3rem;
-        padding: 0.75rem;
-        font-size: 1rem;
-        min-width: 6rem;
-      `;
-  }
+const dropdownButtonSizeStyle = {
+  small: css`
+    height: 2rem;
+    padding: 0.75rem;
+    font-size: 0.75rem;
+    min-width: 4rem;
+  `,
+  medium: css`
+    height: 2.5rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    min-width: 5rem;
+  `,
+  large: css`
+    height: 3rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    min-width: 6rem;
+  `,
 };
 
 interface ContainerProps {
-  size?: DropdownButtonSizeType;
+  size?: DropdownButtonSize;
   open?: boolean;
 }
 
@@ -57,7 +52,7 @@ const Container = styled.button<ContainerProps>`
     background-color: ${gray[100]};
   }
 
-  ${({ size }) => getDropdownButtonSize(size)};
+  ${({ size }) => size && dropdownButtonSizeStyle[size]};
 
   ${({ open }) =>
     open &&
@@ -69,15 +64,14 @@ const Container = styled.button<ContainerProps>`
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
-  label?: string;
-  size?: DropdownButtonSizeType;
+  label: string;
+  size?: DropdownButtonSize;
 }
 
 const DropdownButton: React.FC<Props> = ({
   children,
-  label = "메뉴",
-  size = "medium",
+  label,
+  size = 'medium',
   ...props
 }) => {
   const [open, setOpen] = useState(false);

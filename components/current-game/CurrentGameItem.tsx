@@ -1,22 +1,22 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { championObject } from "@lib/staticData";
-import { gray, red } from "@styles/palette";
-import { theme } from "@styles/theme";
-import Avatar from "@components/common/Avatar";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
+import React from 'react';
+import styled from '@emotion/styled';
+import { championObject } from '@lib/staticData';
+import { gray, red } from '@styles/palette';
+import { theme } from '@styles/theme';
+import Avatar from '@components/common/Avatar';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
 
 interface ContainerProps {
-  team: "blue" | "red";
+  team: 'blue' | 'red';
 }
 
 const Container = styled.div<ContainerProps>`
   display: flex;
   width: 100%;
   border-left: 4px solid
-    ${({ team }) => (team === "blue" ? theme.primary : red[500])};
+    ${({ team }) => (team === 'blue' ? theme.primary : red[500])};
 
   gap: 0.1rem;
   padding: 0.5rem 13px;
@@ -24,7 +24,7 @@ const Container = styled.div<ContainerProps>`
 
 interface Props {
   participant: CurrentGameParticipantType;
-  team: "blue" | "red";
+  team: 'blue' | 'red';
 }
 
 const CurrentGameItem: React.FC<Props> = ({ participant, team }) => {
@@ -50,7 +50,7 @@ const CurrentGameItem: React.FC<Props> = ({ participant, team }) => {
         <Flexbox flex="col" gap="3px">
           <Avatar
             src={`/rune/${participant.perks.perkIds[0]}.webp`}
-            style={{ background: "black" }}
+            style={{ background: 'black' }}
             size="15px"
           />
           <Avatar

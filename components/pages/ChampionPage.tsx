@@ -1,22 +1,22 @@
-import styled from "@emotion/styled";
-import Link from "next/link";
-import React, { useState } from "react";
-import { useChampionsQuery } from "@lib/queries";
-import { shortenText } from "@lib/utils";
-import { gray } from "@styles/palette";
-import { theme } from "@styles/theme";
-import ChampionFilterInput from "@components/ChampionFilterInput";
-import Avatar from "@components/common/Avatar";
-import Card from "@components/common/Card";
-import DropdownButton from "@components/common/dropdown/DropdownButton";
-import DropdownMenu from "@components/common/dropdown/DropdownMenu";
-import DropdownMenuItem from "@components/common/dropdown/DropdownMenuItem";
-import Typography from "@components/common/Typography";
-import FilteredChampionNotFound from "@components/FilteredChampionNotFound";
-import Flexbox from "@components/layouts/Flexbox";
-import Layout from "@components/layouts/Layout";
-import { rem } from "polished";
-import HeadMeta from "@components/HeadMeta";
+import styled from '@emotion/styled';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { useChampionsQuery } from '@lib/queries';
+import { shortenText } from '@lib/utils';
+import { gray } from '@styles/palette';
+import { theme } from '@styles/theme';
+import ChampionFilterInput from '@components/ChampionFilterInput';
+import Avatar from '@components/common/Avatar';
+import Card from '@components/common/Card';
+import DropdownButton from '@components/common/dropdown/DropdownButton';
+import DropdownMenu from '@components/common/dropdown/DropdownMenu';
+import DropdownMenuItem from '@components/common/dropdown/DropdownMenuItem';
+import Typography from '@components/common/Typography';
+import FilteredChampionNotFound from '@components/FilteredChampionNotFound';
+import Flexbox from '@components/layouts/Flexbox';
+import Layout from '@components/layouts/Layout';
+import { rem } from 'polished';
+import HeadMeta from '@components/HeadMeta';
 
 const Base = styled.main`
   .contents {
@@ -54,8 +54,8 @@ interface Props {
 }
 
 const ChampionPage: React.FC<Props> = ({ championList }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [version, setVersion] = useState<VersionType>("12.15");
+  const [inputValue, setInputValue] = useState('');
+  const [version, setVersion] = useState<VersionType>('12.15');
 
   const { data: championsData } = useChampionsQuery(version, championList);
 
@@ -65,6 +65,12 @@ const ChampionPage: React.FC<Props> = ({ championList }) => {
 
   const parseChampionName = (championName: string) =>
     championName.length > 4 ? shortenText(championName, 3) : championName;
+
+  const handleChampionFilterInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setInputValue(event.target.value);
+  };
 
   return (
     <Base>
@@ -93,11 +99,11 @@ const ChampionPage: React.FC<Props> = ({ championList }) => {
                   <DropdownMenu>
                     <DropdownMenuItem
                       label="12.15"
-                      onClick={() => setVersion("12.15")}
+                      onClick={() => setVersion('12.15')}
                     />
                     <DropdownMenuItem
                       label="12.14"
-                      onClick={() => setVersion("12.14")}
+                      onClick={() => setVersion('12.14')}
                     />
                   </DropdownMenu>
                 </DropdownButton>
@@ -108,7 +114,7 @@ const ChampionPage: React.FC<Props> = ({ championList }) => {
                 <Flexbox padding="0.5rem">
                   <ChampionFilterInput
                     inputValue={inputValue}
-                    setInputValue={setInputValue}
+                    onChange={handleChampionFilterInputChange}
                   />
                 </Flexbox>
                 <div className="champion-list">

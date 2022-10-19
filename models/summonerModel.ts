@@ -1,4 +1,4 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema } from 'mongoose';
 
 const summonerSchema = new Schema({
   name: String,
@@ -13,6 +13,6 @@ const summonerSchema = new Schema({
   updatedAt: Date,
 });
 
-const SummonerModel = models.summoners || model("summoners", summonerSchema);
+const SummonerModel = models.summoners || model('summoners', summonerSchema);
 
 export default SummonerModel;

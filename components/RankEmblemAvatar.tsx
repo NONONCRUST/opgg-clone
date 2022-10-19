@@ -1,7 +1,6 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
 
 interface ContainerProps {
   size?: string;
@@ -13,12 +12,6 @@ const Container = styled.img<ContainerProps>`
 
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[800]};
-    `}
 `;
 
 interface Props {
@@ -26,7 +19,7 @@ interface Props {
   size?: string;
 }
 
-const RankEmblemAvatar: React.FC<Props> = ({ tier, size = "4.5rem" }) => {
+const RankEmblemAvatar: React.FC<Props> = ({ tier, size = '4.5rem' }) => {
   return (
     <Container size={size} src={`/rank/${tier}.webp`} alt="summoner rank" />
   );

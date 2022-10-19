@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "@emotion/styled";
-import Flexbox from "@components/layouts/Flexbox";
-import Avatar from "@components/common/Avatar";
-import Typography from "@components/common/Typography";
-import { shortenText } from "@lib/utils";
-import { theme } from "@styles/theme";
-import Link from "next/link";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import Flexbox from '@components/layouts/Flexbox';
+import Avatar from '@components/common/Avatar';
+import Typography from '@components/common/Typography';
+import { shortenText } from '@lib/utils';
+import { theme } from '@styles/theme';
+import Link from 'next/link';
+import { gray } from '@styles/palette';
 
 const Container = styled.div`
   display: none;
@@ -38,7 +38,7 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
   return (
     <Container>
       <Flexbox
-        className="participants-col "
+        className="participants-col"
         flex="col"
         gap="0.15rem"
         items="start"

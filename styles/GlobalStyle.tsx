@@ -1,12 +1,11 @@
-import { Global } from "@emotion/react";
-import { css } from "@emotion/react";
-import emotionReset from "emotion-reset";
+import { Global, css } from '@emotion/react';
+import emotionReset from 'emotion-reset';
 
 const global = css`
   ${emotionReset}
 
   html {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   * {

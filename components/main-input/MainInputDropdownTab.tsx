@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { gray } from '@styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -28,17 +28,17 @@ const Tab = styled.button<TabProps>`
   color: ${gray[500]};
   font-size: 0.875rem;
 
-  background-color: ${({ active }) => (active ? "white" : gray[200])};
+  background-color: ${({ active }) => (active ? 'white' : gray[200])};
 
   ${({ theme, active }) =>
-    theme.mode === "dark" &&
+    theme.mode === 'dark' &&
     active &&
     css`
       background-color: ${gray[700]};
     `}
 
   ${({ theme, active }) =>
-    theme.mode === "dark" &&
+    theme.mode === 'dark' &&
     !active &&
     css`
       background-color: ${gray[800]};
@@ -46,8 +46,8 @@ const Tab = styled.button<TabProps>`
 `;
 
 interface Props {
-  currentTab: "recent" | "favorite";
-  setCurrentTab: React.Dispatch<React.SetStateAction<"recent" | "favorite">>;
+  currentTab: 'recent' | 'favorite';
+  setCurrentTab: React.Dispatch<React.SetStateAction<'recent' | 'favorite'>>;
 }
 
 const MainInputDropdownTab: React.FC<Props> = ({
@@ -57,14 +57,14 @@ const MainInputDropdownTab: React.FC<Props> = ({
   return (
     <Container>
       <Tab
-        active={currentTab === "recent"}
-        onClick={() => setCurrentTab("recent")}
+        active={currentTab === 'recent'}
+        onClick={() => setCurrentTab('recent')}
       >
         최근검색
       </Tab>
       <Tab
-        active={currentTab === "favorite"}
-        onClick={() => setCurrentTab("favorite")}
+        active={currentTab === 'favorite'}
+        onClick={() => setCurrentTab('favorite')}
       >
         즐겨찾기
       </Tab>

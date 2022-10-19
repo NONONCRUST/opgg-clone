@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { blue, red } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { blue, red } from '@styles/palette';
 
 interface ContainerProps {
-  result: "win" | "lose";
+  result: 'win' | 'lose';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -12,18 +12,18 @@ const Container = styled.div<ContainerProps>`
   justify-content: space-between;
 
   border-radius: 0.25rem;
-  background-color: ${({ result }) => (result === "win" ? blue[50] : red[50])};
+  background-color: ${({ result }) => (result === 'win' ? blue[50] : red[50])};
 
   ${({ theme, result }) =>
-    theme.mode === "dark" &&
-    result === "win" &&
+    theme.mode === 'dark' &&
+    result === 'win' &&
     css`
       background-color: ${blue[900]};
     `}
 
   ${({ theme, result }) =>
-    theme.mode === "dark" &&
-    result === "lose" &&
+    theme.mode === 'dark' &&
+    result === 'lose' &&
     css`
       background-color: ${red[900]};
     `}
@@ -31,7 +31,7 @@ const Container = styled.div<ContainerProps>`
 
 interface Props {
   children: React.ReactNode;
-  result: "win" | "lose";
+  result: 'win' | 'lose';
 }
 
 const MatchResultCard: React.FC<Props> = ({ children, result }) => {

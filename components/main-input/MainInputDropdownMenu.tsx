@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import useFavoriteSummoner from "@hooks/useFavoriteSummoner";
-import useSearchHistory from "@hooks/useSearchHistory";
-import { theme } from "@styles/theme";
-import EmptyNotification from "@components/main-input/EmptyNotification";
-import MainInputDropdownMenuItem from "@components/main-input/MainInputDropdownMenuItem";
-import MainInputDropdownTab from "@components/main-input/MainInputDropdownTab";
-import { gray } from "@styles/palette";
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
+import useSearchHistory from '@hooks/useSearchHistory';
+import { theme } from '@styles/theme';
+import EmptyNotification from '@components/main-input/EmptyNotification';
+import MainInputDropdownMenuItem from '@components/main-input/MainInputDropdownMenuItem';
+import MainInputDropdownTab from '@components/main-input/MainInputDropdownTab';
 
 interface ContainerProps {
-  type: "home" | "header";
+  type: 'home' | 'header';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -34,7 +33,7 @@ const Container = styled.div<ContainerProps>`
     right: 4rem;
 
     ${({ type }) =>
-      type === "header" &&
+      type === 'header' &&
       css`
         width: 18rem;
         right: 0;
@@ -42,20 +41,14 @@ const Container = styled.div<ContainerProps>`
         border-radius: 0.25rem;
       `}
   }
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[700]};
-    `}
 `;
 
 interface Props {
-  type?: "home" | "header";
+  type?: 'home' | 'header';
 }
 
-const MainInputDropdownMenu: React.FC<Props> = ({ type = "home" }) => {
-  const [currentTab, setCurrentTab] = useState<"recent" | "favorite">("recent");
+const MainInputDropdownMenu: React.FC<Props> = ({ type = 'home' }) => {
+  const [currentTab, setCurrentTab] = useState<'recent' | 'favorite'>('recent');
 
   const { searchHistory } = useSearchHistory();
   const { favoriteSummoner } = useFavoriteSummoner();
@@ -66,8 +59,8 @@ const MainInputDropdownMenu: React.FC<Props> = ({ type = "home" }) => {
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
       />
-      <ul style={{ width: "100%" }}>
-        {currentTab === "recent" &&
+      <ul style={{ width: '100%' }}>
+        {currentTab === 'recent' &&
           searchHistory.map((name, index) => (
             <MainInputDropdownMenuItem
               key={index}
@@ -76,7 +69,7 @@ const MainInputDropdownMenu: React.FC<Props> = ({ type = "home" }) => {
               currentTab={currentTab}
             />
           ))}
-        {currentTab === "favorite" &&
+        {currentTab === 'favorite' &&
           favoriteSummoner.map((name, index) => (
             <MainInputDropdownMenuItem
               key={index}
@@ -85,10 +78,10 @@ const MainInputDropdownMenu: React.FC<Props> = ({ type = "home" }) => {
               currentTab={currentTab}
             />
           ))}
-        {currentTab === "recent" && searchHistory.length === 0 && (
+        {currentTab === 'recent' && searchHistory.length === 0 && (
           <EmptyNotification type="recent" />
         )}
-        {currentTab === "favorite" && favoriteSummoner.length === 0 && (
+        {currentTab === 'favorite' && favoriteSummoner.length === 0 && (
           <EmptyNotification type="favorite" />
         )}
       </ul>

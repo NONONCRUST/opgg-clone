@@ -1,51 +1,47 @@
-import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { blue } from "@styles/palette";
-import { theme } from "@styles/theme";
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { blue } from '@styles/palette';
+import { theme } from '@styles/theme';
 
-type IconButtonVariantType = "contained" | "outlined";
+type IconButtonVariantType = 'contained' | 'outlined';
 
 interface ContainerProps {
-  variant?: IconButtonVariantType;
+  variant: IconButtonVariantType;
 }
 
-const getIconButtonVariant = (variant?: IconButtonVariantType) => {
-  switch (variant) {
-    case "contained":
-      return css`
-        background-color: ${theme.primary};
-        color: white;
+const iconButtonVariantStyle = {
+  contained: css`
+    background-color: ${theme.primary};
+    color: white;
 
-        &:hover {
-          background-color: ${theme.primaryVariant};
-        }
-      `;
-    case "outlined":
-      return css`
-        background-color: white;
-        border: 1px solid ${theme.primary};
-        color: ${theme.primary};
+    &:hover {
+      background-color: ${theme.primaryVariant};
+    }
+  `,
+  outlined: css`
+    background-color: white;
+    border: 1px solid ${theme.primary};
+    color: ${theme.primary};
 
-        &:hover {
-          background-color: ${blue[50]};
-        }
-      `;
-  }
+    &:hover {
+      background-color: ${blue[50]};
+    }
+  `,
 };
 
 const Container = styled.button<ContainerProps>`
   padding: 0.5rem;
 
-  ${({ variant }) => getIconButtonVariant(variant)};
+  ${({ variant }) => iconButtonVariantStyle[variant]};
 `;
 
 interface Props {
   children: React.ReactNode;
-  variant?: "contained" | "outlined";
+  variant?: 'contained' | 'outlined';
 }
 
-const IconButton: React.FC<Props> = ({ children, variant }) => {
+const IconButton: React.FC<Props> = ({ children, variant = 'contained' }) => {
   return <Container variant={variant}>{children}</Container>;
 };
 

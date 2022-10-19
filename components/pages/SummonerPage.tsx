@@ -1,33 +1,32 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { theme } from "@styles/theme";
-import { gray } from "@styles/palette";
-import Card from "@components/common/Card";
-import Divider from "@components/common/Divider";
-import IngameNotFound from "@components/IngameNotFound";
-import Flexbox from "@components/layouts/Flexbox";
-import Layout from "@components/layouts/Layout";
-import MatchResult from "@components/match-result/MatchResult";
-import MatchResultNotFound from "@components/MatchResultNotFound";
-import SoloRankInfoCard from "@components/SoloRankInfoCard";
-import SummonerContentHeader from "@components/SummonerContentHeader";
-import SummonerContentTab from "@components/SummonerContentTab";
-import SummonerNotFound from "@components/SummonerNotFound";
-import MatchSummaryCard from "@components/MatchSummaryCard";
-import CurrentGameCard from "@components/current-game/CurrentGameCard";
-import HeadMeta from "@components/HeadMeta";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import styled from '@emotion/styled';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { theme } from '@styles/theme';
+import { gray } from '@styles/palette';
+import Card from '@components/common/Card';
+import Divider from '@components/common/Divider';
+import IngameNotFound from '@components/IngameNotFound';
+import Flexbox from '@components/layouts/Flexbox';
+import Layout from '@components/layouts/Layout';
+import MatchResult from '@components/match-result/MatchResult';
+import MatchResultNotFound from '@components/MatchResultNotFound';
+import SoloRankInfoCard from '@components/SoloRankInfoCard';
+import SummonerContentHeader from '@components/SummonerContentHeader';
+import SummonerContentTab from '@components/SummonerContentTab';
+import SummonerNotFound from '@components/SummonerNotFound';
+import MatchSummaryCard from '@components/MatchSummaryCard';
+import CurrentGameCard from '@components/current-game/CurrentGameCard';
+import HeadMeta from '@components/HeadMeta';
 import {
   useCurrentGameQuery,
   useMatchesQuery,
   useSummonerQuery,
-} from "@lib/queries";
-import { requestFetchBySummonerName } from "@lib/api/riot";
-import { useDispatch, useSelector } from "@store/index";
-import { searchActions } from "@store/searchSlice";
-import useSearchHistory from "@hooks/useSearchHistory";
+} from '@lib/queries';
+import { requestFetchBySummonerName } from '@lib/api/riot';
+import { useDispatch, useSelector } from '@store/index';
+import { searchActions } from '@store/searchSlice';
+import useSearchHistory from '@hooks/useSearchHistory';
 
 const Base = styled.main`
   .content-area {
@@ -65,18 +64,6 @@ const Base = styled.main`
     gap: 1rem;
   }
 
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      .content-header-area {
-        background-color: ${gray[700]};
-      }
-
-      .content-area {
-        background-color: ${gray[900]};
-      }
-    `}
-
   @media screen and (min-width: ${theme.media.desktop}) {
     .content-area-match {
       flex-direction: row;
@@ -98,11 +85,11 @@ const SummonerPage: React.FC<Props> = ({
   initialSummonerData,
   initialMatchesData,
 }) => {
-  const [isFetching, setisFetching] = useState(false);
-  const [activeTab, setActiveTab] = useState<"general" | "ingame">("general");
+  const [isFetching, setIsFetching] = useState(false);
+  const [activeTab, setActiveTab] = useState<'general' | 'ingame'>('general');
 
   const championSearchFilter = useSelector(
-    (state) => state.search.championSearchFilter
+    (state) => state.search.championSearchFilter,
   );
 
   const dispatch = useDispatch();
@@ -132,25 +119,22 @@ const SummonerPage: React.FC<Props> = ({
 
   const matchListData = matchesData?.matches;
 
-  const isIngame = useMemo(
-    () => (currentGameData ? true : false),
-    [currentGameData]
-  );
+  const isIngame = useMemo(() => !!currentGameData, [currentGameData]);
 
   const filteredMatchListData = useMemo(
     () =>
       matchListData?.filter((match) => {
-        if (championSearchFilter === "") return match;
+        if (championSearchFilter === '') return match;
         const me = match.participants.find(
-          (participant) => participant.summonerName === matchedSummonerName
+          (participant) => participant.summonerName === matchedSummonerName,
         );
         return me?.championName === championSearchFilter;
       }),
-    [championSearchFilter, matchListData, matchedSummonerName]
+    [championSearchFilter, matchListData, matchedSummonerName],
   );
 
-  const onClickFetchButton = useCallback(async () => {
-    setisFetching(true);
+  const handleFetchButtonClick = useCallback(async () => {
+    setIsFetching(true);
     try {
       await requestFetchBySummonerName(summonerName);
       refetchMatches();
@@ -158,13 +142,13 @@ const SummonerPage: React.FC<Props> = ({
     } catch (error) {
       console.log(error);
     } finally {
-      setisFetching(false);
+      setIsFetching(false);
     }
   }, [refetchMatches, refetchSummoner, summonerName]);
 
   useEffect(() => {
-    dispatch(searchActions.setChampionSearchFilter(""));
-    setActiveTab("general");
+    dispatch(searchActions.setChampionSearchFilter(''));
+    setActiveTab('general');
   }, [dispatch, summonerName]);
 
   useEffect(() => {
@@ -188,7 +172,7 @@ const SummonerPage: React.FC<Props> = ({
             summonerData={summonerData}
             updatedAt={matchesData?.updatedAt}
             isFetching={isFetching}
-            onClickFetchButton={onClickFetchButton}
+            onClickFetchButton={handleFetchButtonClick}
           />
         )}
         <Divider />
@@ -201,7 +185,7 @@ const SummonerPage: React.FC<Props> = ({
       <div className="content-area">
         <Layout>
           <Card className="ad" height="6rem" />
-          {activeTab === "general" && (
+          {activeTab === 'general' && (
             <div className="content-area-match">
               <div className="content-area-match-left">
                 {summonerData && (
@@ -234,7 +218,7 @@ const SummonerPage: React.FC<Props> = ({
               </div>
             </div>
           )}
-          {activeTab === "ingame" && (
+          {activeTab === 'ingame' && (
             <>
               {currentGameData && (
                 <CurrentGameCard currentGameData={currentGameData} />

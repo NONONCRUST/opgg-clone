@@ -1,18 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { theme } from "@styles/theme";
-import { gray } from "@styles/palette";
-import Link from "next/link";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { theme } from '@styles/theme';
+import { gray } from '@styles/palette';
+import Link from 'next/link';
 
-const getNavigationBarItemActive = (active?: boolean) => {
-  if (active) {
-    return css`
-      color: white;
-      border-bottom: 3px solid white;
-    `;
-  }
-};
+const navigationBarItemActiveStyle = css`
+  color: white;
+  border-bottom: 3px solid white;
+`;
 
 interface ContainerProps {
   active?: boolean;
@@ -32,7 +28,7 @@ const Container = styled.li<ContainerProps>`
     border-bottom: 3px solid white;
   }
 
-  ${({ active }) => getNavigationBarItemActive(active)}
+  ${({ active }) => active && navigationBarItemActiveStyle}
 `;
 
 interface Props extends React.HTMLAttributes<HTMLLIElement> {

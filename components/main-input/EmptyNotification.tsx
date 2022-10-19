@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { MdInfoOutline, MdStar } from "react-icons/md";
-import { gray, yellow } from "@styles/palette";
-import Typography from "@components/common/Typography";
+import React from 'react';
+import styled from '@emotion/styled';
+import { MdInfoOutline, MdStar } from 'react-icons/md';
+import { gray, yellow } from '@styles/palette';
+import Typography from '@components/common/Typography';
 
 const Container = styled.div`
   display: flex;
@@ -15,13 +15,13 @@ const Container = styled.div`
 `;
 
 interface Props {
-  type: "recent" | "favorite";
+  type: 'recent' | 'favorite';
 }
 
 const EmptyNotification: React.FC<Props> = ({ type }) => {
   return (
     <Container>
-      {type === "recent" && (
+      {type === 'recent' && (
         <>
           <MdInfoOutline size="20px" color={gray[400]} />
           <Typography size="0.75rem" color={gray[400]}>
@@ -29,7 +29,7 @@ const EmptyNotification: React.FC<Props> = ({ type }) => {
           </Typography>
         </>
       )}
-      {type === "favorite" && (
+      {type === 'favorite' && (
         <>
           <MdStar size="20px" color={yellow[400]} />
           <Typography size="0.75rem" color={gray[400]}>

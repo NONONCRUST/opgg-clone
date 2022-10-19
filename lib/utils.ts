@@ -1,6 +1,6 @@
 // Date를 0000년 00월 00일 00:00:00 의 형태로 파싱합니다 - nonon
 export const parseDateAbsolute = (dateString?: Date) => {
-  if (!dateString) return "0000년 00월 00일 00:00:00";
+  if (!dateString) return '0000년 00월 00일 00:00:00';
 
   const date = new Date(dateString);
 
@@ -23,10 +23,10 @@ export const parseDateRelative = (dateString: Date) => {
   const date = new Date(dateString);
 
   const betweenTime = Math.floor(
-    (currentDate.getTime() - date.getTime()) / 1000 / 60
+    (currentDate.getTime() - date.getTime()) / 1000 / 60,
   );
 
-  if (betweenTime < 1) return "방금 전";
+  if (betweenTime < 1) return '방금 전';
   if (betweenTime < 60) return `${betweenTime}분 전`;
 
   const betweenTimeHour = Math.floor(betweenTime / 60);
@@ -64,18 +64,18 @@ export const getMinuteDiff = (dateString: Date) => {
 
 // document.cookie를 객체 형태로 바꿔줍니다 - nonon
 export const parseCookie = (cookieString: string) => {
-  const cookieArray = cookieString.split(";");
+  const cookieArray = cookieString.split(';');
 
   const cookieObject: any = {};
 
   cookieArray.forEach((cookie) => {
-    if (cookie.startsWith(" ")) {
+    if (cookie.startsWith(' ')) {
       const slicedCookie = cookie.slice(1);
 
-      const cookieNameValue = slicedCookie.split("=");
+      const cookieNameValue = slicedCookie.split('=');
       cookieObject[cookieNameValue[0]] = cookieNameValue[1];
     } else {
-      const cookieNameValue = cookie.split("=");
+      const cookieNameValue = cookie.split('=');
       cookieObject[cookieNameValue[0]] = cookieNameValue[1];
     }
   });
@@ -86,7 +86,7 @@ export const parseCookie = (cookieString: string) => {
 // 쿠키를 설정합니다 - nonon
 export const setCookie = (cookie: string, value: string, maxAge?: string) => {
   let cookieString = `${cookie}=${value}; path=/;`;
-  if (maxAge) cookieString = cookieString + ` max-age=${maxAge}`;
+  if (maxAge) cookieString += ` max-age=${maxAge}`;
   document.cookie = cookieString;
 };
 
@@ -136,32 +136,29 @@ export const shortenText = (text: string, length: number) => {
 };
 
 // 승률을 구합니다 - nonon
-export const getWinRate = (wins?: number, losses?: number) => {
-  if (!wins || !losses) return;
-
+export const getWinRate = (wins: number, losses: number) => {
   return Math.round((wins / (wins + losses)) * 100);
 };
 
 // 첫 글자를 대문자로 만듭니다 - nonon
-export const capitalize = (string?: string) => {
-  if (!string) return;
-
+export const capitalize = (string: string) => {
   return `${string.charAt(0).toUpperCase()}${string.slice(1).toLowerCase()}`;
 };
 
 // 로마 숫자 표기법의 랭크를 아라비아 숫자 표기법으로 변환합니다 - nonon
-export const mapRank = (rank?: string) => {
-  if (rank === "I") return "1";
-  if (rank === "II") return "2";
-  if (rank === "III") return "3";
-  if (rank === "IV") return "4";
-  // ...
+export const mapRank = (rank: 'I' | 'II' | 'III' | 'IV') => {
+  const rankObject = {
+    I: '1',
+    II: '2',
+    III: '3',
+    IV: '4',
+  };
+
+  return rankObject[rank];
 };
 
 // 분당 CS를 구합니다
-export const getCsPerMinute = (gameDuration?: Date, cs?: number) => {
-  if (!gameDuration || !cs) return;
-
+export const getCsPerMinute = (gameDuration: Date, cs: number) => {
   const seconds = gameDuration.getTime();
   const csPerMinute = (cs / (seconds / 60)).toFixed(1);
 
@@ -170,7 +167,7 @@ export const getCsPerMinute = (gameDuration?: Date, cs?: number) => {
 
 // KDA를 구합니다
 export const getKda = (kills: number, deaths: number, assists: number) => {
-  if (deaths === 0) return "Perfect";
+  if (deaths === 0) return 'Perfect';
 
   const kda = ((kills + assists) / deaths).toFixed(2);
 
@@ -181,7 +178,7 @@ export const getKda = (kills: number, deaths: number, assists: number) => {
 export const getKillParticipation = (
   totalKills: number,
   kills: number,
-  assists: number
+  assists: number,
 ) => {
   const killParticipation = Math.round(((kills + assists) / totalKills) * 100);
 
@@ -190,8 +187,8 @@ export const getKillParticipation = (
 
 // 게임 유형을 구합니다
 export const getMatchTypeByQueueId = (queueId: number) => {
-  if (queueId === 420) return "솔랭";
-  if (queueId === 440) return "자유 5:5 랭크";
+  if (queueId === 420) return '솔랭';
+  if (queueId === 440) return '자유 5:5 랭크';
 
-  return "일반";
+  return '일반';
 };

@@ -29,7 +29,7 @@ type GetFeaturedGameApiResponseType = {
       profileIconId: number;
       spell1Id: number;
       spell2Id: number;
-      summonerName: "string";
+      summonerName: 'string';
       teamId: number;
     }[];
     platformId: string;
@@ -100,8 +100,8 @@ type SummonerDto = {
 
 type StatusDto = {
   id: number;
-  maintenance_status: "scheduled" | "in_progres" | "complete";
-  incident_severity: "info" | "warning" | "critical";
+  maintenance_status: 'scheduled' | 'in_progres' | 'complete';
+  incident_severity: 'info' | 'warning' | 'critical';
   titles: ContentDto[];
   updates: UpdateDto[];
 };

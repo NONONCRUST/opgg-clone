@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import { useChampionQuery, useCommentsQuery } from "../../lib/queries";
-import { gray } from "../../styles/palette";
-import { theme } from "../../styles/theme";
-import ChampionProfileAvatar from "../ChampionProfileAvatar";
-import Typography from "../common/Typography";
-import Flexbox from "../layouts/Flexbox";
-import Layout from "../layouts/Layout";
-import Card from "../common/Card";
-import Divider from "../common/Divider";
-import DropdownButton from "../common/dropdown/DropdownButton";
-import DropdownMenu from "../common/dropdown/DropdownMenu";
-import DropdownMenuItem from "../common/dropdown/DropdownMenuItem";
-import Textarea from "../common/Textarea";
-import TabButton from "../common/TabButton";
-import ToggleButton from "../common/ToggleButton";
-import Button from "../common/Button";
-import CommentCard from "../comment/CommentCard";
-import { useMutation } from "@tanstack/react-query";
-import { postComment } from "../../lib/api/comment";
-import axios from "axios";
-import CommentNotFound from "../comment/CommentNotFound";
-import HeadMeta from "../HeadMeta";
-import SkillAvatar from "../SkillAvatar";
-import Tooltip from "../common/Tooltip";
-import { SPELL, VERSION } from "../../lib/constants";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useChampionQuery, useCommentsQuery } from '../../lib/queries';
+import { gray } from '../../styles/palette';
+import { theme } from '../../styles/theme';
+import ChampionProfileAvatar from '../ChampionProfileAvatar';
+import Typography from '../common/Typography';
+import Flexbox from '../layouts/Flexbox';
+import Layout from '../layouts/Layout';
+import Card from '../common/Card';
+import Divider from '../common/Divider';
+import DropdownButton from '../common/dropdown/DropdownButton';
+import DropdownMenu from '../common/dropdown/DropdownMenu';
+import DropdownMenuItem from '../common/dropdown/DropdownMenuItem';
+import Textarea from '../common/Textarea';
+import TabButton from '../common/TabButton';
+import ToggleButton from '../common/ToggleButton';
+import Button from '../common/Button';
+import CommentCard from '../comment/CommentCard';
+import { postComment } from '../../lib/api/comment';
+import CommentNotFound from '../comment/CommentNotFound';
+import HeadMeta from '../HeadMeta';
+import SkillAvatar from '../SkillAvatar';
+import Tooltip from '../common/Tooltip';
+import { SPELL, VERSION } from '../../lib/constants';
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -81,8 +81,8 @@ interface Props {
 const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
   const [version, setVersion] = useState<VersionType>(VERSION);
   const [isVersionFiltered, setIsVersionFiltered] = useState(false);
-  const [comment, setComment] = useState("");
-  const [currentTab, setCurrentTab] = useState<"newest" | "oldest">("newest");
+  const [comment, setComment] = useState('');
+  const [currentTab, setCurrentTab] = useState<'newest' | 'oldest'>('newest');
 
   const router = useRouter();
 
@@ -91,7 +91,7 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
   const { data: championData } = useChampionQuery(
     version,
     championName,
-    initialChampionData
+    initialChampionData,
   );
 
   const { data: commentsData, refetch: refetchComments } =
@@ -99,33 +99,35 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
 
   const reversedCommentsData =
     commentsData &&
-    (currentTab === "newest" ? [...commentsData].reverse() : commentsData);
+    (currentTab === 'newest' ? [...commentsData].reverse() : commentsData);
 
   const parsedCommentsData = isVersionFiltered
-    ? reversedCommentsData?.filter((comment) => comment.version === VERSION)
+    ? reversedCommentsData?.filter((data) => data.version === VERSION)
     : reversedCommentsData;
 
   const { mutate, isLoading: isMutating, isError } = useMutation(postComment);
 
-  const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     setComment(event.target.value);
   };
 
   const submitComment = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await axios.get("https://geolocation-db.com/json/");
-    const clientIp = response.data.IPv4.split(".").slice(0, 2).join(".");
+    const response = await axios.get('https://geolocation-db.com/json/');
+    const clientIp = response.data.IPv4.split('.').slice(0, 2).join('.');
     const body = {
       name: clientIp,
       champion: championName,
-      version: version,
+      version,
       contents: comment,
     };
 
     mutate(body, {
       onSuccess: () => {
-        setComment("");
+        setComment('');
         refetchComments();
       },
     });
@@ -143,11 +145,11 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
             <DropdownMenu>
               <DropdownMenuItem
                 label="12.15"
-                onClick={() => setVersion("12.15")}
+                onClick={() => setVersion('12.15')}
               />
               <DropdownMenuItem
                 label="12.14"
-                onClick={() => setVersion("12.14")}
+                onClick={() => setVersion('12.14')}
               />
             </DropdownMenu>
           </DropdownButton>
@@ -196,10 +198,10 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
       <div className="champion-detail-content">
         <Layout>
           <Card className="ad" height="6rem" />
-          <Card style={{ overflow: "hidden" }}>
+          <Card style={{ overflow: 'hidden' }}>
             <Flexbox flex="col" padding="0.75rem" items="start" gap="1rem">
               <Typography size={theme.fontSize.caption1} weight={600}>
-                {championData.name}{" "}
+                {championData.name}{' '}
                 <span style={{ fontWeight: 400 }}>운영 팁</span>
               </Typography>
               <form className="comment-form" onSubmit={submitComment}>
@@ -207,7 +209,7 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
                   height="6rem"
                   placeholder={`나만의 ${championData.name} 플레이 팁을 알려주세요.`}
                   value={comment}
-                  onChange={onChangeTextarea}
+                  onChange={handleTextareaChange}
                 />
                 <Flexbox justify="between" width="100%">
                   <Flexbox>
@@ -232,16 +234,16 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
                   <TabButton
                     height="2rem"
                     width="4rem"
-                    active={currentTab === "newest"}
-                    onClick={() => setCurrentTab("newest")}
+                    active={currentTab === 'newest'}
+                    onClick={() => setCurrentTab('newest')}
                   >
                     최신순
                   </TabButton>
                   <TabButton
                     height="2rem"
                     width="4rem"
-                    active={currentTab === "oldest"}
-                    onClick={() => setCurrentTab("oldest")}
+                    active={currentTab === 'oldest'}
+                    onClick={() => setCurrentTab('oldest')}
                   >
                     등록순
                   </TabButton>
@@ -258,8 +260,8 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
               </Flexbox>
             </Flexbox>
             {parsedCommentsData &&
-              parsedCommentsData.map((comment, index) => (
-                <CommentCard key={index} commentData={comment} />
+              parsedCommentsData.map((data, index) => (
+                <CommentCard key={index} commentData={data} />
               ))}
             {parsedCommentsData?.length === 0 && <CommentNotFound />}
           </Card>

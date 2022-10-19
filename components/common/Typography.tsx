@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 interface ContainerProps {
   size?: string;
@@ -10,10 +10,10 @@ interface ContainerProps {
 }
 
 const Container = styled.p<ContainerProps>`
-  text-decoration: ${({ underline }) => underline && "underline"};
+  text-decoration: ${({ underline }) => underline && 'underline'};
 
   ${({ theme }) =>
-    theme.mode === "dark" &&
+    theme.mode === 'dark' &&
     css`
       color: white;
     `}

@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { gray } from "@styles/palette";
-import { theme } from "@styles/theme";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import { parseDateRelative } from "@lib/utils";
-import Divider from "@components/common/Divider";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
+import { theme } from '@styles/theme';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import { parseDateRelative } from '@lib/utils';
+import Divider from '@components/common/Divider';
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const CommentCard: React.FC<Props> = ({ commentData }) => {
         </Flexbox>
         <Typography
           size={theme.fontSize.caption3}
-          style={{ whiteSpace: "pre", lineHeight: "16px" }}
+          style={{ whiteSpace: 'pre', lineHeight: '16px' }}
         >
           {commentData.contents}
         </Typography>

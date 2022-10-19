@@ -1,12 +1,10 @@
-import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
-import MainInput from "@components/main-input/MainInput";
-import { gray } from "@styles/palette";
-import HeadMeta from "@components/HeadMeta";
-import Image from "next/image";
-import Flexbox from "@components/layouts/Flexbox";
+import React from 'react';
+import styled from '@emotion/styled';
+import { theme } from '@styles/theme';
+import MainInput from '@components/main-input/MainInput';
+import HeadMeta from '@components/HeadMeta';
+import Image from 'next/image';
+import Flexbox from '@components/layouts/Flexbox';
 
 const Base = styled.main`
   display: flex;
@@ -20,12 +18,6 @@ const Base = styled.main`
   .main-logo {
     margin-top: 8rem;
   }
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[800]};
-    `}
 `;
 
 const HomePage: React.FC = () => {

@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { red } from "@styles/palette";
-import { theme } from "@styles/theme";
-import Typography from "@components/common/Typography";
+import React from 'react';
+import styled from '@emotion/styled';
+import { red } from '@styles/palette';
+import { theme } from '@styles/theme';
+import Typography from '@components/common/Typography';
 
-const diameter = 2 * Math.PI * 40;
+const DIAMETER = 2 * Math.PI * 40;
 
 const Container = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const Container = styled.div`
 
     @keyframes circle-fill-animation {
       0% {
-        stroke-dasharray: 0 ${diameter};
+        stroke-dasharray: 0 ${DIAMETER};
       }
     }
   }
@@ -55,10 +55,10 @@ const DonutChart: React.FC<Props> = ({ percentage }) => {
           fill="none"
           stroke={theme.primary}
           strokeWidth="15"
-          strokeDasharray={`${(diameter * percentage) / 100} ${
-            (diameter * (100 - percentage)) / 100
+          strokeDasharray={`${(DIAMETER * percentage) / 100} ${
+            (DIAMETER * (100 - percentage)) / 100
           }`}
-          strokeDashoffset={diameter * 0.25}
+          strokeDashoffset={DIAMETER * 0.25}
         />
       </svg>
       <Typography className="donut-chart-text" size="0.875rem">

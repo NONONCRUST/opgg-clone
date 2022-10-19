@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { gray } from '@styles/palette';
 
 interface ContainerProps {
   width?: string;
@@ -19,7 +19,7 @@ const Container = styled.div<ContainerProps>`
   height: ${({ height }) => height};
 
   ${({ theme }) =>
-    theme.mode === "dark" &&
+    theme.mode === 'dark' &&
     css`
       background-color: ${gray[700]};
     `}
@@ -33,7 +33,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card: React.FC<Props> = ({
   children,
-  width = "100%",
+  width = '100%',
   height,
   ...props
 }) => {

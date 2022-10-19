@@ -1,40 +1,33 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { gray } from '@styles/palette';
 
-const getLoadingButtonVariant = (variant?: "contained" | "outlined") => {
-  switch (variant) {
-    case "contained":
-      return css`
-        color: ${gray[400]};
-        background-color: ${gray[300]};
-      `;
-    case "outlined":
-      return css`
-        color: ${gray[400]};
-        background: none;
-        border: 1px solid ${gray[300]};
-      `;
-  }
+const loadingButtonVariantStyle = {
+  contained: css`
+    color: ${gray[400]};
+    background-color: ${gray[300]};
+  `,
+  outlined: css`
+    color: ${gray[400]};
+    background: none;
+    border: 1px solid ${gray[300]};
+  `,
 };
 
-const getLoadingButtonRingSize = (ringSize?: "large") => {
-  switch (ringSize) {
-    case "large":
-      return css`
-        .lds-dual-ring:after {
-          width: 2rem;
-          height: 2rem;
-        }
-      `;
-  }
+const loadingButtonRingSizeStyle = {
+  large: css`
+    .lds-dual-ring:after {
+      width: 2rem;
+      height: 2rem;
+    }
+  `,
 };
 
 interface ContainerProps {
-  variant?: "contained" | "outlined";
+  variant: 'contained' | 'outlined';
   width?: string;
-  ringSize?: "large";
+  ringSize?: 'large';
 }
 
 const Container = styled.button<ContainerProps>`
@@ -55,10 +48,10 @@ const Container = styled.button<ContainerProps>`
 
   width: ${({ width }) => width};
 
-  ${({ variant }) => getLoadingButtonVariant(variant)};
+  ${({ variant }) => loadingButtonVariantStyle[variant]};
 
   .lds-dual-ring:after {
-    content: " ";
+    content: ' ';
     display: block;
     width: 1rem;
     height: 1rem;
@@ -76,17 +69,17 @@ const Container = styled.button<ContainerProps>`
     }
   }
 
-  ${({ ringSize }) => getLoadingButtonRingSize(ringSize)};
+  ${({ ringSize }) => ringSize && loadingButtonRingSizeStyle[ringSize]};
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "contained" | "outlined";
+  variant?: 'contained' | 'outlined';
   width?: string;
-  ringSize?: "large";
+  ringSize?: 'large';
 }
 
 const LoadingButton: React.FC<Props> = ({
-  variant,
+  variant = 'contained',
   width,
   ringSize,
   ...props

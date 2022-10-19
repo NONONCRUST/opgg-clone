@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { MdSearch } from "react-icons/md";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { MdSearch } from 'react-icons/md';
+import { gray } from '@styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -31,23 +31,16 @@ const Container = styled.div`
 
 interface Props {
   inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ChampionFilterInput: React.FC<Props> = ({
-  inputValue,
-  setInputValue,
-}) => {
-  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
+const ChampionFilterInput: React.FC<Props> = ({ inputValue, onChange }) => {
   return (
     <Container>
       <input
         className="input"
         value={inputValue}
-        onChange={onChangeInput}
+        onChange={onChange}
         placeholder="챔피언 검색"
       />
       <MdSearch className="icon" color={gray[500]} />

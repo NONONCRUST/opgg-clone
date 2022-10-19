@@ -1,17 +1,17 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "@store/index";
-import { localActions } from "@store/localSlice";
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from '@store/index';
+import { localActions } from '@store/localSlice';
 
 const useFavoriteSummoner = () => {
   const favoriteSummoner = useSelector((state) => state.local.favoriteSummoner);
   const dispatch = useDispatch();
 
   const getFavoriteSummoner = useCallback(() => {
-    const localFavoriteSummoner = localStorage.getItem("favorite");
+    const localFavoriteSummoner = localStorage.getItem('favorite');
 
     if (localFavoriteSummoner)
       dispatch(
-        localActions.setFavoriteSummoner(JSON.parse(localFavoriteSummoner))
+        localActions.setFavoriteSummoner(JSON.parse(localFavoriteSummoner)),
       );
   }, [dispatch]);
 
@@ -20,16 +20,16 @@ const useFavoriteSummoner = () => {
 
     if (newFavoriteSummoner.length > 8) newFavoriteSummoner.pop();
 
-    localStorage.setItem("favorite", JSON.stringify(newFavoriteSummoner));
+    localStorage.setItem('favorite', JSON.stringify(newFavoriteSummoner));
     dispatch(localActions.setFavoriteSummoner(newFavoriteSummoner));
   };
 
   const removeFavoriteSummoner = (username: string) => {
     const newFavoriteSummoner = favoriteSummoner.filter(
-      (item: string) => item !== username
+      (item: string) => item !== username,
     );
 
-    localStorage.setItem("favorite", JSON.stringify(newFavoriteSummoner));
+    localStorage.setItem('favorite', JSON.stringify(newFavoriteSummoner));
     dispatch(localActions.setFavoriteSummoner(newFavoriteSummoner));
   };
 

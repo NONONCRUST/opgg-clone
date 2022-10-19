@@ -1,7 +1,6 @@
-import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { gray } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { gray } from '@styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -19,12 +18,6 @@ const Container = styled.div`
   .season {
     font-weight: 600;
   }
-
-  ${({ theme }) =>
-    theme.mode === "dark" &&
-    css`
-      background-color: ${gray[900]};
-    `}
 `;
 
 interface Props {

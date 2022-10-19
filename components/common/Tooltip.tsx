@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { gray, yellow } from "@styles/palette";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { gray, yellow } from '@styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -70,23 +70,23 @@ const Tooltip: React.FC<Props> = ({
   const [isHovering, setIsHovering] = useState(false);
   const [tooltipTimeout, setTooltipTimeout] = useState<NodeJS.Timeout | null>();
 
-  const onMouseOver = () => {
+  const handleMouseOver = () => {
     if (isHovering) return;
 
     setTooltipTimeout(
       setTimeout(() => {
         setIsHovering(true);
-      }, 300)
+      }, 300),
     );
   };
 
-  const onMouseOut = () => {
+  const handleMouseOut = () => {
     if (tooltipTimeout) clearTimeout(tooltipTimeout);
     setIsHovering(false);
   };
 
   return (
-    <Container onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+    <Container onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       {children}
       {isHovering && (
         <>

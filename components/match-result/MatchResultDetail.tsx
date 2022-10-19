@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
-import Card from "@components/common/Card";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import MatchResultDetailItem from "@components/match-result/MatchResultDetailItem";
-import { gray, red } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { theme } from '@styles/theme';
+import Card from '@components/common/Card';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import MatchResultDetailItem from '@components/match-result/MatchResultDetailItem';
+import { gray, red } from '@styles/palette';
 
 const Container = styled.div`
   margin-top: 0.2rem;
@@ -61,11 +61,11 @@ const Container = styled.div`
 
 interface Props {
   matchData: MatchType;
-  team: "blue" | "red";
+  team: 'blue' | 'red';
 }
 
 const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
-  const winnerTeam = matchData.participants[0].win ? "blue" : "red";
+  const winnerTeam = matchData.participants[0].win ? 'blue' : 'red';
 
   const isVictory = team === winnerTeam;
 
@@ -74,7 +74,7 @@ const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
       <Card>
         <Flexbox className="match-result-meta">
           <Typography color={isVictory ? theme.primary : red[500]}>
-            {isVictory ? "승리" : "패배"}
+            {isVictory ? '승리' : '패배'}
           </Typography>
           <span className="team-meta">(블루팀)</span>
           <p className="kda-meta">KDA</p>
@@ -84,7 +84,7 @@ const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
           <p className="item-meta">아이템</p>
         </Flexbox>
         <Divider />
-        {team === "blue" &&
+        {team === 'blue' &&
           matchData.participants
             .slice(0, 5)
             .map((participant, index) => (
@@ -94,7 +94,7 @@ const MatchResultDetail: React.FC<Props> = ({ matchData, team }) => {
                 key={index}
               />
             ))}
-        {team === "red" &&
+        {team === 'red' &&
           matchData.participants
             .slice(5, 10)
             .map((participant, index) => (

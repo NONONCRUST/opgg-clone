@@ -1,13 +1,13 @@
-import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import { parseDateRelativeMinuteSecond } from "@lib/utils";
-import { gray, red } from "@styles/palette";
-import { theme } from "@styles/theme";
-import Card from "@components/common/Card";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
-import Flexbox from "@components/layouts/Flexbox";
-import CurrentGameItem from "@components/current-game/CurrentGameItem";
+import styled from '@emotion/styled';
+import React, { useEffect, useState } from 'react';
+import { parseDateRelativeMinuteSecond } from '@lib/utils';
+import { gray, red } from '@styles/palette';
+import { theme } from '@styles/theme';
+import Card from '@components/common/Card';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import CurrentGameItem from '@components/current-game/CurrentGameItem';
 
 const Container = styled.div`
   .current-game-type {
@@ -71,7 +71,7 @@ interface Props {
 
 const CurrentGameCard: React.FC<Props> = ({ currentGameData }) => {
   const [currentGameTime, setCurrentGameTime] = useState(
-    new Date(currentGameData.gameStartTime)
+    new Date(currentGameData.gameStartTime),
   );
 
   useEffect(() => {

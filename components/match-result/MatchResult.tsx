@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import MatchResultCard from "@components/match-result/MatchResultCard";
-import MatchResultGame from "@components/match-result/MatchResultGame";
-import MatchResultInfo from "@components/match-result/MatchResultInfo";
-import MatchResultParticipants from "@components/match-result/MatchResultParticipants";
-import MatchResultAction from "@components/match-result/MatchResultAction";
-import Flexbox from "@components/layouts/Flexbox";
-import MatchResultDetail from "@components/match-result/MatchResultDetail";
-import { blue, red } from "@styles/palette";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import MatchResultCard from '@components/match-result/MatchResultCard';
+import MatchResultGame from '@components/match-result/MatchResultGame';
+import MatchResultInfo from '@components/match-result/MatchResultInfo';
+import MatchResultParticipants from '@components/match-result/MatchResultParticipants';
+import MatchResultAction from '@components/match-result/MatchResultAction';
+import Flexbox from '@components/layouts/Flexbox';
+import MatchResultDetail from '@components/match-result/MatchResultDetail';
+import { blue, red } from '@styles/palette';
 
 interface ContainerProps {
-  result: "win" | "lose";
+  result: 'win' | 'lose';
 }
 
 const Container = styled.div<ContainerProps>`
@@ -22,7 +22,7 @@ const Container = styled.div<ContainerProps>`
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     background-color: ${({ result }) =>
-      result === "win" ? blue[500] : red[500]};
+      result === 'win' ? blue[500] : red[500]};
   }
 `;
 
@@ -35,10 +35,10 @@ const MatchResult: React.FC<Props> = ({ matchData, summonerName }) => {
   const [matchDetailOpen, setMatchDetailOpen] = useState(false);
 
   const me = matchData.participants.find(
-    (participant) => participant.summonerName === summonerName
+    (participant) => participant.summonerName === summonerName,
   );
 
-  const result = me?.win ? "win" : "lose";
+  const result = me?.win ? 'win' : 'lose';
 
   return (
     <Container result={result}>

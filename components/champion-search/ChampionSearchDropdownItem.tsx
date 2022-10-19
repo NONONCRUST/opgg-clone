@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import React from "react";
-import { useDispatch } from "@store/index";
-import { searchActions } from "@store/searchSlice";
-import { theme } from "@styles/theme";
-import Avatar from "@components/common/Avatar";
-import Divider from "@components/common/Divider";
-import Typography from "@components/common/Typography";
+import styled from '@emotion/styled';
+import React from 'react';
+import { useDispatch } from '@store/index';
+import { searchActions } from '@store/searchSlice';
+import { theme } from '@styles/theme';
+import Avatar from '@components/common/Avatar';
+import Divider from '@components/common/Divider';
+import Typography from '@components/common/Typography';
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 
 interface Props {
-  type?: "all" | "champion";
+  type?: 'all' | 'champion';
   champion?: {
     kor: string;
     eng: string;
@@ -35,35 +35,39 @@ interface Props {
 }
 
 const ChampionSearchDropdownItem: React.FC<Props> = ({
-  type = "champion",
+  type = 'champion',
   champion = {
-    kor: "",
-    eng: "",
+    kor: '',
+    eng: '',
   },
 }) => {
   const dispatch = useDispatch();
 
-  const onClickChampion = () => {
+  const handleChampionTypeClick = () => {
     dispatch(searchActions.setChampionSearchFilter(champion.eng));
   };
 
-  const onClickAll = () => {
-    dispatch(searchActions.setChampionSearchFilter(""));
+  const handleAllTypeClick = () => {
+    dispatch(searchActions.setChampionSearchFilter(''));
   };
 
   return (
     <>
       <Container>
-        {type === "champion" && (
-          <div className="dropdown-item-area" onClick={onClickChampion}>
+        {type === 'champion' && (
+          <div
+            role="button"
+            className="dropdown-item-area"
+            onClick={handleChampionTypeClick}
+          >
             <Avatar size="24px" src={`/champion/${champion.eng}.png`} />
             <Typography size={theme.fontSize.caption3}>
               {champion.kor}
             </Typography>
           </div>
         )}
-        {type === "all" && (
-          <div className="dropdown-item-area" onClick={onClickAll}>
+        {type === 'all' && (
+          <div className="dropdown-item-area" onClick={handleAllTypeClick}>
             <Avatar size="24px" />
             <Typography size={theme.fontSize.caption3}>모든 챔피언</Typography>
           </div>

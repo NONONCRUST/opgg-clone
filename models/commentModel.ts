@@ -1,4 +1,4 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema } from 'mongoose';
 
 const commentSchema = new Schema({
   name: String,
@@ -8,6 +8,6 @@ const commentSchema = new Schema({
   createdAt: Date,
 });
 
-const commentModel = models.comments || model("comments", commentSchema);
+const commentModel = models.comments || model('comments', commentSchema);
 
 export default commentModel;

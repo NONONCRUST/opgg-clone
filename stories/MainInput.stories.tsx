@@ -1,7 +1,7 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import MainInput from "@components/main-input/MainInput";
-import styled from "@emotion/styled";
-import { theme } from "@styles/theme";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import MainInput from '@components/main-input/MainInput';
+import styled from '@emotion/styled';
+import { theme } from '@styles/theme';
 
 const Decorator = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Decorator = styled.div`
 `;
 
 export default {
-  title: "Components/MainInput",
+  title: 'Components/MainInput',
   componnet: MainInput,
   decorators: [(story) => <Decorator>{story()}</Decorator>],
 } as ComponentMeta<typeof MainInput>;

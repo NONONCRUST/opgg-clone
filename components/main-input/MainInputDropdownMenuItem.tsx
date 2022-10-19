@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { MdClose, MdStar, MdStarOutline } from "react-icons/md";
-import Flexbox from "@components/layouts/Flexbox";
-import useFavoriteSummoner from "@hooks/useFavoriteSummoner";
-import useSearchHistory from "@hooks/useSearchHistory";
-import { useRouter } from "next/router";
-import { gray, yellow } from "@styles/palette";
+import React from 'react';
+import styled from '@emotion/styled';
+import { MdClose, MdStar, MdStarOutline } from 'react-icons/md';
+import Flexbox from '@components/layouts/Flexbox';
+import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
+import useSearchHistory from '@hooks/useSearchHistory';
+import { useRouter } from 'next/router';
+import { gray, yellow } from '@styles/palette';
 
 const Container = styled.li`
   display: flex;
@@ -26,7 +26,7 @@ const Container = styled.li`
 interface Props {
   name: string;
   isFavorite: boolean;
-  currentTab: "recent" | "favorite";
+  currentTab: 'recent' | 'favorite';
 }
 
 const MainInputDropdownMenuItem: React.FC<Props> = ({
@@ -39,33 +39,37 @@ const MainInputDropdownMenuItem: React.FC<Props> = ({
 
   const router = useRouter();
 
-  const onClickRemoveIcon = (event: React.MouseEvent<HTMLOrSVGElement>) => {
+  const handleRemoveIconClick = (event: React.MouseEvent<HTMLOrSVGElement>) => {
     event.stopPropagation();
-    if (currentTab === "recent") removeSearchHistory(name);
-    if (currentTab === "favorite") removeFavoriteSummoner(name);
+    if (currentTab === 'recent') removeSearchHistory(name);
+    if (currentTab === 'favorite') removeFavoriteSummoner(name);
   };
 
-  const onClickStarIcon = (event: React.MouseEvent<HTMLOrSVGElement>) => {
+  const handleStarIconClick = (event: React.MouseEvent<HTMLOrSVGElement>) => {
     event.stopPropagation();
     if (isFavorite) removeFavoriteSummoner(name);
     if (!isFavorite) addFavoriteSummoner(name);
   };
 
-  const onClickMenuItem = () => {
+  const handleMenuItemClick = () => {
     router.push(`/summoners/${name}`);
   };
 
   return (
-    <Container onClick={onClickMenuItem}>
+    <Container onClick={handleMenuItemClick}>
       <div>{name}</div>
       <Flexbox gap="1rem">
-        {currentTab !== "favorite" && isFavorite && (
-          <MdStar size="20px" color={yellow[400]} onClick={onClickStarIcon} />
+        {currentTab !== 'favorite' && isFavorite && (
+          <MdStar
+            size="20px"
+            color={yellow[400]}
+            onClick={handleStarIconClick}
+          />
         )}
-        {currentTab !== "favorite" && !isFavorite && (
-          <MdStarOutline size="20px" onClick={onClickStarIcon} />
+        {currentTab !== 'favorite' && !isFavorite && (
+          <MdStarOutline size="20px" onClick={handleStarIconClick} />
         )}
-        <MdClose size="20px" cursor="pointer" onClick={onClickRemoveIcon} />
+        <MdClose size="20px" cursor="pointer" onClick={handleRemoveIconClick} />
       </Flexbox>
     </Container>
   );
