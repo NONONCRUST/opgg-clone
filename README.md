@@ -1,1 +1,1 @@
-배포 URL: opgg-clone-one.vercel.app
+[사이트 배포 링크](opgg-clone-one.vercel.app)
