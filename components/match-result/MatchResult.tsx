@@ -7,7 +7,7 @@ import MatchResultParticipants from '@components/match-result/MatchResultPartici
 import MatchResultAction from '@components/match-result/MatchResultAction';
 import Flexbox from '@components/layouts/Flexbox';
 import MatchResultDetail from '@components/match-result/MatchResultDetail';
-import { blue, red } from '@styles/palette';
+import { blue, red } from '@lib/styles/palette';
 
 interface ContainerProps {
   result: 'win' | 'lose';

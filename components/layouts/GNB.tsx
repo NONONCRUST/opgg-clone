@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import DarkModeButton from '@components/DarkModeButton';
 import Flexbox from '@components/layouts/Flexbox';
 import Image from 'next/image';

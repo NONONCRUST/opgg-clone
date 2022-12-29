@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useSelector } from '@store/index';
+import { useDispatch, useSelector } from '@store/index';
 import ChampionSearchInput from '@components/champion-search/ChampionSearchInput';
 import Avatar from '@components/common/Avatar';
 import Card from '@components/common/Card';
@@ -9,7 +9,8 @@ import TabButton from '@components/common/TabButton';
 import Typography from '@components/common/Typography';
 import DonutChart from '@components/DonutChart';
 import Flexbox from '@components/layouts/Flexbox';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
+import { searchActions } from '@store/searchSlice';
 
 const Container = styled.div`
   .match-summary-tab-area {
@@ -42,6 +43,12 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
 
   const winrate = (gameWon.length / gameCount) * 100;
 
+  const dispatch = useDispatch();
+
+  const handleChampionSearchDropdownItemClick = (champion: string) => {
+    dispatch(searchActions.setChampionSearchFilter(champion));
+  };
+
   return (
     <Container>
       <Card>
@@ -58,14 +65,18 @@ const MatchSummaryCard: React.FC<Props> = ({ matchListData, summonerName }) => {
                 src={`/champion/${championSearchFilter}.png`}
               />
             )}
-            <ChampionSearchInput />
+            <ChampionSearchInput
+              onChampionSearchDropdownItemClick={
+                handleChampionSearchDropdownItemClick
+              }
+            />
           </Flexbox>
         </div>
         <Divider />
         <Flexbox justify="start" padding="1rem">
           <Flexbox flex="col" gap="0.5rem">
             <Typography color={gray[500]} size="0.75rem">
-              {gameCount}전{gameWon.length}승{gameCount - gameWon.length}패
+              {gameCount}전 {gameWon.length}승 {gameCount - gameWon.length}패
             </Typography>
             <DonutChart percentage={winrate} />
           </Flexbox>

@@ -4,9 +4,9 @@ import Flexbox from '@components/layouts/Flexbox';
 import Avatar from '@components/common/Avatar';
 import Typography from '@components/common/Typography';
 import { shortenText } from '@lib/utils';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import Link from 'next/link';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 
 const Container = styled.div`
   display: none;

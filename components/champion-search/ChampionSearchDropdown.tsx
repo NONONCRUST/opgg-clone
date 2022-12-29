@@ -3,9 +3,8 @@ import styled from '@emotion/styled';
 import Divider from '@components/common/Divider';
 import Typography from '@components/common/Typography';
 import Flexbox from '@components/layouts/Flexbox';
-import { theme } from '@styles/theme';
-import { gray } from '@styles/palette';
-import ChampionSearchDropdownItem from '@components/champion-search/ChampionSearchDropdownItem';
+import { theme } from '@lib/styles/theme';
+import { gray } from '@lib/styles/palette';
 
 const Container = styled.div`
   position: absolute;
@@ -34,7 +33,6 @@ const ChampionSearchDropdown: React.FC<Props> = ({ children }) => {
         <Typography size={theme.fontSize.caption1}>챔피언 목록</Typography>
       </Flexbox>
       <Divider />
-      <ChampionSearchDropdownItem type="all" />
       {children}
     </Container>
   );

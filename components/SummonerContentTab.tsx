@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import TabButton from '@components/common/TabButton';
 import Layout from '@components/layouts/Layout';
 import Typography from '@components/common/Typography';

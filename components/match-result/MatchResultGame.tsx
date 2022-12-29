@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Typography from '@components/common/Typography';
 import Divider from '@components/common/Divider';
 import { getMatchTypeByQueueId, parseDateRelative } from '@lib/utils';
-import { blue, gray, red } from '@styles/palette';
+import { blue, gray, red } from '@lib/styles/palette';
 
 interface ContainerProps {
   result: 'win' | 'lose';

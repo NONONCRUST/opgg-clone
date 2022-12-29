@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
+
+type DividerOrientation = 'horizontal' | 'vertical';
 
 const dividerOrientationStyle = {
   horizontal: css`
@@ -16,7 +18,7 @@ const dividerOrientationStyle = {
 };
 
 interface ContainerProps {
-  orientation: 'horizontal' | 'vertical';
+  orientation: DividerOrientation;
 }
 
 const Container = styled.hr<ContainerProps>`
@@ -25,16 +27,10 @@ const Container = styled.hr<ContainerProps>`
   border: none;
 
   ${({ orientation }) => dividerOrientationStyle[orientation]};
-
-  ${({ theme }) =>
-    theme.mode === 'dark' &&
-    css`
-      border-bottom: 1px solid ${gray[900]};
-    `}
 `;
 
 interface Props extends React.HTMLAttributes<HTMLHRElement> {
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: DividerOrientation;
 }
 
 const Divider: React.FC<Props> = ({ orientation = 'horizontal', ...props }) => {

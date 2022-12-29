@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { theme } from '@styles/theme';
-import { gray } from '@styles/palette';
+import { theme } from '@lib/styles/theme';
+import { gray } from '@lib/styles/palette';
 import Card from '@components/common/Card';
 import Divider from '@components/common/Divider';
 import IngameNotFound from '@components/IngameNotFound';
@@ -102,7 +102,6 @@ const SummonerPage: React.FC<Props> = ({
 
   const {
     data: summonerData,
-    isLoading: isSummonerLoading,
     refetch: refetchSummoner,
     isError: isSummonerNotFound,
   } = useSummonerQuery(summonerName, initialSummonerData);
@@ -189,10 +188,7 @@ const SummonerPage: React.FC<Props> = ({
             <div className="content-area-match">
               <div className="content-area-match-left">
                 {summonerData && (
-                  <SoloRankInfoCard
-                    isLoading={isSummonerLoading}
-                    summonerData={summonerData}
-                  />
+                  <SoloRankInfoCard summonerData={summonerData} />
                 )}
               </div>
               <div className="content-area-match-right">

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { gray } from '@styles/palette';
+import { theme } from '@lib/styles/theme';
+import { gray } from '@lib/styles/palette';
 import Link from 'next/link';
 
 const navigationBarItemActiveStyle = css`

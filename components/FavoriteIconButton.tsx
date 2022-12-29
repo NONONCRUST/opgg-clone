@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { MdStar, MdStarOutline } from 'react-icons/md';
 import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
-import { gray, yellow } from '@styles/palette';
+import { gray, yellow } from '@lib/styles/palette';
 
 interface ContainerProps {
   isFavorite: boolean;

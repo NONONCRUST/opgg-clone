@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { MdSearch } from 'react-icons/md';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 import ChampionSearchDropdown from '@components/champion-search/ChampionSearchDropdown';
 import ChampionSearchDropdownItem from '@components/champion-search/ChampionSearchDropdownItem';
 import { championList } from '@lib/staticData';
@@ -33,7 +33,13 @@ const Container = styled.div`
   }
 `;
 
-const ChampionSearchInput: React.FC = () => {
+interface Props {
+  onChampionSearchDropdownItemClick: (champion: string) => void;
+}
+
+const ChampionSearchInput: React.FC<Props> = ({
+  onChampionSearchDropdownItemClick,
+}) => {
   const [inputValue, setInputValue] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filteredChampionList, setFilteredChampionList] =
@@ -64,8 +70,16 @@ const ChampionSearchInput: React.FC = () => {
       <MdSearch className="icon" color={gray[500]} />
       {dropdownOpen && (
         <ChampionSearchDropdown>
+          <ChampionSearchDropdownItem
+            type="all"
+            onClick={onChampionSearchDropdownItemClick}
+          />
           {filteredChampionList.map((champion, index) => (
-            <ChampionSearchDropdownItem champion={champion} key={index} />
+            <ChampionSearchDropdownItem
+              onClick={onChampionSearchDropdownItemClick}
+              champion={champion}
+              key={index}
+            />
           ))}
         </ChampionSearchDropdown>
       )}

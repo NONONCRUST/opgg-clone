@@ -5,9 +5,9 @@ import Divider from '@components/common/Divider';
 import Typography from '@components/common/Typography';
 import Flexbox from '@components/layouts/Flexbox';
 import RankEmblemAvatar from '@components/RankEmblemAvatar';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import { capitalize, getWinRate, mapRank } from '@lib/utils';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 
 const Container = styled.section`
   width: 100%;
@@ -50,7 +50,7 @@ const SoloRankInfoCard: React.FC<Props> = ({ summonerData }) => {
                     {capitalize(summonerData.tier)}{' '}
                     {summonerData.tier !==
                       ('GRANDMASTER' || 'CHALLENGER' || 'MASTER') &&
-                      mapRank(summonerData.rank)}
+                      mapRank(summonerData.rank as 'I' | 'II' | 'III' | 'IV')}
                   </Typography>
                   <Typography size="0.75rem" color={gray[500]}>
                     {summonerData.leaguePoints} LP
@@ -59,7 +59,7 @@ const SoloRankInfoCard: React.FC<Props> = ({ summonerData }) => {
               </Flexbox>
               <Flexbox flex="col" gap="0.5rem" items="end">
                 <Typography size="0.75rem" color={gray[400]}>
-                  {summonerData.wins}승{summonerData.losses}패
+                  {summonerData.wins}승 {summonerData.losses}패
                 </Typography>
                 <Typography size="0.75rem" color={gray[400]}>
                   승률 {getWinRate(summonerData.wins, summonerData.losses)}%

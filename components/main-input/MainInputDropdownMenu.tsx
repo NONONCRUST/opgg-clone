@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
 import useSearchHistory from '@hooks/useSearchHistory';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import EmptyNotification from '@components/main-input/EmptyNotification';
 import MainInputDropdownMenuItem from '@components/main-input/MainInputDropdownMenuItem';
 import MainInputDropdownTab from '@components/main-input/MainInputDropdownTab';

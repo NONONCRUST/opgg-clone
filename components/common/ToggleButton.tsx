@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { blue, gray } from '@styles/palette';
-import { theme } from '@styles/theme';
+import { blue, gray } from '@lib/styles/palette';
+import { theme } from '@lib/styles/theme';
 import { css } from '@emotion/react';
 
 interface ContainerProps {
@@ -41,6 +41,7 @@ const Container = styled.label<ContainerProps>`
     active &&
     css`
       background-color: ${blue[200]};
+
       .switch {
         background-color: ${theme.primary};
         transform: translateX(1rem);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { red } from '@styles/palette';
+import { red } from '@lib/styles/palette';
 import Typography from '@components/common/Typography';
 
 interface Props {

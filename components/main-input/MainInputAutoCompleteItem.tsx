@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { capitalize, mapRank } from '@lib/utils';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 import Avatar from '@components/common/Avatar';
 import Typography from '@components/common/Typography';
 import HighlightedText from '@components/HighlightedText';
@@ -46,7 +46,8 @@ const MainInputAutoCompleteItem: React.FC<Props> = ({
             />
             {summonerData.tier && (
               <Typography size="11px">
-                {capitalize(summonerData.tier)} {mapRank(summonerData.rank)} -{' '}
+                {capitalize(summonerData.tier)}{' '}
+                {mapRank(summonerData.rank as 'I' | 'II' | 'III' | 'IV')} -{' '}
                 {summonerData.leaguePoints}
                 LP
               </Typography>

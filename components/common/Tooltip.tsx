@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { gray, yellow } from '@styles/palette';
+import { gray, yellow } from '@lib/styles/palette';
 
 const Container = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { MdInfoOutline, MdStar } from 'react-icons/md';
-import { gray, yellow } from '@styles/palette';
+import { gray, yellow } from '@lib/styles/palette';
 import Typography from '@components/common/Typography';
 
 const Container = styled.div`

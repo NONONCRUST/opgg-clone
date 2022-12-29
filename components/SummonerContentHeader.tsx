@@ -13,9 +13,9 @@ import Flexbox from '@components/layouts/Flexbox';
 import Layout from '@components/layouts/Layout';
 import SummonerIconAvatar from '@components/SummonerIconAvatar';
 import TierHistoryChip from '@components/TierHistoryChip';
-import { theme } from '@styles/theme';
-import { gray } from '@styles/palette';
-import Button from './common/Button';
+import { theme } from '@lib/styles/theme';
+import { gray } from '@lib/styles/palette';
+import Button from '@components/common/Button';
 
 const Base = styled.div`
   .summoner-container {
@@ -60,7 +60,7 @@ const SummonerContentHeader: React.FC<Props> = ({
                 <TierHistoryChip
                   season="2022"
                   tier={summonerData.tier}
-                  rank={mapRank(summonerData.rank)}
+                  rank={mapRank(summonerData.rank as 'I' | 'II' | 'III' | 'IV')}
                 />
               )}
             </Flexbox>

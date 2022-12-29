@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 import Avatar from '@components/common/Avatar';
 
 const Container = styled.div`

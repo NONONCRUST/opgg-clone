@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@components/common/Card';
 import Typography from '@components/common/Typography';
 import Flexbox from '@components/layouts/Flexbox';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 
 interface Props {
   summonerName: string;

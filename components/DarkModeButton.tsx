@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import useDarkMode from '@hooks/useDarkMode';
-import { blue } from '@styles/palette';
+import { blue } from '@lib/styles/palette';
 
 const DarkModeButton: React.FC = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();

@@ -3,29 +3,29 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { useChampionQuery, useCommentsQuery } from '../../lib/queries';
-import { gray } from '../../styles/palette';
-import { theme } from '../../styles/theme';
-import ChampionProfileAvatar from '../ChampionProfileAvatar';
-import Typography from '../common/Typography';
-import Flexbox from '../layouts/Flexbox';
-import Layout from '../layouts/Layout';
-import Card from '../common/Card';
-import Divider from '../common/Divider';
-import DropdownButton from '../common/dropdown/DropdownButton';
-import DropdownMenu from '../common/dropdown/DropdownMenu';
-import DropdownMenuItem from '../common/dropdown/DropdownMenuItem';
-import Textarea from '../common/Textarea';
-import TabButton from '../common/TabButton';
-import ToggleButton from '../common/ToggleButton';
-import Button from '../common/Button';
-import CommentCard from '../comment/CommentCard';
-import { postComment } from '../../lib/api/comment';
-import CommentNotFound from '../comment/CommentNotFound';
-import HeadMeta from '../HeadMeta';
-import SkillAvatar from '../SkillAvatar';
-import Tooltip from '../common/Tooltip';
-import { SPELL, VERSION } from '../../lib/constants';
+import { gray } from '@lib/styles/palette';
+import { useChampionQuery, useCommentsQuery } from '@lib/queries';
+import { theme } from '@lib/styles/theme';
+import ChampionProfileAvatar from '@components/ChampionProfileAvatar';
+import Typography from '@components/common/Typography';
+import Flexbox from '@components/layouts/Flexbox';
+import Layout from '@components/layouts/Layout';
+import Card from '@components/common/Card';
+import Divider from '@components/common/Divider';
+import DropdownButton from '@components/common/dropdown/DropdownButton';
+import DropdownMenu from '@components/common/dropdown/DropdownMenu';
+import DropdownMenuItem from '@components/common/dropdown/DropdownMenuItem';
+import Textarea from '@components/common/Textarea';
+import TabButton from '@components/common/TabButton';
+import ToggleButton from '@components/common/ToggleButton';
+import Button from '@components/common/Button';
+import CommentCard from '@components/comment/CommentCard';
+import { postComment } from '@lib/api/comment';
+import CommentNotFound from '@components/comment/CommentNotFound';
+import HeadMeta from '@components/HeadMeta';
+import SkillAvatar from '@components/SkillAvatar';
+import Tooltip from '@components/common/Tooltip';
+import { SPELL, VERSION } from '@lib/constants';
 
 const Base = styled.main`
   .champion-detail-content-tab {
@@ -260,8 +260,11 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
               </Flexbox>
             </Flexbox>
             {parsedCommentsData &&
-              parsedCommentsData.map((data, index) => (
-                <CommentCard key={index} commentData={data} />
+              parsedCommentsData.map((data) => (
+                <>
+                  <Divider />
+                  <CommentCard commentData={data} />
+                </>
               ))}
             {parsedCommentsData?.length === 0 && <CommentNotFound />}
           </Card>

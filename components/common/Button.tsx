@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
-import { blue } from '@styles/palette';
+import { theme } from '@lib/styles/theme';
+import { blue } from '@lib/styles/palette';
 
 type ButtonVariant = 'text' | 'contained' | 'outlined';
 type ButtonSize = 'small' | 'medium' | 'large';
@@ -119,7 +119,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<Props> = ({
-  children = '버튼',
+  children,
   variant = 'contained',
   size = 'medium',
   disabled = false,

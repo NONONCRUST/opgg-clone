@@ -1,24 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { blue, gray, teal } from '@styles/palette';
+import { blue, gray, teal } from '@lib/styles/palette';
 
 type TabButtonType = 'general' | 'ingame';
 
-const getTabButtonType = (type: TabButtonType, active: boolean) => {
-  switch (type) {
-    case 'general':
-      return css`
-        color: ${active && blue[500]};
-        background-color: ${active && blue[50]};
-      `;
-    case 'ingame':
-      return css`
-        color: ${teal[500]};
-        background: ${active && teal[50]};
-      `;
-  }
-};
+const getTabButtonTypeStyle = (active: boolean) => ({
+  general: css`
+    color: ${active && blue[500]};
+    background-color: ${active && blue[50]};
+  `,
+  ingame: css`
+    color: ${teal[500]};
+    background: ${active && teal[50]};
+  `,
+});
 
 interface ContainerProps {
   active: boolean;
@@ -56,7 +52,7 @@ const Container = styled.li<ContainerProps>`
       font-weight: 600;
     `}
 
-  ${({ type, active }) => getTabButtonType(type, active)};
+  ${({ type, active }) => getTabButtonTypeStyle(active)[type]};
 `;
 
 interface Props extends React.HTMLAttributes<HTMLLIElement> {

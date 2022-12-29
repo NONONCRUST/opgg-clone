@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 
 const avatarShapeStyle = {
   rounded: css`

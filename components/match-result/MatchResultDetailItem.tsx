@@ -6,12 +6,12 @@ import {
   getKillParticipation,
   shortenText,
 } from '@lib/utils';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import Avatar from '@components/common/Avatar';
 import Typography from '@components/common/Typography';
 import Flexbox from '@components/layouts/Flexbox';
 import MatchResultDetailAvatar from '@components/match-result/MatchResultDetailAvatar';
-import { blue, gray, red, teal, yellow } from '@styles/palette';
+import { blue, gray, red, teal, yellow } from '@lib/styles/palette';
 
 const getKdaColor = (kda: string | number) => {
   if (kda === 'Perfect') return yellow[500];

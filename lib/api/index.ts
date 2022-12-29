@@ -1,10 +1,12 @@
 import axiosInstance from 'axios';
 
+const API_SERVER_URL = 'https://opgg-clone-api.fly.dev';
+
 const axios = axiosInstance.create({
   baseURL:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000'
-      : 'https://opgg-clone-api.herokuapp.com',
+      : API_SERVER_URL,
   withCredentials: true,
 });
 

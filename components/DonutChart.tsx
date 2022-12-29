@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { red } from '@styles/palette';
-import { theme } from '@styles/theme';
+import { red } from '@lib/styles/palette';
+import { theme } from '@lib/styles/theme';
 import Typography from '@components/common/Typography';
 
 const DIAMETER = 2 * Math.PI * 40;

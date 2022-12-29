@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
+
+type LoadingButtonVariant = 'contained' | 'outlined';
+type LoadingButtonRingSize = 'large';
 
 const loadingButtonVariantStyle = {
   contained: css`
@@ -25,9 +28,9 @@ const loadingButtonRingSizeStyle = {
 };
 
 interface ContainerProps {
-  variant: 'contained' | 'outlined';
+  variant: LoadingButtonVariant;
   width?: string;
-  ringSize?: 'large';
+  ringSize?: LoadingButtonRingSize;
 }
 
 const Container = styled.button<ContainerProps>`
@@ -73,9 +76,9 @@ const Container = styled.button<ContainerProps>`
 `;
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'contained' | 'outlined';
+  variant?: LoadingButtonVariant;
   width?: string;
-  ringSize?: 'large';
+  ringSize?: LoadingButtonRingSize;
 }
 
 const LoadingButton: React.FC<Props> = ({

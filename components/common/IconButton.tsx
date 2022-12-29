@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { blue } from '@styles/palette';
-import { theme } from '@styles/theme';
+import { blue } from '@lib/styles/palette';
+import { theme } from '@lib/styles/theme';
 
 type IconButtonVariantType = 'contained' | 'outlined';
 
@@ -38,7 +38,7 @@ const Container = styled.button<ContainerProps>`
 
 interface Props {
   children: React.ReactNode;
-  variant?: 'contained' | 'outlined';
+  variant?: IconButtonVariantType;
 }
 
 const IconButton: React.FC<Props> = ({ children, variant = 'contained' }) => {

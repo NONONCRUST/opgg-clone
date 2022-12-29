@@ -1,6 +1,6 @@
 import { Theme } from '@emotion/react';
 import { rem } from 'polished';
-import { green, purple, red } from '@styles/palette';
+import { green, purple, red } from '@lib/styles/palette';
 
 type ThemeType = {
   primary: string;

@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { useDispatch } from '@store/index';
-import { searchActions } from '@store/searchSlice';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import Avatar from '@components/common/Avatar';
 import Divider from '@components/common/Divider';
 import Typography from '@components/common/Typography';
@@ -32,6 +30,7 @@ interface Props {
     kor: string;
     eng: string;
   };
+  onClick: (champion: string) => void;
 }
 
 const ChampionSearchDropdownItem: React.FC<Props> = ({
@@ -40,17 +39,8 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
     kor: '',
     eng: '',
   },
+  onClick,
 }) => {
-  const dispatch = useDispatch();
-
-  const handleChampionTypeClick = () => {
-    dispatch(searchActions.setChampionSearchFilter(champion.eng));
-  };
-
-  const handleAllTypeClick = () => {
-    dispatch(searchActions.setChampionSearchFilter(''));
-  };
-
   return (
     <>
       <Container>
@@ -58,7 +48,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
           <div
             role="button"
             className="dropdown-item-area"
-            onClick={handleChampionTypeClick}
+            onClick={() => onClick(champion.eng)}
           >
             <Avatar size="24px" src={`/champion/${champion.eng}.png`} />
             <Typography size={theme.fontSize.caption3}>
@@ -67,7 +57,7 @@ const ChampionSearchDropdownItem: React.FC<Props> = ({
           </div>
         )}
         {type === 'all' && (
-          <div className="dropdown-item-area" onClick={handleAllTypeClick}>
+          <div className="dropdown-item-area" onClick={() => onClick('')}>
             <Avatar size="24px" />
             <Typography size={theme.fontSize.caption3}>모든 챔피언</Typography>
           </div>

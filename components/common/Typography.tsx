@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 interface ContainerProps {
   size?: string;
@@ -11,12 +10,6 @@ interface ContainerProps {
 
 const Container = styled.p<ContainerProps>`
   text-decoration: ${({ underline }) => underline && 'underline'};
-
-  ${({ theme }) =>
-    theme.mode === 'dark' &&
-    css`
-      color: white;
-    `}
   color: ${({ color }) => color};
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};

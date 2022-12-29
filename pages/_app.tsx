@@ -3,9 +3,9 @@ import { wrapper } from '@store/index';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from '@components/layouts/Header';
 import { ThemeProvider } from '@emotion/react';
-import { lightTheme, darkTheme } from '@styles/theme';
+import { lightTheme, darkTheme } from '@lib/styles/theme';
 import useDarkMode from '@hooks/useDarkMode';
-import GlobalStyle from '@styles/GlobalStyle';
+import GlobalStyle from '@lib/styles/GlobalStyle';
 
 export const reportWebVitals = (metric: NextWebVitalsMetric) => {
   console.log(metric);

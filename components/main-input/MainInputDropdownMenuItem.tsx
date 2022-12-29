@@ -5,7 +5,7 @@ import Flexbox from '@components/layouts/Flexbox';
 import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
 import useSearchHistory from '@hooks/useSearchHistory';
 import { useRouter } from 'next/router';
-import { gray, yellow } from '@styles/palette';
+import { gray, yellow } from '@lib/styles/palette';
 
 const Container = styled.li`
   display: flex;

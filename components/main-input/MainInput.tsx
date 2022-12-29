@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { theme } from '../../styles/theme';
+import { theme } from '../../lib/styles/theme';
 import MainInputDropdownMenu from './MainInputDropdownMenu';
 import MainInputAutoComplete from './MainInputAutoComplete';
 import { useSummonersQuery } from '../../lib/queries';
@@ -124,7 +124,6 @@ const MainInput: React.FC = () => {
         <MainInputAutoComplete
           summonersData={summonersData}
           searchKeyword={debouncedInputValue}
-          inputValue={inputValue}
         />
       )}
     </Container>

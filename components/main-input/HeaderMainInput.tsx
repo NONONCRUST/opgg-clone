@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { theme } from '../../styles/theme';
+import { theme } from '../../lib/styles/theme';
 import MainInputDropdownMenu from './MainInputDropdownMenu';
 import useDebounce from '../../hooks/useDebounce';
 import MainInputAutoComplete from './MainInputAutoComplete';
@@ -146,7 +146,6 @@ const HeaderMainInput: React.FC = () => {
           type="header"
           summonersData={summonersData}
           searchKeyword={debouncedInputValue}
-          inputValue={inputValue}
         />
       )}
     </Container>

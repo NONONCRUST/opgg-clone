@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { MdInfoOutline } from 'react-icons/md';
-import { gray } from '@styles/palette';
-import Divider from '@components/common/Divider';
+import { gray } from '@lib/styles/palette';
 import Typography from '@components/common/Typography';
 
 const Container = styled.div`
@@ -19,13 +18,10 @@ const Container = styled.div`
 
 const CommentNotFound: React.FC = () => {
   return (
-    <>
-      <Divider />
-      <Container>
-        <MdInfoOutline size="3rem" />
-        <Typography>등록된 운영 팁이 없습니다.</Typography>
-      </Container>
-    </>
+    <Container>
+      <MdInfoOutline size="3rem" />
+      <Typography>등록된 운영 팁이 없습니다.</Typography>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import MainInput from '@components/main-input/MainInput';
 import HeadMeta from '@components/HeadMeta';
 import Image from 'next/image';

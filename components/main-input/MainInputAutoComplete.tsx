@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { theme } from '@styles/theme';
+import { theme } from '@lib/styles/theme';
 import Divider from '@components/common/Divider';
 import Typography from '@components/common/Typography';
 import Flexbox from '@components/layouts/Flexbox';

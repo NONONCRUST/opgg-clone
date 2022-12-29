@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
 import { parseDateRelativeMinuteSecond } from '@lib/utils';
-import { gray, red } from '@styles/palette';
-import { theme } from '@styles/theme';
+import { gray, red } from '@lib/styles/palette';
+import { theme } from '@lib/styles/theme';
 import Card from '@components/common/Card';
 import Divider from '@components/common/Divider';
 import Typography from '@components/common/Typography';
@@ -103,11 +103,14 @@ const CurrentGameCard: React.FC<Props> = ({ currentGameData }) => {
               currentGameData.participants
                 .slice(0, 5)
                 .map((participant, index) => (
-                  <CurrentGameItem
-                    key={index}
-                    participant={participant}
-                    team="blue"
-                  />
+                  <>
+                    <CurrentGameItem
+                      key={index}
+                      participant={participant}
+                      team="blue"
+                    />
+                    <Divider />
+                  </>
                 ))}
           </Flexbox>
           <Flexbox className="red-team">

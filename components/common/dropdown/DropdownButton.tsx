@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { gray } from '@styles/palette';
+import { gray } from '@lib/styles/palette';
 import { MdArrowDropDown } from 'react-icons/md';
 import useOutsideClick from '@hooks/useOutsideClick';
 

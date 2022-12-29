@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
-import { blue, red } from '@styles/palette';
+import { blue, red } from '@lib/styles/palette';
 
 interface ContainerProps {
   result: 'win' | 'lose';
