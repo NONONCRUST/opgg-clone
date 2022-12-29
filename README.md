@@ -1,4 +1,4 @@
-# [OP.GG Clone](https://opgg-clone-one.vercel.app) &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm version](https://img.shields.io/npm/v/react.svg?style=flat)
+# [OP.GG Clone](https://opgg-clone-one.vercel.app) &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 OP.GG Clone은 리그 오브 레전드의 게임 전적을 검색하고 조회할 수 있는 사이트입니다. [OP.GG Clone 바로가기](https://opgg-clone-one.vercel.app)
 
