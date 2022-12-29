@@ -1,2 +1,1 @@
-실행 방법
-npm run dev
+배포 URL: opgg-clone-one.vercel.app
