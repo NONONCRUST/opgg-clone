@@ -6,12 +6,16 @@ import { ThemeProvider } from '@emotion/react';
 import { lightTheme, darkTheme } from '@lib/styles/theme';
 import useDarkMode from '@hooks/useDarkMode';
 import GlobalStyle from '@lib/styles/GlobalStyle';
+import useRouteProgressBar from '@hooks/useRouteProgressBar';
+import '../lib/styles/nprogress.css';
 
 export const reportWebVitals = (metric: NextWebVitalsMetric) => {
   console.log(metric);
 };
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useRouteProgressBar();
+
   const { isDarkMode } = useDarkMode();
 
   const queryClient = new QueryClient({
