@@ -45,9 +45,7 @@ const NavigationBarItem: React.FC<Props> = ({
 }) => {
   return (
     <Container active={active} {...props}>
-      <Link href={href}>
-        <a>{name}</a>
-      </Link>
+      <Link href={href}>{name}</Link>
     </Container>
   );
 };

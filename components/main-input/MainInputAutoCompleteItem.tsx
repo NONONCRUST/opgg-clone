@@ -35,31 +35,26 @@ const MainInputAutoCompleteItem: React.FC<Props> = ({
   searchKeyword,
 }) => {
   return (
-    <Link href={`/summoners/${summonerData.name}`}>
-      <a style={{ width: '100%' }}>
-        <Container>
-          <Avatar size="36px" src="/profile-icon/4644.png" />
-          <Flexbox flex="col" items="start" gap="0.3rem">
-            <HighlightedText
-              string={summonerData.name}
-              keyword={searchKeyword}
-            />
-            {summonerData.tier && (
-              <Typography size="11px">
-                {capitalize(summonerData.tier)}{' '}
-                {mapRank(summonerData.rank as 'I' | 'II' | 'III' | 'IV')} -{' '}
-                {summonerData.leaguePoints}
-                LP
-              </Typography>
-            )}
-            {!summonerData.tier && (
-              <Typography size="11px">
-                Level {summonerData.summonerLevel}
-              </Typography>
-            )}
-          </Flexbox>
-        </Container>
-      </a>
+    <Link href={`/summoners/${summonerData.name}`} style={{ width: '100%' }}>
+      <Container>
+        <Avatar size="36px" src="/profile-icon/4644.png" />
+        <Flexbox flex="col" items="start" gap="0.3rem">
+          <HighlightedText string={summonerData.name} keyword={searchKeyword} />
+          {summonerData.tier && (
+            <Typography size="11px">
+              {capitalize(summonerData.tier)}{' '}
+              {mapRank(summonerData.rank as 'I' | 'II' | 'III' | 'IV')} -{' '}
+              {summonerData.leaguePoints}
+              LP
+            </Typography>
+          )}
+          {!summonerData.tier && (
+            <Typography size="11px">
+              Level {summonerData.summonerLevel}
+            </Typography>
+          )}
+        </Flexbox>
+      </Container>
     </Link>
   );
 };

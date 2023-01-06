@@ -64,8 +64,8 @@ const Avatar: React.FC<Props> = ({
           className="image"
           src={src}
           alt={alt}
-          width={size}
-          height={size}
+          width={Number(size.slice(0, 2))}
+          height={Number(size.slice(0, 2))}
         />
       )}
     </Container>

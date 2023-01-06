@@ -43,8 +43,8 @@ const SummonerIconAvatar: React.FC<Props> = ({ iconNumber, level }) => {
   return (
     <Container>
       <Image
-        width="100px"
-        height="100px"
+        width={100}
+        height={100}
         className="image"
         src={`/profile-icon/${iconNumber}.png`}
         alt="summoner icon"

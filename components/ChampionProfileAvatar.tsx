@@ -19,8 +19,8 @@ const ChampionProfileAvatar: React.FC<Props> = ({ championName }) => {
   return (
     <Container>
       <Image
-        width="80px"
-        height="80px"
+        width={80}
+        height={80}
         src={`/champion-tile/${championName}.jpg`}
         alt="champion image"
         priority

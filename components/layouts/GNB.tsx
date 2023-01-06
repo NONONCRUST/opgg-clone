@@ -32,15 +32,8 @@ const Base = styled.div`
 const GNB: React.FC = () => {
   return (
     <Base>
-      <Link href="/">
-        <a className="logo">
-          <Image
-            width="65px"
-            height="16px"
-            src="/opgglogo.svg"
-            alt="opgg-logo"
-          />
-        </a>
+      <Link className="logo" href="/">
+        <Image width={65} height={16} src="/opgglogo.svg" alt="opgg-logo" />
       </Link>
       <Flexbox gap="1rem">
         <DarkModeButton />

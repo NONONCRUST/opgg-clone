@@ -43,18 +43,17 @@ interface Props {
 const MatchResultChampionAvatar: React.FC<Props> = ({ champion, level }) => {
   return (
     <Link href={`/champions/${champion}`}>
-      <a>
-        <Container>
-          <Image
-            className="image"
-            src={`/champion/${champion}.png`}
-            alt={champion}
-            width="48px"
-            height="48px"
-          />
-          <div className="level">{level}</div>
-        </Container>
-      </a>
+      <Container>
+        <Image
+          width={48}
+          height={48}
+          className="image"
+          src={`/champion/${champion}.png`}
+          alt={champion}
+          priority
+        />
+        <div className="level">{level}</div>
+      </Container>
     </Link>
   );
 };

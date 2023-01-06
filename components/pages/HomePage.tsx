@@ -27,8 +27,8 @@ const HomePage: React.FC = () => {
       <Flexbox padding="8rem 0 0 0">
         <Image
           className="main-logo"
-          width="150px"
-          height="36px"
+          width={150}
+          height={36}
           src="/opgglogo.svg"
           alt="opgg-logo"
         />

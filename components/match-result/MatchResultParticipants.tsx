@@ -53,7 +53,7 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
             />
             <Typography className="participant-name">
               <Link href={`/summoners/${participant.summonerName}`}>
-                <a>{shortenText(participant.summonerName, 5)}</a>
+                {shortenText(participant.summonerName, 5)}
               </Link>
             </Typography>
           </Flexbox>
@@ -75,7 +75,7 @@ const MatchResultParticipants: React.FC<Props> = ({ matchData }) => {
             />
             <Typography className="participant-name">
               <Link href={`/summoners/${participant.summonerName}`}>
-                <a>{shortenText(participant.summonerName, 5)}</a>
+                {shortenText(participant.summonerName, 5)}
               </Link>
             </Typography>
           </Flexbox>

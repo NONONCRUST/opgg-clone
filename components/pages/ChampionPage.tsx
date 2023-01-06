@@ -120,17 +120,19 @@ const ChampionPage: React.FC<Props> = ({ championList }) => {
                 <div className="champion-list">
                   {filteredChampionsData &&
                     filteredChampionsData.map((champion, index) => (
-                      <Link href={`/champions/${champion.id}`} key={index}>
-                        <a className="champion-avatar">
-                          <Avatar
-                            size="46px"
-                            shape="boxier"
-                            src={`/champion/${champion.id}.png`}
-                          />
-                          <Typography>
-                            {parseChampionName(champion.name)}
-                          </Typography>
-                        </a>
+                      <Link
+                        className="champion-avatar"
+                        href={`/champions/${champion.id}`}
+                        key={index}
+                      >
+                        <Avatar
+                          size="46px"
+                          shape="boxier"
+                          src={`/champion/${champion.id}.png`}
+                        />
+                        <Typography>
+                          {parseChampionName(champion.name)}
+                        </Typography>
                       </Link>
                     ))}
                   {filteredChampionsData &&
