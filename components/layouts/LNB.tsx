@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { theme } from '@lib/styles/theme';
 import HeaderMainInput from '@components/main-input/HeaderMainInput';
 import NavigationBar from '@components/layouts/NavigationBar';
@@ -28,13 +28,13 @@ const Base = styled.div`
 `;
 
 const LNB: React.FC = () => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <Base>
       <div className="contents">
         <NavigationBar />
-        {router.pathname !== '/' && <HeaderMainInput />}
+        {pathname !== '/' && <HeaderMainInput />}
       </div>
     </Base>
   );

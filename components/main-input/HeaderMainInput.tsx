@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { theme } from '../../lib/styles/theme';
 import MainInputDropdownMenu from './MainInputDropdownMenu';

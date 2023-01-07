@@ -4,7 +4,7 @@ import { MdClose, MdStar, MdStarOutline } from 'react-icons/md';
 import Flexbox from '@components/layouts/Flexbox';
 import useFavoriteSummoner from '@hooks/useFavoriteSummoner';
 import useSearchHistory from '@hooks/useSearchHistory';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { gray, yellow } from '@lib/styles/palette';
 
 const Container = styled.li`

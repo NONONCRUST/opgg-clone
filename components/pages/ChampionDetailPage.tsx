@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { gray } from '@lib/styles/palette';
@@ -84,9 +84,9 @@ const ChampionDetailPage: React.FC<Props> = ({ initialChampionData }) => {
   const [comment, setComment] = useState('');
   const [currentTab, setCurrentTab] = useState<'newest' | 'oldest'>('newest');
 
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const championName = router.query.championName as string;
+  const championName = searchParams.get('championName') as string;
 
   const { data: championData } = useChampionQuery(
     version,
